@@ -1,0 +1,30 @@
+.section-content-carousel {
+  .carousel-inner {
+    .carousel-item {
+      .title {
+        margin-top: 123px;
+        font-size: 42px;
+        font-family: "Merriweather";
+        font-weight: 600;
+        color: #ff6b44;
+      }
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .btn-get-now {
+        width: 174px;
+        margin-top: 30px;
+        background: #11ac6a;
+        border-radius: 4px;
+        color: #fff;
+      }
+
+      .figure {
+        img {
+          margin-top: 80px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.section-product {
+  margin-top: 130px;
+  h3 {
+    font-family: "Merriweather";
+    font-size: 32px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .price {
+    color: #ff6b44;
+  }
+
+  figure {
+    position: relative;
+    img {
+      border-radius: 8px;
+    }
+    .product-img a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 9px;
+      background-color: rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: opacity 0.5s;
+      border-radius: 8px;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.section-footer {
+  margin-top: 150px;
+  h3 {
+    font-weight: 500;
+  }
+  .copyright {
+    font-size: 16px;
+  }
+  .description {
+    p {
+      font-size: 16px;
+    }
+  }
+  .social-media {
+    img {
+      max-height: 50px;
+    }
+  }
+  .list-unstyled {
+    li {
+      a {
+        text-decoration: none;
+        color: #212529;
+
+        &:hover {
+          text-decoration: underline;
+          color: #ff6b44;
+        }
+      }
+    }
+  }
+}

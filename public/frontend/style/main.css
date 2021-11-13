@@ -1,0 +1,320 @@
+.form-control:focus {
+  color: #212529;
+  border-color: #29a867 !important;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(88, 241, 114, 0.3) !important;
+          box-shadow: 0 0 0 0.25rem rgba(88, 241, 114, 0.3) !important;
+}
+
+.section-content-carousel .carousel-inner .carousel-item .title {
+  margin-top: 123px;
+  font-size: 42px;
+  font-family: "Merriweather";
+  font-weight: 600;
+  color: #ff6b44;
+}
+
+.section-content-carousel .carousel-inner .carousel-item .subtitle {
+  font-size: 16px;
+}
+
+.section-content-carousel .carousel-inner .carousel-item .btn-get-now {
+  width: 174px;
+  margin-top: 30px;
+  background: #11ac6a;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.section-content-carousel .carousel-inner .carousel-item .figure img {
+  margin-top: 80px;
+}
+
+body {
+  background-color: #fff;
+  font-family: "Poppins";
+}
+
+.section-category {
+  margin-top: 130px;
+}
+
+.section-category h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #000;
+}
+
+.section-category .bg-category {
+  background-color: #e5e5e5;
+  border-radius: 8px;
+}
+
+.section-category .bg-category a {
+  text-decoration: none;
+  color: #212529;
+}
+
+.section-category .bg-category p {
+  font-size: 20px;
+}
+
+.section-product {
+  margin-top: 130px;
+}
+
+.section-product h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #000;
+}
+
+.section-product .price {
+  color: #ff6b44;
+}
+
+.section-product figure {
+  position: relative;
+}
+
+.section-product figure img {
+  border-radius: 8px;
+}
+
+.section-product figure .product-img a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  border-radius: 8px;
+}
+
+.section-product figure .product-img a:hover {
+  opacity: 1;
+}
+
+.section-popular {
+  margin-top: 130px;
+}
+
+.section-popular h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #000;
+}
+
+.section-popular .price {
+  color: #ff6b44;
+}
+
+.section-popular figure {
+  position: relative;
+}
+
+.section-popular figure img {
+  border-radius: 8px;
+}
+
+.section-popular figure .product-img a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  border-radius: 8px;
+}
+
+.section-popular figure .product-img a:hover {
+  opacity: 1;
+}
+
+.section-login {
+  margin-top: 3%;
+}
+
+.section-login .figure img {
+  max-height: 50px;
+}
+
+.section-login .figure h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.section-login h2 {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-login p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #a2a2a2;
+}
+
+.section-login .btn-daftar {
+  background-color: #29a867;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.section-login .btn-google {
+  background-color: #d6d6d6;
+  color: #212529;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.section-login .btn-google img {
+  max-height: 20px;
+}
+
+.section-login .btn-google span {
+  margin-left: 15px;
+}
+
+.section-login .already-account span {
+  color: #212529;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.section-login .already-account span a {
+  color: #212529;
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.section-login .already-account span a:hover {
+  color: #29a867;
+}
+
+.section-login .forgot-password {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  color: #212529;
+}
+
+.section-login .forgot-password:hover {
+  color: #ffab00;
+}
+
+.section-register {
+  margin-top: 3%;
+}
+
+.section-register .figure img {
+  max-height: 50px;
+}
+
+.section-register .figure h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.section-register h2 {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-register p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #a2a2a2;
+}
+
+.section-register .btn-daftar {
+  background-color: #29a867;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.section-register .already-account span {
+  color: #212529;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.section-register .already-account span a {
+  color: #212529;
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.section-register .already-account span a:hover {
+  color: #29a867;
+}
+
+.navbar {
+  background-color: #fff !important;
+}
+
+.navbar .navbar-brand img {
+  max-height: 50px;
+}
+
+.navbar .navbar-nav .nav-item .active {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ff6b44;
+}
+
+.navbar .navbar-nav .nav-item a {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.navbar .navbar-nav .nav-item a:hover {
+  color: #ff6b44;
+}
+
+.navbar .navbar-nav .btn-sign-up {
+  background-color: #11ac6a;
+}
+
+.section-footer {
+  margin-top: 150px;
+}
+
+.section-footer h3 {
+  font-weight: 500;
+}
+
+.section-footer .copyright {
+  font-size: 16px;
+}
+
+.section-footer .description p {
+  font-size: 16px;
+}
+
+.section-footer .social-media img {
+  max-height: 50px;
+}
+
+.section-footer .list-unstyled li a {
+  text-decoration: none;
+  color: #212529;
+}
+
+.section-footer .list-unstyled li a:hover {
+  text-decoration: underline;
+  color: #ff6b44;
+}
+/*# sourceMappingURL=main.css.map */

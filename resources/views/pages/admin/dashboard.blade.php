@@ -18,7 +18,7 @@
                     <h4>Total Seller</h4>
                   </div>
                   <div class="card-body">
-                    59
+                    {{ $seller }}
                   </div>
                 </div>
               </div>
@@ -48,7 +48,7 @@
                     <h4>User</h4>
                   </div>
                   <div class="card-body">
-                    4,732
+                    {{ $user }}
                   </div>
                 </div>
               </div>

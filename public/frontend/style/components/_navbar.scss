@@ -1,0 +1,28 @@
+.navbar {
+  background-color: #fff !important;
+  .navbar-brand {
+    img {
+      max-height: 50px;
+    }
+  }
+  .navbar-nav {
+    .nav-item .active {
+      font-size: 16px;
+      font-weight: 500;
+      color: #ff6b44;
+    }
+    .nav-item {
+      a {
+        font-size: 16px;
+        font-weight: 400;
+
+        &:hover {
+          color: #ff6b44;
+        }
+      }
+    }
+    .btn-sign-up {
+      background-color: #11ac6a;
+    }
+  }
+}

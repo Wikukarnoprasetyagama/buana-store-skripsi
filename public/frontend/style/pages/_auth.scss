@@ -1,0 +1,128 @@
+.section-login {
+  margin-top: 3%;
+
+  .figure {
+    img {
+      max-height: 50px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+    }
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #a2a2a2;
+  }
+
+  .btn-daftar {
+    background-color: #29a867;
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .btn-google {
+    background-color: #d6d6d6;
+    color: #212529;
+    font-weight: 400;
+    font-size: 16px;
+
+    img {
+      max-height: 20px;
+    }
+
+    span {
+      margin-left: 15px;
+    }
+  }
+
+  .already-account {
+    span {
+      color: #212529;
+      font-weight: 400;
+      font-size: 16px;
+
+      a {
+        color: #212529;
+        font-weight: 400;
+        font-size: 16px;
+        text-decoration: none;
+
+        &:hover {
+          color: #29a867;
+        }
+      }
+    }
+  }
+
+  .forgot-password {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #212529;
+
+    &:hover {
+      color: #ffab00;
+    }
+  }
+}
+.section-register {
+  margin-top: 3%;
+
+  .figure {
+    img {
+      max-height: 50px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+    }
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #a2a2a2;
+  }
+
+  .btn-daftar {
+    background-color: #29a867;
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .already-account {
+    span {
+      color: #212529;
+      font-weight: 400;
+      font-size: 16px;
+
+      a {
+        color: #212529;
+        font-weight: 400;
+        font-size: 16px;
+        text-decoration: none;
+
+        &:hover {
+          color: #29a867;
+        }
+      }
+    }
+  }
+}
