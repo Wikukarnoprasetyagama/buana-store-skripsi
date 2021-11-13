@@ -6,6 +6,7 @@
   <title>@yield('title')</title>
 
  @stack('before-style')
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
  @include('includes.seller.style')
  @stack('after-style')
 </head>
@@ -42,8 +43,10 @@
         </div>
     </div>
   </div>
+  @include('sweetalert::alert')
   @stack('before-script')
   @include('includes.seller.script')
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
   @stack('after-script')
 </body>
 </html>

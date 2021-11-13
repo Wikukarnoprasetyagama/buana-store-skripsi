@@ -1,10 +1,10 @@
 <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <a href="index.html">Admin Buana Store</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="index.html">ABS</a>
           </div>
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
@@ -20,10 +20,10 @@
               </li>
               <li class="menu-header">Data Members</li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i> <span>Seller</span></a>
+                <a href="{{ route('seller.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Seller</span></a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i> <span>User</span></a>
+                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>User</span></a>
               </li>
               <li class="menu-header">Data Transaksi</li>
               <li class="nav-item">

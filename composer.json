@@ -13,6 +13,7 @@
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+        "realrashid/sweet-alert": "^4.1",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

@@ -1,10 +1,10 @@
 <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">USER</a>
+            <a href="index.html">User Buana Store</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">Ur</a>
+            <a href="index.html">UBS</a>
           </div>
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
