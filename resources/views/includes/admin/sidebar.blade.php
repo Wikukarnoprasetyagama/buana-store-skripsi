@@ -9,7 +9,7 @@
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
               <li class="nav-item">
-                <a href="{{ url('/admin') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="{{ route('dashboard-admin') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
               </li>
               <li class="menu-header">Menu</li>
               <li class="nav-item">

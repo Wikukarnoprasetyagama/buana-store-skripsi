@@ -3,11 +3,10 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Seller\DashboardSellerController;
 use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\User\DashboardUserController;
@@ -29,7 +28,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('admin')
         ->middleware(['auth', 'admin'])
         ->group(function(){
-            Route::get('/', [DashboardController::class, 'index'])->name('dashboard-admin');
+            Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard-admin');
 
                 Route::resource('sliders', SlidersController::class);
                 Route::resource('category', CategoryController::class);

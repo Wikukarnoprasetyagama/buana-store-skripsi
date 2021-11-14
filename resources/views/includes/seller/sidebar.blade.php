@@ -15,9 +15,6 @@
               <li class="nav-item">
                 <a href="{{ route('products.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Produk</span></a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i> <span>Kategori</span></a>
-              </li>
               <li class="menu-header">Transaksi</li>
               <li class="nav-item">
                 <a href="#" class="nav-link" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Daftar Transaksi</span></a>

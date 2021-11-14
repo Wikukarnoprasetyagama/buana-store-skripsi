@@ -29,16 +29,41 @@
             <li class="nav-item mx-2">
               <a class="nav-link" href="#">Rewards</a>
             </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="{{ route('login') }}">Sign In</a>
-            </li>
-            <li class="nav-item mx-2">
-              <a
-                class="btn btn-sign-up nav-link px-4 text-white"
-                href="{{ route('register') }}"
-                >Sign Up</a
-              >
-            </li>
+
+            {{-- Jika Belum Login --}}
+
+            @guest
+              <li class="nav-item mx-2">
+                <a class="nav-link" href="{{ route('login') }}">Sign In</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  class="btn btn-sign-up nav-link px-4 text-white"
+                  href="{{ route('register') }}"
+                  >Sign Up</a
+                >
+              </li>
+            @endguest
+
+            {{-- Jika Sudah Login --}}
+            @auth
+                @if (Auth::user()->roles == 'ADMIN')
+                  <li class="nav-item mx-2">
+                      <a class="nav-link" href="{{ route('dashboard-admin') }}">{{ Auth::user()->name }}</a>
+                  </li>
+                @endif
+                @if (Auth::user()->roles == 'SELLER')
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="{{ route('dashboard-seller') }}">{{ Auth::user()->name }}</a>
+                      </li>
+                @endif
+                @if (Auth::user()->roles == 'USER')
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="{{ route('dashboard-user') }}">{{ Auth::user()->name }}</a>
+                      </li>
+                @endif
+            @endauth
+
           </ul>
         </div>
       </div>
