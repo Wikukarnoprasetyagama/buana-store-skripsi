@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Seller\DashboardSellerController;
 use App\Http\Controllers\Seller\ProductController;
+use App\Http\Controllers\Seller\ProductGalleryController;
 use App\Http\Controllers\User\DashboardUserController;
 
 /*
@@ -45,6 +46,7 @@ Route::prefix('seller')
         ->group(function(){
                 Route::get('/', [DashboardSellerController::class, 'index'])->name('dashboard-seller');
                 Route::resource('products', ProductController::class);
+                Route::resource('products-galleries', ProductGalleryController::class);
 });
 
 Route::prefix('user')

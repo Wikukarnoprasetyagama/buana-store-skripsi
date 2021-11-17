@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Daftar Slider
+    Daftar User
 @endsection
 
 @section('content')
@@ -10,11 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-4 pt-5">
-                        <h1 class="h3 mb-0 text-gray-800">Daftar Slider</h1>
-                        <a href="{{ route('sliders.create')}}" class="btn btn-success shadow-sm">
-                            <i class="fas fa-plus fa-sm text-white-50"></i>
-                            Tambah Slider
-                        </a>
+                        <h1 class="h3 mb-0 text-gray-800">Daftar User</h1>
                     </div>
                     <div class="table-responsive mt-5">
                         <table class="table table-hover scroll-horizontal-vertical w-100" id="table">

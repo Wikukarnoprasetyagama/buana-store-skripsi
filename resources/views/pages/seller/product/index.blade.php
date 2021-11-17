@@ -22,7 +22,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Kategori</th>
-                                    <th>Foto</th>
                                     <th>Nama Produk</th>
                                     <th>Harga</th>
                                     <th>Diskon</th>
@@ -53,7 +52,6 @@
         columns:[
             {data: 'id', name: 'id'},
             {data: 'category.name_category', name: 'category.name_category'},
-            {data: 'photo', name: 'photo'},
             {data: 'name_product', name: 'name_product'},
             {data: 'price', name: 'price'},
             {data: 'discount', name: 'discount'},

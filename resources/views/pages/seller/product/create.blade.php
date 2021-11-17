@@ -24,19 +24,9 @@
 
                     <form action="{{ route('products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
+
+                        {{-- Tambah Foto Max 4 & Hapus Gallery Photox --}}
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="photo" class="form-control-label">Foto</label>
-                                    <input  type="file"
-                                            name="photo" 
-                                            value="{{ old('photo') }}" 
-                                            accept="image/*"
-                                            required
-                                            class="form-control @error('photo') is-invalid @enderror"/>
-                                    @error('photo') <div class="text-muted">{{ $message }}</div> @enderror
-                                </div>
-                            </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name_product" class="form-control-label">Nama Produk</label>
@@ -54,20 +44,27 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
+                                <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="price" class="form-control-label">Harga Produk</label>
                                     <input type="number" name="price" value="{{ old('price') }}" class="form-control @error('price') is-invalid @enderror"/>
                                     @error('price') <div class="text-muted" required>{{ $message }}</div> @enderror
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3" hidden>
+                                <div class="form-group">
+                                    <label for="users_id" class="form-control-label">Nama Toko</label>
+                                        <input type="hidden" name="users_id" value="{{ Auth::user()->id }}" class="form-control @error('users_id') is-invalid @enderror"/>
+                                    @error('users_id') <div class="text-muted" required>{{ $message }}</div> @enderror
+                                </div>
+                            </div>
                             <div class="col-md-2">
-                                <label for="price" class="form-control-label">Kasih Diskon  / Tidak</label>
-                                <div class="form-group pt-2">
-                                        <div class="form-check form-check-inline">
+                                <div class="form-group">
+                                    <label for="price" class="form-control-label">Kasih Diskon  / Tidak</label>
+                                        <div class="form-check form-check-inline pt-2">
                                             <input class="form-check-input" type="radio" name="discount" id="inlineRadio1" value="Tidak">
                                             <label class="form-check-label" for="inlineRadio1">Tidak</label>
                                         </div>
@@ -77,14 +74,14 @@
                                         </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="dicount_amount" class="form-control-label">Jumlah Discount</label>
                                     <input type="number" name="dicount_amount" value="{{ old('dicount_amount') }}" class="form-control @error('dicount_amount') is-invalid @enderror"/>
                                     @error('dicount_amount') <div class="text-muted" required>{{ $message }}</div> @enderror
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="code_discount" class="form-control-label">Kode Discount</label>
                                     <input type="text" name="code_discount" value="{{ old('code_discount') }}" class="form-control @error('code_discount') is-invalid @enderror"/>

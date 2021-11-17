@@ -151,19 +151,15 @@
           </div>
         </div>
         <div class="row mt-2">
-          <div
-            class="col-6 col-lg-3 mb-3"
-            data-aos="zoom-in"
-            data-aos-delay="100"
-          >
+          @foreach ($products as $product)
+              <div class="col-6 col-lg-3 mb-3" data-aos="zoom-in" data-aos-delay="100">
             <figure class="figure">
               <div class="product-img">
                 <img
-                  src="{{ url('frontend/images/product_1.jpg') }}"
+                  src="{{ Storage::url($product->photo) }}"
                   class="figure-img img-fluid w-100"
-                  alt=""
-                />
-                <a href="/details.html" class="d-flex justify-content-center">
+                  alt="" />
+                <a href="#" class="d-flex justify-content-center">
                   <img
                     src="/images/eye.png"
                     class="img-fluid align-self-center"
@@ -172,9 +168,10 @@
                 </a>
               </div>
             </figure>
-            <h4 class="name-product">Pizza Hut</h4>
-            <div class="price">$890</div>
+            <h4 class="name-product">{{ $product->name_product }}</h4>
+            <div class="price">Rp.{{ $product->price }}</div>
           </div>
+          @endforeach
           <div
             class="col-6 col-lg-3 mb-3"
             data-aos="zoom-in"

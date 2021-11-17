@@ -9,6 +9,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-4 pt-5">
+                        <h1 class="h3 mb-0 text-gray-800">Daftar Seller</h1>
+                    </div>
                     <div class="table-responsive mt-5">
                         <table class="table table-hover scroll-horizontal-vertical w-100" id="table">
                             <thead>

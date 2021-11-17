@@ -20,18 +20,23 @@
               </li>
               <li class="menu-header">Data Members</li>
               <li class="nav-item">
-                <a href="{{ route('seller.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Seller</span></a>
+                <a href="{{ route('seller.index') }}" class="nav-link"><i class="fas fa-store"></i> <span>Seller</span></a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>User</span></a>
+                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-users"></i> <span>User</span></a>
               </li>
               <li class="menu-header">Data Transaksi</li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i> <span>Seller</span></a>
+                <a href="#" class="nav-link"><i class="fas fa-store"></i> <span>Seller</span></a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-columns"></i> <span>User</span></a>
+                <a href="#" class="nav-link"><i class="fas fa-users"></i> <span>User</span></a>
               </li>
+              <div class="mt-3 mb-4 p-3 hide-sidebar-mini">
+                <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt"></i> Keluar
+                </a>
+              </div>
             </ul>
         </aside>
       </div>

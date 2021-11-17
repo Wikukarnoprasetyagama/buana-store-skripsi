@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Seller;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Admin\Category;
 use App\Models\Seller\Product;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Seller\ProductRequest;
-use App\Models\Admin\Category;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\Seller\ProductRequest;
+use App\Models\User;
 
 class ProductController extends Controller
 {
@@ -20,7 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Product::with(['category']);
+            $query = Product::with(['category', 'user']);
 
             return DataTables::of($query)
                     ->addColumn('action', function($item){
@@ -31,10 +33,7 @@ class ProductController extends Controller
                         </div>
                         ';
                     })
-                    ->editColumn('photo', function($item){
-                        return $item->photo ? '<img src="'. Storage::url($item->photo).'" style="max-height: 30px;" />' : '';
-                    })
-                    ->rawColumns(['action', 'photo'])
+                    ->rawColumns(['action'])
                     ->make();
         }
         return view('pages.seller.product.index');
@@ -46,10 +45,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
         $category = Category::all();
         return view('pages.seller.product.create', [
-            'categories' => $category
+            'categories' => $category,
         ]);
     }
 
@@ -62,9 +61,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->all();
-        $data['photo'] = $request->file('photo')->store(
-            'assets/product', 'public'
-        );
+        $data['slug'] = Str::slug($request->name);
         Product::create($data);
         return redirect()->route('products.index')->with('success', 'Data Berhasil Ditambahkan!');
     }
@@ -92,7 +89,7 @@ class ProductController extends Controller
         $category = Category::all();
         return view('pages.admin.category.edit', [
             'product' => $product,
-            'categories' => $category
+            'categories' => $category,
         ]);
     }
 
@@ -106,9 +103,7 @@ class ProductController extends Controller
     public function update(ProductRequest $request, $id)
     {
         $data = $request->all();
-        $data['photo'] = $request->file('photo')->store(
-            'assets/product', 'public'
-        ); 
+        $data['slug'] = Str::slug($request->name);
 
         $product = Product::findOrFail($id);
 

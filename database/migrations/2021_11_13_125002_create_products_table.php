@@ -15,9 +15,10 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->integer('users_id');
             $table->integer('categories_id');
-            $table->string('photo');
             $table->string('name_product');
+            $table->string('slug');
             $table->integer('price');
             $table->enum('discount', ['ada', 'tidak'])->default('tidak');
             $table->string('discount_amount')->default(0);
