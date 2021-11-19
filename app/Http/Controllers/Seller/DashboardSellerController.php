@@ -10,7 +10,7 @@ class DashboardSellerController extends Controller
 {
     public function index()
     {
-        $product = Product::all()->count();
+        $product = Product::all()->where('users_id', auth()->id())->count();
         return view('pages.seller.dashboard', [
             'product' => $product
         ]);

@@ -15,6 +15,9 @@
               <li class="nav-item">
                 <a href="{{ route('products.index') }}" class="nav-link"><i class="fas fa-list"></i> <span>Produk</span></a>
               </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Keranjang Saya</span></a>
+              </li>
               <li class="menu-header">Transaksi</li>
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="fas fa-list"></i> <span>Daftar Transaksi</span></a>

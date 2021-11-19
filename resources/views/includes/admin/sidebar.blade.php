@@ -18,6 +18,16 @@
               <li class="nav-item">
                 <a href="{{ route('category.index') }}" class="nav-link"><i class="fas fa-list"></i> <span>Daftar Kategori</span></a>
               </li>
+              <li class="menu-header">Data Verifikasi Buka Toko</li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fas fa-user-check"></i> <span>Permintaan Verifikasi</span></a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fas fa-exclamation-triangle"></i> <span>Akun Peringatan</span></a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fas fa-trash"></i> <span>Akun Diblokir</span></a>
+              </li>
               <li class="menu-header">Data Members</li>
               <li class="nav-item">
                 <a href="{{ route('seller.index') }}" class="nav-link"><i class="fas fa-store"></i> <span>Seller</span></a>

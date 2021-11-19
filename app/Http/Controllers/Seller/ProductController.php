@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Seller\ProductRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -22,7 +23,7 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Product::with(['category', 'user']);
+            $query = Product::with(['category', 'user'])->where('users_id', auth()->id());
 
             return DataTables::of($query)
                     ->addColumn('action', function($item){
@@ -61,7 +62,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
+        $data['slug'] = Str::slug($request->name_product);
         Product::create($data);
         return redirect()->route('products.index')->with('success', 'Data Berhasil Ditambahkan!');
     }
