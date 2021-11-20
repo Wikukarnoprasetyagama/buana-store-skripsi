@@ -16,6 +16,9 @@
                 <a href="{{ route('sliders.index') }}" class="nav-link"><i class="fas fa-list"></i> <span>Daftar Slide</span></a>
               </li>
               <li class="nav-item">
+                <a href="#" class="nav-link"><i class="fas fa-list"></i> <span>Daftar Produk</span></a>
+              </li>
+              <li class="nav-item">
                 <a href="{{ route('category.index') }}" class="nav-link"><i class="fas fa-list"></i> <span>Daftar Kategori</span></a>
               </li>
               <li class="menu-header">Data Verifikasi Buka Toko</li>
