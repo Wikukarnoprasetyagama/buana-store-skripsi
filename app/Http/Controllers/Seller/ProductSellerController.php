@@ -4,16 +4,13 @@ namespace App\Http\Controllers\Seller;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Admin\Category;
-use App\Models\Seller\Product;
+use App\Models\Category;
+use App\Models\Products;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProductRequest;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\Seller\ProductRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
-class ProductController extends Controller
+class ProductSellerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,21 +20,21 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Product::with(['category', 'user'])->where('users_id', auth()->id());
+            $query = Products::with(['category', 'user'])->where('users_id', auth()->id());
 
             return DataTables::of($query)
                     ->addColumn('action', function($item){
                         return '
                         <div class="action">
-                        <a href="' . route('products.edit', $item->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></a>
-                        <a href="#" data-url="'. route('products.destroy', $item->id) . '" data-id="' .$item->id. '" data-token="' . csrf_token() . '" id="hapus" class="hapus btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></a>
+                        <a href="' . route('Productss.edit', $item->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></a>
+                        <a href="#" data-url="'. route('Productss.destroy', $item->id) . '" data-id="' .$item->id. '" data-token="' . csrf_token() . '" id="hapus" class="hapus btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></a>
                         </div>
                         ';
                     })
                     ->rawColumns(['action'])
                     ->make();
         }
-        return view('pages.seller.product.index');
+        return view('pages.seller.Products.index');
     }
 
     /**
@@ -48,7 +45,7 @@ class ProductController extends Controller
     public function create()
     {   
         $category = Category::all();
-        return view('pages.seller.product.create', [
+        return view('pages.seller.Products.create', [
             'categories' => $category,
         ]);
     }
@@ -62,9 +59,9 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->name_product);
-        Product::create($data);
-        return redirect()->route('products.index')->with('success', 'Data Berhasil Ditambahkan!');
+        $data['slug'] = Str::slug($request->name_Products);
+        Products::create($data);
+        return redirect()->route('Productss.index')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -86,10 +83,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
+        $Products = Products::findOrFail($id);
         $category = Category::all();
         return view('pages.admin.category.edit', [
-            'product' => $product,
+            'Products' => $Products,
             'categories' => $category,
         ]);
     }
@@ -106,14 +103,14 @@ class ProductController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
 
-        $product = Product::findOrFail($id);
+        $Products = Products::findOrFail($id);
 
-        $product->update($data);
+        $Products->update($data);
 
         if ($data) {
-            return redirect()->route('products.index')->with('success', 'Data berhasil diubah');
+            return redirect()->route('Productss.index')->with('success', 'Data berhasil diubah');
         } else {
-            return redirect()->route('products.edit')->with('error', 'data gagal diubah');
+            return redirect()->route('Productss.edit')->with('error', 'data gagal diubah');
         }
     }
 
@@ -125,7 +122,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
-        $product->delete();
+        $Products = Products::findOrFail($id);
+        $Products->delete();
     }
 }

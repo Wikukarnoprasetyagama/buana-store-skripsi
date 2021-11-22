@@ -13,13 +13,16 @@
               </li>
               <li class="menu-header">Menu</li>
               <li class="nav-item">
-                <a href="{{ route('sliders.index') }}" class="nav-link"><i class="fas fa-list"></i> <span>Daftar Slide</span></a>
+                <a href="{{ route('sliders.index') }}" class="nav-link"><i class="fas fa-photo-video"></i> <span>Slide</span></a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-list"></i> <span>Daftar Produk</span></a>
+                <a href="{{ route('products-admin.index') }}" class="nav-link"><i class="fas fa-store"></i> <span>Produk</span></a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('category.index') }}" class="nav-link"><i class="fas fa-list"></i> <span>Daftar Kategori</span></a>
+                <a href="{{ route('category.index') }}" class="nav-link"><i class="fas fa-list"></i> <span>Kategori</span></a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('upload.create') }}" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Keranjang</span></a>
               </li>
               <li class="menu-header">Data Verifikasi Buka Toko</li>
               <li class="nav-item">

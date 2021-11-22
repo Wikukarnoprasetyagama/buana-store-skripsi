@@ -151,12 +151,11 @@
           </div>
         </div>
         <div class="row mt-2">
-          @foreach ($products as $product)
               <div class="col-6 col-lg-3 mb-3" data-aos="zoom-in" data-aos-delay="100">
             <figure class="figure">
               <div class="product-img">
                 <img
-                  src="{{ Storage::url($product->photo) }}"
+                  src="{{ url('frontend/images/product_2.jpg') }}"
                   class="figure-img img-fluid w-100"
                   alt="" />
                 <a href="#" class="d-flex justify-content-center">
@@ -168,10 +167,9 @@
                 </a>
               </div>
             </figure>
-            <h4 class="name-product">{{ $product->name_product }}</h4>
-            <div class="price">Rp.{{ $product->price }}</div>
+            <h4 class="name-product">Macebook Pro M1</h4>
+            <div class="price">Rp.45.000.000</div>
           </div>
-          @endforeach
           <div
             class="col-6 col-lg-3 mb-3"
             data-aos="zoom-in"

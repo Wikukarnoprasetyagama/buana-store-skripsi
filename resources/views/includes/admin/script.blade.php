@@ -4,6 +4,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.6/js/fileinput.min.js" integrity="sha512-IpeB734vID7QynL2cgdKMVDh1CNHndzxt9QKeq/aZQ5yItaDHcpWsg7C1tq4xCljTPa4l6EiJ1hUTaD/2KltiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/assets/js/stisla.js"></script>
 
   <!-- JS Libraies -->

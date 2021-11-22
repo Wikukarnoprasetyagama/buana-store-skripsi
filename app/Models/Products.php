@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Models\Seller;
+namespace App\Models;
 
-use App\Models\Admin\Category;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Products extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'categories_id', 'users_id', 'name_product', 'slug', 'price', 'discount', 'discount_amount', 'code_discount', 'description',
+        'photo', 'categories_id', 'users_id', 'name_product', 'slug', 'price', 'discount', 'discount_amount', 'description',
     ];
 
     public function galleries()

@@ -1,21 +1,16 @@
 <?php
 
-namespace App\Models\Seller;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ProductGallery extends Model
+class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'photo', 'products_id'
+        'photo', 'name_category'
     ];
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class, 'products_id', 'id');
-    }
 }

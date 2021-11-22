@@ -75,6 +75,39 @@ class LoginController extends Controller
         }
     }
 
+    // login with facebook
+
+    public function redirectToFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handlerFacebookCallback(Request $request)
+    {
+        try {
+            $user_facebook = Socialite::driver('facebook')->user();
+            $user = User::where('email', $user_facebook->getEmail())->first();
+
+            if($user != null)
+            {
+                \auth()->login($user, true);
+                return redirect()->route('/');
+            }else{
+                $create = User::create([
+                    'email' => $user_facebook->getEmail(),
+                    'name' => $user_facebook->getName(),
+                    'password' => 0,
+                    'email_verified_at' => now(),
+
+                ]);
+                \auth()->login($create, true);
+                return redirect()->route('/');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('login');
+        }
+    }
+
     /**
      * Create a new controller instance.
      *

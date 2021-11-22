@@ -82,14 +82,14 @@
             <div class="row d-flex justify-content-center mt-4">
             <div class="col-12 col-lg-1 mb-3">
                 <div class="d-grid text-center">
-                <a href="{{ '/auth/redirect' }}" class="img-fluid"
+                <a href="{{ url('/auth/redirect') }}" class="img-fluid"
                     ><img src="{{ url('frontend/images/ic_google.svg') }}" alt=""
                 /></a>
                 </div>
             </div>
             <div class="col-12 col-lg-1 mb-3">
                 <div class="d-grid text-center">
-                <a href="#" class="img-fluid"
+                <a href="{{ url('/auth/facebook/redirect') }}" class="img-fluid"
                     ><img src="{{ url('frontend/images/ic_facebook_1.svg') }}" alt=""
                 /></a>
                 </div>
