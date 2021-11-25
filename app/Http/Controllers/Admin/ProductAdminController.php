@@ -64,22 +64,6 @@ class ProductAdminController extends Controller
         $data['photo'] = $request->file('photo')->store('assets/product', 'public');
         Products::create($data);
         return redirect()->route('products-admin.index')->with('success', 'Data Berhasil Ditambahkan!');
-        // if ($request->hasfile('photo')) {
-        //     $data['slug'] = Str::slug($request->name_product);
-        //     $files = [];
-        //     foreach ($request->file('photo') as $file) {
-        //         if($file->isValid()){
-        //             $photo = round(microtime(true) * 1000). '-'.str_replace(' ', '-', $file->getClientOriginalName());
-        //             $file->move(public_path('assets/product'), $photo);
-        //             $files[] = [
-        //                 'photo' => $photo
-        //             ];
-        //         }
-        //     }
-        //     Products::insert($files);
-        // }
-        // Products::create($data);
-        // return redirect()->route('products-admin.index')->with('success', 'Data Berhasil Ditambahkan!');
 
     }
 
