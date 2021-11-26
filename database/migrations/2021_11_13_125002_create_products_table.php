@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->integer('price');
             $table->enum('discount', ['ada', 'tidak'])->default('tidak');
-            $table->string('discount_amount')->default(0);
+            $table->string('discount_amount')->default(0)->nullable();
             $table->string('code_discount')->nullable();
             $table->longText('description');
             $table->softDeletes();

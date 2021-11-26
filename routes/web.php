@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Seller\DashboardSellerController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\ProductGalleriesController;
+use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Seller\ProductGalleryController;
 use App\Http\Controllers\Seller\ProductSellerController;
 use App\Http\Controllers\User\DashboardUserController;
@@ -50,6 +51,7 @@ Route::prefix('admin')
                 Route::resource('seller', SellerController::class);
                 Route::resource('products-admin', ProductAdminController::class);
                 Route::resource('user', UserController::class);
+                Route::resource('profile', ProfileAdminController::class);
         });
 
 Route::prefix('seller')

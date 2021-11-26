@@ -40,7 +40,7 @@
                                 <div class="form-group">
                                     <label for="photo" class="form-control-label">Foto</label>
                                     <input  type="file"
-                                            name="photo" 
+                                            name="photo[]" 
                                             value="{{ old('photo') }}" 
                                             required
                                             multiple

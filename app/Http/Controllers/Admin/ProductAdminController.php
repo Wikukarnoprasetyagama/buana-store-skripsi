@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\ProductGallery;
 use App\Models\Products;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductAdminController extends Controller
@@ -21,7 +22,7 @@ class ProductAdminController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Products::with(['category', 'user'])->where('users_id', auth()->id());
+            $query = Products::with(['category', 'user'])->where('users_id', auth()->id())->get();
 
             return DataTables::of($query)
                     ->addColumn('action', function($item){
@@ -59,10 +60,39 @@ class ProductAdminController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->name_product);
-        $data['photo'] = $request->file('photo')->store('assets/product', 'public');
-        Products::create($data);
+        // $data = $request->all();
+        // $data['slug'] = Str::slug($request->name_product);
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $users = $request->users_id;
+            $name = $request->name_product;
+            $category = $request->categories_id;
+            $price = $request->price;
+            $discount = $request->discount;
+            $discount_amount = $request->discount_amount;
+            $dsc = $request->description;
+            $mount_image = count($image);
+            for ($i=0; $i < $mount_image; $i++) { 
+                $image_url = $image[$i]->getClientOriginalName();
+                $image[$i]->store('/public/assets/product');
+
+                Products::create([
+                    'photo' => $image_url,
+                    'slug' => Str::slug($request->name_product),
+                    'users_id' => $users,
+                    'name_product' => $name,
+                    'categories_id' => $category,
+                    'price' => $price,
+                    'discount' => $discount,
+                    'discount_amount' => $discount_amount,
+                    'description' => $dsc,
+                ]);
+            }
+        }
+        // $data = $request->all();
+        // $data['slug'] = Str::slug($request->name_product);
+        // $data['photo'] = $request->file('photo')->store('assets/product', 'public');
+        // Products::create($data);
         return redirect()->route('products-admin.index')->with('success', 'Data Berhasil Ditambahkan!');
 
     }
