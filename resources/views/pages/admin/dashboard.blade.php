@@ -117,36 +117,6 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="card card-statistic-2">
-                <div class="card-icon shadow-warning bg-warning">
-                  <i class="fas fa-users"></i>
-                </div>
-                <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>Data Member Peringatan</h4>
-                  </div>
-                  <div class="card-body">
-                    2 (belum)
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="card card-statistic-2">
-                <div class="card-icon shadow-primary bg-danger">
-                  <i class="fas fa-trash"></i>
-                </div>
-                <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>Data Member Diblokir</h4>
-                  </div>
-                  <div class="card-body">
-                    2 (belum)
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
       </div>

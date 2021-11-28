@@ -54,15 +54,15 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-6 mb-3">
-                        <button type="submit" class="btn btn-primary btn-block">
-                            Simpan
-                        </button>
-                    </div>
                     <div class="col-md-6">
                         <a href="{{ route('sliders.index') }}" class="btn btn-danger btn-block">
                             Batal
                         </a>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Simpan
+                        </button>
                     </div>
                 </div>
             </form>
