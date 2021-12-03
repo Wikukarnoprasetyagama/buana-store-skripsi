@@ -68,8 +68,8 @@
     let id = $(this).data('id');
     let tr = this
     Swal.fire({ 
-        title: 'Apakah anda yakin ?',
-        text: "Data ini akan dihapus",
+        title: 'Data ini akan di hapus',
+        text: "Apakah anda yakin ?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -97,8 +97,8 @@
                 });
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 swal.fire(
-                    'Hapus data dibatalkan!',
-                    'Data yang ingin anda hapus telah dibatalkan',
+                    'Dibatalkan!',
+                    'Data yang ingin anda hapus berhasil dibatalkan',
                     'error'
                 )
             }

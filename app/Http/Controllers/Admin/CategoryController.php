@@ -23,16 +23,16 @@ class CategoryController extends Controller
             $query = Category::all();
 
             return DataTables::of($query)
-                    ->addColumn('action', function($slider){
+                    ->addColumn('action', function($category){
                         return '
                         <div class="action">
-                        <a href="' . route('sliders.edit', $slider->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></a>
-                        <a href="#" data-url="'. route('sliders.destroy', $slider->id) . '" data-id="' .$slider->id. '" data-token="' . csrf_token() . '" id="hapus" class="hapus btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></a>
+                        <a href="' . route('category.edit', $category->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></a>
+                        <a href="#" data-url="'. route('category.destroy', $category->id) . '" data-id="' .$category->id. '" data-token="' . csrf_token() . '" id="hapus" class="hapus btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></a>
                         </div>
                         ';
                     })
-                    ->editColumn('photo', function($slider){
-                        return $slider->photo ? '<img src="'. Storage::url($slider->photo).'" style="max-height: 30px;" />' : '';
+                    ->editColumn('photo', function($category){
+                        return $category->photo ? '<img src="'. Storage::url($category->photo).'" style="max-height: 30px;" />' : '';
                     })
                     ->rawColumns(['action', 'photo'])
                     ->make();
@@ -129,5 +129,9 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
+
+        return response()->json([
+            'success' => 'Data berhasil dihapus!'
+        ]);
     }
 }

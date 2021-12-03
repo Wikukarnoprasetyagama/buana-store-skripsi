@@ -77,66 +77,25 @@
           </div>
         </div>
         <div class="row mt-3">
+          @php
+              $incrementCategory = 0
+          @endphp
+          @forelse ($categories as $category)
           <div class="col-4 col-lg-2 text-center mb-2">
-            <div class="bg-category" data-aos="zoom-in" data-aos-delay="100">
-              <a href="#">
+            <div class="bg-category" data-aos="zoom-in" data-aos-delay="{{ $incrementCategory+=100 }}">
+              <a href="">
                 <figure class="figure pt-3">
-                  <img src="{{ url('frontend/images/ic_gadgets.svg') }}" class="img-fluid" alt="" />
-                  <p class="mt-2 d-none d-md-block d-lg-block">Gadgets</p>
+                  <img src="{{ Storage::url($category->photo) }}" class="img-fluid" alt="" />
+                  <p class="mt-2 d-none d-md-block d-lg-block">{{ $category->name_category }}</p>
                 </figure>
               </a>
             </div>
           </div>
-          <div class="col-4 col-lg-2 text-center mb-2">
-            <div class="bg-category" data-aos="zoom-in" data-aos-delay="200">
-              <a href="#">
-                <figure class="figure pt-3">
-                  <img src="{{ url('frontend/images/ic_food.svg') }}" class="img-fluid" alt="" />
-                  <p class="mt-2 d-none d-md-block d-lg-block">Makanan</p>
-                </figure>
-              </a>
-            </div>
+          @empty
+          <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
+            No Category Found!
           </div>
-          <div class="col-4 col-lg-2 text-center mb-2">
-            <div class="bg-category" data-aos="zoom-in" data-aos-delay="300">
-              <a href="#">
-                <figure class="figure pt-3">
-                  <img src="{{ url('frontend/images/ic_cosmetic.svg') }}" class="img-fluid" alt="" />
-                  <p class="mt-2 d-none d-md-block d-lg-block">Kosmetik</p>
-                </figure>
-              </a>
-            </div>
-          </div>
-          <div class="col-4 col-lg-2 text-center mb-2">
-            <div class="bg-category" data-aos="zoom-in" data-aos-delay="400">
-              <a href="#">
-                <figure class="figure pt-3">
-                  <img src="{{ url('frontend/images/ic_baby.svg') }}" class="img-fluid" alt="" />
-                  <p class="mt-2 d-none d-md-block d-lg-block">Bayi</p>
-                </figure>
-              </a>
-            </div>
-          </div>
-          <div class="col-4 col-lg-2 text-center mb-2">
-            <div class="bg-category" data-aos="zoom-in" data-aos-delay="500">
-              <a href="#">
-                <figure class="figure pt-3">
-                  <img src="{{ url('frontend/images/ic_fashion.svg') }}" class="img-fluid" alt="" />
-                  <p class="mt-2 d-none d-md-block d-lg-block">Fashion</p>
-                </figure>
-              </a>
-            </div>
-          </div>
-          <div class="col-4 col-lg-2 text-center mb-2">
-            <div class="bg-category" data-aos="zoom-in" data-aos-delay="600">
-              <a href="#">
-                <figure class="figure pt-3">
-                  <img src="{{ url('frontend/images/ic_perkakas.svg') }}" class="img-fluid" alt="" />
-                  <p class="mt-2 d-none d-md-block d-lg-block">Perkakas</p>
-                </figure>
-              </a>
-            </div>
-          </div>
+          @endforelse
         </div>
       </div>
     </section>

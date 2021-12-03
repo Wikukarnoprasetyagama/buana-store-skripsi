@@ -62,8 +62,10 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
+    {   
+        $code = 'MBSTORE-' . mt_rand(000000,999999);
         return User::create([
+            'id' => $code['id'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
