@@ -15,7 +15,8 @@ use App\Http\Controllers\Admin\ProductGalleriesController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Seller\ProductGalleryController;
 use App\Http\Controllers\Seller\ProductSellerController;
-use App\Http\Controllers\User\DashboardUserController;
+use App\Http\Controllers\Customer\DashboardCustomerController;
+use App\Http\Controllers\Customer\OpenStoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,10 +63,12 @@ Route::prefix('seller')
                 Route::resource('products-galleries', ProductGalleryController::class);
 });
 
-Route::prefix('user')
-        ->middleware(['auth', 'user'])
+Route::prefix('customer')
+        ->middleware(['auth', 'customer'])
         ->group(function(){
-            Route::get('/', [DashboardUserController::class, 'index'])->name('dashboard-user');
+            Route::get('/', [DashboardCustomerController::class, 'index'])->name('dashboard-customer');
+
+            Route::resource('open-store', OpenStoreController::class);
 });
 
 Auth::routes();

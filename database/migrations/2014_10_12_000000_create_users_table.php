@@ -15,14 +15,11 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('stores_id')->nullable();
             $table->string('name');
             $table->string('email')->unique();
-            $table->enum('roles', ['ADMIN', 'SELLER', 'USER'])->default('USER');
-            $table->string('name_store')->nullable();
-            $table->string('photo')->nullable();
-            $table->string('phone')->nullable();
-            $table->longText('alamat')->nullable();
-            $table->enum('status', ['TERVERIFIKASI', 'DIBLOKIR', 'PERINGATAN'])->nullable();
+            $table->enum('roles', ['ADMIN', 'SELLER', 'CUSTOMER'])->default('CUSTOMER');
+            $table->enum('status', ['TERVERIFIKASI', 'PENDING', 'DIBLOKIR'])->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->softDeletes();

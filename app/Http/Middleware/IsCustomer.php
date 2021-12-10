@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsUser
+class IsCustomer
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class IsUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->roles == 'USER'){
+        if(Auth::user() && Auth::user()->roles == 'CUSTOMER'){
             return $next($request);
         }
         return redirect('/');

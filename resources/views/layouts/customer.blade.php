@@ -6,7 +6,7 @@
   <title>@yield('title')</title>
 
  @stack('before-style')
- @include('includes.users.style')
+ @include('includes.customer.style')
  @stack('after-style')
 </head>
 
@@ -14,10 +14,10 @@
   <div id="app">
     <div class="main-wrapper">
         <div class="navbar-bg"></div>
-            @include('includes.users.navbar')
-            @include('includes.users.sidebar')
+            @include('includes.customer.navbar')
+            @include('includes.customer.sidebar')
             @yield('content')
-            @include('includes.users.footer')
+            @include('includes.customer.footer')
     </div>
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -43,7 +43,7 @@
     </div>
   </div>
   @stack('before-script')
-  @include('includes.users.script')
+  @include('includes.customer.script')
   @stack('after-script')
 </body>
 </html>

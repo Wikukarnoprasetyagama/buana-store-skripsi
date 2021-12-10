@@ -1,7 +1,7 @@
-@extends('layouts.user')
+@extends('layouts.customer')
 
 @section('title')
-    DASHBOARD USER
+    DASHBOARD CUSTOMER
 @endsection
 
 @section('content')
@@ -33,7 +33,7 @@
                     <h4>User</h4>
                   </div>
                   <div class="card-body">
-                    4,732
+                    4,732 {{ $name_store->store }}
                   </div>
                 </div>
               </div>

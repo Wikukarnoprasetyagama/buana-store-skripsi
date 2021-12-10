@@ -21,17 +21,6 @@
                         </ul>
                     </div>
                     @endif
-                    {{-- <div class="row">
-                        <div class="col-md-12">
-                            <form action="{{ route('portofolio-gallery-upload') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <input type="file" name="photos" id="file" style="display: none" onchange="form.submit()" />
-                                <button class="btn btn-secondary btn-block mt-2" type="button" onclick="thisFileUpload()">
-                                    Add Photo
-                                </button>
-                            </form>
-                        </div>
-                    </div> --}}
                     <form action="{{ route('products-admin.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf                  
                         <input type="hidden" name="users_id" value="{{ Auth::user()->id }}"/>

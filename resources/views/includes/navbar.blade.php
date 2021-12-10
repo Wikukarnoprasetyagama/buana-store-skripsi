@@ -57,9 +57,9 @@
                         <a class="nav-link" href="{{ route('dashboard-seller') }}">{{ Auth::user()->name }}</a>
                       </li>
                 @endif
-                @if (Auth::user() && Auth::user()->roles == 'USER')
+                @if (Auth::user() && Auth::user()->roles == 'CUSTOMER')
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="{{ route('dashboard-user') }}">{{ Auth::user()->name }}</a>
+                        <a class="nav-link" href="{{ route('dashboard-customer') }}">{{ Auth::user()->name }}</a>
                       </li>
                 @endif
             @endauth

@@ -1,7 +1,7 @@
 <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">User Buana Store</a>
+            <a href="index.html">{{ Auth::user()->roles }} Buana Store</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">UBS</a>
@@ -9,7 +9,7 @@
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
               <li class="nav-item">
-                <a href="{{ route('dashboard-user') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="{{ route('dashboard-customer') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
               </li>
               <li class="menu-header">Menu</li>
               <li class="nav-item">
@@ -30,7 +30,7 @@
                 <a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
               </li>
               <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
+              <a href="{{ route('open-store.create') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-store"></i> Buka Toko Sekarang
               </a>
             </div>
