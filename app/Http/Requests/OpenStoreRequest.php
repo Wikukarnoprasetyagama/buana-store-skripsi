@@ -25,12 +25,12 @@ class OpenStoreRequest extends FormRequest
     {
         return [
             'users_id' => 'required|exists:users,id',
-            'photo_profile' => 'image',
-            'name_store' => 'required|string|max:255',
+            'photo_profile' => 'required|image',   
+            'name_store' => 'required|string',
             'phone' => 'required',
-            'photo_shop' => 'image',
-            'village' => 'string',
-            'address' => 'string',
+            'photo_shop' => 'required|image',   
+            'village' => 'required|string', 
+            'address' => 'required|string',
         ];
     }
 }

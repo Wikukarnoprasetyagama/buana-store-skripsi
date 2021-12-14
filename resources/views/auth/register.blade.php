@@ -33,6 +33,7 @@
                     class="form-control @error('email') is-invalid @enderror"
                     aria-describedby="emailhelp"
                     autofocus
+                    required
                 />
 
                 @error('email')
@@ -43,7 +44,7 @@
             </div>
             <div class="col-12 col-lg-3">
                 <label for="name" class="form-label">Username</label>
-                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" />
+                <input type="text" name="name" required class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" />
                 @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -54,7 +55,7 @@
             <div class="row mt-3 d-flex justify-content-center">
             <div class="col-12 col-lg-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password" />
+                <input type="password" required name="password" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password" />
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -63,7 +64,7 @@
                 </div>
             <div class="col-12 col-lg-3">
                 <label for="password-confirm" class="form-label">Conform Password</label>
-                <input type="password" name="password_confirmation" class="form-control" required autocomplete="new-password" />
+                <input type="password" required name="password_confirmation" class="form-control" required autocomplete="new-password" />
             </div>
             </div>
             <div class="row mt-4 d-flex justify-content-center">

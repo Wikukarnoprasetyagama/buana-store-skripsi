@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OpenStoreRequest;
-use App\Models\OpenStore;
-use App\Models\Store;
 use App\Models\User;
+use App\Models\UserDetails;
 use Illuminate\Http\Request;
 
 class OpenStoreController extends Controller
@@ -39,6 +38,22 @@ class OpenStoreController extends Controller
      */
     public function store(OpenStoreRequest $request)
     {
+
+        // auth()->user()->name()->create(request([
+        //     'photo_profile', 'name_store', 'phone', 'photo_shop', 'village', 'address'
+        // ]));
+
+        // $store = new User;
+        // $store->photo_profile = $request->photo_profile;
+        // $store->name_store = $request->name_store;
+        // $store->phone = $request->phone;
+        // $store->photo_shop = $request->photo_shop;
+        // $store->village = $request->village;
+        // $store->address = $request->address;
+
+        // $store->save();
+
+
         $data = $request->all();
         $data['photo_profile'] = $request->file('photo_profile')->store(
             'assets/profile',
@@ -49,7 +64,7 @@ class OpenStoreController extends Controller
             'public'
         );
 
-        Store::create($data);
+        UserDetails::create($data);
         return redirect()->route('dashboard-customer');
         
     }

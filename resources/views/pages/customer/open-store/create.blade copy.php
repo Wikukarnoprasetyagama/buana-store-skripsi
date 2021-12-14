@@ -23,7 +23,6 @@
                     @endif
                     <form action="{{ route('open-store.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf   
-                        <input type="hidden" name="users_id" id="users_id" value="{{ Auth::user()->id }}">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">

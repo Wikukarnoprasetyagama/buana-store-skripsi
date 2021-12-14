@@ -40,7 +40,7 @@ class LoginController extends Controller
         } elseif (Auth::user()->roles == 'SELLER') {
             return redirect('/seller');
         }else {
-            return redirect('/user');
+            return redirect('/customer');
         }
 
     }

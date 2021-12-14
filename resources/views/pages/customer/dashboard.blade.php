@@ -33,7 +33,7 @@
                     <h4>User</h4>
                   </div>
                   <div class="card-body">
-                    4,732 {{ $name_store->store }}
+                    4,732
                   </div>
                 </div>
               </div>

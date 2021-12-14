@@ -24,7 +24,15 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|string|max:255',
+            // 'name' => 'string|nullable',
+            // 'email' => 'string|email|max:255|unique:users',
+            // 'password' => 'string', 'min:8', 'confirmed',
+            // 'photo_profile' => 'image',
+            // 'name_store' => 'required|string|max:255',
+            // 'phone' => 'required',
+            // 'photo_shop' => 'image',
+            // 'village' => 'string',
+            // 'address' => 'string',
         ];
     }
 }
