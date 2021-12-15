@@ -13,9 +13,11 @@ class DashboardCustomerController extends Controller
 {
     public function index()
     {
-        $detail = UserDetails::all();
+        // $detail = UserDetails::where('status', 'PENDING', Auth::user()->users_id)->find();
+        $detail = UserDetails::where('status', 'PENDING', Auth::user()->id)->get()->take(1);
         return view('pages.customer.dashboard', [
             'details' => $detail
+            // 'detail' => UserDetails::where('status', 'PENDING', Auth::user()->users_id)->get()
         ]);
     }
 }

@@ -32,9 +32,9 @@
               <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
                   @if (!Auth::user()->details != 'PENDING')
                   <button class="btn btn-warning btn-lg btn-block btn-icon-split">
-                    @foreach ($details as $detail)
-                        <i class="fas fa-store"></i> {{ $detail->status }}
-                    @endforeach
+                        <i class="fas fa-store"></i> @foreach ($details as $detail)
+                            {{ $detail->status }}
+                        @endforeach
                   </button>
                   @else
                   <a href="{{ route('open-store.create') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">

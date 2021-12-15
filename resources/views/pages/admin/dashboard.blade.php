@@ -112,7 +112,7 @@
                     <h4>Menunggu Verifikasi</h4>
                   </div>
                   <div class="card-body">
-                    10 (belum)
+                    {{ $open_store }}
                   </div>
                 </div>
               </div>
