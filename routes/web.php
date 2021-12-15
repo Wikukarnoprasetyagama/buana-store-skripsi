@@ -13,6 +13,7 @@ use App\Http\Controllers\Seller\DashboardSellerController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\ProductGalleriesController;
 use App\Http\Controllers\Admin\ProfileAdminController;
+use App\Http\Controllers\Admin\VerificationController;
 use App\Http\Controllers\Seller\ProductGalleryController;
 use App\Http\Controllers\Seller\ProductSellerController;
 use App\Http\Controllers\Customer\DashboardCustomerController;
@@ -53,6 +54,7 @@ Route::prefix('admin')
                 Route::resource('products-admin', ProductAdminController::class);
                 Route::resource('user', UserController::class);
                 Route::resource('profile', ProfileAdminController::class);
+                Route::resource('verification', VerificationController::class);
         });
 
 Route::prefix('seller')

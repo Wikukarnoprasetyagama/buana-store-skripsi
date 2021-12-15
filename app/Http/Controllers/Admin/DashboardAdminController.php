@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Products;
-use App\Models\Slider;
 use App\Models\Sliders;
 use App\Models\User;
 use App\Models\UserDetails;

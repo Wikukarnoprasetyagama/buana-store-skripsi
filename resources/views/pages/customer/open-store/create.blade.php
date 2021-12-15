@@ -47,13 +47,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="phone" class="form-control-label">Nomor Telephone (aktif)</label>
-                                    <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror">
+                                    <input type="text" name="phone" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror">
                                     @error('phone') <div class="text-muted" required>{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="photo_shop" class="form-control-label">Foto Toko</label>
                                     <input  type="file"
@@ -64,11 +64,18 @@
                                     @error('photo_shop') <div class="text-muted">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="village" class="form-control-label">Nama Desa</label>
                                     <input type="text" name="village" value="{{ old('village') }}" class="form-control @error('village') is-invalid @enderror"/>
                                     @error('village') <div class="text-muted" required>{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="street" class="form-control-label">Nama Jalan</label>
+                                    <input type="text" name="street" value="{{ old('street') }}" class="form-control @error('street') is-invalid @enderror"/>
+                                    @error('street') <div class="text-muted" required>{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
@@ -108,6 +115,11 @@
 <script>
     ClassicEditor
          .create( document.querySelector( '.ckeditor' ) )
+        {
+            toolbar: 'Full',
+            enterMode : CKEDITOR.ENTER_BR,
+            shiftEnterMode: CKEDITOR.ENTER_P
+        }
          .then( editor => {
                  console.log( editor );
          } )

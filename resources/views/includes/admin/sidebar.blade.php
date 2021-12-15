@@ -25,7 +25,7 @@
                 <a href="{{ route('upload.create') }}" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Keranjang</span></a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-user-check"></i> <span>Permintaan Verifikasi</span></a>
+                <a href="{{ route('verification.index') }}" class="nav-link"><i class="fas fa-user-check"></i> <span>Permintaan Verifikasi</span></a>
               </li>
               <li class="menu-header">Data Members</li>
               <li class="nav-item">
