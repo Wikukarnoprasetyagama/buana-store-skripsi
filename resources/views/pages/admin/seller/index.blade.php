@@ -50,9 +50,8 @@
         columns:[
             {data: 'id', name: 'id'},
             {data: 'photo', name: 'photo'},
-            {data: 'roles', name: 'roles'},
-            {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
+            {data: 'user.name', name: 'user.name'},
+            {data: 'user.email', name: 'user.email'},
             {data: 'phone', name: 'phone'},
             {data: 'name_store', name: 'name_store'},
             {data: 'status', name: 'status'},

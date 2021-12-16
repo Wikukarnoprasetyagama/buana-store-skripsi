@@ -16,6 +16,7 @@ class CreateUserDetailsTable extends Migration
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
             $table->integer('users_id');
+            $table->enum('roles', ['ADMIN', 'SELLER', 'CUSTOMER'])->default('CUSTOMER');
             $table->string('name_store')->nullable();
             $table->string('photo_profile')->nullable();
             $table->string('phone')->nullable();

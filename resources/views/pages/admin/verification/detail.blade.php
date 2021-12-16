@@ -69,6 +69,7 @@
                         <div class="row d-flex justify-content-right">
                             <div class="col-md-12 text-right">
                                 <div class="form-group">
+                                    <input type="hidden" name="roles" value="SELLER">
                                     <input type="hidden" name="status" value="TERVERIFIKASI">
                                     <button type="submit" class="btn btn-success">Verifikasi Sekarang</button>
                                 </div>

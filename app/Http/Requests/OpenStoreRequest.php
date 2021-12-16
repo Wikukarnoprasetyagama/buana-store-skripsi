@@ -30,6 +30,7 @@ class OpenStoreRequest extends FormRequest
             'phone' => 'required',
             'photo_shop' => 'required|image',   
             'village' => 'required|string', 
+            'street' => 'required|string', 
             'address' => 'required|string',
         ];
     }

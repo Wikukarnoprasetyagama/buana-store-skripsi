@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -18,14 +19,14 @@ class SellerController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = User::where('roles', 'SELLER');
+            $query = UserDetails::with(['user']);
 
             return DataTables::of($query)
                     ->addColumn('action', function($seller){
                         return '
                         <div class="action">
-                        <a href="' . route('sliders.edit', $seller->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></a>
-                        <a href="#" data-url="'. route('sliders.destroy', $seller->id) . '" data-id="' .$seller->id. '" data-token="' . csrf_token() . '" id="hapus" class="hapus btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></a>
+                        <a href="' . route('seller.edit', $seller->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></a>
+                        <a href="#" data-url="'. route('seller.destroy', $seller->id) . '" data-id="' .$seller->id. '" data-token="' . csrf_token() . '" id="hapus" class="hapus btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></a>
                         </div>
                         ';
                     })

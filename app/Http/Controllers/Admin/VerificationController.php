@@ -78,10 +78,12 @@ class VerificationController extends Controller
     public function edit($id)
     {
         $detail = UserDetails::findOrFail($id);
-        $user = UserDetails::where('status', 'PENDING')->get();
+        $change = User::findOrFail($id);
+        $user = UserDetails::with('user')->where('status', 'PENDING')->get()->take(1);
         return view('pages.admin.verification.detail', [
             'detail' => $detail,
             'users' => $user,
+            'changes' => $change,
         ]);
     }
 
@@ -96,7 +98,9 @@ class VerificationController extends Controller
     {
         $data = $request->all();
         $verification = UserDetails::findOrFail($id);
+        $change = User::findOrFail($id);
         $verification->update($data);
+        $change->update($data);
 
         return redirect()->route('verification.index');
     }
