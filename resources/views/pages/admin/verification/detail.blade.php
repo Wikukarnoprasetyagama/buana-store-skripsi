@@ -71,7 +71,7 @@
                                 <div class="form-group">
                                     <input type="hidden" name="roles" value="SELLER">
                                     <input type="hidden" name="status" value="TERVERIFIKASI">
-                                    <button type="submit" class="btn btn-success">Verifikasi Sekarang</button>
+                                    <button type="submit" class="btn btn-success change">Verifikasi Sekarang</button>
                                 </div>
                             </div>
                         </div>

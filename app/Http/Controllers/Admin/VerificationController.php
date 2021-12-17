@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerRequest;
 use App\Http\Requests\VerificationRequest;
 use App\Models\User;
 use App\Models\UserDetails;
@@ -78,12 +79,10 @@ class VerificationController extends Controller
     public function edit($id)
     {
         $detail = UserDetails::findOrFail($id);
-        $change = User::findOrFail($id);
         $user = UserDetails::with('user')->where('status', 'PENDING')->get()->take(1);
         return view('pages.admin.verification.detail', [
             'detail' => $detail,
             'users' => $user,
-            'changes' => $change,
         ]);
     }
 
@@ -98,11 +97,9 @@ class VerificationController extends Controller
     {
         $data = $request->all();
         $verification = UserDetails::findOrFail($id);
-        $change = User::findOrFail($id);
         $verification->update($data);
-        $change->update($data);
 
-        return redirect()->route('verification.index');
+        return redirect()->route('customer.index');
     }
 
     /**

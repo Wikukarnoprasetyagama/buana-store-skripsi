@@ -17,7 +17,7 @@ class IsCustomer
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->details == 'CUSTOMER'){
+        if(Auth::user() && Auth::user()->roles == 'CUSTOMER'){
             return $next($request);
         }
         return redirect('/');

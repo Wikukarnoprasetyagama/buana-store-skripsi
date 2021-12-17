@@ -20,7 +20,7 @@
             <p>Mulai kembangkan bisnis anda dengan cara terbaru bersama kami</p>
           </div>
         </div>
-        <form action="{{ route('register') }}" method="POST">
+        <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mt-3 d-flex justify-content-center">
             <div class="col-12 col-lg-3">

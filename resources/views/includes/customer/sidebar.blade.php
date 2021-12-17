@@ -30,10 +30,10 @@
                 <a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
               </li>
               <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                  @if (!Auth::user()->details != 'PENDING')
+                  @if (!Auth::user()->status != 'PENDING')
                   <button class="btn btn-warning btn-lg btn-block btn-icon-split">
-                        <i class="fas fa-store"></i> @foreach ($details as $detail)
-                            {{ $detail->status }}
+                        <i class="fas fa-store"></i> @foreach ($customers as $customer)
+                            {{ $customer->status }}
                         @endforeach
                   </button>
                   @else

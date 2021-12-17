@@ -32,7 +32,7 @@
                 <a href="{{ route('seller.index') }}" class="nav-link"><i class="fas fa-store"></i> <span>Seller</span></a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-users"></i> <span>Customer</span></a>
+                <a href="{{ route('customer.index') }}" class="nav-link"><i class="fas fa-users"></i> <span>Customer</span></a>
               </li>
               <li class="menu-header">Data Transaksi</li>
               <li class="nav-item">
