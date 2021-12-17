@@ -20,3 +20,18 @@
 
   <!-- Page Specific JS File -->
   <script src="{{ url('/assets/js/page/index.js') }}"></script>
+  <script>
+   ClassicEditor
+        .create( document.querySelector( '.ckeditor' ) )
+        {
+            toolbar: 'Full',
+            enterMode : CKEDITOR.ENTER_BR,
+            shiftEnterMode: CKEDITOR.ENTER_P
+        }
+        .then( editor => {
+                console.log( editor );
+        } )
+        .catch( error => {
+                console.error( error );
+        } );
+</script>

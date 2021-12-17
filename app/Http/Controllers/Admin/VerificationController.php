@@ -20,7 +20,7 @@ class VerificationController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = UserDetails::with(['user'])->where('status', 'PENDING')->get();
+            $query = User::where('status', 'PENDING')->get();
 
             return DataTables::of($query)
                     ->addColumn('action', function($item){
@@ -34,7 +34,7 @@ class VerificationController extends Controller
                     ->rawColumns(['action'])
                     ->make();
         }
-        $item = UserDetails::where('status', 'PENDING')->get();
+        $item = User::where('status', 'PENDING')->get();
         return view('pages.admin.verification.index', compact('item'));
     }
 
@@ -78,8 +78,8 @@ class VerificationController extends Controller
      */
     public function edit($id)
     {
-        $detail = UserDetails::findOrFail($id);
-        $user = UserDetails::with('user')->where('status', 'PENDING')->get()->take(1);
+        $detail = User::findOrFail($id);
+        $user = User::where('status', 'PENDING')->get()->take(1);
         return view('pages.admin.verification.detail', [
             'detail' => $detail,
             'users' => $user,
@@ -95,8 +95,10 @@ class VerificationController extends Controller
      */
     public function update(VerificationRequest $request, $id)
     {
+
+        // $data = User::all();
         $data = $request->all();
-        $verification = UserDetails::findOrFail($id);
+        $verification = User::findOrFail($id);
         $verification->update($data);
 
         return redirect()->route('customer.index');

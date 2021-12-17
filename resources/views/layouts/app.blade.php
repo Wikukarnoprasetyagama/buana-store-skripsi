@@ -45,6 +45,22 @@
   </div>
   @include('sweetalert::alert')
   @stack('before-script')
+  <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+  <script>
+   ClassicEditor
+        .create( document.querySelector( '.ckeditor' ) )
+        {
+            toolbar: 'Full',
+            enterMode : CKEDITOR.ENTER_BR,
+            shiftEnterMode: CKEDITOR.ENTER_P
+        }
+        .then( editor => {
+                console.log( editor );
+        } )
+        .catch( error => {
+                console.error( error );
+        } );
+  </script>
   @include('includes.admin.script')
   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
   @stack('after-script')

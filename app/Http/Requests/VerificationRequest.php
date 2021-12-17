@@ -24,6 +24,7 @@ class VerificationRequest extends FormRequest
     public function rules()
     {
         return [
+            'roles' => 'string',
             'status' => 'string',
         ];
     }

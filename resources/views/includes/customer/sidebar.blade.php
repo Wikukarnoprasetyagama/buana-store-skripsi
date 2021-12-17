@@ -30,16 +30,19 @@
                 <a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
               </li>
               <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                  @if (!Auth::user()->status != 'PENDING')
+                  @if (Auth::user()->status != 'PENDING')
+                  <form action="{{ route('open-store.edit', Auth::id()) }}">
+                    @csrf
+                    <button type="submit" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                      <i class="fas fa-store"></i> Buka Toko Sekarang
+                    </button>     
+                  </form>                 
+                  @else
                   <button class="btn btn-warning btn-lg btn-block btn-icon-split">
                         <i class="fas fa-store"></i> @foreach ($customers as $customer)
                             {{ $customer->status }}
                         @endforeach
                   </button>
-                  @else
-                  <a href="{{ route('open-store.create') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                    <i class="fas fa-store"></i> Buka Toko Sekarang
-                  </a>
               @endif
             </div>
             </ul>

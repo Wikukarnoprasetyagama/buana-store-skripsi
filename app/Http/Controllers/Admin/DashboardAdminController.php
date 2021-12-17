@@ -21,7 +21,7 @@ class DashboardAdminController extends Controller
         return view('pages.admin.dashboard', [
             'seller' => User::where('roles', 'SELLER')->count(),
             'user' => User::where('roles', 'CUSTOMER')->count(),
-            'open_store' => UserDetails::where('status', 'PENDING')->get()->count(),
+            'open_store' => User::where('status', 'PENDING')->get()->count(),
             'products' => $products,
             'category' => $category,
             'sliders' => $slider

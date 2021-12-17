@@ -23,8 +23,7 @@ class OpenStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'users_id' => 'required|exists:users,id',
+        return [   
             'photo_profile' => 'required|image',   
             'name_store' => 'required|string',
             'phone' => 'required',
@@ -32,6 +31,7 @@ class OpenStoreRequest extends FormRequest
             'village' => 'required|string', 
             'street' => 'required|string', 
             'address' => 'required|string',
+            'status' => 'required|string',
         ];
     }
 }

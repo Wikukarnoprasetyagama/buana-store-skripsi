@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->enum('roles', ['ADMIN', 'SELLER', 'CUSTOMER'])->default('CUSTOMER');
             $table->string('name_store')->nullable();
-            $table->enum('status', ['TERVERIFIKASI', 'PENDING', 'DIBLOKIR']);
+            $table->enum('status', ['TERVERIFIKASI', 'PENDING', 'DIBLOKIR', 'NONE'])->default('NONE');
             $table->string('phone')->nullable();
             $table->string('village')->nullable();
             $table->string('street')->nullable();

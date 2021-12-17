@@ -27,7 +27,7 @@ class OpenStoreController extends Controller
      */
     public function create()
     {
-        return view('pages.customer.open-store.create');
+        // return view('pages.customer.open-store.edit');
     }
 
     /**
@@ -64,7 +64,7 @@ class OpenStoreController extends Controller
             'public'
         );
 
-        UserDetails::create($data);
+        User::create($data);
         return redirect()->route('dashboard-customer');
         
     }
@@ -88,7 +88,10 @@ class OpenStoreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $open = User::findOrFail($id);
+        return view('pages.customer.open-store.edit', [
+            'open' => $open
+        ]);
     }
 
     /**
@@ -100,7 +103,24 @@ class OpenStoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $data['photo_profile'] = $request->file('photo_profile')->store(
+            'assets/profile',
+            'public'
+        );
+        $data['photo_shop'] = $request->file('photo_shop')->store(
+            'assets/store',
+            'public'
+        );
+        $open = User::findOrFail($id);
+
+        $open->update($data);
+
+        if ($data) {
+            return redirect()->route('dashboard-customer')->with('success', 'Data berhasil diubah');
+        } else {
+            return redirect()->route('dasboard-customer.edit')->with('error', 'data gagal diubah');
+        }
     }
 
     /**

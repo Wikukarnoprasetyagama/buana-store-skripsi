@@ -77,7 +77,7 @@
         },
         columns:[
             {data: 'id', name: 'id'},
-            {data: 'user.name', name: 'user.name'},
+            {data: 'name', name: 'name'},
             {data: 'name_store', name: 'name_store'},
             {data: 'village', name: 'village'},
             { 

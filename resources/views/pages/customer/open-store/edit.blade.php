@@ -21,8 +21,10 @@
                         </ul>
                     </div>
                     @endif
-                    <form action="{{ route('open-store.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('open-store.update', $open->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf   
+                        @method('PUT')
+                        <input type="hidden" name="status" value="PENDING">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -46,13 +48,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="phone" class="form-control-label">Nomor Telephone (aktif)</label>
-                                    <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror">
+                                    <input type="text" name="phone" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror">
                                     @error('phone') <div class="text-muted" required>{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="photo_shop" class="form-control-label">Foto Toko</label>
                                     <input  type="file"
@@ -63,11 +65,18 @@
                                     @error('photo_shop') <div class="text-muted">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="village" class="form-control-label">Nama Desa</label>
                                     <input type="text" name="village" value="{{ old('village') }}" class="form-control @error('village') is-invalid @enderror"/>
                                     @error('village') <div class="text-muted" required>{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="street" class="form-control-label">Nama Jalan</label>
+                                    <input type="text" name="street" value="{{ old('street') }}" class="form-control @error('street') is-invalid @enderror"/>
+                                    @error('street') <div class="text-muted" required>{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
@@ -75,8 +84,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="address" class="form-control-label">Isi Alamat Lengkap Toko</label>
-                                    <textarea name="address" placeholder="Contoh: Sp. 2 Umum, Jln. subakti, RT/RW 03/01 depan kantor camat"
-                                            class="ckeditor form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+                                    <textarea name="address" style="height: 75px" placeholder="Contoh: Sp. 2 Umum, Jln. subakti, RT/RW 03/01 depan kantor camat"
+                                            class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
                                     @error('address') <div class="text-muted">{{ $message }}</div>@enderror
                                 </div>
                             </div>
@@ -100,20 +109,3 @@
     </div>
 </div>
 @endsection
-
-@push('after-script')
-<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
-
-<script>
-    ClassicEditor
-         .create( document.querySelector( '.ckeditor' ) )
-         .then( editor => {
-                 console.log( editor );
-         } )
-         .catch( error => {
-                 console.error( error );
-         } );
- </script>
-
-
-@endpush
