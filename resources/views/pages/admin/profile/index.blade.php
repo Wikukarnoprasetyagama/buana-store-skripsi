@@ -9,70 +9,69 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-4 pt-5">
+                    <div class="d-flex align-items-center justify-content-between mb-4 pt-3">
                         <h1 class="h3 mb-0 text-gray-800">Profile Saya</h1>
                     </div>
                     @foreach ($users as $user)
                     <div class="row">
                         <div class="col-md-2">
-                            <img src="{{ url('/assets/img/avatar/avatar-1.png') }}" class="img-fluid h-50" alt="">
+                            <img src="{{ Storage::url($user->photo_profile) }}" class="img-fluid h-50" alt="">
                         </div>
                         <div class="col-md-10">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control" value="{{ $user->email }}" readonly>
+                                        <input type="email" class="form-control" value="{{ $user->email }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="name_store" class="form-label">Nama Toko</label>
-                                        <input type="text" class="form-control" value="{{ $user->name_store }}" readonly>
+                                        <input type="text" class="form-control" value="{{ $user->name_store }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="name_store" class="form-label">Nama Pemilik</label>
-                                        <input type="text" class="form-control" value="{{ $user->name }}" readonly>
+                                        <input type="text" class="form-control" value="{{ $user->name }}" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="status" class="form-label">Status</label>
-                                            <input type="text" class="form-control" value="{{ $user->alamat }}" readonly>
+                                        <label for="status" class="form-label">Role</label>
+                                            <input type="text" class="form-control" value="{{ $user->roles }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Nomor Hp</label>
-                                        <input type="text" class="form-control" value="{{ $user->phone }}" readonly>
+                                        <input type="text" class="form-control" value="{{ $user->phone }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Alamat</label>
-                                            <input type="text" class="form-control" value="{{ $user->alamat }}" readonly>
+                                        <label for="phone" class="form-label">Jalan</label>
+                                            <input type="text" class="form-control" value="{{ $user->street }}" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <label for="phone" class="form-label">Alamat</label>
-                                    <input name="alamat" class="form-control text-left" value="{{ $user->alamat }}" readonly>
-                                </div>
-                            </div>
-                            <div class="row mt-5">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <a href="#" class="btn btn-warning d-block">Update Password</a>
+                                    <div class="col-md-4">
+                                        <label for="street" class="form-label">Nama Jalan</label>
+                                        <input name="street" class="form-control text-left" value="{{ $user->street }}" disabled>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label for="address" class="form-label">Alamat</label>
+                                        <input name="address" class="form-control text-left" value="{{ $user->address }}" disabled>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            <div class="row mt-5">
+                                <div class="col-md-12 text-right">
                                     <div class="form-group">
-                                        <a href="#" class="btn btn-primary d-block">Update Profile</a>
+                                        <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-primary">Update Profile</a>
                                     </div>
                                 </div>
                             </div>
