@@ -9,7 +9,7 @@
             <a href="#" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-luggage-cart"></i></a>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="{{ url('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            <img alt="image" src="{{ Storage::url(Auth::user()->photo_profile) }}" class="img-fluid rounded-circle h-100 w-100 mr-2" style="max-height: 40px; max-width: 40px; border-radius: 50px; background-size: cover">
             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>

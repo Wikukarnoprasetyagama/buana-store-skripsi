@@ -41,7 +41,30 @@
             </div>
         </div>
     </div>
+    {{-- Notifikasi Has Open Store --}}
+    <div class="modal fade" id="openStore" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Hi, {{ Auth::user()->name }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Mohon maaf kepada Customer {{ Auth::user()->name }} data yang anda kirimkan untuk pembukaan toko
+			sedang dalam antrian, team kami sedang melakukan pengecekan data-data anda,
+			mohon untuk menunggu beberapa hari kedepan.
+			Terima kasih...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  @include('sweetalert::alert')
   @stack('before-script')
   @include('includes.customer.script')
   @stack('after-script')

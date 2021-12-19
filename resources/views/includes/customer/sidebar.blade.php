@@ -38,7 +38,7 @@
                     </button>     
                   </form>                 
                   @else
-                  <button class="btn btn-warning btn-lg btn-block btn-icon-split">
+                  <button class="btn btn-warning btn-lg btn-block btn-icon-split" data-toggle="modal" data-target="#openStore">
                         <i class="fas fa-store"></i> @foreach ($customers as $customer)
                             {{ $customer->status }}
                         @endforeach

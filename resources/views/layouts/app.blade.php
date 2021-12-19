@@ -61,6 +61,7 @@
                 console.error( error );
         } );
   </script>
+  @include('sweetalert::alert')
   @include('includes.admin.script')
   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
   @stack('after-script')

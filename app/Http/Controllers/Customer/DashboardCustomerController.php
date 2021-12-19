@@ -14,9 +14,11 @@ class DashboardCustomerController extends Controller
     public function index()
     {
         // $detail = UserDetails::where('status', 'PENDING', Auth::user()->users_id)->find();
+        $item = User::all();
         $customer = User::where('status', 'PENDING', Auth::user()->id)->get()->take(1);
         return view('pages.customer.dashboard', [
-            'customers' => $customer
+            'customers' => $customer,
+            'item' => $item
             // 'detail' => UserDetails::where('status', 'PENDING', Auth::user()->users_id)->get()
         ]);
     }

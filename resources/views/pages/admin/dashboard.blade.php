@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Total Seller</h4>
+                    <h4>SELLER</h4>
                   </div>
                   <div class="card-body">
                     {{ $seller }}
@@ -30,7 +30,7 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>User</h4>
+                    <h4>CUSTOMERS</h4>
                   </div>
                   <div class="card-body">
                     {{ $user }}
@@ -45,7 +45,7 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Balance</h4>
+                    <h4>BALANCE</h4>
                   </div>
                   <div class="card-body">
                     $187,13
@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Jumlah Produk</h4>
+                    <h4>PRODUK</h4>
                   </div>
                   <div class="card-body">
                     {{ $products }}
@@ -77,7 +77,7 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Jumlah Kategori Produk</h4>
+                    <h4>KATEGORI PRODUK</h4>
                   </div>
                   <div class="card-body">
                     {{ $category }}
@@ -92,7 +92,7 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Slide / Banner</h4>
+                    <h4>BANNER / SLIDE</h4>
                   </div>
                   <div class="card-body">
                     {{ $sliders }}
@@ -109,7 +109,7 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Menunggu Verifikasi</h4>
+                    <h4>MENUNGGU VERIFIKASI</h4>
                   </div>
                   <div class="card-body">
                     {{ $open_store }}
