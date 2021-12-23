@@ -1,10 +1,26 @@
 .section-category {
-  margin-top: 130px;
+  margin-top: 90px;
   h3 {
     font-family: "Merriweather";
     font-size: 32px;
     font-weight: 600;
-    color: #000;
+    color: #1e124c;
+  }
+  p {
+    color: #5b5575;
+  }
+  .next-category {
+    color: #11ac6a;
+    font-weight: 400;
+    font-size: 18px;
+    text-decoration: none;
+
+    &:hover {
+      color: #11ac6a;
+      font-weight: 400;
+      font-size: 18px;
+      text-decoration: underline;
+    }
   }
   .bg-category {
     background-color: #e5e5e5;
@@ -14,7 +30,7 @@
       color: #212529;
     }
     p {
-      font-size: 20px;
+      font-size: 18px;
     }
   }
 }

@@ -1,0 +1,84 @@
+.section-gallery {
+  margin-top: 70px;
+  h3 {
+    font-family: "Merriweather";
+    font-size: 32px;
+    font-weight: 600;
+    color: #1e124c;
+  }
+
+  .name-store {
+    p {
+      color: #c4c4c4;
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
+  .name-product {
+    h5 {
+      color: #000;
+      font-weight: bold;
+      font-size: 26px;
+    }
+  }
+  .price {
+    color: #ff6b44;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .quantity {
+    .btn-minus {
+      background-color: #edc500;
+    }
+    .btn-plus {
+      background-color: #29a867;
+    }
+  }
+  .add-to-cart {
+    margin-top: 85px;
+    .btn-add-to-cart {
+      background-color: #a43ce3;
+      color: #fff;
+      border-radius: 25px;
+      font-size: 18px;
+    }
+  }
+
+  .description-product {
+    h3 {
+      font-family: "Merriweather";
+      font-size: 32px;
+      font-weight: 600;
+      color: #1e124c;
+    }
+    .description {
+      margin-top: 30px;
+      p {
+        color: #525252;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .reviews {
+    margin-top: 26px;
+    .customer-reviews {
+      margin-top: -30px;
+    }
+    img {
+      max-height: 70px;
+    }
+    h5 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #0c0d36;
+    }
+    p {
+      color: #525252;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+}

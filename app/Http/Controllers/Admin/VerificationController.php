@@ -34,7 +34,7 @@ class VerificationController extends Controller
                     ->rawColumns(['action'])
                     ->make();
         }
-        $item = User::where('status', 'PENDING')->get();
+        $item = User::where('status', 'PENDING')->firstOrFail()->get();
         return view('pages.admin.verification.index', compact('item'));
     }
 
@@ -79,10 +79,9 @@ class VerificationController extends Controller
     public function edit($id)
     {
         $detail = User::findOrFail($id);
-        $user = User::where('status', 'PENDING')->get()->take(1);
         return view('pages.admin.verification.detail', [
             'detail' => $detail,
-            'users' => $user,
+            // 'user' => User::where('status', 'PENDING')->get()
         ]);
     }
 

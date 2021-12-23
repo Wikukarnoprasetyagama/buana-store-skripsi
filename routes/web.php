@@ -14,10 +14,13 @@ use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\ProductGalleriesController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\VerificationController;
+use App\Http\Controllers\CategoryProductsController;
 use App\Http\Controllers\Seller\ProductGalleryController;
 use App\Http\Controllers\Seller\ProductSellerController;
 use App\Http\Controllers\Customer\DashboardCustomerController;
 use App\Http\Controllers\Customer\OpenStoreController;
+use App\Http\Controllers\DetailProductsController;
+use App\Http\Controllers\RewardsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +34,9 @@ use App\Http\Controllers\Customer\OpenStoreController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/semua-kategori-produk', [CategoryProductsController::class, 'index'])->name('all-category');
+Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])->name('detail');
+Route::get('/penghargaan', [RewardsController::class, 'index'])->name('reward');
 
 //Google
 Route::get('/auth/callback', [LoginController::class, 'handlerProviderCallback']);

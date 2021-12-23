@@ -15,7 +15,6 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('photo');
             $table->integer('users_id');
             $table->integer('categories_id');
             $table->string('name_product');
@@ -23,7 +22,6 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->enum('discount', ['ada', 'tidak'])->default('tidak');
             $table->string('discount_amount')->default(0)->nullable();
-            $table->string('code_discount')->nullable();
             $table->longText('description');
             $table->softDeletes();
             $table->timestamps();

@@ -1,35 +1,64 @@
 .section-product {
-  margin-top: 130px;
-  h3 {
-    font-family: "Merriweather";
-    font-size: 32px;
-    font-weight: 600;
-    color: #000;
-  }
+    margin-top: 130px;
+    h3 {
+        font-family: "Merriweather";
+        font-size: 32px;
+        font-weight: 600;
+        color: #1e124c;
+    }
+    p {
+        color: #5b5575;
+    }
+    .price {
+        color: #ff6b44;
+    }
+    .next-category {
+        color: #11ac6a;
+        font-weight: 400;
+        font-size: 18px;
+        text-decoration: none;
 
-  .price {
-    color: #ff6b44;
-  }
+        &:hover {
+            color: #11ac6a;
+            font-weight: 400;
+            font-size: 18px;
+            text-decoration: underline;
+        }
+    }
 
-  figure {
-    position: relative;
+    .name-product {
+        color: #0c0d36;
+        font-size: 20px;
+        font-weight: 500;
+        margin-top: -10px;
+    }
+    figure {
+        position: relative;
+        .product-img {
+            .discount-image {
+                position: absolute;
+                top: 0;
+                left: auto;
+                right: 0;
+                padding-bottom: 100px;
+                // max-height: 50px;
+            }
+        }
+        .discount-badge {
+            position: absolute;
+            display: inline-block;
+            min-width: 2em;
+            top: 9px;
+            right: 5px;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            color: #fff;
+        }
+    }
     img {
-      border-radius: 8px;
+        border-radius: 8px;
+        background-size: cover;
     }
-    .product-img a {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 9px;
-      background-color: rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transition: opacity 0.5s;
-      border-radius: 8px;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-  }
 }

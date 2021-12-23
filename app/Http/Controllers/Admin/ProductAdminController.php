@@ -60,39 +60,21 @@ class ProductAdminController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        // $data = $request->all();
-        // $data['slug'] = Str::slug($request->name_product);
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $users = $request->users_id;
-            $name = $request->name_product;
-            $category = $request->categories_id;
-            $price = $request->price;
-            $discount = $request->discount;
-            $discount_amount = $request->discount_amount;
-            $dsc = $request->description;
-            $mount_image = count($image);
-            for ($i=0; $i < $mount_image; $i++) { 
-                $image_url = $image[$i]->getClientOriginalName();
-                $image[$i]->store('/public/assets/product');
 
-                Products::create([
-                    'photo' => $image_url,
-                    'slug' => Str::slug($request->name_product),
-                    'users_id' => $users,
-                    'name_product' => $name,
-                    'categories_id' => $category,
-                    'price' => $price,
-                    'discount' => $discount,
-                    'discount_amount' => $discount_amount,
-                    'description' => $dsc,
-                ]);
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name_product); 
+        $product = Products::create($data);
+        if ($request->hasFile('photo')) {
+            foreach ($request->file('photo') as $file) {
+                $path = $file->store('assets/product', 'public');
+
+                $product_galleries = new ProductGallery;
+                $product_galleries->products_id =$product['id'];
+                $product_galleries->photo = $path;
+                $product_galleries->save();
+
             }
         }
-        // $data = $request->all();
-        // $data['slug'] = Str::slug($request->name_product);
-        // $data['photo'] = $request->file('photo')->store('assets/product', 'public');
-        // Products::create($data);
         return redirect()->route('products-admin.index')->with('success', 'Data Berhasil Ditambahkan!');
 
     }

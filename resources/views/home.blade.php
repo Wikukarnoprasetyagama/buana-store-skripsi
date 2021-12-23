@@ -15,45 +15,29 @@
                 <div class="carousel-item active">
                   <div class="row">
                     <div class="col-lg-6">
-                      <h1 class="title">
-                        Discount 50 % off <br />
-                        All Members
-                      </h1>
+                      <div class="title">
+                        <span>Belanja Sepuasnya,</span>
+                        <h1>
+                          Diskon <span>50 % </span> Untuk <br />
+                          <span>Member Baru </span>
+                        </h1>
+                      </div>
                       <p class="subtitle">
                         Jelajahi barang kebutuhan anda & dapatkan <br />
                         diskon setiap bulannya
                       </p>
-                      <a href="#" class="btn btn-get-now">Get it Now</a>
+                      @guest
+                          <a href="{{ route('login') }}" class="btn btn-lg btn-get-now">Dapatkan Sekarang</a>
+                      @endguest
+                      @auth
+                          <a href="#product" class="btn btn-lg btn-get-now">Dapatkan Sekarang</a>
+                      @endauth
                     </div>
-                    <div class="col-lg-4 offset-2">
-                      <figure class="figure text-center">
+                    <div class="col-lg-4 offset-2 d-none d-lg-block">
+                      <figure class="figure">
                         <img
-                          src="{{ url('frontend/images/brand_image.jpg') }}"
-                          class="img-figure img-fluid"
-                          alt=""
-                        />
-                      </figure>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <h1 class="title">
-                        Discount 50 % off <br />
-                        All Members
-                      </h1>
-                      <p class="subtitle">
-                        Jelajahi barang kebutuhan anda & dapatkan <br />
-                        diskon setiap bulannya
-                      </p>
-                      <a href="#" class="btn btn-get-now">Get it Now</a>
-                    </div>
-                    <div class="col-lg-4 offset-2">
-                      <figure class="figure text-center">
-                        <img
-                          src="{{ url('frontend/images/brand_image.jpg') }}"
-                          class="img-figure img-fluid"
+                          src="{{ url('/frontend/images/brand_image.svg') }}"
+                          class="img-figure img-fluid w-100"
                           alt=""
                         />
                       </figure>
@@ -66,253 +50,95 @@
         </div>
       </div>
     </section>
-    <!-- End Carousel -->
 
     <!-- Category -->
     <section class="section-category">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-lg-12">
-            <h3>Category Product</h3>
+          <div class="col-12 col-md-6 title">
+            <h3>Kategori Produk</h3>
+            <p>Cari barang sesuai dengan kategori</p>
+          </div>
+          <div class="col-12 col-md-6 text-end d-none d-lg-block text-md-end my-auto">
+            <a href="{{ route('all-category') }}" class="next-category">Selengkapnya</a>
           </div>
         </div>
         <div class="row mt-3">
           @php
-              $incrementCategory = 0
+              $incerementCategory = 0
           @endphp
-          @forelse ($categories as $category)
+          @foreach ($categories as $category)
           <div class="col-4 col-lg-2 text-center mb-2">
-            <div class="bg-category" data-aos="zoom-in" data-aos-delay="{{ $incrementCategory+=100 }}">
-              <a href="">
+            <a href="#">
+              <div class="bg-category" data-aos="zoom-in" data-aos-delay="{{ $incerementCategory +=100 }}">
                 <figure class="figure pt-3">
                   <img src="{{ Storage::url($category->photo) }}" class="img-fluid" alt="" />
                   <p class="mt-2 d-none d-md-block d-lg-block">{{ $category->name_category }}</p>
                 </figure>
-              </a>
-            </div>
+              </div>
+            </a>
           </div>
-          @empty
-          <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">
-            No Category Found!
-          </div>
-          @endforelse
+          @endforeach
+        </div>
+		<div class="col-12 d-md-none d-lg-none d-xl-none text-center mt-5">
+          <a href="{{ route('all-category') }}" class="next-category">Selengkapnya</a>
         </div>
       </div>
     </section>
-    <!-- End Category -->
 
     <!-- New Product -->
-    <section class="section-product">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-lg-12">
-            <h3>Produk Baru</h3>
-          </div>
-        </div>
-        <div class="row mt-2">
-              <div class="col-6 col-lg-3 mb-3" data-aos="zoom-in" data-aos-delay="100">
-            <figure class="figure">
-              <div class="product-img">
-                <img
-                  src="{{ url('frontend/images/product_2.jpg') }}"
-                  class="figure-img img-fluid w-100"
-                  alt="" />
-                <a href="#" class="d-flex justify-content-center">
-                  <img
-                    src="/images/eye.png"
-                    class="img-fluid align-self-center"
-                    alt=""
-                  />
-                </a>
-              </div>
-            </figure>
-            <h4 class="name-product">Macebook Pro M1</h4>
-            <div class="price">Rp.45.000.000</div>
-          </div>
-          <div
-            class="col-6 col-lg-3 mb-3"
-            data-aos="zoom-in"
-            data-aos-delay="200"
-          >
-            <figure class="figure">
-              <div class="product-img">
-                <img
-                  src="{{ url('frontend/images/product_2.jpg') }}"
-                  class="figure-img img-fluid w-100"
-                  alt=""
-                />
-                <a href="/details.html" class="d-flex justify-content-center">
-                  <img
-                    src="/images/eye.png"
-                    class="img-fluid align-self-center"
-                    alt=""
-                  />
-                </a>
-              </div>
-            </figure>
-            <h4 class="name-product">Pizza Hut</h4>
-            <div class="price">$890</div>
-          </div>
-          <div
-            class="col-6 col-lg-3 mb-3"
-            data-aos="zoom-in"
-            data-aos-delay="300"
-          >
-            <figure class="figure">
-              <div class="product-img">
-                <img
-                  src="{{ url('frontend/images/product_2.jpg') }}"
-                  class="figure-img img-fluid w-100"
-                  alt=""
-                />
-                <a href="/details.html" class="d-flex justify-content-center">
-                  <img
-                    src="/images/eye.png"
-                    class="img-fluid align-self-center"
-                    alt=""
-                  />
-                </a>
-              </div>
-            </figure>
-            <h4 class="name-product">Pizza Hut</h4>
-            <div class="price">$890</div>
-          </div>
-          <div
-            class="col-6 col-lg-3 mb-3"
-            data-aos="zoom-in"
-            data-aos-delay="400"
-          >
-            <figure class="figure">
-              <div class="product-img">
-                <img
-                  src="{{ url('frontend/images/product_2.jpg') }}"
-                  class="figure-img img-fluid w-100"
-                  alt=""
-                />
-                <a href="/details.html" class="d-flex justify-content-center">
-                  <img
-                    src="/images/eye.png"
-                    class="img-fluid align-self-center"
-                    alt=""
-                  />
-                </a>
-              </div>
-            </figure>
-            <h4 class="name-product">Pizza Hut</h4>
-            <div class="price">$890</div>
-          </div>
-        </div>
-      </div>
+    <section class="section-product" id="product">
+      	<div class="container">
+			<div class="row">
+			<div class="col-12 col-md-6">
+				<h3>Produk Baru</h3>
+				<p>Pilih barang terbaru dari kami</p>
+			</div>
+			<div class="col-12 col-md-6 text-end my-auto d-none d-lg-block text-md-end my-auto">
+				<a href="#" class="next-category">Selengkapnya</a>
+			</div>
+			</div>
+        	<div class="row mt-2">
+				@php
+					$incerementProduct = 0
+				@endphp
+				@forelse ($products as $product)
+					<div class="col-6 col-lg-3 mb-3" data-aos="zoom-in" data-aos-delay="{{ $incerementProduct += 100 }}">
+						<figure class="figure">
+						<div class="product-img">
+							<a href="{{ route('detail', $product->slug) }}">
+							@if ($product->galleries->count())
+								<img
+								src="{{ Storage::url($product->galleries->first()->photo) }}"
+								class="figure-img img-fluid w-100"
+								alt=""
+							/>
+							@endif
+							</a>
+							@if (!$product->discount == true)
+								<div class="discount-image d-flex justify-content-end">
+								<img
+									src="{{ url('/frontend/images/ic_discount_empty.svg') }}"
+									class="align-items-end img-fluid"
+									alt=""
+								/>
+								<div class="discount-badge">20%</div>
+							</div>
+							@endif
+						</div>
+						</figure>
+						<h4 class="name-product">{{ $product->name_product }}</h4>
+						<div class="price">Rp. {{ number_format($product->price) }}</div>
+					</div>
+				@empty
+				<div class="product-empty text-center pt-5">
+					<span>Belum ada produk!</span>
+				</div>
+				@endforelse
+			</div>
+			<div class="col-12 d-md-none d-lg-none d-xl-none text-center mt-5">
+				<a href="#" class="next-category">Selengkapnya</a>
+			</div>
+    	</div>
     </section>
-    <!-- End Product -->
-
-    <!-- Popular Product -->
-    <section class="section-popular">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-lg-12">
-            <h3>Produk Populer</h3>
-          </div>
-        </div>
-        <div class="row mt-2">
-          <div
-            class="col-6 col-lg-3 mb-3"
-            data-aos="zoom-in"
-            data-aos-delay="100"
-          >
-            <figure class="figure">
-              <div class="product-img">
-                <img
-                  src="{{ url('frontend/images/product_1.jpg') }}"
-                  class="figure-img img-fluid w-100"
-                  alt=""
-                />
-                <a href="/details.html" class="d-flex justify-content-center">
-                  <img
-                    src="/images/eye.png"
-                    class="img-fluid align-self-center"
-                    alt=""
-                  />
-                </a>
-              </div>
-            </figure>
-            <h4 class="name-product">Pizza Hut</h4>
-            <div class="price">$890</div>
-          </div>
-          <div
-            class="col-6 col-lg-3 mb-3"
-            data-aos="zoom-in"
-            data-aos-delay="200"
-          >
-            <figure class="figure">
-              <div class="product-img">
-                <img
-                  src="{{ url('frontend/images/product_2.jpg') }}"
-                  class="figure-img img-fluid w-100"
-                  alt=""
-                />
-                <a href="/details.html" class="d-flex justify-content-center">
-                  <img
-                    src="/images/eye.png"
-                    class="img-fluid align-self-center"
-                    alt=""
-                  />
-                </a>
-              </div>
-            </figure>
-            <h4 class="name-product">Pizza Hut</h4>
-            <div class="price">$890</div>
-          </div>
-          <div
-            class="col-6 col-lg-3 mb-3"
-            data-aos="zoom-in"
-            data-aos-delay="300"
-          >
-            <figure class="figure">
-              <div class="product-img">
-                <img
-                  src="{{ url('frontend/images/product_2.jpg') }}"
-                  class="figure-img img-fluid w-100"
-                  alt=""
-                />
-                <a href="/details.html" class="d-flex justify-content-center">
-                  <img
-                    src="/images/eye.png"
-                    class="img-fluid align-self-center"
-                    alt=""
-                  />
-                </a>
-              </div>
-            </figure>
-            <h4 class="name-product">Pizza Hut</h4>
-            <div class="price">$890</div>
-          </div>
-          <div
-            class="col-6 col-lg-3 mb-3"
-            data-aos="zoom-in"
-            data-aos-delay="400"
-          >
-            <figure class="figure">
-              <div class="product-img">
-                <img
-                  src="{{ url('frontend/images/product_2.jpg') }}"
-                  class="figure-img img-fluid w-100"
-                  alt=""
-                />
-                <a href="/details.html" class="d-flex justify-content-center">
-                  <img
-                    src="/images/eye.png"
-                    class="img-fluid align-self-center"
-                    alt=""
-                  />
-                </a>
-              </div>
-            </figure>
-            <h4 class="name-product">Pizza Hut</h4>
-            <div class="price">$890</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Popular Product -->
 @endsection

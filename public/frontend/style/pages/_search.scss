@@ -1,0 +1,26 @@
+.section-search-bar {
+  margin-top: 100px;
+  h3 {
+    font-family: "Merriweather";
+    font-size: 32px;
+    font-weight: 600;
+    color: #1e124c;
+  }
+  .btn-search {
+    border-radius: 25px;
+    background-color: #a43ce3;
+    color: #fff;
+  }
+  input {
+    border-radius: 25px;
+  }
+  .btn-search-mobile {
+    border-radius: 50px;
+    background-color: #a43ce3;
+    color: #fff;
+  }
+}
+
+.section-product-search {
+  margin-top: 70px;
+}

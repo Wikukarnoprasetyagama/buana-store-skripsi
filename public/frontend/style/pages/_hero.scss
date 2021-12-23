@@ -3,21 +3,32 @@
     .carousel-item {
       .title {
         margin-top: 123px;
-        font-size: 42px;
-        font-family: "Merriweather";
-        font-weight: 600;
-        color: #ff6b44;
+        span {
+          color: #11ac6a;
+          font-weight: 500;
+        }
+        h1 {
+          font-size: 42px;
+          font-family: "Merriweather";
+          font-weight: 600;
+          color: #1e124c;
+          span {
+            color: #a43ce3;
+            font-weight: 600;
+          }
+        }
       }
       .subtitle {
         font-size: 16px;
+        color: #5b5575;
       }
 
       .btn-get-now {
-        width: 174px;
         margin-top: 30px;
-        background: #11ac6a;
-        border-radius: 4px;
+        background: #a43ce3;
+        border-radius: 25px;
         color: #fff;
+        font-size: 16px;
       }
 
       .figure {

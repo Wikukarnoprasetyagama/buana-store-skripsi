@@ -15,16 +15,16 @@
                     <div class="details-name">
                         <p>{{ $detail->name_store }}</p>
                     </div>
-                    @foreach ($users as $user)
+                    {{-- @foreach ($users as $user) --}}
                         <div class="row">
                             <div class="d-none d-md-block col-md-3">
                                 <figure class="figure d-block">
-                                    <img src="{{ Storage::url($user->photo_profile) }}" class="img-thumbnail img-fluid figure-img w-100" alt="" style="height: 300px;">
+                                    <img src="{{ Storage::url($detail->photo_profile) }}" class="img-thumbnail img-fluid figure-img w-100" alt="" style="height: 300px;">
                                 </figure>
                             </div>
                             <div class="col-md-9">
                                 <figure class="figure d-block">
-                                    <img src="{{ Storage::url($user->photo_shop) }}" class="img-thumbnail img-fluid figure-img w-100" alt="" style="height: 300px;">
+                                    <img src="{{ Storage::url($detail->photo_shop) }}" class="img-thumbnail img-fluid figure-img w-100" alt="" style="height: 300px;">
                                 </figure>
                             </div>
                         </div>
@@ -32,19 +32,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name_store" class="form-label">Nama Toko</label>
-                                    <input type="text" name="name_store" class="form-control" value="{{ $user->name_store }}" disabled>
+                                    <input type="text" name="name_store" class="form-control" value="{{ $detail->name_store }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="phone" class="form-label">Nomor Telephon</label>
-                                    <input type="text" name="phone" class="form-control" value="{{ $user->phone }}" disabled>
+                                    <input type="text" name="phone" class="form-control" value="{{ $detail->phone }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="village" class="form-label">Nama Desa</label>
-                                    <input type="text" name="village" class="form-control" value="{{ $user->village }}" disabled>
+                                    <input type="text" name="village" class="form-control" value="{{ $detail->village }}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -52,18 +52,18 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="street" class="form-label">Nama Jalan</label>
-                                    <input type="text" name="street" class="form-control" value="{{ $user->street }}" disabled>
+                                    <input type="text" name="street" class="form-control" value="{{ $detail->street }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="address" class="form-label">Alamat Lengkap</label>
-                                    <input type="text" name="address" class="form-control" value="{{ $user->address }}" disabled>
+                                    <input type="text" name="address" class="form-control" value="{{ $detail->address }}" disabled>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                    <form action="{{ route('verification.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                    {{-- @endforeach --}}
+                    <form action="{{ route('verification.update', $detail->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row d-flex justify-content-right">

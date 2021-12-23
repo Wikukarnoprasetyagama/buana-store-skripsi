@@ -1,28 +1,125 @@
 .form-control:focus {
   color: #212529;
-  border-color: #29a867 !important;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(88, 241, 114, 0.3) !important;
-          box-shadow: 0 0 0 0.25rem rgba(88, 241, 114, 0.3) !important;
+  border-color: #a43ce3 !important;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(164, 60, 227, 0.2) !important;
+          box-shadow: 0 0 0 0.25rem rgba(164, 60, 227, 0.2) !important;
+}
+
+.breadcrumb {
+  margin-top: 70px;
+}
+
+.breadcrumb .breadcrumb-item a {
+  color: #0c0d36;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.breadcrumb .breadcrumb-item :active {
+  color: #5b5575;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.section-notfound {
+  margin-top: 5%;
+}
+
+.section-notfound img {
+  max-height: 300px;
+}
+
+.section-notfound h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e124c;
+}
+
+.section-notfound p {
+  color: #5b5575;
+}
+
+.section-notfound .btn-back {
+  width: 220px;
+  margin-top: 30px;
+  background: #a43ce3;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.section-transaction-success {
+  margin-top: 5%;
+}
+
+.section-transaction-success img {
+  max-height: 300px;
+}
+
+.section-transaction-success h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e124c;
+}
+
+.section-transaction-success p {
+  color: #5b5575;
+}
+
+.section-transaction-success .btn-back {
+  width: 170px;
+  margin-top: 30px;
+  background: #a43ce3;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .section-content-carousel .carousel-inner .carousel-item .title {
   margin-top: 123px;
+}
+
+.section-content-carousel .carousel-inner .carousel-item .title span {
+  color: #11ac6a;
+  font-weight: 500;
+}
+
+.section-content-carousel .carousel-inner .carousel-item .title h1 {
   font-size: 42px;
   font-family: "Merriweather";
   font-weight: 600;
-  color: #ff6b44;
+  color: #1e124c;
+}
+
+.section-content-carousel .carousel-inner .carousel-item .title h1 span {
+  color: #a43ce3;
+  font-weight: 600;
 }
 
 .section-content-carousel .carousel-inner .carousel-item .subtitle {
   font-size: 16px;
+  color: #5b5575;
 }
 
 .section-content-carousel .carousel-inner .carousel-item .btn-get-now {
-  width: 174px;
   margin-top: 30px;
-  background: #11ac6a;
-  border-radius: 4px;
+  background: #a43ce3;
+  border-radius: 25px;
   color: #fff;
+  font-size: 16px;
 }
 
 .section-content-carousel .carousel-inner .carousel-item .figure img {
@@ -30,19 +127,37 @@
 }
 
 body {
-  background-color: #fff;
+  background-color: #f8f8f8;
   font-family: "Poppins";
 }
 
 .section-category {
-  margin-top: 130px;
+  margin-top: 90px;
 }
 
 .section-category h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
-  color: #000;
+  color: #1e124c;
+}
+
+.section-category p {
+  color: #5b5575;
+}
+
+.section-category .next-category {
+  color: #11ac6a;
+  font-weight: 400;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.section-category .next-category:hover {
+  color: #11ac6a;
+  font-weight: 400;
+  font-size: 18px;
+  text-decoration: underline;
 }
 
 .section-category .bg-category {
@@ -56,7 +171,7 @@ body {
 }
 
 .section-category .bg-category p {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .section-product {
@@ -67,36 +182,66 @@ body {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
-  color: #000;
+  color: #1e124c;
+}
+
+.section-product p {
+  color: #5b5575;
 }
 
 .section-product .price {
   color: #ff6b44;
 }
 
+.section-product .next-category {
+  color: #11ac6a;
+  font-weight: 400;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.section-product .next-category:hover {
+  color: #11ac6a;
+  font-weight: 400;
+  font-size: 18px;
+  text-decoration: underline;
+}
+
+.section-product .name-product {
+  color: #0c0d36;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: -10px;
+}
+
 .section-product figure {
   position: relative;
 }
 
-.section-product figure img {
-  border-radius: 8px;
-}
-
-.section-product figure .product-img a {
+.section-product figure .product-img .discount-image {
   position: absolute;
   top: 0;
-  left: 0;
+  left: auto;
   right: 0;
-  bottom: 9px;
-  background-color: rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  -webkit-transition: opacity 0.5s;
-  transition: opacity 0.5s;
-  border-radius: 8px;
+  padding-bottom: 100px;
 }
 
-.section-product figure .product-img a:hover {
-  opacity: 1;
+.section-product figure .discount-badge {
+  position: absolute;
+  display: inline-block;
+  min-width: 2em;
+  top: 9px;
+  right: 5px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  color: #fff;
+}
+
+.section-product img {
+  border-radius: 8px;
+  background-size: cover;
 }
 
 .section-popular {
@@ -137,6 +282,234 @@ body {
 
 .section-popular figure .product-img a:hover {
   opacity: 1;
+}
+
+.section-cart {
+  margin-top: 70px;
+}
+
+.section-cart table thead tr {
+  color: #0c0d36;
+}
+
+.section-cart table tbody th img {
+  max-height: 100px;
+  max-width: 110px;
+}
+
+.section-cart table tbody .title-product {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+}
+
+.section-cart table tbody .name-store {
+  color: #c4c4c4;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.section-cart table tbody .btn-minus {
+  background: #ffcf00;
+  border-radius: 4px;
+}
+
+.section-cart table tbody .btn-plus {
+  background: #29a867;
+  border-radius: 4px;
+}
+
+.section-cart table tbody .btn-hapus {
+  background: #cc2626;
+  border-radius: 25px;
+  width: 150px;
+}
+
+.section-cart table tbody .price {
+  color: #ff6b44;
+  font-size: 18px;
+}
+
+.section-address {
+  margin-top: 100px;
+}
+
+.section-address h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e124c;
+}
+
+.section-detail-price {
+  margin-top: 100px;
+}
+
+.section-detail-price h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e124c;
+}
+
+.section-detail-price .detail-price .card {
+  margin-top: 20px;
+}
+
+.section-detail-price .detail-price .card .card-body th {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.section-detail-price .detail-price .card .card-body strong {
+  color: #ff6b44;
+}
+
+.section-detail-price .payment-method .warning {
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #afafaf;
+}
+
+.section-detail-price .payment-method .btn-cod {
+  margin-top: 25px;
+  background: #d4beff;
+  border-radius: 25px;
+  color: #5b5575;
+}
+
+.section-detail-price .payment-method .btn-otomatis {
+  background: #a43ce3;
+  border-radius: 25px;
+  color: #fff;
+}
+
+.section-detail-price .payment-method .step-payment a {
+  font-weight: 400;
+  font-size: 16px;
+  color: #a43ce3;
+  margin-top: 10px;
+}
+
+.section-gallery {
+  margin-top: 70px;
+}
+
+.section-gallery h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e124c;
+}
+
+.section-gallery .name-store p {
+  color: #c4c4c4;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.section-gallery .name-product h5 {
+  color: #000;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.section-gallery .price {
+  color: #ff6b44;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.section-gallery .quantity .btn-minus {
+  background-color: #edc500;
+}
+
+.section-gallery .quantity .btn-plus {
+  background-color: #29a867;
+}
+
+.section-gallery .add-to-cart {
+  margin-top: 85px;
+}
+
+.section-gallery .add-to-cart .btn-add-to-cart {
+  background-color: #a43ce3;
+  color: #fff;
+  border-radius: 25px;
+  font-size: 18px;
+}
+
+.section-gallery .description-product h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e124c;
+}
+
+.section-gallery .description-product .description {
+  margin-top: 30px;
+}
+
+.section-gallery .description-product .description p {
+  color: #525252;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.section-gallery .reviews {
+  margin-top: 26px;
+}
+
+.section-gallery .reviews .customer-reviews {
+  margin-top: -30px;
+}
+
+.section-gallery .reviews img {
+  max-height: 70px;
+}
+
+.section-gallery .reviews h5 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #0c0d36;
+}
+
+.section-gallery .reviews p {
+  color: #525252;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.section-search-bar {
+  margin-top: 100px;
+}
+
+.section-search-bar h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e124c;
+}
+
+.section-search-bar .btn-search {
+  border-radius: 25px;
+  background-color: #a43ce3;
+  color: #fff;
+}
+
+.section-search-bar input {
+  border-radius: 25px;
+}
+
+.section-search-bar .btn-search-mobile {
+  border-radius: 50px;
+  background-color: #a43ce3;
+  color: #fff;
+}
+
+.section-product-search {
+  margin-top: 70px;
 }
 
 .section-login {
@@ -262,7 +635,7 @@ body {
 }
 
 .navbar {
-  background-color: #fff !important;
+  background-color: #f8f8f8 !important;
 }
 
 .navbar .navbar-brand img {
@@ -272,7 +645,7 @@ body {
 .navbar .navbar-nav .nav-item .active {
   font-size: 16px;
   font-weight: 500;
-  color: #ff6b44;
+  color: #a43ce3;
 }
 
 .navbar .navbar-nav .nav-item a {
@@ -281,11 +654,53 @@ body {
 }
 
 .navbar .navbar-nav .nav-item a:hover {
-  color: #ff6b44;
+  color: #a43ce3;
+}
+
+.navbar .navbar-nav .nav-item .cart-badge {
+  display: inline-block;
+  min-width: 2em;
+  /* em unit */
+  padding: 0.3em;
+  /* em unit */
+  border-radius: 50%;
+  font-size: 10px;
+  text-align: center;
+  background: #a43ce3;
+  color: #fefefe;
+  margin-left: -10px;
 }
 
 .navbar .navbar-nav .btn-sign-up {
-  background-color: #11ac6a;
+  background-color: #a43ce3;
+  border-radius: 25px;
+  width: 133px;
+}
+
+.navbar .navbar-nav .btn-mobile-masuk {
+  background-color: #d4beff;
+  border-radius: 25px;
+}
+
+.navbar .navbar-nav .btn-mobile-daftar {
+  background-color: #a43ce3;
+  border-radius: 25px;
+}
+
+.navbar .dropdown a {
+  text-decoration: none;
+  color: #5b5575;
+  font-size: 16px;
+}
+
+.navbar .dropdown img {
+  max-height: 45px;
+  border-radius: 50px;
+  background-size: cover;
+}
+
+.navbar .dropdown .menu-profile {
+  float: right !important;
 }
 
 .section-footer {
@@ -298,6 +713,7 @@ body {
 
 .section-footer .copyright {
   font-size: 16px;
+  color: #5b5575;
 }
 
 .section-footer .description p {
@@ -315,6 +731,6 @@ body {
 
 .section-footer .list-unstyled li a:hover {
   text-decoration: underline;
-  color: #ff6b44;
+  color: #a43ce3;
 }
 /*# sourceMappingURL=main.css.map */

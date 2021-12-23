@@ -31,7 +31,6 @@
                                     <input  type="file"
                                             name="photo[]" 
                                             value="{{ old('photo') }}" 
-                                            required
                                             multiple
                                             class="form-control @error('photo') is-invalid @enderror"/>
                                     @error('photo') <div class="text-muted">{{ $message }}</div> @enderror
