@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->integer('users_id');
             $table->integer('shipping_price');
+            $table->integer('quantity');
             $table->integer('total_price');
             $table->string('transaction_status');
             $table->string('shipping_status');

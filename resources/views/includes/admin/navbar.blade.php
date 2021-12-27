@@ -5,9 +5,6 @@
           </ul>
         </form>
         <ul class="navbar-nav navbar-right">
-          <li>
-            <a href="#" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-luggage-cart"></i></a>
-          </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="{{ Storage::url(Auth::user()->photo_profile) }}" class="img-fluid rounded-circle h-100 w-100 mr-2" style="max-height: 40px; max-width: 40px; border-radius: 50px; background-size: cover">
             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
@@ -16,11 +13,8 @@
               <a href="{{ route('profile.index') }}" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
-              <a href="features-activities.html" class="dropdown-item has-icon">
-                <i class="fas fa-bolt"></i> Activities
-              </a>
-              <a href="features-settings.html" class="dropdown-item has-icon">
-                <i class="fas fa-cog"></i> Settings
+              <a href="{{ route('cart') }}" class="dropdown-item has-icon">
+                <i class="fas fa-cart-plus"></i> Keranjang
               </a>
               <div class="dropdown-divider"></div>
               <a href="#" class="dropdown-item has-icon text-danger" data-toggle="modal" data-target="#logoutModal">

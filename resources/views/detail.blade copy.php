@@ -101,6 +101,21 @@
             <div class="price">Rp. {{ number_format($products->price) }}</div>
             <form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data">
               @csrf
+              <div class="quantity mt-5">
+              <button class="btn text-white btn-minus me-4" id="minusQuantity">
+                <i class="fas fa-minus"></i>
+              </button>
+              <input
+                type="number"
+                name="quantity"
+                value="0"
+                class="border-0 px-auto"
+                style="max-width: 40px"
+              />
+              <button class="btn text-white btn-plus" id="addQuantity">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
             <div class="row">
               <div class="col-12 col-lg-6">
                 <div class="add-to-cart">
@@ -165,3 +180,29 @@
     </section>
     <!-- End Gallery -->
 @endsection
+
+@push('after-script')
+    <script>
+      // var addQuantity = 0;
+      // var minusQuantity = addQuantity;
+      // add = function(){
+      //   addQuantity += 1;
+      //   document.getElementById('result').innerHTML = addQuantity;
+      // }
+      // minus = function() {
+      //   minusQuantity -= addQuantity;
+      //   document.getElementById('result').innerHTML = minusQuantity;
+      // }
+
+      let btnAdd = document.querySelector('#addQuantity');
+      let btnMinus = document.querySelector('#minusQuantity');
+      let input = document.querySelector('input');
+
+      btnAdd.addEventListener('click', () => {
+        input.value = parseInt(input.value) + 1;
+      });
+      btnMinus.addEventListener('click', () => {
+        input.value = parseInt(input.value) - 1;
+      });
+    </script>
+@endpush

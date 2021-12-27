@@ -20,7 +20,7 @@
 				</li>
 				@auth
 					<li class="nav-item mx-2">
-						<a href="#">
+						<a href="{{ route('cart') }}">
 							@php
 								$carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
 							@endphp
