@@ -52,7 +52,7 @@ Route::get('/auth/facebook/callback', [LoginController::class, 'handlerFacebookC
 Route::get('/auth/facebook/redirect', [LoginController::class, 'redirectToFacebook']);
 
 
-Route::prefix('admin')
+Route::prefix('/pages/dashboard/admin')
         ->middleware(['auth', 'admin'])
         ->group(function(){
                 Route::get('/', [DashboardAdminController::class, 'index'])->name('dashboard-admin');
@@ -68,7 +68,7 @@ Route::prefix('admin')
                 Route::resource('verification', VerificationController::class);
         });
 
-Route::prefix('seller')
+Route::prefix('/pages/dashboard/seller')
         ->middleware(['auth', 'seller'])
         ->group(function(){
                 Route::get('/', [DashboardSellerController::class, 'index'])->name('dashboard-seller');
@@ -76,7 +76,7 @@ Route::prefix('seller')
                 Route::resource('products-galleries', ProductGalleryController::class);
 });
 
-Route::prefix('customer')
+Route::prefix('/pages/dashboard/customer')
         ->middleware(['auth', 'customer'])
         ->group(function(){
             Route::get('/', [DashboardCustomerController::class, 'index'])->name('dashboard-customer');

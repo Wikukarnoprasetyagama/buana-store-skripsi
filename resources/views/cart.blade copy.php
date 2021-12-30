@@ -56,13 +56,16 @@
                   <td>
                     <div class="form-group my-auto py-1" style="width: 200px">
                       <div class="quantity mt-1">
+                        @php
+                            $quantity = 1;
+                        @endphp
                         <button class="btn text-white btn-minus me-4" id="decrement">
                           <i class="fas fa-minus"></i>
                         </button>
                         <input
                           type="number"
                           name="quantity"
-                          value="{{ $cart->quantity }}"
+                          value="1"
                           class="border-0 px-auto qty-input"
                           style="max-width: 40px"
                           disabled
@@ -89,7 +92,7 @@
                   </td>
                 </tr>
                 @php
-                    $totalPrice += $cart->product->price
+                    $totalPrice + $cart->product->price
                 @endphp
                 @endforeach
               </tbody>
@@ -172,7 +175,7 @@
                                 <tr>
                                   <div class="form-group name-product bg-danger">
                                     <th width="100%">{{ $cart->product->name_product }}</th>
-                                    <td width="50%" class="text-end">{{ number_format($cart->product->price) }}</td>
+                                    <td width="50%" class="text-end">{{ number_format($cart->product->price *= $quantity) }}</td>
                                   </div>
                                 </tr>
                             @endforeach
@@ -196,7 +199,7 @@
                                 <div class="form-group">
                                   <th width="90%">Total</th>
                                   <td width="10%" class="text-end">
-                                    <strong></strong>
+                                    <strong>{{ number_format($cart->product->price) }}</strong>
                                   </td>
                                 </div>
                               </tr>

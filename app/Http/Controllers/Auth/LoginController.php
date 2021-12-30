@@ -32,15 +32,20 @@ class LoginController extends Controller
      */
     // protected $redirectTo = '/';
 
+    // Limit Login 
+    protected $maxAttempts = 3;
+    protected $decayMinutes = 1;
+
+    // Google Authentication
     public function authenticated()
     {
         if(Auth::user()->roles == 'ADMIN')
         {
-            return redirect('/admin');
+            return redirect('/');
         } elseif (Auth::user()->roles == 'SELLER') {
-            return redirect('/seller');
+            return redirect('/');
         }else {
-            return redirect('/customer');
+            return redirect('/');
         }
 
     }

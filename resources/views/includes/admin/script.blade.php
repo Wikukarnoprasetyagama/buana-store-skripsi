@@ -6,6 +6,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.6/js/fileinput.min.js" integrity="sha512-IpeB734vID7QynL2cgdKMVDh1CNHndzxt9QKeq/aZQ5yItaDHcpWsg7C1tq4xCljTPa4l6EiJ1hUTaD/2KltiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/assets/js/stisla.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
 
   <!-- JS Libraies -->
   <script src="{{ url('/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
@@ -24,9 +25,9 @@
    ClassicEditor
         .create( document.querySelector( '.ckeditor' ) )
         {
-            toolbar: 'Full',
+            toolbar : 'Full',
             enterMode : CKEDITOR.ENTER_BR,
-            shiftEnterMode: CKEDITOR.ENTER_P
+            shiftEnterMode : CKEDITOR.ENTER_P
         }
         .then( editor => {
                 console.log( editor );

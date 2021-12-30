@@ -1,78 +1,68 @@
 .form-control:focus {
-  color: #212529;
-  border-color: #a43ce3 !important;
-  box-shadow: 0 0 0 0.25rem rgba(164, 60, 227, 0.2) !important;
+    color: #212529;
+    border-color: #a43ce3 !important;
+    box-shadow: 0 0 0 0.25rem rgba(164, 60, 227, 0.2) !important;
 }
 
 .breadcrumb {
-  margin-top: 70px;
-  .breadcrumb-item a {
-    color: #0c0d36;
-    font-size: 18px;
-    font-weight: 500;
-    text-decoration: none;
-  }
-  .breadcrumb-item :active {
-    color: #5b5575;
-    font-size: 18px;
-    font-weight: normal;
-  }
+    margin-top: 70px;
+    .breadcrumb-item a {
+        color: #0c0d36;
+        font-size: 18px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+    .breadcrumb-item :active {
+        color: #5b5575;
+        font-size: 18px;
+        font-weight: normal;
+    }
 }
 
 .section-notfound {
-  margin-top: 5%;
-  img {
-    max-height: 300px;
-  }
-  h3 {
-    font-family: "Merriweather";
-    font-size: 32px;
-    font-weight: 600;
-    color: #1e124c;
-  }
-  p {
-    color: #5b5575;
-  }
-  .btn-back {
-    width: 220px;
-    margin-top: 30px;
-    background: #a43ce3;
-    border-radius: 25px;
-    color: #fff;
-    font-size: 16px;
-  }
+    margin-top: 5%;
+    img {
+        max-height: 300px;
+    }
+    h3 {
+        font-family: "Merriweather";
+        font-size: 32px;
+        font-weight: 600;
+        color: #1e124c;
+    }
+    p {
+        color: #5b5575;
+    }
+    .btn-back {
+        width: 220px;
+        margin-top: 30px;
+        background: #a43ce3;
+        border-radius: 25px;
+        color: #fff;
+        font-size: 16px;
+    }
 }
 
 .section-transaction-success {
-  margin-top: 5%;
-  img {
-    max-height: 300px;
-  }
-  h3 {
-    font-family: "Merriweather";
-    font-size: 32px;
-    font-weight: 600;
-    color: #1e124c;
-  }
-  p {
-    color: #5b5575;
-  }
-  .btn-back {
-    width: 170px;
-    margin-top: 30px;
-    background: #a43ce3;
-    border-radius: 25px;
-    color: #fff;
-    font-size: 16px;
-  }
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
+    margin-top: 5%;
+    img {
+        max-height: 300px;
+    }
+    h3 {
+        font-family: "Merriweather";
+        font-size: 32px;
+        font-weight: 600;
+        color: #1e124c;
+    }
+    p {
+        color: #5b5575;
+    }
+    .btn-back {
+        width: 170px;
+        margin-top: 30px;
+        background: #a43ce3;
+        border-radius: 25px;
+        color: #fff;
+        font-size: 16px;
+    }
 }

@@ -48,24 +48,24 @@
           <ul class="navbar-nav ms-2">
 				@auth
 					<li class="nav-item">
-				@if (Auth::user()->roles == 'ADMIN')
-					<a href="{{ route('dashboard-admin') }}" class="nav-link d-block d-md-block d-lg-none">
-						Hi, {{ Auth::user()->name }}
-					</a>
-					@elseif (Auth::user()->roles == 'SELLER')
-					<a href="{{ route('dashboard-seller') }}" class="nav-link d-block d-md-block d-lg-none">
-						Hi, {{ Auth::user()->name }}
-					</a>
-					@else
-					<a href="{{ route('dashboard-seller') }}" class="nav-link d-block d-md-block d-lg-none">
-						Hi, {{ Auth::user()->name }}
-					</a>
-				@endif
-				</li>
-				<li class="nav-item">
-				<a href="#" class="nav-link d-block d-md-block d-lg-none" data-toggle="modal" data-target="#logoutModal"
-					>Keluar</a>
-				</li>
+						@if (Auth::user()->roles == 'ADMIN')
+							<a href="{{ route('dashboard-admin') }}" class="nav-link d-block d-md-block d-lg-none">
+								Hi, {{ Auth::user()->name }}
+							</a>
+							@elseif (Auth::user()->roles == 'SELLER')
+							<a href="{{ route('dashboard-seller') }}" class="nav-link d-block d-md-block d-lg-none">
+								Hi, {{ Auth::user()->name }}
+							</a>
+							@else
+							<a href="{{ route('dashboard-customer') }}" class="nav-link d-block d-md-block d-lg-none">
+								Hi, {{ Auth::user()->name }}
+							</a>
+						@endif
+					</li>
+					<li class="nav-item">
+					<a href="#" class="nav-link d-block d-md-block d-lg-none" data-bs-toggle="modal" data-bs-target="#exampleModal"
+						>Keluar</a>
+					</li>
 				@endauth
           </ul>
           <div class="dropdown">
@@ -100,7 +100,7 @@
 						@endif
 					@endauth
 			  </li>
-              <li><a class="dropdown-item" href="#">Keluar</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Keluar</a></li>
             </ul>
           </div>
         </div>

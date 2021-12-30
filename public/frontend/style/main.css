@@ -78,16 +78,6 @@
   font-size: 16px;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
 .section-content-carousel .carousel-inner .carousel-item .title {
   margin-top: 123px;
 }
@@ -341,6 +331,16 @@ body {
   color: #1e124c;
 }
 
+.section-address input::-webkit-outer-spin-button,
+.section-address input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.section-address input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .section-detail-price {
   margin-top: 100px;
 }
@@ -396,6 +396,24 @@ body {
   margin-top: 70px;
 }
 
+.section-gallery input::-webkit-outer-spin-button,
+.section-gallery input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.section-gallery input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.section-gallery .rating-product .fa-star {
+  color: #ffd401;
+}
+
+.section-gallery .rating-product .fa-star-half-alt {
+  color: #ffd401;
+}
+
 .section-gallery h3 {
   font-family: "Merriweather";
   font-size: 32px;
@@ -429,8 +447,16 @@ body {
   background-color: #29a867;
 }
 
+.section-gallery .btn-buy-now {
+  background-color: #efefef;
+  border-color: #a43ce3;
+  color: #434343;
+  border-radius: 25px;
+  font-size: 18px;
+}
+
 .section-gallery .add-to-cart {
-  margin-top: 85px;
+  margin-top: 50px;
 }
 
 .section-gallery .add-to-cart .btn-add-to-cart {

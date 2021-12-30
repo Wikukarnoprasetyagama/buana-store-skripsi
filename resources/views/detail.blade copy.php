@@ -86,7 +86,7 @@
               </button>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 product_data">
             <div class="d-flex name-store">
               <div class="flex-shrink-0">
                 <img src="{{ url('/frontend/images/ic_store.svg') }}" class="img-fluid" alt="" />
@@ -99,20 +99,23 @@
               <h5>{{ $products->name_product }}</h5>
             </div>
             <div class="price">Rp. {{ number_format($products->price) }}</div>
-            <form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data">
-              @csrf
+            {{-- <form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data"> --}}
+              {{-- @csrf --}}
               <div class="quantity mt-5">
-              <button class="btn text-white btn-minus me-4" id="minusQuantity">
+              <input type="hidden" value="{{ $products->id }}" class="form-control prod_id">
+              <button class="btn text-white btn-minus me-4" id="decrement">
                 <i class="fas fa-minus"></i>
               </button>
               <input
                 type="number"
                 name="quantity"
-                value="0"
-                class="border-0 px-auto"
+                min="1"
+                value="1"
+                class="border-0 px-auto qty-input"
                 style="max-width: 40px"
+                disabled
               />
-              <button class="btn text-white btn-plus" id="addQuantity">
+              <button class="btn text-white btn-plus" id="increment">
                 <i class="fas fa-plus"></i>
               </button>
             </div>
@@ -125,7 +128,7 @@
                 </div>
               </div>
             </div>
-            </form>
+            {{-- </form> --}}
           </div>
         </div>
         <div class="row mt-5">
@@ -183,26 +186,59 @@
 
 @push('after-script')
     <script>
-      // var addQuantity = 0;
-      // var minusQuantity = addQuantity;
-      // add = function(){
-      //   addQuantity += 1;
-      //   document.getElementById('result').innerHTML = addQuantity;
-      // }
-      // minus = function() {
-      //   minusQuantity -= addQuantity;
-      //   document.getElementById('result').innerHTML = minusQuantity;
-      // }
+      $(document).ready(function () {
+        $('.btn-add-to-cart').click(function (e) { 
+          e.preventDefault();
+          
+          var product_id = $(this).closest('.product_data').find('.prod_id').val();
+          var quantity = $(this).closest('.product_data').find('.qty-input').val();
 
-      let btnAdd = document.querySelector('#addQuantity');
-      let btnMinus = document.querySelector('#minusQuantity');
-      let input = document.querySelector('input');
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
 
-      btnAdd.addEventListener('click', () => {
-        input.value = parseInt(input.value) + 1;
-      });
-      btnMinus.addEventListener('click', () => {
-        input.value = parseInt(input.value) - 1;
+          $.ajax({
+            method: "POST",
+            url: "/details/{id}",
+            data: {
+              'products_id': product_id,
+              'quantity': quantity
+            },
+            dataType: "dataType",
+            success: function (response) {
+              alert(response.status);
+            }
+          });
+        });
+        $('#increment').click(function (e) { 
+        e.preventDefault();
+
+        var inc_value = $('.qty-input').val();
+        var value = parseInt(inc_value, 10);
+        // isNaN = Not a Number
+        value = isNaN(value) ? 0 : value;
+
+          if (value < 100) {
+            value++;
+            $('.qty-input').val(value);
+          }
+        });
+
+        $('#decrement').click(function (e) { 
+        e.preventDefault();
+
+        var inc_value = $('.qty-input').val();
+        var value = parseInt(inc_value, 10);
+        // isNaN = Not a Number
+        value = isNaN(value) ? 0 : value;
+
+          if (value > 1) {
+            value--;
+            $('.qty-input').val(value);
+          }
+        });
       });
     </script>
 @endpush

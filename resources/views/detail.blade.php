@@ -86,7 +86,7 @@
               </button>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 product_data">
             <div class="d-flex name-store">
               <div class="flex-shrink-0">
                 <img src="{{ url('/frontend/images/ic_store.svg') }}" class="img-fluid" alt="" />
@@ -95,22 +95,35 @@
                 <p>{{ $products->user->name_store }}</p>
               </div>
             </div>
+            <div class="rating-product mb-1">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
             <div class="name-product">
               <h5>{{ $products->name_product }}</h5>
             </div>
             <div class="price">Rp. {{ number_format($products->price) }}</div>
-            <form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data">
-              @csrf
+            <div class="product-chat mt-3">
+              <img src="{{ url('/frontend/images/ic_chat.svg') }}" class="img-fluid" alt="" />
+            </div>
+            {{-- <form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data"> --}}
+              {{-- @csrf --}}
             <div class="row">
               <div class="col-12 col-lg-6">
-                <div class="add-to-cart">
-                  <button type="submit" class="btn btn-add-to-cart btn-lg d-grid"
-                    >Masuk Keranjang</a
-                  >
+                <div class="d-grid gap-2 add-to-cart">
+                  <button class="btn btn-buy-now" type="button">
+                    Beli Sekarang
+                  </button>
+                  <button class="btn btn-add-to-cart" type="button">
+                    Masuk Keranjang
+                  </button>
                 </div>
               </div>
             </div>
-            </form>
+            {{-- </form> --}}
           </div>
         </div>
         <div class="row mt-5">
@@ -165,3 +178,62 @@
     </section>
     <!-- End Gallery -->
 @endsection
+
+@push('after-script')
+    <script>
+      $(document).ready(function () {
+        $('.btn-add-to-cart').click(function (e) { 
+          e.preventDefault();
+          
+          var product_id = $(this).closest('.product_data').find('.prod_id').val();
+          var quantity = $(this).closest('.product_data').find('.qty-input').val();
+
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+
+          $.ajax({
+            method: "POST",
+            url: "/details/{id}",
+            data: {
+              'products_id': product_id,
+              'quantity': quantity
+            },
+            dataType: "dataType",
+            success: function (response) {
+              alert(response.status);
+            }
+          });
+        });
+        $('#increment').click(function (e) { 
+        e.preventDefault();
+
+        var inc_value = $('.qty-input').val();
+        var value = parseInt(inc_value, 10);
+        // isNaN = Not a Number
+        value = isNaN(value) ? 0 : value;
+
+          if (value < 100) {
+            value++;
+            $('.qty-input').val(value);
+          }
+        });
+
+        $('#decrement').click(function (e) { 
+        e.preventDefault();
+
+        var inc_value = $('.qty-input').val();
+        var value = parseInt(inc_value, 10);
+        // isNaN = Not a Number
+        value = isNaN(value) ? 0 : value;
+
+          if (value > 1) {
+            value--;
+            $('.qty-input').val(value);
+          }
+        });
+      });
+    </script>
+@endpush

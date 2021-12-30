@@ -1,104 +1,113 @@
 .section-cart {
-  margin-top: 70px;
-  table {
-    thead {
-      tr {
-        color: #0c0d36;
-      }
-    }
-    tbody {
-      th {
-        img {
-          max-height: 100px;
-          max-width: 110px;
+    margin-top: 70px;
+    table {
+        thead {
+            tr {
+                color: #0c0d36;
+            }
         }
-      }
-      .title-product {
-        font-size: 18px;
-        font-weight: 500;
-        color: #000;
-      }
-      .name-store {
-        color: #c4c4c4;
-        font-size: 16px;
-        font-weight: 500;
-      }
-      .btn-minus {
-        background: #ffcf00;
-        border-radius: 4px;
-      }
-      .btn-plus {
-        background: #29a867;
-        border-radius: 4px;
-      }
-      .btn-hapus {
-        background: #cc2626;
-        border-radius: 25px;
-        width: 150px;
-      }
-      .price {
-        color: #ff6b44;
-        font-size: 18px;
-      }
+        tbody {
+            th {
+                img {
+                    max-height: 100px;
+                    max-width: 110px;
+                }
+            }
+            .title-product {
+                font-size: 18px;
+                font-weight: 500;
+                color: #000;
+            }
+            .name-store {
+                color: #c4c4c4;
+                font-size: 16px;
+                font-weight: 500;
+            }
+            .btn-minus {
+                background: #ffcf00;
+                border-radius: 4px;
+            }
+            .btn-plus {
+                background: #29a867;
+                border-radius: 4px;
+            }
+            .btn-hapus {
+                background: #cc2626;
+                border-radius: 25px;
+                width: 150px;
+            }
+            .price {
+                color: #ff6b44;
+                font-size: 18px;
+            }
+        }
     }
-  }
 }
 
 .section-address {
-  margin-top: 100px;
-  h3 {
-    font-family: "Merriweather";
-    font-size: 32px;
-    font-weight: 600;
-    color: #1e124c;
-  }
+    margin-top: 100px;
+    h3 {
+        font-family: "Merriweather";
+        font-size: 32px;
+        font-weight: 600;
+        color: #1e124c;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
 }
 
 .section-detail-price {
-  margin-top: 100px;
-  h3 {
-    font-family: "Merriweather";
-    font-size: 32px;
-    font-weight: 600;
-    color: #1e124c;
-  }
-  .detail-price {
-    .card {
-      margin-top: 20px;
-      .card-body {
-        th {
-          font-weight: 400;
-          font-size: 16px;
+    margin-top: 100px;
+    h3 {
+        font-family: "Merriweather";
+        font-size: 32px;
+        font-weight: 600;
+        color: #1e124c;
+    }
+    .detail-price {
+        .card {
+            margin-top: 20px;
+            .card-body {
+                th {
+                    font-weight: 400;
+                    font-size: 16px;
+                }
+                strong {
+                    color: #ff6b44;
+                }
+            }
         }
-        strong {
-          color: #ff6b44;
+    }
+    .payment-method {
+        .warning {
+            margin-top: 20px;
+            font-weight: 400;
+            font-size: 16px;
+            color: #afafaf;
         }
-      }
+        .btn-cod {
+            margin-top: 25px;
+            background: #d4beff;
+            border-radius: 25px;
+            color: #5b5575;
+        }
+        .btn-otomatis {
+            background: #a43ce3;
+            border-radius: 25px;
+            color: #fff;
+        }
+        .step-payment a {
+            font-weight: 400;
+            font-size: 16px;
+            color: #a43ce3;
+            margin-top: 10px;
+        }
     }
-  }
-  .payment-method {
-    .warning {
-      margin-top: 20px;
-      font-weight: 400;
-      font-size: 16px;
-      color: #afafaf;
-    }
-    .btn-cod {
-      margin-top: 25px;
-      background: #d4beff;
-      border-radius: 25px;
-      color: #5b5575;
-    }
-    .btn-otomatis {
-      background: #a43ce3;
-      border-radius: 25px;
-      color: #fff;
-    }
-    .step-payment a {
-      font-weight: 400;
-      font-size: 16px;
-      color: #a43ce3;
-      margin-top: 10px;
-    }
-  }
 }

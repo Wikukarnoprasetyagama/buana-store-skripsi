@@ -120,17 +120,5 @@
 @endsection
 
 @push('after-script')
-<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor
-         .create( document.querySelector( '.ckeditor' ) )
-         .then( editor => {
-                 console.log( editor );
-         } )
-         .catch( error => {
-                 console.error( error );
-         } );
- </script>
-
-
+{{-- code --}}
 @endpush

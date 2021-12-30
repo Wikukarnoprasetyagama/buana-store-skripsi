@@ -7,6 +7,7 @@
     @stack('before-style')
     @include('includes.style')
     @stack('after-style')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
   </head>
   <body>

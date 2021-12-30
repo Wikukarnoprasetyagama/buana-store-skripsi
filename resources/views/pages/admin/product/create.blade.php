@@ -124,43 +124,9 @@
 @endsection
 
 @push('after-script')
-<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
-
-{{-- <script>
-    $("#p-image").fileinput({
-        theme: 'fa',
-        uploadUrl: "/storage/app/public/assets/product",
-        uploadExtraData:function(){
-            return{
-                _token:$("input[name='_token']").val()
-            };
-        },
-
-        allowedFileExtensions:['jpg', 'svg', 'jpeg', 'png'],
-        overwriteInitial:false,
-        maxFileSize:2000,
-        maxFileNum:8,
-        slugCallback:function(filename){
-            return filename.replace('(','_').replace(']','_');
-        }
-    });
-</script> --}}
-
 <script>
     function thisFileUpload(){
         document.getElementById('file').click();
     }
 </script>
-<script>
-    ClassicEditor
-         .create( document.querySelector( '.ckeditor' ) )
-         .then( editor => {
-                 console.log( editor );
-         } )
-         .catch( error => {
-                 console.error( error );
-         } );
- </script>
-
-
 @endpush
