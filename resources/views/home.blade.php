@@ -36,7 +36,7 @@
                     <div class="col-lg-4 offset-2 d-none d-lg-block">
                       <figure class="figure">
                         <img
-                          src="{{ url('/frontend/images/brand_image.svg') }}"
+                          src="{{ url('/images/brand_image.svg') }}"
                           class="img-figure img-fluid w-100"
                           alt=""
                         />
@@ -118,7 +118,7 @@
 							@if (!$product->discount == true)
 								<div class="discount-image d-flex justify-content-end">
 								<img
-									src="{{ url('/frontend/images/ic_discount_empty.svg') }}"
+									src="{{ url('/images/ic_discount_empty.svg') }}"
 									class="align-items-end img-fluid"
 									alt=""
 								/>

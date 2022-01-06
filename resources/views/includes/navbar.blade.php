@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="{{ url('frontend/images/logo.svg') }}" class="img-fluid" alt="" />
+          <img src="{{ url('/images/logo.svg') }}" class="img-fluid" alt="" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@
 							@php
 								$carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
 							@endphp
-							<img src="{{ url('/frontend/images/ic_cart.svg') }}" class="img-fluid my-auto" alt=""/>
+							<img src="{{ url('/images/ic_cart.svg') }}" class="img-fluid my-auto" alt=""/>
 							@if ($carts > 0)
 										<div class="cart-badge">{{ $carts }}</div>
 							@endif
@@ -82,7 +82,11 @@
 						Hi, {{ Auth::user()->name }}	
 					</div> 	
 					<div class="flex-grow-1 ms-2">
-						<img src="{{ Storage::url(Auth::user()->photo_profile) }}" class="img-fluid ms-2 rounded-circle w-100 h-100" style="max-height: 40px; max-width: 40px; border-radius: 50px; background-size: cover" alt="" />
+						@if (Auth::user()->photo_profile == true)
+							<img src="{{ Storage::url(Auth::user()->photo_profile) }}" class="img-fluid ms-2 rounded-circle w-100 h-100" style="max-height: 40px; max-width: 40px; border-radius: 50px; background-size: cover" alt="" />
+							@else
+							<img src="{{ url('/images/ic_avatar.svg') }}" class="img-fluid ms-2 rounded-circle w-100 h-100" style="max-height: 40px; max-width: 40px; border-radius: 50px; background-size: cover" alt="" />
+						@endif
 					</div>
 				</div> 
 			@endauth

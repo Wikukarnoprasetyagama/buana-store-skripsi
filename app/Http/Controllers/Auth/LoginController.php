@@ -39,15 +39,10 @@ class LoginController extends Controller
     // Google Authentication
     public function authenticated()
     {
-        if(Auth::user()->roles == 'ADMIN')
+        if(Auth::user()->roles == 'ADMIN' ? 'SELLER' : 'CUSTOMER')
         {
             return redirect('/');
-        } elseif (Auth::user()->roles == 'SELLER') {
-            return redirect('/');
-        }else {
-            return redirect('/');
         }
-
     }
 
     // Login & Register with Google
@@ -57,27 +52,43 @@ class LoginController extends Controller
     }
     public function handlerProviderCallback(Request $request)
     {
-        try {
-            $user_google = Socialite::driver('google')->user();
-            $user = User::where('email', $user_google->getEmail())->first();
-            
-            if ($user != null) {
-                \auth()->login($user, true);
-                return redirect()->route('/');
-            } else {
-                $create = User::create([
-                    'email' => $user_google->getEmail(),
-                    'name' => $user_google->getName(),
-                    'password' => 0,
-                    'email_verified_at' => now(),
-                ]);
 
-                \auth()->login($create, true);
-                return redirect()->route('/');
-            }
-        } catch (\Throwable $th) {
-            return redirect()->route('login');
-        }
+        $callback = Socialite::driver('google')->stateless()->user();
+
+        $data = [
+            'name' => $callback->getName(),
+            'email' => $callback->getEmail(),
+            'password' => false,
+            'email_verified_at' => date('Y-m-d H:i:s', time())
+        ];
+
+        $user = User::firstOrCreate(['email' => $data['email']], $data);
+        Auth::login($user, true);
+
+        return redirect()->route('home');
+
+
+        // try {
+        //     $user_google = Socialite::driver('google')->user();
+        //     $user = User::where('email', $user_google->getEmail())->first();
+            
+        //     if ($user != null) {
+        //         \auth()->login($user, true);
+        //         return redirect()->route('/');
+        //     } else {
+        //         $create = User::create([
+        //             'email' => $user_google->getEmail(),
+        //             'name' => $user_google->getName(),
+        //             'password' => 0,
+        //             'email_verified_at' => now(),
+        //         ]);
+
+        //         \auth()->login($create, true);
+        //         return redirect()->route('/');
+        //     }
+        // } catch (\Throwable $th) {
+        //     return redirect()->route('login');
+        // }
     }
 
     // login with facebook

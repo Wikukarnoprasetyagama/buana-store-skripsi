@@ -6,7 +6,7 @@
         <div class="row d-flex justify-content-center">
           <div class="col-12 col-lg-4 text-center">
             <div class="figure">
-              <img src="{{ url('frontend/images/logo.svg') }}" class="figure-img img-fluid" alt="" />
+              <img src="{{ url('/images/logo.svg') }}" class="figure-img img-fluid" alt="" />
               <h1>Selamat Datang</h1>
             </div>
           </div>
@@ -83,14 +83,14 @@
             <div class="col-12 col-lg-1 mb-3">
                 <div class="d-grid text-center">
                 <a href="{{ url('/auth/redirect') }}" class="img-fluid"
-                    ><img src="{{ url('frontend/images/ic_google.svg') }}" alt=""
+                    ><img src="{{ url('/images/ic_google.svg') }}" alt=""
                 /></a>
                 </div>
             </div>
             <div class="col-12 col-lg-1 mb-3">
                 <div class="d-grid text-center">
                 <a href="{{ url('/auth/facebook/redirect') }}" class="img-fluid"
-                    ><img src="{{ url('frontend/images/ic_facebook_1.svg') }}" alt=""
+                    ><img src="{{ url('/images/ic_facebook_1.svg') }}" alt=""
                 /></a>
                 </div>
             </div>

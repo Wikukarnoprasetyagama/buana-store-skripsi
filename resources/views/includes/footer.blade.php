@@ -5,7 +5,7 @@
         <div class="col-12 col-lg-3">
         <div class="d-flex">
             <div class="flex-shrink-0">
-            <img src="{{ url('frontend/images/logo.svg') }}" alt="" />
+            <img src="{{ url('/images/logo.svg') }}" alt="" />
             </div>
             <div class="flex-grow-1 ms-3 mt-2">
             <h3>BuanaStore</h3>
@@ -60,7 +60,7 @@
             <div class="col-1 col-lg-2">
             <a href="#">
                 <img
-                src="{{ url('frontend/images/ic_youtube.png') }}"
+                src="{{ url('/images/ic_youtube.png') }}"
                 class="img-fluid w-100"
                 alt=""
                 />
@@ -69,7 +69,7 @@
             <div class="col-1 col-lg-2">
             <a href="#">
                 <img
-                src="{{ url('frontend/images/ic_instagram.png') }}"
+                src="{{ url('/images/ic_instagram.png') }}"
                 class="img-fluid w-100"
                 alt=""
                 />
@@ -78,7 +78,7 @@
             <div class="col-1 col-lg-2">
             <a href="#">
                 <img
-                src="{{ url('frontend/images/ic_facebook.png') }}"
+                src="{{ url('/images/ic_facebook.png') }}"
                 class="img-fluid w-100"
                 alt=""
                 />

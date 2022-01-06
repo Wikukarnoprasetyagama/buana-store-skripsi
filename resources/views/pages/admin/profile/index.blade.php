@@ -15,7 +15,7 @@
                     @foreach ($users as $user)
                     <div class="row">
                         <div class="col-md-2">
-                            <img src="{{ Storage::url($user->photo_profile) }}" class="img-fluid h-50" alt="">
+                            <img src="{{ Storage::url($user->photo_profile) }}" class="img-fluid h-50" alt="" style="border-radius: 8px" />
                         </div>
                         <div class="col-md-10">
                             <div class="row">

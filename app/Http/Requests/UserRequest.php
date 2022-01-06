@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'string',
             'roles' => 'string',
-            'email' => 'string',
+            'email' => 'string',   
             'photo_profile' => 'string',    
             'name_store' => 'string',   
             'phone' => 'integer',    
