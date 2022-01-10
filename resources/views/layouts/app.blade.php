@@ -4,11 +4,36 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>@yield('title')</title>
+  <link rel="shortcut icon" href="{{ url('/images/test-pavicon.svg') }}">
+  @stack('before-style')
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  @include('includes.admin.style')
+  <style>
+  body
+  {
+    font-family: "Poppins";
+    font-weight: 400;
+  }
+  .navbar .nav-link.nav-link-user 
+  {
+    font-weight: 500;
+  }
 
- @stack('before-style')
- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
- @include('includes.admin.style')
- @stack('after-style')
+  .main-sidebar .sidebar-menu li a 
+  {
+      font-weight: 400;
+  }
+  .card.card-statistic-2 .card-header h4 
+  {
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: .5px;
+  }
+  .btn{
+    font-weight: 400;
+  }
+  </style>
+  @stack('after-style')
 </head>
 
 <body>

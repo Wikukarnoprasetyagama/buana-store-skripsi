@@ -10,7 +10,7 @@
           <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12">
               <div class="card card-statistic-2">
-                <div class="card-icon shadow-primary bg-primary">
+                <div class="card-icon shadow-info bg-info">
                   <i class="fas fa-store"></i>
                 </div>
                 <div class="card-wrap">
@@ -25,7 +25,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
               <div class="card card-statistic-2">
-                <div class="card-icon shadow-primary bg-primary">
+                <div class="card-icon shadow-danger bg-danger">
                   <i class="fas fa-users"></i>
                 </div>
                 <div class="card-wrap">
@@ -40,7 +40,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
               <div class="card card-statistic-2">
-                <div class="card-icon shadow-primary bg-primary">
+                <div class="card-icon shadow-success bg-success">
                   <i class="fas fa-dollar-sign"></i>
                 </div>
                 <div class="card-wrap">
@@ -58,7 +58,7 @@
             <div class="col-lg-4 col-md-4 col-sm-12">
               <div class="card card-statistic-2">
                 <div class="card-icon shadow-primary bg-primary">
-                  <i class="fas fa-store"></i>
+                  <i class="fas fa-tags"></i>
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
@@ -72,8 +72,8 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
               <div class="card card-statistic-2">
-                <div class="card-icon shadow-primary bg-primary">
-                  <i class="fas fa-users"></i>
+                <div class="card-icon shadow-dark bg-dark">
+                  <i class="fas fa-list"></i>
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
@@ -87,24 +87,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
               <div class="card card-statistic-2">
-                <div class="card-icon shadow-primary bg-primary">
-                  <i class="fas fa-cart-plus"></i>
-                </div>
-                <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>BANNER / SLIDE</h4>
-                  </div>
-                  <div class="card-body">
-                    {{ $sliders }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="card card-statistic-2">
-                <div class="card-icon shadow-success bg-success">
+                <div class="card-icon shadow-warning bg-warning">
                   <i class="fas fa-user-check"></i>
                 </div>
                 <div class="card-wrap">

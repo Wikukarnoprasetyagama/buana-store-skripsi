@@ -80,18 +80,11 @@
     
         </form>
             <div class="row d-flex justify-content-center mt-4">
-            <div class="col-12 col-lg-1 mb-3">
+            <div class="col-12 col-lg-4 mb-3">
                 <div class="d-grid text-center">
-                <a href="{{ url('/auth/redirect') }}" class="img-fluid"
-                    ><img src="{{ url('/images/ic_google.svg') }}" alt=""
-                /></a>
-                </div>
-            </div>
-            <div class="col-12 col-lg-1 mb-3">
-                <div class="d-grid text-center">
-                <a href="{{ url('/auth/facebook/redirect') }}" class="img-fluid"
-                    ><img src="{{ url('/images/ic_facebook_1.svg') }}" alt=""
-                /></a>
+                <a href="{{ url('/auth/redirect') }}" class="btn img-fluid"
+                    ><img src="{{ url('/images/ic_google.svg') }}" class="me-4" alt=""
+                />Masuk dengan Google</a>
                 </div>
             </div>
             </div>

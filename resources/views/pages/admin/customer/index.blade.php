@@ -17,12 +17,11 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Foto</th>
-                                    <th>Roles</th>
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>No Hp</th>
                                     <th>Status</th>
+                                    <th>Nama Desa</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -48,9 +47,11 @@
         },
         columns:[
             {data: 'id', name: 'id'},
-            {data: 'roles', name: 'roles'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
+            {data: 'phone', name: 'phone'},
+            {data: 'status', name: 'status'},
+            {data: 'village', name: 'village'},
             { 
                 data: 'action',
                 name: 'action',

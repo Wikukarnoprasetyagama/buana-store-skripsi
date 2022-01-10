@@ -35,6 +35,7 @@ class UserRequest extends FormRequest
             'street' => 'string',  
             'address' => 'string',  
             'status' => 'string', 
+            'reg_status' => 'string', 
         ];
     }
 }

@@ -19,7 +19,7 @@ class SellerController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = UserDetails::with(['user']);
+            $query = User::where('roles', 'SELLER')->get();
 
             return DataTables::of($query)
                     ->addColumn('action', function($seller){

@@ -17,8 +17,6 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Foto</th>
-                                    <th>Roles</th>
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>No Hp</th>
@@ -49,9 +47,8 @@
         },
         columns:[
             {data: 'id', name: 'id'},
-            {data: 'photo', name: 'photo'},
-            {data: 'user.name', name: 'user.name'},
-            {data: 'user.email', name: 'user.email'},
+            {data: 'name', name: 'name'},
+            {data: 'email', name: 'email'},
             {data: 'phone', name: 'phone'},
             {data: 'name_store', name: 'name_store'},
             {data: 'status', name: 'status'},

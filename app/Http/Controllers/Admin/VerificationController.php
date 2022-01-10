@@ -34,8 +34,8 @@ class VerificationController extends Controller
                     ->rawColumns(['action'])
                     ->make();
         }
-        $item = User::where('status', 'PENDING')->firstOrFail()->get();
-        return view('pages.admin.verification.index', compact('item'));
+        $item = User::where('status', 'PENDING')->get();
+        return view('pages.admin.verifications.index', compact('item'));
     }
 
     /**

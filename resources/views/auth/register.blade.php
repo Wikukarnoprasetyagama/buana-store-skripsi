@@ -10,7 +10,7 @@
         <div class="row d-flex justify-content-center">
           <div class="col-12 col-lg-4 text-center">
             <div class="figure">
-              <img src="{{ url('frontend/images/logo.svg') }}" class="figure-img img-fluid" alt="" />
+              <img src="{{ url('/images/logo.svg') }}" class="figure-img img-fluid" alt="" />
               <h1>Daftar Sekarang</h1>
             </div>
           </div>
@@ -76,7 +76,7 @@
             </div>
             </div>
         </form>
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center already-account">
           <div class="col-md-6 text-center">
             <span>Already have an account? <a href="{{ route('login') }}">Sign In</a></span>
           </div>
@@ -87,18 +87,11 @@
           </div>
         </div>
         <div class="row d-flex justify-content-center mb-sm-3 mt-3">
-          <div class="col-2 col-lg-1 mb-3">
+          <div class="col-2 col-lg-6 mb-3">
             <div class="d-grid text-center">
-              <a href="#" class="img-fluid"
-                ><img src="{{ url('frontend/images/ic_google.svg') }}" alt=""
-              /></a>
-            </div>
-          </div>
-          <div class="col-2 col-lg-1 mb-3">
-            <div class="d-grid text-center">
-              <a href="#" class="img-fluid"
-                ><img src="{{ url('frontend/images/ic_facebook_1.svg') }}" alt=""
-              /></a>
+              <a href="{{ url('auth/redirect') }}" class="btn btn-google-register" style="background-color: #dfdfdf"
+                ><img src="{{ url('/images/ic_google.svg') }}" class="me-4" alt=""
+              />Daftar dengan Google</a>
             </div>
           </div>
         </div>

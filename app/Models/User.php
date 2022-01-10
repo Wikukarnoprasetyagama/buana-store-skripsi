@@ -30,6 +30,7 @@ class User extends Authenticatable
         'street',  
         'address',  
         'status',  
+        'reg_status',  
     ];
 
     /**

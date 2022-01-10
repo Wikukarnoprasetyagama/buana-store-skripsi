@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
-use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class CustomerController extends Controller
@@ -19,34 +18,19 @@ class CustomerController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = User::where('roles', 'CUSTOMER');
+            $query = User::where('roles', 'CUSTOMER')->get();
 
             return DataTables::of($query)
-                    ->addColumn('action', function($user){
+                    ->addColumn('action', function($customer){
                         return '
                         <div class="action">
-                        <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
-                                        type="button" 
-                                        data-toggle="dropdown">
-                                        Aksi
-                                        </button>
-                                        <div class="dropdown-menu">
-                                        <a href="' . route('customer.edit', $user->id) . '" class="dropdown-item">Sunting</a>
-                                        <a href="#" data-url="'. route('sliders.destroy', $user->id) . '" data-id="' .$user->id. '" data-token="' . csrf_token() . '" id="hapus" class="hapus dropdown-item">Blokir</a>
-                                        <form action="' . route('customer.update', $user->id) . '" class="" method="POST" enctype="multipart/form-data">
-                                        '. method_field('PUT') . csrf_field() .'
-                                        <input type="hidden" name="roles" value="SELLER">
-                                        <button class="dropdown-item" type="submit">Jadikan Seller</button>
-                                        </form>
-                                        </div>
-                                        </div>
-                            </div>
+                        <a href="' . route('customer.edit', $customer->id) . '" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
                         ';
                     })
                     ->rawColumns(['action'])
                     ->make();
         }
+        
         return view('pages.admin.customer.index');
     }
 
@@ -90,9 +74,9 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $change = User::findOrFail($id);
-        return view('pages.admin.customer.index', [
-            'change' => $change,
+        $detail = User::findOrFail($id);
+        return view('pages.admin.customer.detail', [
+            'detail' => $detail
         ]);
     }
 

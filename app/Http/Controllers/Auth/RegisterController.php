@@ -54,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['string', 'max:255'],
             'email' => ['string', 'email', 'max:255', 'unique:users'],
             'password' => ['string', 'min:8', 'confirmed'],
+            'reg_status' => ['nullable', 'string', 'max:255'],
         ]);
     }
 
@@ -68,6 +69,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'reg_status' => isset($data['reg_status']) ? $data['reg_status'] : 'MANUAL',
             'password' => Hash::make($data['password']),
         ]);
     }

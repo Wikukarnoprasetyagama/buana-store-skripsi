@@ -1,91 +1,93 @@
 @extends('layouts.app')
 @section('title')
-    Profile Saya
+    Detail Customer {{ $detail->name }}
 @endsection
 
 @section('content')
-<div class="main-content">
+    <div class="main-content">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-4 pt-3">
-                        <h1 class="h3 mb-0 text-gray-800">Profile Saya</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Detail Customer <strong class="ml-3" style="font-size: 16px">{{ $detail->name }}</strong></h1>
                     </div>
-                    @foreach ($users as $user)
                     <div class="row">
-                        <div class="col-12 col-md-2 text-center">
-                            <figure class="figure" style="padding-top: 50px">
-                                <img src="{{ Storage::url($user->photo_profile) }}" class="figure-img img-fluid rounded-circle" alt="" style="max-height: 250px; background-size: cover" />
+                        <div class="col-md-2">
+                            @if ($detail->photo_profile == true)
+                            <figure class="figure">
+                                <img src="{{ Storage::url($detail->photo_profile) }}" class="figure-img img-fluid" alt="" style="border-radius: 8px" />
                             </figure>
+                            @else
+                            <figure class="figure d-flex justify-content-center">
+                                <img src="{{ url('/images/ic_avatar.svg') }}" class="figure-img img-fluid align-items-center" alt="" />
+                            </figure>
+                            @endif
                         </div>
                         <div class="col-md-10">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control" value="{{ $user->email }}" disabled>
+                                        <label class="form-label">Email Address</label>
+                                        <input type="text" class="form-control" value="{{ $detail->email }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="name_store" class="form-label">Nama Toko</label>
-                                        <input type="text" class="form-control" value="{{ $user->name_store }}" disabled>
+                                        <label class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control" value="{{ $detail->name }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="name_store" class="form-label">Nama Pemilik</label>
-                                        <input type="text" class="form-control" value="{{ $user->name }}" disabled>
+                                        <label class="form-label">Status Masuk / Daftar</label>
+                                        @if ($detail->remember_token == true)
+                                            <input type="text" class="form-control" value="GOOGLE" disabled>
+                                            @else
+                                            <input type="text" class="form-control" value="MANUAL" disabled>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="status" class="form-label">Role</label>
-                                            <input type="text" class="form-control" value="{{ $user->roles }}" disabled>
+                                        <label class="form-label">Tanggal Pendaftaran</label>
+                                        <input type="text" class="form-control" value="{{ \Carbon\Carbon::parse($detail->created_at)->format('d/m/Y') }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Nomor Hp</label>
-                                        <input type="text" class="form-control" value="{{ $user->phone }}" disabled>
+                                        <label class="form-label">Nomor Hp</label>
+                                        <input type="text" class="form-control" value="{{ $detail->phone }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Jalan</label>
-                                            <input type="text" class="form-control" value="{{ $user->street }}" disabled>
+                                        <label class="form-label">Nama Desa</label>
+                                            <input type="text" class="form-control" value="{{ $detail->village }}" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="street" class="form-label">Nama Jalan</label>
-                                        <input name="street" class="form-control text-left" value="{{ $user->street }}" disabled>
-                                    </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Nama Jalan</label>
+                                    <input class="form-control text-left" value="{{ $detail->street }}" disabled>
+                                </div>
                                     <div class="col-md-8">
-                                        <label for="address" class="form-label">Alamat</label>
-                                        <input name="address" class="form-control text-left" value="{{ $user->address }}" disabled>
+                                        <label class="form-label">Alamat Lengkap</label>
+                                        <input class="form-control text-left" value="{{ $detail->address }}" disabled>
                                     </div>
                                 </div>
                             <div class="row mt-5">
-                                <div class="col-md-6">
+                                <div class="col-md-12 text-right">
                                     <div class="form-group">
-                                        <a href="{{ route('dashboard-admin') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-primary d-block">Edit Profile</a>
+                                        <a href="{{ route('customer.index') }}" class="btn btn-primary">Kembali</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    @endforeach
                 </div>
             </div>
         </div>
@@ -105,12 +107,11 @@
         },
         columns:[
             {data: 'id', name: 'id'},
-            {data: 'photo', name: 'photo'},
-            {data: 'roles', name: 'roles'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
             {data: 'phone', name: 'phone'},
             {data: 'status', name: 'status'},
+            {data: 'village', name: 'village'},
             { 
                 data: 'action',
                 name: 'action',

@@ -1,7 +1,7 @@
-@extends('layouts.seller')
+@extends('layouts.member')
 
 @section('title')
-    DASHBOARD SELLER
+    DASHBOARD {{ Auth::user()->roles }}
 @endsection
 
 @section('content')
@@ -23,6 +23,7 @@
                 </div>
               </div>
             </div>
+            @if (Auth::user()->roles == 'SELLER')
             <div class="col-lg-4 col-md-4 col-sm-12">
               <div class="card card-statistic-2">
                 <div class="card-icon shadow-primary bg-primary">
@@ -53,8 +54,26 @@
                 </div>
               </div>
             </div>
+            @else
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="card card-statistic-2">
+                <div class="card-icon shadow-primary bg-primary">
+                  <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Pengeluaran</h4>
+                  </div>
+                  <div class="card-body">
+                    $187,13
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endif
           </div>
-          <div class="row">
+          @if (Auth::user()->roles == 'SELLER')
+              <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
@@ -121,6 +140,7 @@
               </div>
             </div>
           </div>
+          @endif
         </section>
       </div>
 @endsection

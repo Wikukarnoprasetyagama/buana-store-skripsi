@@ -1,4 +1,4 @@
-@extends('layouts.customer')
+@extends('layouts.member')
 
 @section('content')
 <!-- Begin Page Content -->

@@ -1,7 +1,7 @@
 <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">Admin Buana Store</a>
+            <a href="{{ route('dashboard-admin') }}">{{ Auth::user()->roles }} Buana Store</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">ABS</a>
@@ -39,7 +39,7 @@
                 <a href="#" class="nav-link"><i class="fas fa-users"></i> <span>Customer</span></a>
               </li>
               <div class="mt-3 mb-4 p-3 hide-sidebar-mini">
-                <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split" data-toggle="modal" data-target="#logoutModal">
+                <a href="#" class="btn btn-danger btn-lg btn-block btn-icon-split" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt"></i> Keluar
                 </a>
               </div>

@@ -563,24 +563,24 @@ body {
 }
 
 .section-login .btn-daftar {
-  background-color: #29a867;
+  background-color: #a43ce3;
   color: #fff;
   font-weight: 400;
   font-size: 16px;
 }
 
-.section-login .btn-google {
-  background-color: #d6d6d6;
+.section-login .btn-google-register {
+  background-color: #a43ce3 !important;
   color: #212529;
   font-weight: 400;
   font-size: 16px;
 }
 
-.section-login .btn-google img {
+.section-login .btn-google-register img {
   max-height: 20px;
 }
 
-.section-login .btn-google span {
+.section-login .btn-google-register span {
   margin-left: 15px;
 }
 
@@ -598,7 +598,7 @@ body {
 }
 
 .section-login .already-account span a:hover {
-  color: #29a867;
+  color: #a43ce3;
 }
 
 .section-login .forgot-password {
@@ -609,7 +609,7 @@ body {
 }
 
 .section-login .forgot-password:hover {
-  color: #ffab00;
+  color: #a43ce3;
 }
 
 .section-register {
@@ -637,7 +637,7 @@ body {
 }
 
 .section-register .btn-daftar {
-  background-color: #29a867;
+  background-color: #a43ce3;
   color: #fff;
   font-weight: 400;
   font-size: 16px;
@@ -657,7 +657,7 @@ body {
 }
 
 .section-register .already-account span a:hover {
-  color: #29a867;
+  color: #a43ce3;
 }
 
 .navbar {

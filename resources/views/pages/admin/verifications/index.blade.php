@@ -45,7 +45,7 @@
                         <div class="col-md-12">
                             <div class="no-verification text-center">
                                 <figure class="figure">
-                                    <img src="{{ url('/frontend/images/empty.svg') }}" class="img-fluid figure-img h-25 w-25" alt="">
+                                    <img src="{{ url('/images/ic_empty.svg') }}" class="img-fluid figure-img h-50 w-50" alt="">
                                 </figure>
                                 <div class="description">
                                     <h3>Data tidak tersedia!</h3>

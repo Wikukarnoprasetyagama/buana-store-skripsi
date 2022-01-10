@@ -59,10 +59,12 @@ class LoginController extends Controller
             'name' => $callback->getName(),
             'email' => $callback->getEmail(),
             'password' => false,
-            'email_verified_at' => date('Y-m-d H:i:s', time())
+            'email_verified_at' => date('Y-m-d H:i:s', time()),
+            'reg_status' => 'GOOGLE'
         ];
 
-        $user = User::firstOrCreate(['email' => $data['email']], $data);
+        $user = User::firstOrCreate(
+            ['email' => $data['email']], $data);
         Auth::login($user, true);
 
         return redirect()->route('home');
@@ -80,7 +82,8 @@ class LoginController extends Controller
         //             'email' => $user_google->getEmail(),
         //             'name' => $user_google->getName(),
         //             'password' => 0,
-        //             'email_verified_at' => now(),
+        //             'log_status' => 'GOOGLE',
+        //             'email_verified_at' => date('Y-m-d H:i:s', time()),
         //         ]);
 
         //         \auth()->login($create, true);
@@ -89,39 +92,6 @@ class LoginController extends Controller
         // } catch (\Throwable $th) {
         //     return redirect()->route('login');
         // }
-    }
-
-    // login with facebook
-
-    public function redirectToFacebook()
-    {
-        return Socialite::driver('facebook')->redirect();
-    }
-
-    public function handlerFacebookCallback(Request $request)
-    {
-        try {
-            $user_facebook = Socialite::driver('facebook')->user();
-            $user = User::where('email', $user_facebook->getEmail())->first();
-
-            if($user != null)
-            {
-                \auth()->login($user, true);
-                return redirect()->route('/');
-            }else{
-                $create = User::create([
-                    'email' => $user_facebook->getEmail(),
-                    'name' => $user_facebook->getName(),
-                    'password' => 0,
-                    'email_verified_at' => now(),
-
-                ]);
-                \auth()->login($create, true);
-                return redirect()->route('/');
-            }
-        } catch (\Exception $e) {
-            return redirect()->route('login');
-        }
     }
 
     /**

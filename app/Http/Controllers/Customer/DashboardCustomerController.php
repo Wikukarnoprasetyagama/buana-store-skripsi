@@ -16,7 +16,7 @@ class DashboardCustomerController extends Controller
         // $detail = UserDetails::where('status', 'PENDING', Auth::user()->users_id)->find();
         $item = User::all();
         $customer = User::where('status', 'PENDING', Auth::user()->id)->get()->take(1);
-        return view('pages.customer.dashboard', [
+        return view('pages.member.dashboard', [
             'customers' => $customer,
             'item' => $item
             // 'detail' => UserDetails::where('status', 'PENDING', Auth::user()->users_id)->get()

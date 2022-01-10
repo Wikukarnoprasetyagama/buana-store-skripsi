@@ -16,25 +16,25 @@
                         @method('PUT')
                         @csrf
                         <div class="row">
-                            <div class="col-md-2">
-                                <img src="{{ url('/images/ic_avatar.svg') ? Storage::url(Auth::user()->photo_profile) : '' }}" class="img-fluid h-50" alt="" style="border-radius: 8px" />
-                                <input type="file" name="photo_profile" class="form-control border-0" style="color: transparent" />
-                            </div>
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
+                                        <label for="photo_profile" class="form-label">Foto Profile</label>
+                                        <input type="file" name="photo_profile" class="form-control" style="color: transparent" />
+                                    </div>
+                                    <div class="col-md-3">
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email Address</label>
                                             <input type="email" name="email" class="form-control" value="{{ $user->email }}">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="mb-3">
                                             <label for="name_store" class="form-label">Nama Toko</label>
                                             <input type="text" name="name_store" class="form-control" value="{{ $user->name_store }}">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="mb-3">
                                             <label for="name" class="form-label">Nama Pemilik</label>
                                             <input name="name" class="form-control" value="{{ $user->name }}">
@@ -66,9 +66,14 @@
                                     </div>
                                 </div>
                                 <div class="row mt-5">
-                                    <div class="col-md-12 text-right">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-success">Update Profile</button>
+                                            <a href="{{ route('profile.index') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success btn-block">Update Profile</button>
                                         </div>
                                     </div>
                                 </div>

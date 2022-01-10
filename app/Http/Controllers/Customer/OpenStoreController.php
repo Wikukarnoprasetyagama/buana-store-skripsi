@@ -38,22 +38,6 @@ class OpenStoreController extends Controller
      */
     public function store(OpenStoreRequest $request)
     {
-
-        // auth()->user()->name()->create(request([
-        //     'photo_profile', 'name_store', 'phone', 'photo_shop', 'village', 'address'
-        // ]));
-
-        // $store = new User;
-        // $store->photo_profile = $request->photo_profile;
-        // $store->name_store = $request->name_store;
-        // $store->phone = $request->phone;
-        // $store->photo_shop = $request->photo_shop;
-        // $store->village = $request->village;
-        // $store->address = $request->address;
-
-        // $store->save();
-
-
         $data = $request->all();
         $data['photo_profile'] = $request->file('photo_profile')->store(
             'assets/profile',
@@ -89,7 +73,7 @@ class OpenStoreController extends Controller
     public function edit($id)
     {
         $open = User::findOrFail($id);
-        return view('pages.customer.open-store.edit', [
+        return view('pages.member.open', [
             'open' => $open
         ]);
     }
