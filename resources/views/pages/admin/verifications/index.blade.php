@@ -48,7 +48,7 @@
                                     <img src="{{ url('/images/ic_empty.svg') }}" class="img-fluid figure-img h-50 w-50" alt="">
                                 </figure>
                                 <div class="description">
-                                    <h3>Data tidak tersedia!</h3>
+                                    <h3>Belum ada Data!</h3>
                                     Tidak ada member yang perlu di verifikasi
                                 </div>
                             </div>

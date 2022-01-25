@@ -15,21 +15,21 @@ return [
     */
 
     'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_id'     => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_APP_SECRET'),
-        'redirect' => env('GOOGLE_REDIRECT') 
+        'redirect'      => env('GOOGLE_REDIRECT') 
 
     ],
     'facebook' => [
-        'client_id' => env('FB_ID'),
+        'client_id'     => env('FB_ID'),
         'client_secret' => env('FB_SECRET'),
-        'redirect' => env('FB_URL') 
+        'redirect'      => env('FB_URL') 
 
     ],
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain'   => env('MAILGUN_DOMAIN'),
+        'secret'   => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
@@ -38,9 +38,17 @@ return [
     ],
 
     'ses' => [
-        'key' => env('AWS_ACCESS_KEY_ID'),
+        'key'    => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+    'midtrans' => [
+        'serverKey'    => env('MIDTRANS_SERVER_KEY'),
+        'clientKey'    => env('MIDTRANS_CLIENT_KEY'),
+        'isProduction' => env('MIDTRANS_IS_PRODUCTION'),
+        'isSanitized'  => env('MIDTRANS_IS_SANITIZED'),
+        'is3ds'        => env('MIDTRANS_IS_3DS'),
+    ]
 
 ];

@@ -4,7 +4,8 @@
 @endsection
 
 @section('content')
-<div class="main-content">
+@if (count($item))
+    <div class="main-content">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -34,6 +35,41 @@
         </div>
     </div>
 </div>
+
+@else
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row py-5">
+                        <div class="col-md-12">
+                            <div class="no-data text-center">
+                                <figure class="figure">
+                                    <img src="{{ url('/images/ic_empty_data.svg') }}" class="img-fluid figure-img h-25 w-25" alt="">
+                                </figure>
+                                <div class="description">
+                                    <h3>Belum ada Kategori!</h3>
+                                    silahkan untuk menambahkan data terlebih dahulu
+                                </div>
+                                <div class="add-slider mt-4">
+                                    <a href="{{ route('products-admin.create')}}" class="btn btn-success shadow-sm">
+                                        <i class="fas fa-plus fa-sm text-white-50"></i>
+                                        Tambah Kategori
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@endif
 @endsection
 
 @push('after-script')

@@ -47,10 +47,6 @@ Route::get('/success', [CartController::class, 'success'])->name('success');
 Route::get('/auth/callback', [LoginController::class, 'handlerProviderCallback']);
 Route::get('/auth/redirect', [LoginController::class, 'redirectToProvider']);
 
-//Facebook
-Route::get('/auth/facebook/callback', [LoginController::class, 'handlerFacebookCallback']);
-Route::get('/auth/facebook/redirect', [LoginController::class, 'redirectToFacebook']);
-
 
 Route::prefix('/pages/dashboard/admin')
         ->middleware(['auth', 'admin'])

@@ -36,7 +36,9 @@ class ProductAdminController extends Controller
                     ->rawColumns(['action'])
                     ->make();
         }
-        return view('pages.admin.product.index');
+
+        $item = Products::where('users_id', auth()->id())->get();
+        return view('pages.admin.product.index', compact('item'));
     }
 
     /**

@@ -36,7 +36,8 @@ class SlidersController extends Controller
                     ->rawColumns(['action', 'photo'])
                     ->make();
         }
-        return view('pages.admin.slider.index');
+        $item = Sliders::all();
+        return view('pages.admin.slider.index', compact('item'));
     }
 
     /**

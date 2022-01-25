@@ -37,7 +37,8 @@ class CategoryController extends Controller
                     ->rawColumns(['action', 'photo'])
                     ->make();
         }
-        return view('pages.admin.category.index');
+        $item = Category::all();
+        return view('pages.admin.category.index', compact('item'));
     }
 
     /**

@@ -79,7 +79,7 @@ class VerificationController extends Controller
     public function edit($id)
     {
         $detail = User::findOrFail($id);
-        return view('pages.admin.verification.detail', [
+        return view('pages.admin.verifications.detail', [
             'detail' => $detail,
             // 'user' => User::where('status', 'PENDING')->get()
         ]);

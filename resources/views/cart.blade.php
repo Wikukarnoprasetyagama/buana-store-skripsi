@@ -17,7 +17,8 @@
       </div>
     </nav>
 
-    <!-- Cart -->
+    @if (count($carts))
+        <!-- Cart -->
     <section class="section-cart">
       <div class="container">
         <div class="row">
@@ -75,7 +76,7 @@
                   </td>
                   <td>
                     <div class="form-group my-auto py-2" style="width: 130px">
-                      <div class="price">Rp. {{ number_format($cart->product->price) }}</div>
+                      <div class="price">Rp. {{ number_format($cart->product->price * $cart->quantity) }}</div>
                     </div>
                   </td>
                   <td>
@@ -89,7 +90,7 @@
                   </td>
                 </tr>
                 @php
-                    $totalPrice += $cart->product->price
+                    $totalPrice += $cart->product->price * $cart->quantity
                 @endphp
                 @endforeach
               </tbody>
@@ -172,7 +173,7 @@
                                 <tr>
                                   <div class="form-group name-product bg-danger">
                                     <th width="100%">{{ $cart->product->name_product }}</th>
-                                    <td width="50%" class="text-end">{{ number_format($cart->product->price) }}</td>
+                                    <td width="50%" class="text-end">{{ number_format($cart->product->price * $cart->quantity) }}</td>
                                   </div>
                                 </tr>
                             @endforeach
@@ -196,7 +197,7 @@
                                 <div class="form-group">
                                   <th width="90%">Total</th>
                                   <td width="10%" class="text-end">
-                                    <strong></strong>
+                                    <strong>{{ $totalPrice }}</strong>
                                   </td>
                                 </div>
                               </tr>
@@ -231,38 +232,67 @@
       </div>
     </section>
     <!-- End Address -->
+
+    @else
+
+    <section class="section-empty-cart">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-12 text-center">
+            <div class="empty-cart text-center">
+                <figure class="figure">
+                    <img src="{{ url('/images/ic_empty_cart.svg') }}" class="img-fluid figure-img h-50 w-50" alt="">
+                </figure>
+                <div class="description mt-3">
+                    <h3>Belum ada Produk dikeranjang!</h3>
+                    Tidak ada member yang perlu di verifikasi
+                </div>
+                <div class="add-slider mt-4">
+                    <a href="{{ route('home')}}" class="btn btn-get-product btn-lg shadow-sm">
+                        <i class="fas fa-plus fa-sm text-white-50"></i>
+                        Belanja Sekarang
+                    </a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    @endif
+
 @endsection
 
+@push('after-style')
+    <style>
+      .section-empty-cart{
+        margin-top: 60px;
+      }
+
+      h3{
+          font-size: 32px;
+          font-family: "Merriweather";
+          font-weight: 600;
+          color: #1e124c;
+      }
+      .description{
+        color: #525252;
+        font-size: 16px;
+        font-weight: 400;
+      }
+      .btn-get-product{
+        background: #a43ce3;
+        border-radius: 25px;
+        color: #fff;
+        font-size: 16px;
+      }
+      .btn-get-product:hover{
+        background: #882ec0;
+        color: #fff;
+      }
+    </style>
+@endpush
+
 @push('after-script')
-    <script>
-      $(document).ready(function () {
-        $('#increment').click(function (e) { 
-        e.preventDefault();
-
-        var inc_value = $('.qty-input').val();
-        var value = parseInt(inc_value, 10);
-        // isNaN = Not a Number
-        value = isNaN(value) ? 0 : value;
-
-          if (value < 100) {
-            value++;
-            $('.qty-input').val(value) += $('.price').val(price);
-          }
-        });
-
-        $('#decrement').click(function (e) { 
-        e.preventDefault();
-
-        var inc_value = $('.qty-input').val();
-        var value = parseInt(inc_value, 10);
-        // isNaN = Not a Number
-        value = isNaN(value) ? 0 : value;
-
-          if (value > 1) {
-            value--;
-            $('.qty-input').val(value);
-          }
-        });
-      });
-    </script>
+    
 @endpush

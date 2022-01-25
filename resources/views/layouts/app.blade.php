@@ -33,6 +33,7 @@
     font-weight: 400;
   }
   </style>
+  
   @stack('after-style')
 </head>
 
@@ -48,7 +49,7 @@
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
@@ -69,8 +70,8 @@
     </div>
   </div>
   @include('sweetalert::alert')
-  @stack('before-script')
   @include('includes.admin.script')
+  @stack('before-script')
   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
   @stack('after-script')
 </body>

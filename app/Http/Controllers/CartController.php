@@ -13,7 +13,7 @@ class CartController extends Controller
         $carts = Cart::with(['product.galleries', 'user'])->where('users_id', Auth::user()->id)->get();
         return view('cart', [
             'carts' => $carts
-        ]);
+        ], compact('carts'));
     }
 
     public function delete($id)

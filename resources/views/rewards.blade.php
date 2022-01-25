@@ -11,7 +11,7 @@
           <div class="col-md-12 text-center">
             <figure class="figure">
               <img
-                src="{{ url('/frontend/images/maintenance.svg') }}"
+                src="{{ url('/images/maintenance.svg') }}"
                 class="figure-img w-75 h-75"
                 alt=""
               />

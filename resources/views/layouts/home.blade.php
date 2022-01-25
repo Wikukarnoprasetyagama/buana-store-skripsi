@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="{{ url('/images/test-pavicon.svg') }}">
+    @stack('before-style')
     @include('includes.style')
+    @stack('after-style')
     <title>Buana Store - Web Toko Online Kec: Tapung Hilir Kab: Kampar</title>
   </head>
   <body>
@@ -34,9 +36,11 @@
   </div>
 </div>
 
-    @include('includes.footer')
-    @stack('before-script')
-    @include('includes.script')
-    @stack('after-script')
+  @include('includes.footer')
+  @stack('before-script')
+  @include('includes.script')
+  @stack('after-script')
+  @include('sweetalert::alert')
+
   </body>
 </html>

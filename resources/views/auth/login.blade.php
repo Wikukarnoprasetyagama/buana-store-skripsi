@@ -77,7 +77,6 @@
                 @endif
             </div>
             </div>
-    
         </form>
             <div class="row d-flex justify-content-center mt-4">
             <div class="col-12 col-lg-4 mb-3">

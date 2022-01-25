@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Laravel\Socialite\Facades\Socialite;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -30,20 +31,11 @@ class LoginController extends Controller
      *
      * @var string
      */
-    // protected $redirectTo = '/';
+    protected $redirectTo = '/';
 
     // Limit Login 
     protected $maxAttempts = 3;
     protected $decayMinutes = 1;
-
-    // Google Authentication
-    public function authenticated()
-    {
-        if(Auth::user()->roles == 'ADMIN' ? 'SELLER' : 'CUSTOMER')
-        {
-            return redirect('/');
-        }
-    }
 
     // Login & Register with Google
     public function redirectToProvider()
@@ -67,31 +59,11 @@ class LoginController extends Controller
             ['email' => $data['email']], $data);
         Auth::login($user, true);
 
-        return redirect()->route('home');
+        if ($data) {
+            return redirect('/');
+            Alert::success('Berhasil Masuk!','Selamat Datang Kembali');
+        }
 
-
-        // try {
-        //     $user_google = Socialite::driver('google')->user();
-        //     $user = User::where('email', $user_google->getEmail())->first();
-            
-        //     if ($user != null) {
-        //         \auth()->login($user, true);
-        //         return redirect()->route('/');
-        //     } else {
-        //         $create = User::create([
-        //             'email' => $user_google->getEmail(),
-        //             'name' => $user_google->getName(),
-        //             'password' => 0,
-        //             'log_status' => 'GOOGLE',
-        //             'email_verified_at' => date('Y-m-d H:i:s', time()),
-        //         ]);
-
-        //         \auth()->login($create, true);
-        //         return redirect()->route('/');
-        //     }
-        // } catch (\Throwable $th) {
-        //     return redirect()->route('login');
-        // }
     }
 
     /**

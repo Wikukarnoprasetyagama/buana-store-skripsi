@@ -89,7 +89,7 @@
           <div class="col-md-6 product_data">
             <div class="d-flex name-store">
               <div class="flex-shrink-0">
-                <img src="{{ url('/frontend/images/ic_store.svg') }}" class="img-fluid" alt="" />
+                <img src="{{ url('/images/ic_store.svg') }}" class="img-fluid" alt="" />
               </div>
               <div class="flex-grow-1 ms-3 py-1">
                 <p>{{ $products->user->name_store }}</p>
@@ -107,23 +107,33 @@
             </div>
             <div class="price">Rp. {{ number_format($products->price) }}</div>
             <div class="product-chat mt-3">
-              <img src="{{ url('/frontend/images/ic_chat.svg') }}" class="img-fluid" alt="" />
+              <img src="{{ url('/images/ic_chat.svg') }}" class="img-fluid" alt="" />
             </div>
-            {{-- <form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data"> --}}
-              {{-- @csrf --}}
+            <form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data">
+              @csrf
             <div class="row">
               <div class="col-12 col-lg-6">
                 <div class="d-grid gap-2 add-to-cart">
-                  <button class="btn btn-buy-now" type="button">
-                    Beli Sekarang
-                  </button>
-                  <button class="btn btn-add-to-cart" type="button">
-                    Masuk Keranjang
-                  </button>
+                  @auth
+                      <button class="btn btn-buy-now" type="button">
+                        Beli Sekarang
+                      </button>
+                      <button class="btn btn-add-to-cart" type="submit">
+                        Masuk Keranjang
+                      </button>
+                  @endauth
+                  @guest
+                      <a href="{{ route('login') }}" class="btn btn-buy-now">
+                        Beli Sekarang
+                      </a>
+                      <a href="{{ route('login') }}" class="btn btn-add-to-cart">
+                        Masuk Keranjang
+                      </a>
+                  @endguest
                 </div>
               </div>
             </div>
-            {{-- </form> --}}
+            </form>
           </div>
         </div>
         <div class="row mt-5">
@@ -141,7 +151,7 @@
               <div class="d-flex align-items-center customer-reviews">
                 <div class="flex-shrink-0">
                   <img
-                    src="{{ url('/frontend/images/reviews_1.svg') }}"
+                    src="{{ url('/images/reviews_1.svg') }}"
                     class="img-fluid"
                     alt="..."
                   />
@@ -158,7 +168,7 @@
               <div class="d-flex align-items-center customer-reviews">
                 <div class="flex-shrink-0">
                   <img
-                    src="{{ url('/frontend/images/reviews_2.svg') }}"
+                    src="{{ url('/images/reviews_2.svg') }}"
                     class="img-fluid"
                     alt="..."
                   />
@@ -180,7 +190,7 @@
 @endsection
 
 @push('after-script')
-    <script>
+    {{-- <script>
       $(document).ready(function () {
         $('.btn-add-to-cart').click(function (e) { 
           e.preventDefault();
@@ -235,5 +245,5 @@
           }
         });
       });
-    </script>
+    </script> --}}
 @endpush
