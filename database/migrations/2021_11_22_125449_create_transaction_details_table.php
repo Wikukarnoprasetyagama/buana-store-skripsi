@@ -16,9 +16,13 @@ class CreateTransactionDetailsTable extends Migration
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->id();
             $table->integer('transactions_id');
-            $table->integer('products_id');
-            $table->integer('price');
-            $table->string('code');
+            $table->enum('shipping_status', ['Menunggu Konfirmasi', 'Dikirim', 'Diterima'])->default('Menunggu Konfirmasi');
+            $table->string('code_transaction');
+            $table->string('name');
+            $table->string('phone')->nullable();
+            $table->string('street')->nullable();
+            $table->string('village')->nullable();
+            $table->longText('address')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

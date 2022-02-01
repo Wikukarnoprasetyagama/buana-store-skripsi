@@ -13,6 +13,7 @@ use App\Http\Controllers\Seller\DashboardSellerController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\ProductGalleriesController;
 use App\Http\Controllers\Admin\ProfileAdminController;
+use App\Http\Controllers\Admin\TransactionsController;
 use App\Http\Controllers\Admin\VerificationController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductsController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Customer\DashboardCustomerController;
 use App\Http\Controllers\Customer\OpenStoreController;
 use App\Http\Controllers\DetailProductsController;
 use App\Http\Controllers\RewardsController;
+use App\Http\Controllers\Seller\TransactionSellerController;
 use App\Models\Cart;
 
 /*
@@ -48,11 +50,15 @@ Route::get('/auth/callback', [LoginController::class, 'handlerProviderCallback']
 Route::get('/auth/redirect', [LoginController::class, 'redirectToProvider']);
 
 
+// midtrans
+Route::post('/checkout/callback', [CheckoutController::class, 'callback'])->name('midtrans-callback');
+
 Route::prefix('/pages/dashboard/admin')
         ->middleware(['auth', 'admin'])
         ->group(function(){
                 Route::get('/', [DashboardAdminController::class, 'index'])->name('dashboard-admin');
                 Route::post('/product/admin/upload', [ProductAdminController::class, 'uploadGallery'])->name('upload-product-gallery');
+                Route::get('/pages/admin/transaksi-seller', [TransactionsController::class, 'index'])->name('transaction-seller');
 
                 Route::resource('upload', ProductGalleriesController::class);
                 Route::resource('sliders', SlidersController::class);
@@ -68,8 +74,8 @@ Route::prefix('/pages/dashboard/seller')
         ->middleware(['auth', 'seller'])
         ->group(function(){
                 Route::get('/', [DashboardSellerController::class, 'index'])->name('dashboard-seller');
-                Route::resource('products', ProductSellerController::class);
-                Route::resource('products-galleries', ProductGalleryController::class);
+                Route::resource('products-seller', ProductSellerController::class);
+                Route::resource('transaction-seller', TransactionSellerController::class);
 });
 
 Route::prefix('/pages/dashboard/customer')
@@ -81,7 +87,9 @@ Route::prefix('/pages/dashboard/customer')
 
 
 Route::group(['middleware' => ['auth']], function(){
+        // Route::get('/keranjang/pembayaran', [CartController::class, 'payout'])->name('cart-payout');
         Route::get('/keranjang', [CartController::class, 'index'])->name('cart');
+        Route::post('/keranjang', [CartController::class, 'updateQuantity'])->name('cart-update');
         Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
         Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
 });

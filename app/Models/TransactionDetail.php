@@ -12,17 +12,18 @@ class TransactionDetail extends Model
 
     protected $fillable = [
         'transactions_id',
-        'products_id',
-        'quantity',
-        'price',
         'shipping_status',
-        'resi',
-        'code',
+        'code_transaction',
+        'name',    
+        'phone',    
+        'street',  
+        'village',  
+        'address',  
     ];
 
     public function product()
     {
-        return $this->hasOne(Product::class, 'id', 'products_id');
+        return $this->hasOne(Products::class, 'id', 'products_id');
     }
 
     public function transaction()

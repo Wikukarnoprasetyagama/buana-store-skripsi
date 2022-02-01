@@ -19,7 +19,7 @@
 
     @if (count($carts))
         <!-- Cart -->
-    <section class="section-cart">
+    <section class="section-cart product_data">
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-12 table-responsive">
@@ -33,7 +33,7 @@
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="AppendCartItems">
                 @php
                     $totalPrice = 0;
                 @endphp
@@ -56,21 +56,21 @@
                   </td>
                   <td>
                     <div class="form-group my-auto py-1" style="width: 200px">
-                      <div class="quantity mt-1">
-                        <button class="btn text-white btn-minus me-4" id="decrement">
-                          <i class="fas fa-minus"></i>
-                        </button>
-                        <input
-                          type="number"
-                          name="quantity"
-                          value="{{ $cart->quantity }}"
-                          class="border-0 px-auto qty-input"
-                          style="max-width: 40px"
-                          disabled
-                        />
-                        <button class="btn text-white btn-plus" id="increment">
-                          <i class="fas fa-plus"></i>
-                        </button>
+						<div class="quantity mt-1">
+							<button class="btn text-white btn-minus qtyMinus me-4 changeQuantity" type="button" data-cartid="{{ $cart['id'] }}">
+								<i class="fas fa-minus"></i>
+							</button>
+								<input
+								type="number"
+								name="quantity"
+								value="{{ $cart->quantity }}"
+								class="border-0 px-auto qty-input"
+								style="max-width: 40px"
+								disabled
+								/>
+							<button class="btn text-white btn-plus qtyPlus changeQuantity" type="button" data-cartid="{{ $cart['id'] }}">
+							<i class="fas fa-plus"></i>
+							</button>
                         </div>
                     </div>
                   </td>
@@ -100,7 +100,6 @@
       </div>
     </section>
     <!-- End Cart -->
-
     <!-- Address -->
     <section class="section-address">
       <div class="container">
@@ -110,6 +109,8 @@
           </div>
           <form action="{{ route('checkout') }}" class="mt-3" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="total_price" value="{{ $totalPrice }}">
+            <input type="hidden" name="quantity" value="{{ $cart->quantity }}">
             <div class="row">
               <div class="col-12 col-md-4 mb-3">
                 <label for="village" class="form-label">Nama Desa</label>
@@ -169,6 +170,9 @@
                       <div class="card">
                         <div class="card-body">
                           <table>
+                              @php
+                                  $totalPrice = 0;
+                              @endphp
                             @foreach ($carts as $cart)
                                 <tr>
                                   <div class="form-group name-product bg-danger">
@@ -176,6 +180,9 @@
                                     <td width="50%" class="text-end">{{ number_format($cart->product->price * $cart->quantity) }}</td>
                                   </div>
                                 </tr>
+                                @php
+                                    $totalPrice += $cart->product->price * $cart->quantity
+                                @endphp
                             @endforeach
                             <tr>
                               <div class="form-group">
@@ -197,7 +204,7 @@
                                 <div class="form-group">
                                   <th width="90%">Total</th>
                                   <td width="10%" class="text-end">
-                                    <strong>{{ $totalPrice }}</strong>
+                                    <strong>Rp.{{ number_format($totalPrice ?? 0) }}</strong>
                                   </td>
                                 </div>
                               </tr>
@@ -232,7 +239,6 @@
       </div>
     </section>
     <!-- End Address -->
-
     @else
 
     <section class="section-empty-cart">
@@ -290,9 +296,54 @@
         background: #882ec0;
         color: #fff;
       }
+
+      .btn-payout{
+        background: #a43ce3;
+        border-radius: 25px;
+        color: #fff;
+        font-size: 16px;
+      }
+      .btn-payout:hover{
+        background: #882ec0;
+        color: #fff;
+      }
     </style>
 @endpush
 
 @push('after-script')
-    
+<script>
+	$(document).on('click', '.changeQuantity', function(){
+		if($(this).hasClass('qtyMinus')){
+			const quantity = $(this).next().val();
+			if (quantity <= 1) {
+				alert("Quantity must be 1 or greater!");
+				return false;
+			}else{
+				new_qty = parseInt(quantity)-1;
+			}
+		}
+		if($(this).hasClass('qtyPlus')){
+			const quantity = $(this).prev().val();
+			new_qty = parseInt(quantity)+1;
+		}
+		const cartid = $(this).data('cartid');
+		$.ajax({
+			
+			type: "post",
+			url: "/keranjang",
+			data: {
+				"_token": "{{ csrf_token() }}",
+				"cartid":cartid,
+				"qty":new_qty
+			},
+			dataType: "json",
+			success: function (response) {
+				window.location.reload();
+				$("#AppendCartItems");
+			},error:function(){
+				alert("error");
+			}
+		});
+	});
+</script>
 @endpush

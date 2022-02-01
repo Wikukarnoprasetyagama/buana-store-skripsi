@@ -1,31 +1,32 @@
-@extends('layouts.member')
+@extends('layouts.app')
+
 @section('title')
-    Daftar Produk
+    DATA TRANSAKSI SELLER
 @endsection
 
 @section('content')
-<div class="main-content">
+    @if (count($item))
+    <div class="main-content">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Daftar Produk</h1>
-                        <a href="{{ route('products-seller.create')}}" class="btn btn-success shadow-sm">
-                            <i class="fas fa-plus fa-sm text-white-50"></i>
-                            Tambah Produk Baru
-                        </a>
+                        <h1 class="h3 mb-0 text-gray-800">Daftar Transaksi SELLER</h1>
                     </div>
                     <div class="table-responsive mt-5">
                         <table class="table table-hover scroll-horizontal-vertical w-100" id="table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Kategori</th>
+                                    <th>Kode Transaksi</th>
+                                    <th>Kode Produk</th>
                                     <th>Nama Produk</th>
-                                    <th>Harga</th>
+                                    <th>Total Pembayaran</th>
+                                    <th>Status Pembayaran</th>
+                                    {{-- <th>Harga</th>
                                     <th>Diskon</th>
-                                    <th>Aksi</th>
+                                    <th>Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -36,6 +37,40 @@
         </div>
     </div>
 </div>
+
+@else
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row py-5">
+                        <div class="col-md-12">
+                            <div class="no-data text-center">
+                                <figure class="figure">
+                                    <img src="{{ url('/images/ic_empty_data.svg') }}" class="img-fluid figure-img h-25 w-25" alt="">
+                                </figure>
+                                <div class="description">
+                                    <h3>Belum ada Produk!</h3>
+                                    silahkan untuk menambahkan data terlebih dahulu
+                                </div>
+                                <div class="add-slider mt-4">
+                                    <a href="{{ route('products-admin.create')}}" class="btn btn-success shadow-sm">
+                                        <i class="fas fa-plus fa-sm text-white-50"></i>
+                                        Tambah Produk
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endif
 @endsection
 
 @push('after-script')
@@ -50,17 +85,18 @@
         },
         columns:[
             {data: 'id', name: 'id'},
-            {data: 'category.name_category', name: 'category.name_category'},
-            {data: 'name_product', name: 'name_product'},
+            {data: 'code', name: 'code'},
+            {data: 'transaction.code', name: 'transaction.code'},
+            {data: 'product.name_product', name: 'product.name_product'},
             {data: 'price', name: 'price'},
-            {data: 'discount', name: 'discount'},
-            { 
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searcable: false,
-                width: '15%' 
-            },
+            {data: 'transaction.transaction_status', name: 'transaction.transaction_status'},
+            // { 
+            //     data: 'action',
+            //     name: 'action',
+            //     orderable: false,
+            //     searcable: false,
+            //     width: '15%' 
+            // },
         ]
     })
     

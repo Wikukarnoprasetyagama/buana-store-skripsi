@@ -21,10 +21,11 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Kategori</th>
-                                    <th>Nama Produk</th>
-                                    <th>Harga</th>
-                                    <th>Diskon</th>
+                                    <th>Nama Customer</th>
+                                    <th>Kode Produk</th>
+                                    <th>Status Pembayaran</th>
+                                    <th>Jumlah Pesanan</th>
+                                    <th>Total</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -50,10 +51,11 @@
         },
         columns:[
             {data: 'id', name: 'id'},
-            {data: 'category.name_category', name: 'category.name_category'},
-            {data: 'name_product', name: 'name_product'},
-            {data: 'price', name: 'price'},
-            {data: 'discount', name: 'discount'},
+            {data: 'user.name', name: 'user.name'},
+            {data: 'code', name: 'code'},
+            {data: 'payment_status', name: 'payment_status'},
+            {data: 'quantity', name: 'quantity'},
+            {data: 'total_price', name: 'total_price'},
             { 
                 data: 'action',
                 name: 'action',

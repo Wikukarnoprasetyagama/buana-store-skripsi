@@ -18,7 +18,7 @@
                     <h4>Total Orders</h4>
                   </div>
                   <div class="card-body">
-                    59
+                    {{ $transaction }}
                   </div>
                 </div>
               </div>

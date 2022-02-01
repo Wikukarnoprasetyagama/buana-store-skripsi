@@ -24,7 +24,6 @@ class DetailProductsController extends Controller
 
     public function add(Request $request, $id)
     {
-        
         $data = [
             'products_id' => $id,
             'users_id' => Auth::user()->id,

@@ -33,7 +33,7 @@
               </li>
               <li class="menu-header">Data Transaksi</li>
               <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-store"></i> <span>Seller</span></a>
+                <a href="{{ route('transaction-seller') }}" class="nav-link"><i class="fas fa-store"></i> <span>Seller</span></a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="fas fa-users"></i> <span>Customer</span></a>
