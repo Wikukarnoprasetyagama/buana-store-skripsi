@@ -1,7 +1,7 @@
-@extends('layouts.blank')
+@extends('layouts.detail')
 
 @section('title')
-    Transaksi Berhasil
+    Checkout Berhasil
 @endsection
 
 @section('content')
@@ -16,14 +16,13 @@
                 alt=""
               />
               <figcaption class="figure-caption mt-3">
-                <h3>Transaksi Berhasil!</h3>
+                <h3>Checkout Berhasil!</h3>
                 <p>
-                  Transaksi yang anda lakukan telah berhasil, <br />
-                  barang akan segera kami proses, selamat menunggu!
-                </p>
+                  Segera lakukan pembayaran<br />
+                  Agar barang dapat segera kami proses                </p>
               </figcaption>
-              <a href="{{ route('home') }}" class="btn-lg btn btn-back"
-                >Kembali keberanda</a
+              <a href="{{ route('transaksi') }}" class="btn-lg btn btn-back"
+                >Transaksi</a
               >
             </figure>
           </div>
@@ -31,3 +30,4 @@
       </div>
     </section>
 @endsection
+    

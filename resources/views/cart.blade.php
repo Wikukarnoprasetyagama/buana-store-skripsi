@@ -110,12 +110,14 @@
           <form action="{{ route('checkout') }}" class="mt-3" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="total_price" value="{{ $totalPrice }}">
+            <input type="hidden" name="products_id" value="{{ $cart->products_id }}">
             <input type="hidden" name="quantity" value="{{ $cart->quantity }}">
             <div class="row">
               <div class="col-12 col-md-4 mb-3">
                 <label for="village" class="form-label">Nama Desa</label>
                 <input
                   type="text"
+                  name="village"
                   class="form-control"
                   id="village"
                   placeholder="Tanah Tinggi"
@@ -125,6 +127,7 @@
                 <label for="street" class="form-label">Nama Jalan</label>
                 <input
                   type="text"
+                  name="street"
                   class="form-control"
                   id="street"
                   placeholder="Purbaya"
@@ -134,6 +137,7 @@
                 <label for="name" class="form-label">Nama Penerima</label>
                 <input
                   type="text"
+                  name="name"
                   class="form-control"
                   id="name"
                   placeholder="Wiku Karno"
@@ -145,6 +149,7 @@
                 <label for="phone" class="form-label">Nomor Hp *aktif</label>
                 <input
                   type="number"
+                  name="phone"
                   class="form-control"
                   id="phone"
                   placeholder="087831247352"
@@ -154,6 +159,7 @@
                 <label for="address" class="form-label">Alamat Lengkap</label>
                 <input
                   type="text"
+                  name="address"
                   class="form-control"
                   id="address"
                   placeholder="Rumah, kos / kontrakan, warna rumah, dll."

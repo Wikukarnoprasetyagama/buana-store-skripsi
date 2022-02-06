@@ -1,5 +1,9 @@
 @extends('layouts.home')
 
+@section('title')
+    Beranda
+@endsection
+
 @section('content')
 <!-- Carousel -->
     <section class="section-content-carousel">

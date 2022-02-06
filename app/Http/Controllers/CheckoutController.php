@@ -2,144 +2,179 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use App\Models\Transaction;
-use App\Models\TransactionDetail;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
+use Midtrans;
 use Exception;
-
 use Midtrans\Snap;
+use App\Models\Cart;
 use Midtrans\Config;
+
+use App\Models\Products;
+
 use Midtrans\Notification;
+use App\Models\Transaction;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
-    public function process(Request $request)
+    public function __construct()
     {
-        // save user data
-        $user = Auth::user();
-        $user->update($request->except('total_price'));
+        // Set konfigurasi midtrans
+    Config::$serverKey = config('services.midtrans.serverKey');
+    Config::$isProduction = config('services.midtrans.isProduction');
+    Config::$isSanitized = config('services.midtrans.isSanitized');
+    Config::$is3ds = config('services.midtrans.is3ds');
+    }
 
-        // process checkout
-        // $code = 'BSTORE-' . mt_rand(000000,999999);
-        $carts = Cart::with(['product', 'user'])
-                    ->where('users_id', Auth::user()->id)
-                    ->get();
+    public function process(Request $request, Transaction $transaction)
+    {
+
+
+        // save user data
+        // $user = Auth::user();
+        // $user->update($request->except('total_price'));
+
+        $data = $request->all();
+        $data['users_id'] = Auth::id();
+        $data['products_id'] = $request->products_id;
+
+        // update user data
+        // $user = Auth::user();
+        // $user->email = $data['products_id'];
+        // $user->name = $data['name'];
+        // $user->occupation = $data['occupation'];
+        // $user->phone = $data['phone'];
+        // $user->address = $data['address'];
+        // $user->save();
+
+        // create checkout
+        $transaction = Transaction::create($data);
+        $this->getSnapRedirect($transaction);
+
+
+
 
         // create transaction
-        $transaction = Transaction::create([
-            'users_id' => Auth::user()->id,
-            'products_id' => $request->products_id,
-            'shipping_price' => 0,
-            'quantity' => $request->quantity,
-            'total_price' => $request->total_price,
-            'payment_status' => 'Waiting',
-        ]);
+        // $transaction = Transaction::create([
+        //     'users_id' => Auth::user()->id,
+        //     'code_products' => $code,
+        //     'products_id' => $request->products_id,
+        //     'shipping_price' => 0,
+        //     'quantity' => $request->quantity,
+        //     'total_price' => $request->total_price,
+        //     'transaction_status' => $request->transaction_status,
+        // ]);
 
-        foreach ($carts as $cart) {
-            $trx = 'TRX-' . mt_rand(000000,999999);
-            
-            TransactionDetail::create([
-                'transactions_id' => $transaction->id,
-                'shipping_status' => 'Menunggu Konfirmasi',
-                'code_transaction' => $trx,
-                'name' => $request->name, 
-                'phone' => $request->phone, 
-                'street' => $request->street, 
-                'village' => $request->village, 
-                'address' => $request->address, 
-            ]);
-        }
+        
 
         // delete cart
         Cart::with('product', 'user')
                 ->where('users_id', Auth::user()->id)
                 ->delete();
+        return view('success');
+    }
 
+    public function getSnapRedirect(Transaction $transaction)
+    {
+        Transaction::with('product', 'user')
+                ->where('users_id', Auth::user()->id)->get();
+                
+        // $orderId = $transaction->id.'-'.Str::random(5);
+        $orderId = $transaction->id. '-' . Str::random(5);
+        $price = $transaction->total_price;
 
-        // Konfigurasi Midtrans
-        Config::$serverKey = config('services.midtrans.serverKey');
-        Config::$isProduction = config('services.midtrans.isProduction');
-        Config::$isSanitized = config('services.midtrans.isSanitized');
-        Config::$is3ds = config('services.midtrans.is3ds');
+        $transaction->midtrans_products_code = $orderId;
 
-        // Array yang di kirim ke midtrans
-        $midtrans = [
-            'transaction_details' => [
-                'order_id' => $code,
-                'gross_amount' => (int) $request->total_price,
-            ],
-            'customer_details' => [
-                'first_name' => Auth::user()->name,
-                'email' => Auth::user()->email,
-                'phone' => Auth::user()->phone
-            ],
-            'enabled_payments' => [
-                'bank_transfer', 'indomaret', 'shopeepay'
-            ],
-            'vtweb' => []
+        $transaction_details = [
+            'order_id' => $orderId,
+            'gross_amount' => $price
         ];
 
-        try{
-            $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
-            return redirect($paymentUrl);
+        $item_details[] = [
+            'id' => $orderId,
+            'price' => $price,
+            'quantity' => 1,
+            'name' => "Payment for {$transaction->product->name_product}"
+        ];
+
+        $customer_details = [
+            "first_name" => Auth::user()->name,
+            "last_name" => "",
+            "email" => Auth::user()->email,
+            "phone" => Auth::user()->phone,
+            "billing_address" => "",
+            "shipping_address" => "",
+        ];
+
+        $midtrans_params = [
+            'transaction_details' => $transaction_details,
+            'item_details' => $item_details,
+            'customer_details' => $customer_details,
+        ];
+
+        try {
+            // Get Snap Payment Page URL
+            $paymentUrl = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
+            $transaction->midtrans_url = $paymentUrl;
+            $transaction->save();
+            return view('checkout-success', $paymentUrl) ;
         } catch (Exception $e) {
-            echo $e->getMessage();
+            return false;
         }
     }
 
 
-    public function callback()
+    public function callback(Request $request)
     {
-        // Set konfigurasi midtrans
-        Config::$serverKey = config('services.midtrans.serverKey');
-        Config::$isProduction = config('services.midtrans.isProduction');
-        Config::$isSanitized = config('services.midtrans.isSanitized');
-        Config::$is3ds = config('services.midtrans.is3ds');
+        
+        $notif = $request->method() == 'POST' ? new Midtrans\Notification() : Midtrans\Transaction::status($request->order_id);
 
-        // Instance midtrans notification
-        $notification = new Notification();
+        $transaction_status = $notif->transaction_status;
+        $fraud = $notif->fraud_status;
 
-        // Assign ke variable untuk memudahkan coding
-        $status = $notification->transaction_status;
-        $type = $notification->payment_type;
-        $fraud = $notification->fraud_status;
-        $order_id = $notification->order_id; 
+        $transaction_id = explode('-', $notif->order_id)[0];
+        $transaction = Transaction::find($transaction_id);
 
-        // Cari transaksi berdasarkan id
-        $transaction = Transaction::findOrFail($order_id);
-
-        // Handle notification status
-        if($status == 'capture') {
-            if($type == 'credit_card') {
-                if($fraud == 'challenge') {
-                    $transaction->status = 'PENDING';
-                }
-                else{
-                    $transaction->status = 'SUCCESS';
-                }
+        if ($transaction_status == 'capture') {
+            if ($fraud == 'challenge') {
+                // TODO Set payment status in merchant's database to 'challenge'
+                $transaction->payment_status = 'PENDING';
+            }
+            else if ($fraud == 'accept') {
+                // TODO Set payment status in merchant's database to 'success'
+                $transaction->payment_status = 'DIBAYAR';
             }
         }
+        else if ($transaction_status == 'cancel') {
+            if ($fraud == 'challenge') {
+                // TODO Set payment status in merchant's database to 'failure'
+                $transaction->payment_status = 'FAILED';
+            }
+            else if ($fraud == 'accept') {
+                // TODO Set payment status in merchant's database to 'failure'
+                $transaction->payment_status = 'FAILED';
+            }
+        }
+        else if ($transaction_status == 'deny') {
+            // TODO Set payment status in merchant's database to 'failure'
+            $transaction->payment_status = 'FAILED';
+        }
+        else if ($transaction_status == 'settlement') {
+            // TODO set payment status in merchant's database to 'Settlement'
+            $transaction->payment_status = 'DIBAYAR';
+        }
+        else if ($transaction_status == 'pending') {
+            // TODO set payment status in merchant's database to 'Pending'
+            $transaction->payment_status = 'PENDING';
+        }
+        else if ($transaction_status == 'expire') {
+            // TODO set payment status in merchant's database to 'expire'
+            $transaction->payment_status = 'FAILED';
+        }
 
-        elseif ($status == 'settlement') {
-            $transaction->status = 'SUCCESS';
-        }
-        elseif ($status == 'pending') {
-            $transaction->status = 'PENDING';
-        }
-        elseif ($status == 'deny') {
-            $transaction->status = 'CANCELLED';
-        }
-        elseif ($status == 'expire') {
-            $transaction->status = 'CANCELLED';
-        }
-        elseif ($status == 'cancel') {
-            $transaction->status = 'CANCELLED';
-        }
-
-        // Simpan transaksi
         $transaction->save();
+        return view('transaction');
     }
 }

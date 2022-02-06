@@ -8,7 +8,7 @@
     @stack('before-style')
     @include('includes.style')
     @stack('after-style')
-    <title>Buana Store - Web Toko Online Kec: Tapung Hilir Kab: Kampar</title>
+    <title>@yield('title')</title>
   </head>
   <body>
     @include('includes.navbar')

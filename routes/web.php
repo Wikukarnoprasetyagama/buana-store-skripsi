@@ -25,6 +25,7 @@ use App\Http\Controllers\Customer\OpenStoreController;
 use App\Http\Controllers\DetailProductsController;
 use App\Http\Controllers\RewardsController;
 use App\Http\Controllers\Seller\TransactionSellerController;
+use App\Http\Controllers\TransactionController;
 use App\Models\Cart;
 
 /*
@@ -43,7 +44,8 @@ Route::get('/semua-kategori-produk', [CategoryProductsController::class, 'index'
 Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])->name('detail');
 Route::get('/penghargaan', [RewardsController::class, 'index'])->name('reward');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');
-Route::get('/success', [CartController::class, 'success'])->name('success');
+Route::get('/payment/success', [CheckoutController::class, 'callback']);
+Route::post('/payment/success', [CheckoutController::class, 'callback']);
 
 //Google
 Route::get('/auth/callback', [LoginController::class, 'handlerProviderCallback']);
@@ -92,5 +94,6 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/keranjang', [CartController::class, 'updateQuantity'])->name('cart-update');
         Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
         Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
+        Route::get('/transaksi', [TransactionController::class, 'index'])->name('transaction');
 });
 Auth::routes();
