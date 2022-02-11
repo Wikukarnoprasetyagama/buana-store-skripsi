@@ -70,7 +70,7 @@
                                 <div class="form-group">
                                     <label for="price" class="form-control-label">Kasih Diskon  / Tidak</label>
                                         <div class="form-group form-check py-2" id="checkbox">
-                                            <input type="checkbox" class="form-check-input">
+                                            <input type="checkbox" class="form-check-input" name="discount" value="1">
                                             <label class="form-check-label" for="exampleCheck1">Kasih Diskon</label>
                                         </div>
                                 </div>

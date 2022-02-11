@@ -22,6 +22,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Kode Produk</th>
                                     <th>Kategori</th>
                                     <th>Nama Produk</th>
                                     <th>Harga</th>
@@ -85,6 +86,7 @@
         },
         columns:[
             {data: 'id', name: 'id'},
+            {data: 'code', name: 'code'},
             {data: 'category.name_category', name: 'category.name_category'},
             {data: 'name_product', name: 'name_product'},
             {data: 'price', name: 'price'},

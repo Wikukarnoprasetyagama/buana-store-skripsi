@@ -9,7 +9,6 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Seller\DashboardSellerController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\ProductGalleriesController;
 use App\Http\Controllers\Admin\ProfileAdminController;
@@ -18,15 +17,13 @@ use App\Http\Controllers\Admin\VerificationController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductsController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\Seller\ProductGalleryController;
-use App\Http\Controllers\Seller\ProductSellerController;
-use App\Http\Controllers\Customer\DashboardCustomerController;
-use App\Http\Controllers\Customer\OpenStoreController;
+use App\Http\Controllers\Member\OpenStoreController;
 use App\Http\Controllers\DetailProductsController;
+use App\Http\Controllers\Member\DashboardController;
+use App\Http\Controllers\Member\ProductController;
+use App\Http\Controllers\Member\TransactionSellerController;
 use App\Http\Controllers\RewardsController;
-use App\Http\Controllers\Seller\TransactionSellerController;
 use App\Http\Controllers\TransactionController;
-use App\Models\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,18 +69,20 @@ Route::prefix('/pages/dashboard/admin')
                 Route::resource('verification', VerificationController::class);
         });
 
+// seller
 Route::prefix('/pages/dashboard/seller')
         ->middleware(['auth', 'seller'])
         ->group(function(){
-                Route::get('/', [DashboardSellerController::class, 'index'])->name('dashboard-seller');
-                Route::resource('products-seller', ProductSellerController::class);
+                Route::get('/', [DashboardController::class, 'index'])->name('dashboard-seller');
+                Route::resource('products-seller', ProductController::class);
                 Route::resource('transaction-seller', TransactionSellerController::class);
 });
 
+// customer
 Route::prefix('/pages/dashboard/customer')
         ->middleware(['auth', 'customer'])
         ->group(function(){
-            Route::get('/', [DashboardCustomerController::class, 'index'])->name('dashboard-customer');
+            Route::get('/', [DashboardController::class, 'index'])->name('dashboard-customer');
             Route::resource('open-store', OpenStoreController::class);
 });
 

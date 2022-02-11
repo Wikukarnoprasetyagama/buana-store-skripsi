@@ -64,75 +64,79 @@
                 class="carousel-control-prev"
                 type="button"
                 data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
               <button
                 class="carousel-control-next"
                 type="button"
                 data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
           </div>
           <div class="col-md-6 product_data">
-            <div class="d-flex name-store">
-              <div class="flex-shrink-0">
-                <img src="{{ url('/images/ic_store.svg') }}" class="img-fluid" alt="" />
-              </div>
-              <div class="flex-grow-1 ms-3 py-1">
-                <p>{{ $products->user->name_store }}</p>
-              </div>
-            </div>
-            <div class="rating-product mb-1">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-            <div class="name-product">
-              <h5>{{ $products->name_product }}</h5>
-            </div>
-            <div class="price">Rp. {{ number_format($products->price) }}</div>
-            <div class="product-chat mt-3">
-              <img src="{{ url('/images/ic_chat.svg') }}" class="img-fluid" alt="" />
-            </div>
-            <form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data">
-              @csrf
-            <div class="row">
-              <div class="col-12 col-lg-6">
-                <div class="d-grid gap-2 add-to-cart">
-                  @auth
-                      <button class="btn btn-buy-now" type="button">
-                        Beli Sekarang
-                      </button>
-                      <button class="btn btn-add-to-cart" type="submit">
-                        Masuk Keranjang
-                      </button>
-                  @endauth
-                  @guest
-                      <a href="{{ route('login') }}" class="btn btn-buy-now">
-                        Beli Sekarang
-                      </a>
-                      <a href="{{ route('login') }}" class="btn btn-add-to-cart">
-                        Masuk Keranjang
-                      </a>
-                  @endguest
-                </div>
-              </div>
-            </div>
+				<div class="d-flex name-store">
+				<div class="flex-shrink-0">
+					<img src="{{ url('/images/ic_store.svg') }}" class="img-fluid" alt="" />
+				</div>
+				<div class="flex-grow-1 ms-3 py-1">
+					<p>{{ $products->user->name_store }}</p>
+				</div>
+				</div>
+				<div class="rating-product mb-1">
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star"></i>
+					<i class="fas fa-star-half-alt"></i>
+				</div>
+				<div class="name-product">
+					<h5>{{ $products->name_product }}</h5>
+				</div>
+				<div class="price">Rp. {{ number_format($products->price) }}</div>
+				<div class="product-chat mt-3">
+					<img src="{{ url('/images/ic_chat.svg') }}" class="img-fluid" alt="" />
+				</div>
+            	<form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data">
+              		@csrf
+				<div class="row">
+					<div class="col-12 col-lg-6">
+						<div class="d-grid gap-2 add-to-cart">
+							@auth
+								@if (Auth::user()->id == $products->users_id)
+									@if (Auth::user()->roles == 'ADMIN')
+										<a href="{{ route('dashboard-admin') }}" class="btn btn-add-to-cart mt-5" type="submit">
+											Dashboard
+										</a> 
+									@else
+										<a href="{{ route('dashboard-seller') }}" class="btn btn-add-to-cart mt-5" type="submit">
+											Dashboard
+										</a> 
+									@endif
+								@else
+									<button class="btn btn-buy-now" type="button">
+									Beli Sekarang
+									</button>
+									<button class="btn btn-add-to-cart" type="submit">
+										Masuk Keranjang
+									</button>
+								@endif
+							@endauth
+							@guest
+								<a href="{{ route('login') }}" class="btn btn-buy-now">
+									Beli Sekarang
+								</a>
+								<a href="{{ route('login') }}" class="btn btn-add-to-cart">
+									Masuk Keranjang
+								</a>
+							@endguest
+						</div>
+					</div>
+				</div>
             </form>
           </div>
         </div>
@@ -189,7 +193,7 @@
     <!-- End Gallery -->
 @endsection
 
-@push('after-script')
+{{-- @push('after-script') --}}
     {{-- <script>
       $(document).ready(function () {
         $('.btn-add-to-cart').click(function (e) { 
@@ -246,4 +250,4 @@
         });
       });
     </script> --}}
-@endpush
+{{-- @endpush --}}

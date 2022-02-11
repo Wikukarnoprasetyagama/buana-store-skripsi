@@ -121,6 +121,18 @@ body {
   font-family: "Poppins";
 }
 
+.btn-logout {
+  background: #a43ce3;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.btn-logout:hover {
+  background: #932ad4;
+  color: #fff;
+}
+
 .section-category {
   margin-top: 90px;
 }

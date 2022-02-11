@@ -22,79 +22,77 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12 col-md-12 table-responsive">
-					<form action="#" method="POST" enctype="multipart/form-data">
-						<table class="table table-borderless">
-							<thead>
-								<tr>
-								<th scope="col">Foto Barang</th>
-								<th scope="col">Nama &amp; Toko</th>
-								<th scope="col">Jumlah</th>
-								<th scope="col">Total Harga</th>
-								<th scope="col">Status Pembayaran</th>
-								<th scope="col">Aksi</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach ($transactions as $transaction)
-								<tr>
-									<th scope="row">
-										<div class="form-group my-auto">
-											@if ($transaction->product->galleries)
-												<img
-													src="{{ Storage::url($transaction->product->galleries->first()->photo) }}"
-													class="img-fluid"
-													alt="..."
-												/>
-											@endif
-										</div>
-									</th>
-									<td>
-										<div class="form-group my-auto py-1" style="width: 250px">
-										<div class="title-product">
-											{{ $transaction->product->name_product }}
-										</div>
-										<div class="name-store">{{ $transaction->product->user->name_store }}</div>
-										</div>
-									</td>
-									<td>
-										<div class="form-group my-auto py-1" style="width: 70px">
-										<div class="quantity py-2">
-											<span class="mx-4">{{ $transaction->quantity }}</span>
-										</div>
-										</div>
-									</td>
-									<td>
-										<div class="form-group my-auto py-2" style="width: 130px">
-										<div class="price">Rp{{ number_format($transaction->total_price) }}</div>
-										</div>
-									</td>
-									<td>
-										<div class="form-group my-auto py-2" style="width: 130px">
-										@if ($transaction->payment_status == 'PENDING')
-											<div class="payment-status text-warning">{{ $transaction->payment_status }}</div>
-											@elseif ($transaction->payment_status == 'DIBAYAR' )
-											<div class="payment-status text-success">{{ $transaction->payment_status }}</div>
-											@else
-											<div class="payment-status text-info">{{ $transaction->payment_status }}</div>
+					<table class="table table-borderless">
+						<thead>
+							<tr>
+							<th scope="col">Foto Barang</th>
+							<th scope="col">Nama &amp; Toko</th>
+							<th scope="col">Jumlah</th>
+							<th scope="col">Total Harga</th>
+							<th scope="col">Status Pembayaran</th>
+							<th scope="col">Aksi</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach ($transactions as $transaction)
+							<tr>
+								<th scope="row">
+									<div class="form-group my-auto">
+										@if ($transaction->product->galleries)
+											<img
+												src="{{ Storage::url($transaction->product->galleries->first()->photo) }}"
+												class="img-fluid"
+												alt="..."
+											/>
 										@endif
+									</div>
+								</th>
+								<td>
+									<div class="form-group my-auto py-1" style="width: 250px">
+									<div class="title-product">
+										{{ $transaction->product->name_product }}
+									</div>
+									<div class="name-store">{{ $transaction->product->user->name_store }}</div>
+									</div>
+								</td>
+								<td>
+									<div class="form-group my-auto py-1" style="width: 70px">
+									<div class="quantity py-2">
+										<span class="mx-4">{{ $transaction->quantity }}</span>
+									</div>
+									</div>
+								</td>
+								<td>
+									<div class="form-group my-auto py-2" style="width: 130px">
+									<div class="price">Rp{{ number_format($transaction->total_price) }}</div>
+									</div>
+								</td>
+								<td>
+									<div class="form-group my-auto py-2" style="width: 130px">
+									@if ($transaction->payment_status == 'PENDING')
+										<div class="payment-status text-warning">{{ $transaction->payment_status }}</div>
+										@elseif ($transaction->payment_status == 'DIBAYAR' )
+										<div class="payment-status text-success">{{ $transaction->payment_status }}</div>
+										@else
+										<div class="payment-status text-info">{{ $transaction->payment_status }}</div>
+									@endif
+									</div>
+								</td>
+								<td>
+									@if ($transaction->payment_status == 'DIBAYAR')
+										<div class="form-group my-auto py-1">
+											<button class="btn text-white btn-payment" hidden>Bayar</button>
 										</div>
-									</td>
-									<td>
-										@if ($transaction->payment_status == 'DIBAYAR')
-											<div class="form-group my-auto py-1">
-												<button class="btn text-white btn-payment" hidden>Bayar</button>
-											</div>
-											@else
-											<div class="form-group my-auto py-1">
-												<button class="btn text-white btn-payment">Bayar</button>
-											</div>
-										@endif
-									</td>
-								</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</form>
+										@else
+										<div class="form-group my-auto py-1">
+											<a href="{{ $transaction->midtrans_url }}" class="btn text-white btn-payment">Bayar</a>
+										</div>
+									@endif
+								</td>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

@@ -17,10 +17,11 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->integer('users_id');
             $table->integer('categories_id');
+            $table->string('code');
             $table->string('name_product');
             $table->string('slug');
             $table->integer('price');
-            $table->enum('discount', ['ada', 'tidak'])->default('tidak');
+            $table->boolean('discount')->default(false);
             $table->string('discount_amount')->default(0)->nullable();
             $table->longText('description');
             $table->softDeletes();

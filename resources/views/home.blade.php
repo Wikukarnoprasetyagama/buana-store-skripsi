@@ -119,14 +119,14 @@
 							/>
 							@endif
 							</a>
-							@if (!$product->discount == true)
+							@if ($product->discount == true)
 								<div class="discount-image d-flex justify-content-end">
 								<img
 									src="{{ url('/images/ic_discount_empty.svg') }}"
 									class="align-items-end img-fluid"
 									alt=""
 								/>
-								<div class="discount-badge">20%</div>
+								<div class="discount-badge">{{ $product->discount_amount }}%</div>
 							</div>
 							@endif
 						</div>

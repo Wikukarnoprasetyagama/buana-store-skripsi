@@ -19,17 +19,18 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-exclamation-triangle text-warning"></i> Peringatan!</h5>
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin ?</h5>
         <button type="button" class="btn-close hidden" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body text-center">
-        Apakah anda yakin ingin keluar ?
+      <div class="modal-body">
+        Anda akan keluar dari aplikasi ini, <br />
+        Silahkan login kembali jika ingin belanja.
       </div>
       <div class="modal-footer">
         <form action="{{ url('logout') }}" method="POST">
             @csrf
-            <button class="btn btn-get-now" type="submit">Keluar Sekarang</button>
+            <button class="btn btn-logout" type="submit">Keluar Sekarang</button>
         </form>
       </div>
     </div>

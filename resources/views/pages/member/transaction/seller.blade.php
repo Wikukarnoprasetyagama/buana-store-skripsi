@@ -52,7 +52,7 @@
         columns:[
             {data: 'id', name: 'id'},
             {data: 'user.name', name: 'user.name'},
-            {data: 'code', name: 'code'},
+            {data: 'midtrans_products_code', name: 'midtrans_products_code'},
             {data: 'payment_status', name: 'payment_status'},
             {data: 'quantity', name: 'quantity'},
             {data: 'total_price', name: 'total_price'},

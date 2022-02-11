@@ -64,6 +64,7 @@ class ProductAdminController extends Controller
     {
 
         $data = $request->all();
+        $data['code'] = 'BSTORE-'. mt_rand(000000,999999);
         $data['slug'] = Str::slug($request->name_product); 
         $product = Products::create($data);
         if ($request->hasFile('photo')) {
@@ -144,15 +145,4 @@ class ProductAdminController extends Controller
         $product->delete();
     }
 
-    public function uploadGallery(Request $request)
-    {
-        $data = $request->all();
-
-        $data['photo'] = $request->file('photo')->store('assets/product', 'public');
-
-        ProductGallery::create($data);
-
-        return redirect()->route('products-admin.create');
-
-    }
 }

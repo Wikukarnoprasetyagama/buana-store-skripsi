@@ -65,7 +65,7 @@
                     <h4>Pengeluaran</h4>
                   </div>
                   <div class="card-body">
-                    $187,13
+                    Rp.{{ number_format($revenue) }}
                   </div>
                 </div>
               </div>

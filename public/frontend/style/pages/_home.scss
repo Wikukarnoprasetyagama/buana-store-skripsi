@@ -1,4 +1,16 @@
 body {
-  background-color: #f8f8f8;
-  font-family: "Poppins";
+    background-color: #f8f8f8;
+    font-family: "Poppins";
+}
+
+.btn-logout {
+    background: #a43ce3;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 16px;
+
+    &:hover {
+        background: #932ad4;
+        color: #fff;
+    }
 }
