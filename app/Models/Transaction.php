@@ -20,11 +20,17 @@ class Transaction extends Model
         // 'payment_status',
         'users_id',
         'products_id',
+        'order_id',
+        'code_product',
         'quantity',
         'total_price',
         'payment_status',
-        'midtrans_products_code',
-        'midtrans_url'
+        'midtrans_url',
+        'name',
+        'phone',
+        'street',
+        'village',
+        'address',
     ];
 
     public function user()

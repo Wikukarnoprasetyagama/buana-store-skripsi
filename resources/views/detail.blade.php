@@ -119,7 +119,7 @@
 									@endif
 								@else
 									<button class="btn btn-buy-now" type="button">
-									Beli Sekarang
+									  Beli Sekarang
 									</button>
 									<button class="btn btn-add-to-cart" type="submit">
 										Masuk Keranjang

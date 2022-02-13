@@ -39,10 +39,10 @@ class CheckoutController extends Controller
         $data = $request->all();
         $data['users_id'] = Auth::id();
         $data['products_id'] = $request->products_id;
+        // $data['id'] = 'TRX-' . mt_rand(000000, 999999);
 
         // update user data
         // $user = Auth::user();
-        // $user->email = $data['products_id'];
         // $user->name = $data['name'];
         // $user->occupation = $data['occupation'];
         // $user->phone = $data['phone'];
@@ -50,7 +50,18 @@ class CheckoutController extends Controller
         // $user->save();
 
         // create checkout
-        $transaction = Transaction::create($data);
+        $transaction = Transaction::create([
+            'users_id' => Auth::id(),
+            'products_id' => $request->products_id,
+            'total_price' => $request->total_price,
+            'code_product' => $request->code,
+            'quantity' => $request->quantity,
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'street' => $request->street,
+            'village' => $request->village,
+            'address' => $request->address,
+        ], $data);
         $this->getSnapRedirect($transaction);
 
 
@@ -58,13 +69,7 @@ class CheckoutController extends Controller
 
         // create transaction
         // $transaction = Transaction::create([
-        //     'users_id' => Auth::user()->id,
-        //     'code_products' => $code,
-        //     'products_id' => $request->products_id,
-        //     'shipping_price' => 0,
-        //     'quantity' => $request->quantity,
-        //     'total_price' => $request->total_price,
-        //     'transaction_status' => $request->transaction_status,
+        //     'code_product' => $request->code_product,
         // ]);
 
         
@@ -85,7 +90,7 @@ class CheckoutController extends Controller
         $orderId = $transaction->id. '-' . Str::random(5);
         $price = $transaction->total_price;
 
-        $transaction->midtrans_products_code = $orderId;
+        $transaction->order_id = $orderId;
 
         $transaction_details = [
             'order_id' => $orderId,
@@ -96,7 +101,7 @@ class CheckoutController extends Controller
             'id' => $orderId,
             'price' => $price,
             'quantity' => 1,
-            'name' => "Payment for {$transaction->product->name_product}"
+            'name' => "Pembayaran {$transaction->product->name_product}"
         ];
 
         $customer_details = [

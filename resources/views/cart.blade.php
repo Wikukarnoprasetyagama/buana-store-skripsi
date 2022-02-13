@@ -5,17 +5,6 @@
 @endsection
 
 @section('content')
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb">
-      <div class="container">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-          <li class="breadcrumb-item active my-auto" aria-current="page">
-            Keranjang
-          </li>
-        </ol>
-      </div>
-    </nav>
 
     @if (count($carts))
         <!-- Cart -->
@@ -111,6 +100,7 @@
             @csrf
             <input type="hidden" name="total_price" value="{{ $totalPrice }}">
             <input type="hidden" name="products_id" value="{{ $cart->products_id }}">
+            <input type="hidden" name="code" value="{{ $cart->product->code }}">
             <input type="hidden" name="quantity" value="{{ $cart->quantity }}">
             <div class="row">
               <div class="col-12 col-md-4 mb-3">

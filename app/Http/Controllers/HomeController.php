@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Products;
-use App\Models\Seller\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    
+     public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
+       
     public function index()
     {
         $category = Category::all();

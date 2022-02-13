@@ -24,20 +24,12 @@
               <li class="nav-item">
                 <a href="{{ route('verification.index') }}" class="nav-link"><i class="fas fa-user-check"></i> <span>Permintaan Verifikasi</span></a>
               </li>
-              <li class="menu-header">Data Members</li>
               <li class="nav-item">
-                <a href="{{ route('seller.index') }}" class="nav-link"><i class="fas fa-store"></i> <span>Seller</span></a>
+                <a href="{{ route('customer.index') }}" class="nav-link"><i class="fas fa-users"></i> <span>Data Member</span></a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('customer.index') }}" class="nav-link"><i class="fas fa-users"></i> <span>Customer</span></a>
-              </li>
-              <li class="menu-header">Data Transaksi</li>
-              <li class="nav-item">
-                <a href="{{ route('transaction-seller') }}" class="nav-link"><i class="fas fa-store"></i> <span>Seller</span></a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-users"></i> <span>Customer</span></a>
-              </li>
+                <a href="{{ route('transaction-member') }}" class="nav-link"><i class="fas fa-money-check-alt"></i> <span>Transaksi Member</span></a>
+              </li>              
               <div class="mt-3 mb-4 p-3 hide-sidebar-mini">
                 <a href="#" class="btn btn-danger btn-lg btn-block btn-icon-split" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt"></i> Keluar

@@ -7,8 +7,32 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.6/js/fileinput.min.js" integrity="sha512-IpeB734vID7QynL2cgdKMVDh1CNHndzxt9QKeq/aZQ5yItaDHcpWsg7C1tq4xCljTPa4l6EiJ1hUTaD/2KltiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/assets/js/stisla.js"></script>
   <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+ <!-- Data Tables -->
+ <!-- DataTables  & Plugins -->
+<script src="{{ url('/datatables/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, 
+      "lengthChange": true, 
+      "autoWidth": false, 
+      "paging": true, 
+      "searching": true, 
+      "ordering": true,
+      "info": true,
+    });
+  });
+</script>
 
-  <!-- JS Libraies -->
+<!-- JS Libraies -->
   <script src="{{ url('/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
   <script src="{{ url('/chart.js/dist/Chart.min.js') }}"></script>
   <script src="{{ url('/owl.carousel/dist/owl.carousel.min.js') }}"></script>

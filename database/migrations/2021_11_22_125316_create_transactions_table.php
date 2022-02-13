@@ -17,10 +17,11 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->integer('users_id');
             $table->integer('products_id');
+            $table->string('order_id')->nullable();
+            $table->string('code_product');
             $table->integer('quantity')->default(1);
             $table->integer('total_price');
             $table->string('payment_status')->default('Menunggu');
-            $table->string('midtrans_products_code')->nullable();
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('street')->nullable();

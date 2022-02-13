@@ -21,6 +21,7 @@
                                     <th>ID</th>
                                     <th>Kode Transaksi</th>
                                     <th>Kode Produk</th>
+                                    <th>Nama</th>
                                     <th>Nama Produk</th>
                                     <th>Total Pembayaran</th>
                                     <th>Status Pembayaran</th>
@@ -52,13 +53,13 @@
                                     <img src="{{ url('/images/ic_empty_data.svg') }}" class="img-fluid figure-img h-25 w-25" alt="">
                                 </figure>
                                 <div class="description">
-                                    <h3>Belum ada Produk!</h3>
-                                    silahkan untuk menambahkan data terlebih dahulu
+                                    <h3>Belum ada Transaksi!</h3>
+                                    Belum ada seller / customer yang melakukan transaksi.
                                 </div>
                                 <div class="add-slider mt-4">
-                                    <a href="{{ route('products-admin.create')}}" class="btn btn-success shadow-sm">
-                                        <i class="fas fa-plus fa-sm text-white-50"></i>
-                                        Tambah Produk
+                                    <a href="{{ route('dashboard-admin')}}" class="btn btn-success shadow-sm">
+                                        <i class="fas fa-arrow fa-sm text-white-50"></i>
+                                        Kembali Kedashboard
                                     </a>
                                 </div>
                             </div>
@@ -85,11 +86,12 @@
         },
         columns:[
             {data: 'id', name: 'id'},
-            {data: 'code', name: 'code'},
-            {data: 'transaction.code', name: 'transaction.code'},
+            {data: 'order_id', name: 'order_id'},
+            {data: 'code_product', name: 'code_product'},
+            {data: 'user.name', name: 'user.name'},
             {data: 'product.name_product', name: 'product.name_product'},
-            {data: 'price', name: 'price'},
-            {data: 'transaction.transaction_status', name: 'transaction.transaction_status'},
+            {data: 'total_price', name: 'total_price'},
+            {data: 'payment_status', name: 'payment_status'},
             // { 
             //     data: 'action',
             //     name: 'action',
