@@ -10,6 +10,7 @@ use App\Models\ProductGallery;
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class ProductController extends Controller
 {
@@ -60,7 +61,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->name_product);
+        // $data['slug'] = Str::slug($request->name_product);
         $data['code'] = 'BSTORE-'. mt_rand(000000,999999);
         $product = Products::create($data);
         if ($request->hasFile('photo')) {
@@ -138,5 +139,11 @@ class ProductController extends Controller
     {
         $product = Products::findOrFail($id);
         $product->delete();
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Products::class, 'slug', $request->name_product);
+        return response()->json(['slug' => $slug]);
     }
 }

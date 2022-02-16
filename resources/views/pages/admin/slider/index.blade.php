@@ -4,8 +4,8 @@
 @endsection
 
 @section('content')
-@if (count($item))
-    <div class="main-content">
+@if (count($slider))
+{{-- <div class="main-content">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -34,7 +34,61 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+<section class="main-content">
+    <div class="row">
+        <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h3 class="mb-0 text-gray-800">Data Member Buana Store</h3>
+                <a href="{{ route('sliders.create')}}" class="btn btn-success shadow-sm" style="border-radius: 4px">
+                    <i class="fas fa-plus fa-sm text-white-50"></i>
+                    Tambah Slider
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example1" class="table table-hover scroll-horizontal-vertical w-100">
+                        <thead>
+                            <tr>
+                            <th>No.</th>
+                            <th>Foto</th>
+                            <th>Judul</th>
+                            <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($sliders as $slider)
+                            <tr>
+                                <td style="padding-left: 24px">{{ $no++ }}</td>
+                                <td style="padding-left: 18px">
+                                    <img src="{{ Storage::url($slider->photo) }}" alt="gambar-slider" class="img-fluid" style="max-height: 40px">
+                                </td>
+                                <td style="padding-left: 18px">{{ $slider->title }}</td>
+                                <td style="padding-left: 15px;">
+                                    <div class="form-group d-flex">
+                                        <a href="{{ route('sliders.edit', $slider->id) }}" class="btn btn-sm btn-warning mx-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                        <form action="{{ route('sliders.destroy', $slider->id) }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-sm btn-danger mx-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
 
 @else
 

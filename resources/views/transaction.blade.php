@@ -38,7 +38,7 @@
 							<tr>
 								<th scope="row">
 									<div class="form-group my-auto">
-										@if ($transaction->product->galleries)
+										@if ($transaction->product->galleries->count())
 											<img
 												src="{{ Storage::url($transaction->product->galleries->first()->photo) }}"
 												class="img-fluid"

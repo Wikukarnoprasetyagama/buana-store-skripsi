@@ -15,7 +15,6 @@ class DashboardController extends Controller
     {
         $item = User::count();
         $product = Products::all()->where('users_id', auth()->id())->count();
-        $customer = User::where('status', 'PENDING', Auth::user()->id)->take(1);
         $transaction = Transaction::where('users_id', Auth::user()->id);
         $revenue = $transaction->get()->reduce(function($carry, $item) {
             return $carry + $item->total_price;
@@ -23,7 +22,6 @@ class DashboardController extends Controller
         return view('pages.member.dashboard', [
             'item' => $item,
             'product' => $product,
-            'customers' => $customer,
             'transaction' => $transaction->count(),
             'revenue' => $revenue,
             // 'detail' => UserDetails::where('status', 'PENDING', Auth::user()->users_id)->get()

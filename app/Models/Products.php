@@ -2,17 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ProductGallery;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Products extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Sluggable;
 
     protected $fillable = [
         'categories_id', 'users_id', 'code', 'name_product', 'slug', 'price', 'discount', 'discount_amount', 'description',
     ];
+
+     public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name_product'
+            ]
+        ];
+    }
 
     public function galleries()
     {

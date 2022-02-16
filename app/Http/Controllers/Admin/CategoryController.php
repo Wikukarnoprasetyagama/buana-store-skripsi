@@ -19,26 +19,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $query = Category::all();
-
-            return DataTables::of($query)
-                    ->addColumn('action', function($category){
-                        return '
-                        <div class="action">
-                        <a href="' . route('category.edit', $category->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></a>
-                        <a href="#" data-url="'. route('category.destroy', $category->id) . '" data-id="' .$category->id. '" data-token="' . csrf_token() . '" id="hapus" class="hapus btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></a>
-                        </div>
-                        ';
-                    })
-                    ->editColumn('photo', function($category){
-                        return $category->photo ? '<img src="'. Storage::url($category->photo).'" style="max-height: 30px;" />' : '';
-                    })
-                    ->rawColumns(['action', 'photo'])
-                    ->make();
-        }
-        $item = Category::all();
-        return view('pages.admin.category.index', compact('item'));
+        $category = Category::all();
+        return view('pages.admin.category.index', [
+            'categories' => $category
+        ], compact('category')) ;
     }
 
     /**
@@ -90,7 +74,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
 
         return view('pages.admin.category.edit', [
-            'category' => $category
+            'categories' => $category
         ]);
 
     }

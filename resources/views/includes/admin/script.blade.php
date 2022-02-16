@@ -21,9 +21,9 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, 
+      "responsive": false,
       "lengthChange": true, 
-      "autoWidth": false, 
+      "autoWidth": true, 
       "paging": true, 
       "searching": true, 
       "ordering": true,

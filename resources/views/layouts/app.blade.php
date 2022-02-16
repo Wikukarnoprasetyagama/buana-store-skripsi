@@ -73,6 +73,7 @@
   @include('includes.admin.script')
   @stack('before-script')
   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  
   @stack('after-script')
 </body>
 </html>

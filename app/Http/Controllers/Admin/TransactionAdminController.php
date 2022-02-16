@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Products;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
-class TransactionSellerController extends Controller
+class TransactionAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,14 +25,14 @@ class TransactionSellerController extends Controller
                     ->addColumn('action', function($item){
                         return '
                         <div class="action">
-                        <a href="' . route('transaction-seller.store', $item->id) . '" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                        <a href="' . route('transaction-member.edit', $item->id) . '" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
                         </div>
                         ';
                     })
                     ->rawColumns(['action'])
                     ->make();
         }
-        return view('pages.member.transaction.seller');
+        return view('pages.admin.transaction.member');
     }
 
     /**
@@ -40,7 +42,7 @@ class TransactionSellerController extends Controller
      */
     public function create()
     {
-        return abort(404);
+        //
     }
 
     /**
@@ -51,7 +53,7 @@ class TransactionSellerController extends Controller
      */
     public function store(Request $request)
     {
-        return abort(404);
+        //
     }
 
     /**
@@ -62,7 +64,12 @@ class TransactionSellerController extends Controller
      */
     public function show($id)
     {
-        //
+        $detail = Transaction::with(['product', 'user'])->get();
+        $product = Products::all();
+        return view('pages.admin.transaction.detail', [
+            'detail' => $detail,
+            'products' => $product,
+        ]);
     }
 
     /**
@@ -73,7 +80,7 @@ class TransactionSellerController extends Controller
      */
     public function edit($id)
     {
-        return abort(404);
+        //
     }
 
     /**

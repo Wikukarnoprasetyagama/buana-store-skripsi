@@ -79,7 +79,7 @@
 				<li class="nav-item">
 					<a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
 				</li>
-				<div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+				<div class="mt-4 mb-5 p-3 hide-sidebar-mini">
 					@if (Auth::user()->status != 'PENDING')
 						<form action="{{ route('open-store.edit', Auth::user()->id) }}">
 							@csrf
@@ -88,10 +88,9 @@
 							</button>     
 						</form>                 
 						@else
-						<button class="btn btn-warning btn-lg btn-block btn-icon-split" data-toggle="modal" data-target="#openStore">
-								<i class="fas fa-store"></i> @foreach ($customers as $customer)
-									{{ $customer->status }}
-								@endforeach
+						<button class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#openStore">
+							<i class="fas fa-store"></i> 
+								{{ Auth::user()->status }}
 						</button>
 					@endif
 				</div>

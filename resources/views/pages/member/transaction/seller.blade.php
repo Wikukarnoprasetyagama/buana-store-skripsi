@@ -1,6 +1,6 @@
 @extends('layouts.member')
 @section('title')
-    Daftar Produk
+    Daftar Transaksi
 @endsection
 
 @section('content')
@@ -10,11 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Daftar Produk</h1>
-                        <a href="{{ route('products-seller.create')}}" class="btn btn-success shadow-sm">
-                            <i class="fas fa-plus fa-sm text-white-50"></i>
-                            Tambah Produk Baru
-                        </a>
+                        <h1 class="h3 mb-0 text-gray-800">Daftar Transaksi</h1>
                     </div>
                     <div class="table-responsive mt-5">
                         <table class="table table-hover scroll-horizontal-vertical w-100" id="table">
@@ -23,6 +19,7 @@
                                     <th>ID</th>
                                     <th>Nama Customer</th>
                                     <th>Kode Produk</th>
+                                    <th>Nama Produk</th>
                                     <th>Status Pembayaran</th>
                                     <th>Jumlah Pesanan</th>
                                     <th>Total</th>
@@ -52,7 +49,8 @@
         columns:[
             {data: 'id', name: 'id'},
             {data: 'user.name', name: 'user.name'},
-            {data: 'midtrans_products_code', name: 'midtrans_products_code'},
+            {data: 'code_product', name: 'code_product'},
+            {data: 'product.name_product', name: 'product.name_product'},
             {data: 'payment_status', name: 'payment_status'},
             {data: 'quantity', name: 'quantity'},
             {data: 'total_price', name: 'total_price'},

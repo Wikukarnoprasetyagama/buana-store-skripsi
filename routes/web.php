@@ -7,18 +7,20 @@ use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\ProductGalleriesController;
 use App\Http\Controllers\Admin\ProfileAdminController;
-use App\Http\Controllers\Admin\TransactionsController;
+use App\Http\Controllers\Admin\TransactionAdminController;
 use App\Http\Controllers\Admin\VerificationController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProductsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Member\OpenStoreController;
 use App\Http\Controllers\DetailProductsController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Member\DashboardController;
 use App\Http\Controllers\Member\ProductController;
 use App\Http\Controllers\Member\TransactionSellerController;
@@ -40,6 +42,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/semua-kategori-produk', [CategoryProductsController::class, 'index'])->name('all-category');
 Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])->name('detail');
 Route::get('/penghargaan', [RewardsController::class, 'index'])->name('reward');
+Route::get('/favorit', [FavoriteController::class, 'index'])->name('favorite');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');
 Route::get('/payment/success', [CheckoutController::class, 'callback']);
 Route::post('/payment/success', [CheckoutController::class, 'callback']);
@@ -57,16 +60,16 @@ Route::prefix('/pages/dashboard/admin')
         ->group(function(){
                 Route::get('/', [DashboardAdminController::class, 'index'])->name('dashboard-admin');
                 Route::post('/product/admin/upload', [ProductAdminController::class, 'uploadGallery'])->name('upload-product-gallery');
-                Route::get('/pages/admin/transaksi', [TransactionsController::class, 'index'])->name('transaction-member');
 
                 Route::resource('upload', ProductGalleriesController::class);
                 Route::resource('sliders', SlidersController::class);
                 Route::resource('category', CategoryController::class);
-                Route::resource('seller', SellerController::class);
+                Route::resource('member', MembersController::class);
                 Route::resource('products-admin', ProductAdminController::class);
                 Route::resource('customer', CustomerController::class);
                 Route::resource('profile', ProfileAdminController::class);
                 Route::resource('verification', VerificationController::class);
+                Route::resource('transaction-member', TransactionAdminController::class);
         });
 
 // seller
@@ -74,6 +77,7 @@ Route::prefix('/pages/dashboard/seller')
         ->middleware(['auth', 'seller'])
         ->group(function(){
                 Route::get('/', [DashboardController::class, 'index'])->name('dashboard-seller');
+                Route::get('/pages/dashboard/seller/products-seller/checkSlug', [ProductController::class, 'checkSlug']);
                 Route::resource('products-seller', ProductController::class);
                 Route::resource('transaction-seller', TransactionSellerController::class);
 });

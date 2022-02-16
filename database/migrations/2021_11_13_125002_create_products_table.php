@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('categories_id');
             $table->string('code');
             $table->string('name_product');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->integer('price');
             $table->boolean('discount')->default(false);
             $table->string('discount_amount')->default(0)->nullable();

@@ -4,8 +4,8 @@
 @endsection
 
 @section('content')
-@if (count($item))
-    <div class="main-content">
+@if (count($user))
+{{-- <div class="main-content">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -37,7 +37,64 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+<section class="main-content">
+    <div class="row">
+        <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h3 class="mb-0 text-gray-800">Data Produk Seller Buana Store</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example1" class="table table-hover scroll-horizontal-vertical w-100">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Email</th>
+                                <th>Nama Pemilik</th>
+                                <th>Nama Toko</th>
+                                <th>No. Hp</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach ($users as $user)
+                            <tr>
+                                <td style="padding-left: 24px">{{ $no++ }}</td>
+                                <td style="padding-left: 18px">
+                                    {{ $user->email }}
+                                </td>
+                                <td style="padding-left: 18px">{{ $user->name }}</td>
+                                <td style="padding-left: 18px">{{ $user->name_store }}</td>
+                                <td style="padding-left: 18px">{{ $user->phone }}</td>
+                                @if ($user->status == 'DIBLOKIR')
+                                    <td style="padding-left: 18px"><strong class="text-danger">{{ $user->status }}</strong></td>
+                                    @elseif ($user->status == 'PENDING')
+                                    <td style="padding-left: 18px"><strong class="text-warning">{{ $user->status }}</strong></td>
+                                    @else
+                                    <td style="padding-left: 18px"><strong class="text-success">{{ $user->status }}</strong></td>
+                                @endif
+                                <td style="padding-left: 15px;">
+                                    <div class="form-group d-flex">
+                                        <a href="{{ route('products-admin.show', $user->id) }}" class="btn btn-sm btn-info mx-1" data-toggle="tooltip" data-placement="top" title="Lihat Produk"><i class="fas fa-eye"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
 
 @else
 

@@ -28,6 +28,7 @@ class ProductRequest extends FormRequest
             'categories_id' => 'required|exists:categories,id',
             'code' => 'string',
             'name_product' => 'required|string|max:255',
+            'slug' => 'required|string|unique:products',
             'price' => 'required|integer',
             'discount' => 'string|nullable',
             'discount_amount' => 'nullable',

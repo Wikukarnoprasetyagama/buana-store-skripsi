@@ -40,10 +40,27 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name_product" class="form-control-label">Nama Produk</label>
-                                    <input type="text" name="name_product" value="{{ old('name_product') }}" class="form-control @error('name_product') is-invalid @enderror"/>
+                                    <input type="text" id="name_product" name="name_product" value="{{ old('name_product') }}" class="form-control @error('name_product') is-invalid @enderror"/>
                                     @error('name_product') <div class="text-muted" required>{{ $message }}</div> @enderror
+                                    @error('name_product')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
+                            {{-- <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="slug" class="form-control-label">Slug</label>
+                                    <input type="text" id="slug" name="slug" value="{{ old('slug') }}" class="form-control @error('slug') is-invalid @enderror"/>
+                                    @error('slug') <div class="text-muted" required>{{ $message }}</div> @enderror
+                                    @error('slug')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div> --}}
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -114,6 +131,7 @@
 @endsection
 
 @push('after-script')
+
 <script>
     $(".form-check-input").click(function(){
         if ($(this).prop('checked')) {
@@ -121,6 +139,18 @@
         } else {
             $('.inputDisabled').prop("disabled", true);
         }
+    });
+</script>
+
+<script>
+    const name_product = document.querySelector('#name_product');
+    const slug = document.querySelector('#slug');
+    
+
+    name_product.addEventListener('change', function(){
+        fetch('/pages/dashboard/seller/products-seller/checkSlug?name_product=' + name_product.value)
+        .then(response => response.json())
+        .then(data => slug.value = data.slug);
     });
 </script>
 @endpush

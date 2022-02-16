@@ -18,26 +18,10 @@ class SlidersController extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $query = Sliders::all();
-
-            return DataTables::of($query)
-                    ->addColumn('action', function($slider){
-                        return '
-                        <div class="action">
-                        <a href="' . route('sliders.edit', $slider->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></a>
-                        <a href="#" data-url="'. route('sliders.destroy', $slider->id) . '" data-id="' .$slider->id. '" data-token="' . csrf_token() . '" id="hapus" class="hapus btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></a>
-                        </div>
-                        ';
-                    })
-                    ->editColumn('photo', function($slider){
-                        return $slider->photo ? '<img src="'. Storage::url($slider->photo).'" style="max-height: 50px;" />' : '';
-                    })
-                    ->rawColumns(['action', 'photo'])
-                    ->make();
-        }
-        $item = Sliders::all();
-        return view('pages.admin.slider.index', compact('item'));
+        $slider = Sliders::all();
+        return view('pages.admin.slider.index', [
+            'sliders' => $slider
+        ], compact('slider'));
     }
 
     /**

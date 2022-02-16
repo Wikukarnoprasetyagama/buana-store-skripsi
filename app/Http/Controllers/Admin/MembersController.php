@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 
-class TransactionSellerController extends Controller
+class MembersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,21 +15,10 @@ class TransactionSellerController extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $query = Transaction::with(['user', 'product']);
-
-            return DataTables::of($query)
-                    ->addColumn('action', function($item){
-                        return '
-                        <div class="action">
-                        <a href="' . route('transaction-seller.store', $item->id) . '" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                        </div>
-                        ';
-                    })
-                    ->rawColumns(['action'])
-                    ->make();
-        }
-        return view('pages.member.transaction.seller');
+        $member = User::all()->whereIn('roles', ['CUSTOMER', 'SELLER'])->sortByDesc('created_at');
+        return view('pages.admin.member.index', [
+            'members' => $member
+        ]);
     }
 
     /**
@@ -62,7 +50,7 @@ class TransactionSellerController extends Controller
      */
     public function show($id)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -73,7 +61,10 @@ class TransactionSellerController extends Controller
      */
     public function edit($id)
     {
-        return abort(404);
+        $member = User::findOrFail($id);
+        return view('pages.admin.member.index', [
+            'members' => $member,
+        ]);
     }
 
     /**
@@ -85,7 +76,12 @@ class TransactionSellerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $member = User::findOrFail($id);
+        $member->update($data);
+
+        return redirect()->route('member.index');
+
     }
 
     /**
@@ -96,6 +92,6 @@ class TransactionSellerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return abort(404);
     }
 }

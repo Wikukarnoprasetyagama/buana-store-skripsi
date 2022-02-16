@@ -15,7 +15,6 @@
                     <div class="details-name">
                         <p>{{ $detail->name_store }}</p>
                     </div>
-                    {{-- @foreach ($users as $user) --}}
                         <div class="row">
                             <div class="d-none d-md-block col-md-3">
                                 <figure class="figure d-block">
@@ -62,7 +61,6 @@
                                 </div>
                             </div>
                         </div>
-                    {{-- @endforeach --}}
                     <form action="{{ route('verification.update', $detail->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
