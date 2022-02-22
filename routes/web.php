@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\MembersController;
-use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\ProductGalleriesController;
@@ -20,9 +19,9 @@ use App\Http\Controllers\CategoryProductsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Member\OpenStoreController;
 use App\Http\Controllers\DetailProductsController;
-use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Member\DashboardController;
 use App\Http\Controllers\Member\ProductController;
+use App\Http\Controllers\Member\TransactionCustomerController;
 use App\Http\Controllers\Member\TransactionSellerController;
 use App\Http\Controllers\RewardsController;
 use App\Http\Controllers\TransactionController;
@@ -42,7 +41,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/semua-kategori-produk', [CategoryProductsController::class, 'index'])->name('all-category');
 Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])->name('detail');
 Route::get('/penghargaan', [RewardsController::class, 'index'])->name('reward');
-Route::get('/favorit', [FavoriteController::class, 'index'])->name('favorite');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');
 Route::get('/payment/success', [CheckoutController::class, 'callback']);
 Route::post('/payment/success', [CheckoutController::class, 'callback']);
@@ -88,6 +86,7 @@ Route::prefix('/pages/dashboard/customer')
         ->group(function(){
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard-customer');
             Route::resource('open-store', OpenStoreController::class);
+            Route::resource('transaction-customer', TransactionCustomerController::class);
 });
 
 

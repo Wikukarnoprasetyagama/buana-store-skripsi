@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionCustomerController extends Controller
 {
@@ -14,7 +16,10 @@ class TransactionCustomerController extends Controller
      */
     public function index()
     {
-        //
+        $transaction = Transaction::where('users_id', Auth::user()->id)->get();
+        return view('pages.member.transaction.customer', [
+            'transactions' => $transaction
+        ]);
     }
 
     /**
@@ -46,7 +51,10 @@ class TransactionCustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $invoice = Transaction::findOrFail($id);
+        return view('pages.member.modal-transaction-detail', [
+            'invoice' => $invoice
+        ]);
     }
 
     /**

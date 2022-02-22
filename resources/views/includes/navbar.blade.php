@@ -19,9 +19,6 @@
 					<a class="nav-link {{ (request()->is('penghargaan*')) ? 'active' : '' }}" href="{{ route('reward') }}">Penghargaan</a>
 				</li>
 				<li class="nav-item mx-2">
-					<a class="nav-link {{ (request()->is('favorit*')) ? 'active' : '' }}" href="{{ route('favorite') }}">Favorit</a>
-				</li>
-				<li class="nav-item mx-2">
 					<a class="nav-link {{ (request()->is('transaksi*')) ? 'active' : '' }}" href="{{ route('transaction') }}">Transaksi</a>
 				</li>
 				@auth
@@ -40,13 +37,20 @@
 				{{-- Jika Belum Login --}}
 				@guest
 					<li class="nav-item mx-2">
-					<a class="nav-link" href="{{ route('login') }}">Sign In</a>
+					<a class="nav-link" href="{{ route('login') }}">Masuk</a>
 					</li>
-					<li class="nav-item mx-2">
+					<li class="nav-item d-none d-md-block mx-2">
 					<a
 						class="btn btn-sign-up nav-link px-4 text-white"
 						href="{{ route('register') }}"
-						>Sign Up</a
+						>Daftar</a
+					>
+					</li>
+					<li class="nav-item d-sm-block d-md-none mx-2 d-grid">
+					<a
+						class="btn btn-sign-up nav-link px-4 text-white"
+						href="{{ route('register') }}"
+						>Daftar</a
 					>
 					</li>
 				@endguest

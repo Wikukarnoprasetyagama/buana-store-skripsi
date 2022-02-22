@@ -15,7 +15,22 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Total Orders</h4>
+                    <h4>Keranjang</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $cart }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="card card-statistic-2">
+                <div class="card-icon shadow-primary bg-primary">
+                  <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Total Transaksi</h4>
                   </div>
                   <div class="card-body">
                     {{ $transaction }}
@@ -62,7 +77,7 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Pengeluaran</h4>
+                    <h4>Total Pengeluaran</h4>
                   </div>
                   <div class="card-body">
                     Rp.{{ number_format($revenue) }}
@@ -72,8 +87,52 @@
             </div>
             @endif
           </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4>Invoices</h4>
+                  <div class="card-header-action">
+                    <a href="{{ route('transaction-customer.index') }}" class="btn btn-danger">Selengkapnya <i class="fas fa-chevron-right"></i></a>
+                  </div>
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive table-invoice">
+                    <table class="table table-striped">
+                      <tr>
+                        <th>ID Pesanan</th>
+                        <th>Nama</th>
+                        <th>Status Pembayaran</th>
+                        <th>Tanggal Pemesanan</th>
+                        <th>Action</th>
+                      </tr>
+                      @foreach ($invoices as $invoice)
+                          <tr>
+                            <td>{{ $invoice->order_id }}</td>
+                            <td class="font-weight-600">{{ $invoice->name }}</td>
+                            @if ($invoice->payment_status == 'PENDING')
+                            <td><div class="badge badge-warning">{{ $invoice->payment_status }}</div></td>
+                            @elseif ($invoice->payment_status == 'SUCCESS')
+                                <td><div class="badge badge-success">{{ $invoice->payment_status }}</div></td>
+                            @elseif ($invoice->payment_status == 'FAILED')
+                            <td><div class="badge badge-danger">{{ $invoice->payment_status }}</div></td>
+                            @else
+                            <td><div class="badge badge-info">{{ $invoice->payment_status }}</div></td>
+                            @endif
+                            <td>{{ $invoice->created_at->format('d-m-Y') }}</td>
+                            <td>
+                              <a href="{{ route('transaction-customer.show', $invoice->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#invoice">Detail</a>
+                            </td>
+                          </tr>
+                      @endforeach
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           @if (Auth::user()->roles == 'SELLER')
-              <div class="row">
+          <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
@@ -143,4 +202,25 @@
           @endif
         </section>
       </div>
+
+      <!-- Invoice -->
+      {{-- <div class="modal fade" id="invoice" tabindex="-1" aria-labelledby="invoiceLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="invoiceLabel">Detail Transaksi {{ $invoice->name }}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  ...
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+        </div>
+      </div> --}}
 @endsection

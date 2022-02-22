@@ -8,8 +8,11 @@
 			<div class="sidebar-brand sidebar-brand-sm">
 				<a href="{{ route('dashboard-seller') }}">SBS</a>
 			</div>
+			<div class="sidebar-brand sidebar-brand-sm">
+				<strong class="text-success"><i class="fas fa-user-check"></i></strong>
+			</div>
 			<ul class="sidebar-menu">
-				<li class="text-center">
+				<li class="text-center sidebar-brand">
 					<strong class="text-success">{{ Auth::user()->status }}</strong>
 				</li>
 				<li class="menu-header">Dashboard</li>
@@ -63,6 +66,9 @@
 				</li>
 				<li class="menu-header">Menu</li>
 				<li class="nav-item">
+					<a href="{{ route('home') }}" class="nav-link"><i class="fas fa-home"></i> <span>Beranda</span></a>
+				</li>
+				<li class="nav-item">
 					<a href="{{ route('cart') }}" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Keranjang</span></a>
 				</li>
 				<li class="nav-item">
@@ -70,16 +76,16 @@
 				</li>
 				<li class="menu-header">Transaksi</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fas fa-columns"></i> <span>Daftar Transaksi</span></a>
+					<a href="{{ route('transaction-customer.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Daftar Transaksi</span></a>
 				</li>
 				<li class="menu-header">Management Akun</li>
 				<li class="nav-item">
 					<a href="#" class="nav-link"><i class="fas fa-user"></i> <span>Profile</span></a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
+					<a href="#" class="nav-link" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>
 				</li>
-				<div class="mt-4 mb-5 p-3 hide-sidebar-mini">
+				<div class="mt-4 p-3 hide-sidebar-mini">
 					@if (Auth::user()->status != 'PENDING')
 						<form action="{{ route('open-store.edit', Auth::user()->id) }}">
 							@csrf

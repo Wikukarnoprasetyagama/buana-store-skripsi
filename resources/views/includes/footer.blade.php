@@ -57,33 +57,59 @@
         <div class="email mt-2">cs@buanastore.com</div>
         <div class="phone mt-2">+62 822 - 9502 - 4272</div>
         <div class="row mb-3 social-media mt-3">
-            <div class="col-1 col-lg-2">
-            <a href="#">
-                <img
-                src="{{ url('/images/ic_youtube.png') }}"
-                class="img-fluid w-100"
-                alt=""
-                />
-            </a>
+            <div class="col-2 col-md-2 col-lg-2">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <a href="#" class="me-2" style="text-decoration: none">
+                            <img
+                            src="{{ url('/images/ic_youtube.png') }}"
+                            class="img-fluid" style="max-height: 30px"
+                            alt=""
+                            />
+                        </a>
+                        <a href="#" class="me-2" style="text-decoration: none">
+                            <img
+                            src="{{ url('/images/ic_instagram.png') }}"
+                            class="img-fluid" style="max-height: 30px"
+                            alt=""
+                            />
+                        </a>
+                        <a href="#" class="me-2" style="text-decoration: none">
+                            <img
+                            src="{{ url('/images/ic_facebook.png') }}"
+                            class="img-fluid" style="max-height: 30px"
+                            alt=""
+                            />
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="col-1 col-lg-2">
-            <a href="#">
-                <img
-                src="{{ url('/images/ic_instagram.png') }}"
-                class="img-fluid w-100"
-                alt=""
-                />
-            </a>
+            {{-- <div class="col-2 col-md-2 col-lg-2">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <a href="#">
+                            <img
+                            src="{{ url('/images/ic_instagram.png') }}"
+                            class="img-fluid" style="max-height: 30px"
+                            alt=""
+                            />
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="col-1 col-lg-2">
-            <a href="#">
-                <img
-                src="{{ url('/images/ic_facebook.png') }}"
-                class="img-fluid w-100"
-                alt=""
-                />
-            </a>
-            </div>
+            <div class="col-2 col-md-2 col-lg-2">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <a href="#">
+                            <img
+                            src="{{ url('/images/ic_facebook.png') }}"
+                            class="img-fluid" style="max-height: 30px"
+                            alt=""
+                            />
+                        </a>
+                    </div>
+                </div>
+            </div> --}}
         </div>
         </div>
     </div>
