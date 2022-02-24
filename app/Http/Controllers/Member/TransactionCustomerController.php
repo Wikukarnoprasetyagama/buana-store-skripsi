@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class TransactionCustomerController extends Controller
 {
@@ -89,5 +92,28 @@ class TransactionCustomerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cetak_pdf()
+    {   
+        $path = base_path('/public/images/logo.png');
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+        $transaction = Transaction::all()->whereIn('users_id', Auth::user()->id);
+        $revenue = $transaction->reduce(function($carry, $item) {
+            return $carry + $item->total_price;
+        });
+        // return view('pdf', [
+        //     'transactions' => $transaction,
+        //     'revenue' => $revenue,
+        // ], compact('pic'));
+        $pdf= PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pdf', [
+            'transactions' => $transaction,
+            'revenue' => $revenue,
+        ], compact('pic'))->setPaper('a4', 'landscape');
+        // return $pdf->stream();
+        return $pdf->download('laporan-transasaksi-customer.pdf');
     }
 }

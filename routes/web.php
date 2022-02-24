@@ -20,6 +20,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Member\OpenStoreController;
 use App\Http\Controllers\DetailProductsController;
 use App\Http\Controllers\Member\DashboardController;
+use App\Http\Controllers\Member\PdfCustomerController;
 use App\Http\Controllers\Member\ProductController;
 use App\Http\Controllers\Member\TransactionCustomerController;
 use App\Http\Controllers\Member\TransactionSellerController;
@@ -85,6 +86,7 @@ Route::prefix('/pages/dashboard/customer')
         ->middleware(['auth', 'customer'])
         ->group(function(){
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard-customer');
+            Route::get('/cetak-laporan-transaksi', [TransactionCustomerController::class, 'cetak_pdf'])->name('pdf-transaction-customer');
             Route::resource('open-store', OpenStoreController::class);
             Route::resource('transaction-customer', TransactionCustomerController::class);
 });

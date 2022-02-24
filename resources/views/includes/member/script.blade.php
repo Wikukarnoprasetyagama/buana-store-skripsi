@@ -6,6 +6,31 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="{{ url('/assets/js/stisla.js') }}"></script>
 
+  <!-- Data Tables -->
+ <!-- DataTables  & Plugins -->
+<script src="{{ url('/datatables/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ url('/datatables/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": false,
+      "lengthChange": true, 
+      "autoWidth": true, 
+      "paging": true, 
+      "searching": true, 
+      "ordering": true,
+      "info": true,
+    });
+  });
+</script>
+
   <!-- JS Libraies -->
   <script src="{{ url('/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
   <script src="{{ url('/chart.js/dist/Chart.min.js') }}"></script>

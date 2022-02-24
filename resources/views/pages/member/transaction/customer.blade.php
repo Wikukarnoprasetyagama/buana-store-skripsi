@@ -9,8 +9,12 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-                <h3 class="mb-0 text-gray-800">Data Member Buana Store</h3>
+              <div class="card-header d-flex align-items-center justify-content-between">
+                <h3 class="mb-0 text-gray-800">Data Transaksi Saya</h3>
+                <a href="{{ route('pdf-transaction-customer')}}" class="btn btn-success shadow-sm">
+                    <i class="fas fa-print fa-sm text-white-50"></i>
+                    Cetak Transaksi
+                </a>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -23,7 +27,9 @@
                             <th>Nama Produk</th>
                             <th>No. Hp</th>
                             <th>Jumlah</th>
+                            <th>Tanggal</th>
                             <th>Status</th>
+                            <th>Harga</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -33,7 +39,7 @@
                             @foreach ($transactions as $transaction)
                                 <tr>
                                     <td style="padding-left: 30px">{{ $no++ }}</td>
-                                    <td style="padding-left: 25px">{{ $transaction->user->name }}</td>
+                                    <td style="padding-left: 25px">{{ $transaction->name }}</td>
                                     <td style="padding-left: 25px">{{ $transaction->code_product }}</td>
                                     <td style="padding-left: 25px">{{ $transaction->product->name_product }}</td>
                                     @if ($transaction->phone != null)
@@ -42,6 +48,7 @@
                                     <td class="text-center" style="padding-left: 18px"> - </td>
                                     @endif
                                     <td style="padding-left: 5px" class="text-center">{{ $transaction->quantity }}</td>
+                                    <td style="padding-left: 18px">{{ $transaction->created_at->isoFormat('D MMMM Y') }}</td>
                                     @if ($transaction->payment_status == 'FAILED')
                                     <td style="padding-left: 18px"><strong class="text-white badge badge-danger">{{ $transaction->payment_status }}</strong></td>
                                     @elseif ($transaction->payment_status == 'PENDING')
@@ -51,6 +58,7 @@
                                     @else
                                     <td style="padding-left: 18px"><strong class="text-white badge badge-info">{{ $transaction->payment_status }}</strong></td>
                                     @endif
+                                    <td style="padding-left: 25px">{{ $transaction->total_price }}</td>
                             </tr>
                             @endforeach
                         </tbody>
