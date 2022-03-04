@@ -50,7 +50,7 @@
 				<a href="index.html">{{ Auth::user()->roles }} Buana Store</a>
 			</div>
 			<div class="sidebar-brand sidebar-brand-sm">
-				<a href="index.html">UBS</a>
+				<a href="index.html">CBS</a>
 			</div>
           	<ul class="sidebar-menu">
 				<li class="text-center">
@@ -71,16 +71,13 @@
 				<li class="nav-item">
 					<a href="{{ route('cart') }}" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Keranjang</span></a>
 				</li>
-				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fas fa-store"></i> <span>Pesanan</span></a>
-				</li>
 				<li class="menu-header">Transaksi</li>
 				<li class="nav-item">
 					<a href="{{ route('transaction-customer.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Daftar Transaksi</span></a>
 				</li>
 				<li class="menu-header">Management Akun</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fas fa-user"></i> <span>Profile</span></a>
+					<a href="{{ route('profile-customer.index') }}" class="nav-link"><i class="fas fa-user"></i> <span>Profile</span></a>
 				</li>
 				<li class="nav-item">
 					<a href="#" class="nav-link" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt"></i> <span>Keluar</span></a>

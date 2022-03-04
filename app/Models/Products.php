@@ -13,7 +13,17 @@ class Products extends Model
     use HasFactory, SoftDeletes, Sluggable;
 
     protected $fillable = [
-        'categories_id', 'users_id', 'code', 'name_product', 'slug', 'price', 'discount', 'discount_amount', 'description',
+        'categories_id',
+        'users_id',
+        'code',
+        'name_product',
+        'slug',
+        'price',
+        'discount',
+        'discount_amount',
+        'description',
+        'ongkir',
+        'ongkir_amount'
     ];
 
      public function sluggable(): array

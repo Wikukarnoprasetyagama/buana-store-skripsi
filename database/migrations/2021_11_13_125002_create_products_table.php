@@ -23,6 +23,8 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->boolean('discount')->default(false);
             $table->string('discount_amount')->default(0)->nullable();
+            $table->boolean('ongkir')->default(false);
+            $table->string('ongkir_amount')->default(0)->nullable();
             $table->longText('description');
             $table->softDeletes();
             $table->timestamps();

@@ -34,6 +34,9 @@
 							</tr>
 						</thead>
 						<tbody>
+							{{-- @php
+								$totalPrice = 0;
+							@endphp --}}
 							@foreach ($transactions as $transaction)
 							<tr>
 								<th scope="row">
@@ -64,7 +67,8 @@
 								</td>
 								<td>
 									<div class="form-group my-auto py-2" style="width: 130px">
-									<div class="price">Rp{{ number_format($transaction->total_price) }}</div>
+									{{-- <div class="price">Rp{{ number_format($transaction->total_price) }}</div> --}}
+									<div class="price">Rp{{ number_format($revenue) }}</div>
 									</div>
 								</td>
 								<td>
@@ -90,6 +94,9 @@
 									@endif
 								</td>
 							</tr>
+							{{-- @php
+								$totalPrice += $transaction->total_price + $code;
+							@endphp --}}
 							@endforeach
 						</tbody>
 					</table>

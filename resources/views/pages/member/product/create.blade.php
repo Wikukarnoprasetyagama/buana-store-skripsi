@@ -49,18 +49,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="slug" class="form-control-label">Slug</label>
-                                    <input type="text" id="slug" name="slug" value="{{ old('slug') }}" class="form-control @error('slug') is-invalid @enderror"/>
-                                    @error('slug') <div class="text-muted" required>{{ $message }}</div> @enderror
-                                    @error('slug')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div> --}}
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -87,7 +75,7 @@
                                 <div class="form-group">
                                     <label for="price" class="form-control-label">Kasih Diskon  / Tidak</label>
                                         <div class="form-group form-check py-2" id="checkbox">
-                                            <input type="checkbox" class="form-check-input" name="discount" value="1">
+                                            <input type="checkbox" class="form-check-input discount" name="discount" value="1">
                                             <label class="form-check-label" for="exampleCheck1">Kasih Diskon</label>
                                         </div>
                                 </div>
@@ -95,8 +83,26 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="discount_amount" class="form-control-label">Jumlah Discount</label>
-                                    <input disabled type="number" name="discount_amount" value="{{ old('discount_amount') }}" class="form-control inputDisabled @error('discount_amount') is-invalid @enderror"/>
+                                    <input disabled type="number" name="discount_amount" value="{{ old('discount_amount') }}" class="form-control inputDisabledDiscount @error('discount_amount') is-invalid @enderror"/>
                                     @error('discount_amount') <div class="text-muted" required>{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="ongkir">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ongkir" class="form-control-label">Free Ongkir  / Tidak</label>
+                                        <div class="form-group form-check py-2" id="checkbox">
+                                            <input type="checkbox" class="form-check-input ongkir" name="ongkir" value="1">
+                                            <label class="form-check-label" for="exampleCheck1">Kasih Ongkir</label>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ongkir_amount" class="form-control-label">Ongkos Kirim</label>
+                                    <input disabled type="number" name="ongkir_amount" value="{{ old('ongkir_amount') }}" class="form-control inputDisabledOngkir @error('ongkir_amount') is-invalid @enderror"/>
+                                    @error('ongkir_amount') <div class="text-muted" required>{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
@@ -133,11 +139,19 @@
 @push('after-script')
 
 <script>
-    $(".form-check-input").click(function(){
+    $(".discount").click(function(){
         if ($(this).prop('checked')) {
-            $('.inputDisabled').prop("disabled", false);
+            $('.inputDisabledDiscount').prop("disabled", false);
         } else {
-            $('.inputDisabled').prop("disabled", true);
+            $('.inputDisabledDiscount').prop("disabled", true);
+        }
+    });
+
+    $(".ongkir").click(function(){
+        if ($(this).prop('checked')) {
+            $('.inputDisabledOngkir').prop("disabled", false);
+        } else {
+            $('.inputDisabledOngkir').prop("disabled", true);
         }
     });
 </script>

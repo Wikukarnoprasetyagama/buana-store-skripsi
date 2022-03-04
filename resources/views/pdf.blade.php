@@ -30,18 +30,13 @@
 			border: none;
 		}
 	</style>
-	{{-- <center>
-		<h3>Buana Store</h3>
-		<h5>Laporan Transaksi Pembelian</h4>
-		<h6><a target="_blank" href="https://buanastore.wikukarno.id">www.buanastore.id</a></h5>
-	</center> --}}
 	<section class="section-pdf-header text-center mt-1">
 		<div class="media">
 			<img src="{{ $pic }}" class="img-fluid" style="max-height: 50px" alt="Logo">
 		</div>
 		<div class="title-transaction">
 			<h3>BUANASTORE</h3>
-			<h5>DATA LAPORAN TRANSAKSI</h5>
+			<h5>DATA LAPORAN TRANSAKSI {{ Auth::user()->roles }}</h5>
 			<p>An. {{ Auth::user()->name }}</p>
 		</div>
 	</section>

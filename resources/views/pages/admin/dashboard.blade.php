@@ -48,7 +48,7 @@
                     <h4>BALANCE</h4>
                   </div>
                   <div class="card-body">
-                    $187,13
+                    Rp.{{ number_format($profit) }}
                   </div>
                 </div>
               </div>

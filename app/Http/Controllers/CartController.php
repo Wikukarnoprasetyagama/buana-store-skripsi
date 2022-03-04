@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Districts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -11,9 +12,13 @@ class CartController extends Controller
 {
     public function index()
     {
+        $code_unique = mt_rand(500, 999);
         $carts = Cart::with(['product.galleries', 'user'])->where('users_id', Auth::user()->id)->get();
+        $district = Districts::all();
         return view('cart', [
-            'carts' => $carts
+            'carts' => $carts,
+            'districts' => $district,
+            'code_unique' => $code_unique
         ], compact('carts'));
     }
 

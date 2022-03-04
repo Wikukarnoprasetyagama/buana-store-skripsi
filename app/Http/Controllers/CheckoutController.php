@@ -61,6 +61,7 @@ class CheckoutController extends Controller
             'street' => $request->street,
             'village' => $request->village,
             'address' => $request->address,
+            'code_unique' => $request->code_unique,
         ], $data);
         $this->getSnapRedirect($transaction);
 

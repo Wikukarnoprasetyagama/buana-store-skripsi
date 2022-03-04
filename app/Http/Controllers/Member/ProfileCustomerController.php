@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileCustomerController extends Controller
 {
@@ -14,7 +16,10 @@ class ProfileCustomerController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        return view('pages.member.profile.customer', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -57,7 +62,10 @@ class ProfileCustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('pages.member.profile.edit-customer', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -69,7 +77,26 @@ class ProfileCustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $user = User::findOrFail($id);
+        
+        $file_photo = $request->file('photo_profile');
+
+        if($file_photo) //jika foto tidak di update
+        {
+            $filename = $file_photo->getClientOriginalName();
+            $data['photo_profile'] = $filename;
+            $data['photo_profile'] = $request->file('photo_profile')->store(
+                'assets/profile',
+                'public'
+            );
+            $proses = $file_photo->move('assets/profile', 'public');
+        } 
+        
+
+        $user->update($data);
+
+        return redirect()->route('profile-customer.index');
     }
 
     /**

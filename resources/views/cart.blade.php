@@ -79,7 +79,7 @@
                   </td>
                 </tr>
                 @php
-                    $totalPrice += $cart->product->price * $cart->quantity
+                    $totalPrice += $cart->product->price * $cart->quantity + $cart->product->ongkir_amount;
                 @endphp
                 @endforeach
               </tbody>
@@ -98,62 +98,80 @@
           </div>
           <form action="{{ route('checkout') }}" class="mt-3" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="code_unique" value="{{ $code_unique }}">
             <input type="hidden" name="total_price" value="{{ $totalPrice }}">
             <input type="hidden" name="products_id" value="{{ $cart->products_id }}">
             <input type="hidden" name="code" value="{{ $cart->product->code }}">
             <input type="hidden" name="quantity" value="{{ $cart->quantity }}">
             <div class="row">
               <div class="col-12 col-md-4 mb-3">
-                <label for="village" class="form-label">Nama Desa</label>
+                <label for="village" class="form-label">Nama Kecamatan</label>
+                <input type="text" name="district" class="form-control" value="Tapung Hilir" disabled>
+              </div>
+              <div class="col-12 col-md-4 mb-3">
+                <label for="village" class="form-label">Nama Desa*</label>
                 <input
                   type="text"
                   name="village"
                   class="form-control"
                   id="village"
-                  placeholder="Tanah Tinggi"
+                  required
                 />
               </div>
               <div class="col-12 col-md-4 mb-3">
-                <label for="street" class="form-label">Nama Jalan</label>
+                <label for="street" class="form-label">Nama Jalan*</label>
                 <input
                   type="text"
                   name="street"
                   class="form-control"
                   id="street"
-                  placeholder="Purbaya"
-                />
-              </div>
-              <div class="col-12 col-md-4 mb-3">
-                <label for="name" class="form-label">Nama Penerima</label>
-                <input
-                  type="text"
-                  name="name"
-                  class="form-control"
-                  id="name"
-                  placeholder="Wiku Karno"
+                  required
                 />
               </div>
             </div>
             <div class="row">
-              <div class="col-12 col-md-4">
+              <div class="col-12 col-md-3 mb-3">
+                <label for="rtrw" class="form-label">RT / RW*</label>
+                <input
+                  type="text"
+                  name="rtrw"
+                  class="form-control"
+                  id="rtrw"
+                  required
+                />
+              </div>
+              <div class="col-12 col-md-3">
                 <label for="phone" class="form-label">Nomor Hp *aktif</label>
                 <input
                   type="number"
                   name="phone"
                   class="form-control"
                   id="phone"
-                  placeholder="087831247352"
+                  required
                 />
               </div>
-              <div class="col-12 col-md-8">
-                <label for="address" class="form-label">Alamat Lengkap</label>
+              <div class="col-12 col-md-6">
+                <label for="name" class="form-label">Nama Penerima*</label>
                 <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  id="name"
+                  required
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-12">
+                <label for="address" class="form-label">Alamat Lengkap*</label>
+                <textarea
                   type="text"
                   name="address"
                   class="form-control"
                   id="address"
                   placeholder="Rumah, kos / kontrakan, warna rumah, dll."
-                />
+                  required
+                ></textarea>
               </div>
             </div>
             </div>
@@ -173,23 +191,29 @@
                                 <tr>
                                   <div class="form-group name-product bg-danger">
                                     <th width="100%">{{ $cart->product->name_product }}</th>
-                                    <td width="50%" class="text-end">{{ number_format($cart->product->price * $cart->quantity) }}</td>
+                                    <td width="50%" class="text-end">Rp.{{ number_format($cart->product->price * $cart->quantity) }}</td>
                                   </div>
                                 </tr>
                                 @php
-                                    $totalPrice += $cart->product->price * $cart->quantity
+                                    $totalPrice += $cart->product->price * $cart->quantity + $cart->product->ongkir_amount + $code_unique; 
                                 @endphp
                             @endforeach
                             <tr>
                               <div class="form-group">
                                 <th width="50%">Ongkos Kirim</th>
-                                <td width="50%" class="text-end">7K</td>
+                                <td width="50%" class="text-end">Rp.{{ number_format($cart->product->ongkir_amount) }}</td>
                               </div>
                             </tr>
                             <tr>
                               <div class="form-group">
                                 <th width="50%">Diskon</th>
                                 <td width="50%" class="text-end">-</td>
+                              </div>
+                            </tr>
+                            <tr>
+                              <div class="form-group">
+                                <th width="50%">Kode Unik</th>
+                                <td width="50%" class="text-end text-success">{{ $code_unique }}</td>
                               </div>
                             </tr>
                           </table>
@@ -220,14 +244,13 @@
                     alamat tujuan sudah benar.
                   </p>
                 </div>
-                <div class="d-grid gap-2">
-                  <a href="#" class="btn btn-cod" type="submit">Bayar Ditempat</a>
+                <div class="d-grid gap-2 mt-5">
                   <button type="submit" class="btn btn-otomatis"
-                    >Bayar Otomatis</
+                    >Bayar Sekarang</
                   >
                 </div>
                 <div class="step-payment mt-2">
-                  <a href="#">cara pembayaran otomatis?</a>
+                  <a href="#">cara pembayaran?</a>
                 </div>
               </div>
             </div>

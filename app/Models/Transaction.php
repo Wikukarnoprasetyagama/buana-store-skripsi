@@ -23,6 +23,7 @@ class Transaction extends Model
         'order_id',
         'code_product',
         'quantity',
+        'code_unique',
         'total_price',
         'payment_status',
         'midtrans_url',

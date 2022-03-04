@@ -22,6 +22,8 @@ use App\Http\Controllers\DetailProductsController;
 use App\Http\Controllers\Member\DashboardController;
 use App\Http\Controllers\Member\PdfCustomerController;
 use App\Http\Controllers\Member\ProductController;
+use App\Http\Controllers\Member\ProfileCustomerController;
+use App\Http\Controllers\Member\ProfileSellerController;
 use App\Http\Controllers\Member\TransactionCustomerController;
 use App\Http\Controllers\Member\TransactionSellerController;
 use App\Http\Controllers\RewardsController;
@@ -89,6 +91,8 @@ Route::prefix('/pages/dashboard/customer')
             Route::get('/cetak-laporan-transaksi', [TransactionCustomerController::class, 'cetak_pdf'])->name('pdf-transaction-customer');
             Route::resource('open-store', OpenStoreController::class);
             Route::resource('transaction-customer', TransactionCustomerController::class);
+            Route::resource('profile-customer', ProfileCustomerController::class);
+            Route::resource('profile-seller', ProfileSellerController::class);
 });
 
 

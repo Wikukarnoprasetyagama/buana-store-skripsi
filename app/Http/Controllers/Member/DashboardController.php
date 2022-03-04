@@ -12,13 +12,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $item = User::count();
+        $order = Transaction::all()->where('products_id', Auth::user()->id)->sortBy('created_at')->take(5);
         $invoices = Transaction::all()->where('users_id', auth()->id())->take(5);
         $product = Products::all()->where('users_id', auth()->id())->count();
         $cart = Cart::all()->where('users_id', auth()->id())->count();
         $transaction = Transaction::where('users_id', Auth::user()->id);
+        $profit = Transaction::where('payment_status', 'DIBAYAR')->sum('total_price');
         $revenue = $transaction->get()->reduce(function($carry, $item) {
             return $carry + $item->total_price;
         });
@@ -29,7 +31,8 @@ class DashboardController extends Controller
             'transaction' => $transaction->count(),
             'revenue' => $revenue,
             'invoices' => $invoices,
-            // 'detail' => UserDetails::where('status', 'PENDING', Auth::user()->users_id)->get()
+            'orders' => $order,
+            'profit' => $profit,
         ]);
     }
 }
