@@ -12,7 +12,7 @@
                     <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h3 class="mb-0 text-gray-800">Data Transaksi Saya</h3>
-                        <a href="{{ route('pdf-transaction-customer')}}" class="btn btn-success shadow-sm">
+                        <a href="{{ route('pdf-my-transaction')}}" class="btn btn-success shadow-sm">
                             <i class="fas fa-print fa-sm text-white-50"></i>
                             Cetak Transaksi
                         </a>
@@ -34,12 +34,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @php
+                                    {{-- @php
                                             $no = 1;
-                                    @endphp
+                                    @endphp --}}
                                     @foreach ($transactions as $transaction)
                                         <tr>
-                                            <td style="padding-left: 30px">{{ $no++ }}</td>
+                                            <td style="padding-left: 30px">{{ $loop->iteration }}</td>
                                             <td style="padding-left: 25px">{{ $transaction->name }}</td>
                                             <td style="padding-left: 25px">{{ $transaction->code_product }}</td>
                                             <td style="padding-left: 25px">{{ $transaction->product->name_product }}</td>

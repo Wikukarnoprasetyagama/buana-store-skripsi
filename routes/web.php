@@ -15,11 +15,13 @@ use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\TransactionAdminController;
 use App\Http\Controllers\Admin\VerificationController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CategoryProductsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Member\OpenStoreController;
 use App\Http\Controllers\DetailProductsController;
 use App\Http\Controllers\Member\DashboardController;
+use App\Http\Controllers\Member\MyTransactionController;
 use App\Http\Controllers\Member\PdfCustomerController;
 use App\Http\Controllers\Member\ProductController;
 use App\Http\Controllers\Member\ProfileCustomerController;
@@ -45,6 +47,7 @@ Route::get('/semua-kategori-produk', [CategoryProductsController::class, 'index'
 Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])->name('detail');
 Route::get('/penghargaan', [RewardsController::class, 'index'])->name('reward');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');
+Route::get('/kategori/{id}', [CategoryProductsController::class, 'detail'])->name('categories-detail');
 Route::get('/payment/success', [CheckoutController::class, 'callback']);
 Route::post('/payment/success', [CheckoutController::class, 'callback']);
 
@@ -79,8 +82,12 @@ Route::prefix('/pages/dashboard/seller')
         ->group(function(){
                 Route::get('/', [DashboardController::class, 'index'])->name('dashboard-seller');
                 Route::get('/pages/dashboard/seller/products-seller/checkSlug', [ProductController::class, 'checkSlug']);
+                Route::get('/cetak-laporan-transaksi', [TransactionSellerController::class, 'cetak_pdf'])->name('pdf-transaction-seller');
+                Route::get('/cetak-laporan-transaksi-saya', [TransactionSellerController::class, 'my_pdf'])->name('pdf-my-transaction');
                 Route::resource('products-seller', ProductController::class);
                 Route::resource('transaction-seller', TransactionSellerController::class);
+                Route::resource('my-transaction', MyTransactionController::class);
+                Route::resource('profile-seller', ProfileSellerController::class);
 });
 
 // customer
@@ -92,7 +99,7 @@ Route::prefix('/pages/dashboard/customer')
             Route::resource('open-store', OpenStoreController::class);
             Route::resource('transaction-customer', TransactionCustomerController::class);
             Route::resource('profile-customer', ProfileCustomerController::class);
-            Route::resource('profile-seller', ProfileSellerController::class);
+        //     Route::resource('profile-seller', ProfileSellerController::class);
 });
 
 

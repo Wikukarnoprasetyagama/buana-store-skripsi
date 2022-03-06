@@ -81,6 +81,26 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name_bank">Nama Bank</label>
+                                    <select class="form-control" id="name_bank" name="name_bank">
+                                        <option>BRI</option>
+                                        <option>BNI</option>
+                                        <option>Mandiri</option>
+                                        <option>BCA</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="account_number" class="form-control-label">Nomor Rekening</label>
+                                    <input type="number" name="account_number" value="{{ old('account_number') }}" class="form-control @error('account_number') is-invalid @enderror"/>
+                                    @error('account_number') <div class="text-muted" required>{{ $message }}</div> @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="address" class="form-control-label">Isi Alamat Lengkap Toko</label>
@@ -88,6 +108,16 @@
                                             class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
                                     @error('address') <div class="text-muted">{{ $message }}</div>@enderror
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7 information">
+                                <strong>Penting:</strong>
+                                <ul>
+                                    <li>Mohon untuk mengisi formulir pembukaan toko dengan data yang valid.</li>
+                                    <li>Nama pemilik rekening wajib sama dengan nama pemilik toko.</li>
+                                    <li>Data anda akan di proses paling lama 2 hari pada jam kerja.</li>
+                                </ul>
                             </div>
                         </div>
                         <div class="row mt-3">

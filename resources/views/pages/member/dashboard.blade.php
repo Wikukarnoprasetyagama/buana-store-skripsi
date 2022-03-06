@@ -110,7 +110,7 @@
                 <div class="card-header">
                   <h4>Invoices</h4>
                   <div class="card-header-action">
-                    <a href="{{ route('transaction-customer.index') }}" class="btn btn-danger">Selengkapnya <i class="fas fa-chevron-right"></i></a>
+                    <a href="{{ route('transaction-seller.index') }}" class="btn btn-danger">Selengkapnya <i class="fas fa-chevron-right"></i></a>
                   </div>
                 </div>
                 <div class="card-body p-0">
@@ -129,7 +129,7 @@
                             <td class="font-weight-600">{{ $order->name }}</td>
                             @if ($order->payment_status == 'PENDING')
                             <td><div class="badge badge-warning">{{ $order->payment_status }}</div></td>
-                            @elseif ($order->payment_status == 'SUCCESS')
+                            @elseif ($order->payment_status == 'DIBAYAR')
                                 <td><div class="badge badge-success">{{ $order->payment_status }}</div></td>
                             @elseif ($order->payment_status == 'FAILED')
                             <td><div class="badge badge-danger">{{ $order->payment_status }}</div></td>
@@ -176,7 +176,7 @@
                             <td class="font-weight-600">{{ $invoice->name }}</td>
                             @if ($invoice->payment_status == 'PENDING')
                             <td><div class="badge badge-warning">{{ $invoice->payment_status }}</div></td>
-                            @elseif ($invoice->payment_status == 'SUCCESS')
+                            @elseif ($invoice->payment_status == 'DIBAYAR')
                                 <td><div class="badge badge-success">{{ $invoice->payment_status }}</div></td>
                             @elseif ($invoice->payment_status == 'FAILED')
                             <td><div class="badge badge-danger">{{ $invoice->payment_status }}</div></td>

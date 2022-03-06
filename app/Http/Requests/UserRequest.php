@@ -31,6 +31,8 @@ class UserRequest extends FormRequest
             'name_store' => 'string',   
             'phone' => 'integer',    
             'photo_shop' => 'string',
+            'name_bank' => 'string',
+            'account_number' => 'string',
             'village' => 'string',  
             'street' => 'string',  
             'address' => 'string',  

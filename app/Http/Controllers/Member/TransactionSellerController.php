@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
+use PDF;
 
 class TransactionSellerController extends Controller
 {
@@ -16,21 +18,14 @@ class TransactionSellerController extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $query = Transaction::with(['user', 'product']);
+        $transaction = Transaction::whereHas('product', function($product) {
+            $product->where('users_id', auth()->id());
+        })->orderBy('created_at', 'asc')->get();
 
-            return DataTables::of($query)
-                    ->addColumn('action', function($item){
-                        return '
-                        <div class="action">
-                        <a href="' . route('transaction-seller.store', $item->id) . '" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                        </div>
-                        ';
-                    })
-                    ->rawColumns(['action'])
-                    ->make();
-        }
-        return view('pages.member.transaction.seller');
+        return view('pages.member.transaction.seller', [
+            'transactions' => $transaction
+        ], compact('transaction'));
+        
     }
 
     /**
@@ -97,5 +92,58 @@ class TransactionSellerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cetak_pdf()
+    {   
+        $path = base_path('/public/images/logo.png');
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+        // $transaction = Transaction::all()->whereIn('users_id', Auth::user()->id);
+        $transaction = Transaction::whereHas('product', function($product) {
+            $product->where('users_id', auth()->id());
+        })->orderBy('created_at', 'asc')->get();
+        $revenue = $transaction->reduce(function($carry, $item) {
+            return $carry + $item->total_price;
+        });
+        // return view('pdf', [
+        //     'transactions' => $transaction,
+        //     'revenue' => $revenue,
+        // ], compact('pic'));
+        $pdf= PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pdf-transaction-customer', [
+            'transactions' => $transaction,
+            'revenue' => $revenue,
+        ], compact('pic'))->setPaper('a4', 'landscape');
+        // return $pdf->stream();
+        return $pdf->download('laporan-transasaksi-seller.pdf');
+    }
+
+
+    public function my_pdf()
+    {   
+        $path = base_path('/public/images/logo.png');
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+        $transaction = Transaction::all()->whereIn('users_id', Auth::user()->id);
+        // $transaction = Transaction::whereHas('product', function($product) {
+        //     $product->where('users_id', auth()->id());
+        // })->orderBy('created_at', 'asc')->get();
+        $revenue = $transaction->reduce(function($carry, $item) {
+            return $carry + $item->total_price;
+        });
+        // return view('pdf', [
+        //     'transactions' => $transaction,
+        //     'revenue' => $revenue,
+        // ], compact('pic'));
+        $pdf= PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pdf-my-transaction', [
+            'transactions' => $transaction,
+            'revenue' => $revenue,
+        ], compact('pic'))->setPaper('a4', 'landscape');
+        // return $pdf->stream();
+        return $pdf->download('laporan-transasaksi-saya.pdf');
     }
 }

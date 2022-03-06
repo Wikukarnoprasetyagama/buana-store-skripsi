@@ -1,36 +1,101 @@
 .section-category {
-  margin-top: 90px;
-  h3 {
-    font-family: "Merriweather";
-    font-size: 32px;
-    font-weight: 600;
-    color: #1e124c;
-  }
-  p {
-    color: #5b5575;
-  }
-  .next-category {
-    color: #11ac6a;
-    font-weight: 400;
-    font-size: 18px;
-    text-decoration: none;
-
-    &:hover {
-      color: #11ac6a;
-      font-weight: 400;
-      font-size: 18px;
-      text-decoration: underline;
-    }
-  }
-  .bg-category {
-    background-color: #e5e5e5;
-    border-radius: 8px;
-    a {
-      text-decoration: none;
-      color: #212529;
+    margin-top: 90px;
+    h3 {
+        font-family: "Merriweather";
+        font-size: 32px;
+        font-weight: 600;
+        color: #1e124c;
     }
     p {
-      font-size: 18px;
+        color: #5b5575;
     }
-  }
+    .next-category {
+        color: #11ac6a;
+        font-weight: 400;
+        font-size: 18px;
+        text-decoration: none;
+
+        &:hover {
+            color: #11ac6a;
+            font-weight: 400;
+            font-size: 18px;
+            text-decoration: underline;
+        }
+    }
+    .bg-category {
+        background-color: #e5e5e5;
+        border-radius: 8px;
+        a {
+            text-decoration: none;
+            color: #212529;
+        }
+        p {
+            font-size: 18px;
+        }
+    }
+}
+
+.section-product-category {
+    margin-top: 50px;
+    h3 {
+        font-family: "Merriweather";
+        font-size: 32px;
+        font-weight: 600;
+        color: #1e124c;
+    }
+    p {
+        color: #5b5575;
+    }
+    .price {
+        color: #ff6b44;
+    }
+    .next-category {
+        color: #11ac6a;
+        font-weight: 400;
+        font-size: 18px;
+        text-decoration: none;
+
+        &:hover {
+            color: #11ac6a;
+            font-weight: 400;
+            font-size: 18px;
+            text-decoration: underline;
+        }
+    }
+
+    .name-product {
+        color: #0c0d36;
+        font-size: 20px;
+        font-weight: 500;
+        margin-top: -10px;
+    }
+    figure {
+        position: relative;
+        .product-img {
+            .discount-image {
+                position: absolute;
+                top: 0;
+                left: auto;
+                right: 0;
+                padding-bottom: 100px;
+                // max-height: 50px;
+            }
+        }
+        .discount-badge {
+            position: absolute;
+            display: inline-block;
+            min-width: 2em;
+            top: 9px;
+            right: 5px;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            color: #fff;
+        }
+    }
+    img {
+        border-radius: 8px;
+        background-size: cover;
+    }
 }

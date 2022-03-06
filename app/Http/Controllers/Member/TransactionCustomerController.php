@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PDF;
@@ -22,7 +20,7 @@ class TransactionCustomerController extends Controller
         $transaction = Transaction::where('users_id', Auth::user()->id)->get();
         return view('pages.member.transaction.customer', [
             'transactions' => $transaction
-        ]);
+        ], compact('transaction'));
     }
 
     /**
@@ -109,7 +107,7 @@ class TransactionCustomerController extends Controller
         //     'transactions' => $transaction,
         //     'revenue' => $revenue,
         // ], compact('pic'));
-        $pdf= PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pdf', [
+        $pdf= PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pdf-transaction-customer', [
             'transactions' => $transaction,
             'revenue' => $revenue,
         ], compact('pic'))->setPaper('a4', 'landscape');

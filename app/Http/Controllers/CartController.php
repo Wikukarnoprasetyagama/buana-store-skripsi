@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Districts;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -15,10 +16,19 @@ class CartController extends Controller
         $code_unique = mt_rand(500, 999);
         $carts = Cart::with(['product.galleries', 'user'])->where('users_id', Auth::user()->id)->get();
         $district = Districts::all();
+        // $fee = Products::sum('discount_amount', Auth::user()->id);
+        $fee = $carts->reduce(function($carry, $item) {
+            return $carry + $item->product->discount_amount;
+        });
+        $ongkir = $carts->reduce(function($carry, $item) {
+            return $carry + $item->product->ongkir_amount;
+        });
         return view('cart', [
             'carts' => $carts,
             'districts' => $district,
-            'code_unique' => $code_unique
+            'code_unique' => $code_unique,
+            'fee' => $fee,
+            'ongkir' => $ongkir
         ], compact('carts'));
     }
 

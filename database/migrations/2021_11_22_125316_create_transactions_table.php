@@ -20,7 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->string('order_id')->nullable();
             $table->string('code_product');
             $table->integer('quantity')->default(1);
-            $table->integer('code_unique');
+            $table->integer('code_unique')->nullable();
             $table->integer('total_price');
             $table->string('payment_status')->default('Menunggu');
             $table->string('name')->nullable();

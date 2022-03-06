@@ -13,9 +13,15 @@
 				@endif
             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="features-profile.html" class="dropdown-item has-icon">
-                <i class="fas fa-user"></i> Profile
-              </a>
+              @if (Auth::user()->role == 'SELLER')
+                  <a href="{{ route('profile-seller.index') }}" class="dropdown-item has-icon">
+                    <i class="fas fa-user"></i> Profile
+                  </a>
+              @else
+                  <a href="{{ route('profile-customer.index') }}" class="dropdown-item has-icon">
+                    <i class="fas fa-user"></i> Profile
+                  </a>
+              @endif
               <div class="dropdown-divider"></div>
               <a href="#" class="dropdown-item has-icon text-danger" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-sign-out-alt"></i> Logout

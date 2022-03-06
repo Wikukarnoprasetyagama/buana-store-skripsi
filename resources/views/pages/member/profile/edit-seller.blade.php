@@ -12,7 +12,7 @@
                     <div class="d-flex align-items-center justify-content-between mb-4 pt-5">
                         <h1 class="h3 mb-0 text-gray-800">Profile Saya</h1>
                     </div>
-                    <form action="{{ route('profile-customer.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('profile-seller.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="row">
@@ -62,7 +62,7 @@
                                 <div class="row mt-5">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <a href="{{ route('profile-customer.index') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
+                                            <a href="{{ route('profile-seller.index') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

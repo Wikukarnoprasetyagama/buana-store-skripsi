@@ -73,7 +73,7 @@
           @endphp
           @foreach ($categories as $category)
           <div class="col-4 col-lg-2 text-center mb-2">
-            <a href="#">
+            <a href="{{ route('categories-detail', $category->slug) }}">
               <div class="bg-category" data-aos="zoom-in" data-aos-delay="{{ $incerementCategory +=100 }}">
                 <figure class="figure pt-3">
                   <img src="{{ Storage::url($category->photo) }}" class="img-fluid" alt="" />

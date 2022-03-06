@@ -79,7 +79,10 @@
                   </td>
                 </tr>
                 @php
-                    $totalPrice += $cart->product->price * $cart->quantity + $cart->product->ongkir_amount;
+                    // $totalPrice += $cart->product->price * $cart->quantity + $cart->product->ongkir_amount;
+                  $total = $cart->product->price * $cart->quantity + $cart->product->ongkir_amount; 
+                  $discount = (($total * $cart->product->discount_amount) / 100);
+                  $totalPrice = $total - $discount;
                 @endphp
                 @endforeach
               </tbody>
@@ -98,7 +101,11 @@
           </div>
           <form action="{{ route('checkout') }}" class="mt-3" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="code_unique" value="{{ $code_unique }}">
+            @if ($discount == true)
+                <input type="hidden" name="code_unique" value="0">
+                @elseif($discount == true || $discount == false)
+                <input type="hidden" name="code_unique" value="{{ $code_unique }}">
+            @endif
             <input type="hidden" name="total_price" value="{{ $totalPrice }}">
             <input type="hidden" name="products_id" value="{{ $cart->products_id }}">
             <input type="hidden" name="code" value="{{ $cart->product->code }}">
@@ -195,25 +202,39 @@
                                   </div>
                                 </tr>
                                 @php
-                                    $totalPrice += $cart->product->price * $cart->quantity + $cart->product->ongkir_amount + $code_unique; 
+                                    $total = $cart->product->price * $cart->quantity + $cart->product->ongkir_amount; 
+                                    // $discount = (($cart->product->price * $cart->quantity * $cart->product->discount_amount) / 100);
+                                    $discount = (($total * $cart->product->discount_amount) / 100);
+                                    // $totalPrice = $total - $discount + $code_unique;
+                                    if ($cart->product->discount_amount == true) {
+                                      $totalPrice = $total - $discount;
+                                    }elseif ($cart->product->discount_amount == true || $cart->product->discount_amount == 0) {
+                                      $totalPrice = $total - $discount + $code_unique;
+                                    }
                                 @endphp
                             @endforeach
                             <tr>
                               <div class="form-group">
                                 <th width="50%">Ongkos Kirim</th>
-                                <td width="50%" class="text-end">Rp.{{ number_format($cart->product->ongkir_amount) }}</td>
+                                <td width="50%" class="text-end">Rp.{{ number_format($ongkir) }}</td>
+                                {{-- <td width="50%" class="text-end">Rp.{{ number_format($cart->product->ongkir_amount) }}</td> --}}
                               </div>
                             </tr>
                             <tr>
                               <div class="form-group">
                                 <th width="50%">Diskon</th>
-                                <td width="50%" class="text-end">-</td>
+                                <td width="50%" class="text-end"><strong class="text-warning">{{ $fee }}%</strong></td>
+                                {{-- <td width="50%" class="text-end"><strong class="text-warning">{{ $cart->product->discount_amount }}%</strong></td> --}}
                               </div>
                             </tr>
                             <tr>
                               <div class="form-group">
                                 <th width="50%">Kode Unik</th>
-                                <td width="50%" class="text-end text-success">{{ $code_unique }}</td>
+                                @if ($discount == true)
+                                <td width="50%" class="text-end"><strong class="text-success"> - </strong></td>
+                                @elseif ($discount == true || $discount == 0)
+                                <td width="50%" class="text-end"><strong class="text-success">{{ $code_unique }}</strong></td>
+                                @endif
                               </div>
                             </tr>
                           </table>
@@ -270,7 +291,7 @@
                 </figure>
                 <div class="description mt-3">
                     <h3>Belum ada Produk dikeranjang!</h3>
-                    Tidak ada member yang perlu di verifikasi
+                    Keranjangmu masih kosong nih, yuk belanja sekarang!
                 </div>
                 <div class="add-slider mt-4">
                     <a href="{{ route('home')}}" class="btn btn-get-product btn-lg shadow-sm">

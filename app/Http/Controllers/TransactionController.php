@@ -11,14 +11,20 @@ class TransactionController extends Controller
     public function index(Request $request)
     {
         // $code = $request->code_unique;
+        $payment = Transaction::all();
         $transactions = Transaction::with(['product', 'user'])->where('users_id', Auth::id())->get();
-        $revenue = $transactions->reduce(function($carry, $item) {
-            return $carry + $item->total_price + $item->code_unique;
-        });
+        // $total = $payment->reduce(function($carry, $item) {
+        //     if ($item->code_unique == true || $item->code_unique == false) {
+        //         return $carry + $item->total_price + $item->code_unique;
+        //     }elseif ($item->code_unique == false) {
+        //         return $carry + $item->total_price;
+        //     }
+        // });
+        // dd($total);
         return view('transaction', [
             'transactions' => $transactions,
-            'revenue' => $revenue,
+            // 'total' => $total,
             // 'code' => $code
-        ]);
+        ], compact('transactions'));
     }
 }

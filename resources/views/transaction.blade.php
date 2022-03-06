@@ -34,9 +34,6 @@
 							</tr>
 						</thead>
 						<tbody>
-							{{-- @php
-								$totalPrice = 0;
-							@endphp --}}
 							@foreach ($transactions as $transaction)
 							<tr>
 								<th scope="row">
@@ -67,8 +64,12 @@
 								</td>
 								<td>
 									<div class="form-group my-auto py-2" style="width: 130px">
-									{{-- <div class="price">Rp{{ number_format($transaction->total_price) }}</div> --}}
-									<div class="price">Rp{{ number_format($revenue) }}</div>
+										@if ($transaction->code_unique == true)
+											{{-- <div class="price">Rp{{ number_format($transaction->total_price) }}</div> --}}
+											<div class="price">Rp{{ number_format($transaction->total_price + $transaction->code_unique) }}</div>
+											@elseif($transaction->code_unique == false)
+											<div class="price">Rp{{ number_format($transaction->total_price) }}</div>
+										@endif
 									</div>
 								</td>
 								<td>
@@ -94,9 +95,6 @@
 									@endif
 								</td>
 							</tr>
-							{{-- @php
-								$totalPrice += $transaction->total_price + $code;
-							@endphp --}}
 							@endforeach
 						</tbody>
 					</table>
@@ -115,7 +113,7 @@
                     <img src="{{ url('/images/ic_empty_cart.svg') }}" class="img-fluid figure-img h-50 w-50" alt="">
                 </figure>
                 <div class="description mt-3">
-                    <h3>Belum ada Transaksi!</h3>
+                    <h1>Belum ada Transaksi!</h1>
                     Silahkan belanja terlebih dahulu.
                 </div>
                 <div class="add-slider mt-4">
@@ -140,7 +138,7 @@
         margin-top: 60px;
       }
 
-      h3{
+      h1{
           font-size: 32px;
           font-family: "Merriweather";
           font-weight: 600;

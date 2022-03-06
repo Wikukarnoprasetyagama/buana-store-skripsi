@@ -11,7 +11,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
           <li class="breadcrumb-item active my-auto" aria-current="page">
-            Kategori
+            Kategori 
           </li>
         </ol>
       </div>
@@ -26,18 +26,21 @@
           </div>
         </div>
         <div class="row mt-3">
+			@php
+				$incerementCategory = 0;
+			@endphp
           @foreach ($categories as $category)
-			<div class="col-4 col-lg-2 text-center mb-2 mb-4">
-				<a href="#">
-					<div class="bg-category" >
-						<figure class="figure pt-3">
-						<img src="{{ Storage::url($category->photo) }}" class="img-fluid" alt="" />
-						<p class="mt-2 d-none d-md-block d-lg-block">{{ $category->name_category }}</p>
-						</figure>
-					</div>
-				</a>
-          	</div>
-		  @endforeach
+          <div class="col-4 col-lg-2 text-center mb-2">
+            <a href="{{ route('categories-detail', $category->slug) }}">
+              <div class="bg-category" data-aos="zoom-in" data-aos-delay="{{ $incerementCategory +=100 }}">
+                <figure class="figure pt-3">
+                  <img src="{{ Storage::url($category->photo) }}" class="img-fluid" alt="" />
+                  <p class="mt-2 d-none d-md-block d-lg-block">{{ $category->name_category }}</p>
+                </figure>
+              </div>
+            </a>
+          </div>
+          @endforeach
         </div>
       </div>
     </section>

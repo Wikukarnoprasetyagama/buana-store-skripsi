@@ -28,11 +28,14 @@
 				</li>
 				<li class="menu-header">Transaksi</li>
 				<li class="nav-item">
-					<a href="{{ route('transaction-seller.index') }}" class="nav-link"><i class="fas fa-list"></i> <span>Daftar Transaksi</span></a>
+					<a href="{{ route('transaction-seller.index') }}" class="nav-link"><i class="fas fa-list"></i> <span>Transaksi Penjualan</span></a>
+				</li>
+				<li class="nav-item">
+					<a href="{{ route('my-transaction.index') }}" class="nav-link"><i class="fas fa-columns"></i> <span>Transaksi Saya</span></a>
 				</li>
 				<li class="menu-header">Seller Management</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fas fa-user"></i> <span>Akun Saya</span></a>
+					<a href="{{ route('profile-seller.index') }}" class="nav-link"><i class="fas fa-user"></i> <span>Akun Saya</span></a>
 				</li>
 				<div class="mt-3 mb-4 p-3 hide-sidebar-mini">
 					<a href="#" class="btn btn-danger btn-lg btn-block btn-icon-split" data-toggle="modal" data-target="#logoutModal">
