@@ -79,7 +79,7 @@ class CheckoutController extends Controller
         Cart::with('product', 'user')
                 ->where('users_id', Auth::user()->id)
                 ->delete();
-        return view('success');
+        return view('checkout-success');
     }
 
     public function getSnapRedirect(Transaction $transaction)
@@ -125,7 +125,7 @@ class CheckoutController extends Controller
             $paymentUrl = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
             $transaction->midtrans_url = $paymentUrl;
             $transaction->save();
-            return view('checkout-success', $paymentUrl) ;
+            return view('success', $paymentUrl) ;
         } catch (Exception $e) {
             return false;
         }
@@ -181,6 +181,6 @@ class CheckoutController extends Controller
         }
 
         $transaction->save();
-        return view('transaction');
+        return view('success');
     }
 }

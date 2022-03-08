@@ -26,6 +26,7 @@ class Transaction extends Model
         'code_unique',
         'total_price',
         'payment_status',
+        'shipping_status',
         'midtrans_url',
         'name',
         'phone',

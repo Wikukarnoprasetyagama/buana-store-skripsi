@@ -59,6 +59,27 @@
                         />
                     </div>
                 @endforeach
+				<div class="row">
+					<div class="col-12">
+						<div class="product-chat">
+							<figure class="figure d-flex">
+								<div class="product-img">
+									@if ($products->discount == true)
+										<div class="discount-image">
+											<img
+												src="{{ url('/images/ic_discount_empty.svg') }}"
+												class="align-items-end img-fluid"
+												alt=""
+											/>
+											<div class="discount-badge">{{ $products->discount_amount }}%</div>
+										</div>
+									@endif
+									{{-- <img src="{{ url('/images/ic_chat.svg') }}" class="img-fluid" alt="" /> --}}
+								</div>
+							</figure>
+						</div>
+					</div>
+				</div>
               </div>
               <button
                 class="carousel-control-prev"
@@ -98,11 +119,20 @@
 					<h5>{{ $products->name_product }}</h5>
 				</div>
 				<div class="price">Rp. {{ number_format($products->price) }}</div>
-				<div class="product-chat mt-3">
-					<img src="{{ url('/images/ic_chat.svg') }}" class="img-fluid" alt="" />
-				</div>
             	<form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data">
-              		@csrf
+					@csrf
+				<div class="row mt-4">
+					<div class="col-2">
+						<div class="mb-3">
+							<input type="number" name="quantity" class="form-control" min="1" value="1">
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="product-chat">
+							<img src="{{ url('/images/ic_chat.svg') }}" class="img-fluid" alt="" />
+						</div>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-12 col-lg-6">
 						<div class="d-grid gap-2 add-to-cart">
@@ -118,9 +148,6 @@
 										</a> 
 									@endif
 								@else
-									<button class="btn btn-buy-now" type="button">
-									  Beli Sekarang
-									</button>
 									<button class="btn btn-add-to-cart" type="submit">
 										Masuk Keranjang
 									</button>
@@ -193,8 +220,8 @@
     <!-- End Gallery -->
 @endsection
 
-{{-- @push('after-script') --}}
-    {{-- <script>
+{{-- @push('after-script')
+    <script>
       $(document).ready(function () {
         $('.btn-add-to-cart').click(function (e) { 
           e.preventDefault();
@@ -249,5 +276,5 @@
           }
         });
       });
-    </script> --}}
-{{-- @endpush --}}
+    </script>
+@endpush --}}

@@ -107,7 +107,8 @@
 					$incerementProduct = 0
 				@endphp
 				@forelse ($products as $product)
-					<div class="col-6 col-lg-3 mb-3" data-aos="zoom-in" data-aos-delay="{{ $incerementProduct += 100 }}">
+					@if ($product->user->status == "TERVERIFIKASI")
+              <div class="col-6 col-lg-3 mb-3" data-aos="zoom-in" data-aos-delay="{{ $incerementProduct += 100 }}">
 						<figure class="figure">
 						<div class="product-img">
 							<a href="{{ route('detail', $product->slug) }}">
@@ -134,6 +135,7 @@
 						<h4 class="name-product">{{ $product->name_product }}</h4>
 						<div class="price">Rp. {{ number_format($product->price) }}</div>
 					</div>
+          @endif
 				@empty
 				<div class="product-empty text-center pt-5">
 					<span>Belum ada produk!</span>

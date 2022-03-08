@@ -37,6 +37,25 @@
       </div>
     </div>
 
+    <!-- Modal Keterangan Aplikasi -->
+    <div class="modal fade" id="tentangAplikasi" tabindex="-1" aria-labelledby="tentangAplikasiLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tentangAplikasiLabel">Keterangan Tentang Aplikasi</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            Ini adalah sebuah project Aplikasi Skripsi yang saya buat, <br> dari Program Studi Teknik Informatika Universitas Islam Riau.
+            dengan judul <br> <strong>"Aplikasi Jual Beli Online Berbasis Web Menggunakan Midtrans Sebagai Verifikasi Pembayaran (Studi Kasus: Kecamatan Tapung Hilir, Kampar)"</strong>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   @include('includes.footer')
   @stack('before-script')

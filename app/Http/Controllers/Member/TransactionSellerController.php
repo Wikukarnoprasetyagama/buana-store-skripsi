@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TransactionRequest;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,7 +69,10 @@ class TransactionSellerController extends Controller
      */
     public function edit($id)
     {
-        return abort(404);
+        $transaction = Transaction::findOrFail($id);
+        return view('pages.member.transaction.edit', [
+            'transaction' => $transaction,
+        ]);
     }
 
     /**
@@ -78,9 +82,13 @@ class TransactionSellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TransactionRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $transaction = Transaction::findOrFail($id);
+        $transaction->update($data);
+
+        return redirect()->route('transaction-seller.index');
     }
 
     /**

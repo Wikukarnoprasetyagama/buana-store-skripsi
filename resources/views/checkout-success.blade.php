@@ -1,4 +1,4 @@
-@extends('layouts.detail')
+@extends('layouts.blank')
 
 @section('title')
     Checkout Berhasil
@@ -21,8 +21,8 @@
                   Segera lakukan pembayaran<br />
                   Agar barang dapat segera kami proses                </p>
               </figcaption>
-              <a href="{{ route('transaksi') }}" class="btn-lg btn btn-back"
-                >Transaksi</a
+              <a href="{{ route('transaction') }}" class="btn-lg btn btn-back"
+                >Lihat Transaksi Saya</a
               >
             </figure>
           </div>

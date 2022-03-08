@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ProductGalleriesController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\TransactionAdminController;
 use App\Http\Controllers\Admin\VerificationController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CategoryProductsController;
@@ -30,6 +31,8 @@ use App\Http\Controllers\Member\TransactionCustomerController;
 use App\Http\Controllers\Member\TransactionSellerController;
 use App\Http\Controllers\RewardsController;
 use App\Http\Controllers\TransactionController;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +48,7 @@ use App\Http\Controllers\TransactionController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/semua-kategori-produk', [CategoryProductsController::class, 'index'])->name('all-category');
 Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])->name('detail');
-Route::get('/penghargaan', [RewardsController::class, 'index'])->name('reward');
+Route::get('/hadiah', [RewardsController::class, 'index'])->name('reward');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');
 Route::get('/kategori/{id}', [CategoryProductsController::class, 'detail'])->name('categories-detail');
 Route::get('/payment/success', [CheckoutController::class, 'callback']);
@@ -58,6 +61,7 @@ Route::get('/auth/redirect', [LoginController::class, 'redirectToProvider']);
 
 // midtrans
 Route::post('/checkout/callback', [CheckoutController::class, 'callback'])->name('midtrans-callback');
+
 
 Route::prefix('/pages/dashboard/admin')
         ->middleware(['auth', 'admin'])

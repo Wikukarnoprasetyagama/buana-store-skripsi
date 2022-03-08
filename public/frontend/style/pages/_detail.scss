@@ -1,13 +1,13 @@
 .section-gallery {
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+    // input::-webkit-outer-spin-button,
+    // input::-webkit-inner-spin-button {
+    //     -webkit-appearance: none;
+    //     margin: 0;
+    // }
 
-    input[type="number"] {
-        -moz-appearance: textfield;
-    }
+    // input[type="number"] {
+    //     -moz-appearance: textfield;
+    // }
 
     .rating-product {
         .fa-star {
@@ -104,6 +104,31 @@
             color: #525252;
             font-size: 16px;
             font-weight: 400;
+        }
+    }
+    figure {
+        position: relative;
+        .product-img {
+            .discount-image {
+                position: absolute;
+                top: 0;
+                left: auto;
+                right: 0;
+                padding-bottom: 100px;
+                // max-height: 50px;
+            }
+        }
+        .discount-badge {
+            position: absolute;
+            display: inline-block;
+            min-width: 2em;
+            top: 9px;
+            right: 5px;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            color: #fff;
         }
     }
 }

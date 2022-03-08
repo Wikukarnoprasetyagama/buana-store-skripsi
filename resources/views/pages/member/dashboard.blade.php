@@ -120,6 +120,7 @@
                         <th>ID Pesanan</th>
                         <th>Nama</th>
                         <th>Status Pembayaran</th>
+                        <th>Status Pengiriman</th>
                         <th>Tanggal Pemesanan</th>
                         <th>Action</th>
                       </tr>
@@ -136,9 +137,16 @@
                             @else
                             <td><div class="badge badge-info">{{ $order->payment_status }}</div></td>
                             @endif
+                            @if ($order->shipping_status == 'PENDING')
+                            <td><div class="badge badge-warning">{{ $order->shipping_status }}</div></td>
+                            @elseif ($order->shipping_status == 'DIKIRIM')
+                                <td><div class="badge badge-info">{{ $order->shipping_status }}</div></td>
+                            @else
+                            <td><div class="badge badge-success">{{ $order->shipping_status }}</div></td>
+                            @endif
                             <td>{{ $order->created_at->isoFormat('D MMMM Y') }}</td>
                             <td>
-                              <a href="{{ route('transaction-customer.show', $order->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#invoice">Detail</a>
+                              <a href="{{ route('transaction-seller.edit', $order->id) }}" class="btn btn-primary">Detail</a>
                             </td>
                           </tr>
                       @endforeach

@@ -50,11 +50,25 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <label for="name_bank" class="form-label">Nama Bank</label>
+                                    <input type="text" name="name_bank" class="form-control" value="{{ $detail->name_bank }}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="account_number" class="form-label">Nomor Rekening</label>
+                                    <input type="text" name="account_number" class="form-control" value="{{ $detail->account_number }}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
                                     <label for="street" class="form-label">Nama Jalan</label>
                                     <input type="text" name="street" class="form-control" value="{{ $detail->street }}" disabled>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="address" class="form-label">Alamat Lengkap</label>
                                     <input type="text" name="address" class="form-control" value="{{ $detail->address }}" disabled>

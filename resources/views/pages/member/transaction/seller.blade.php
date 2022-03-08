@@ -31,6 +31,7 @@
                                     <th>Tanggal</th>
                                     <th>Status</th>
                                     <th>Harga</th>
+                                    <th>Aksi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -60,6 +61,9 @@
                                             <td style="padding-left: 18px"><strong class="text-white badge badge-info">{{ $transaction->payment_status }}</strong></td>
                                             @endif
                                             <td style="padding-left: 25px">{{ $transaction->total_price }}</td>
+                                            <td style="padding-left: 25px">
+                                                <a href="{{ route('transaction-seller.edit', $transaction->id) }}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                                            </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

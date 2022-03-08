@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
@@ -72,10 +73,9 @@ class RegisterController extends Controller
             'reg_status' => isset($data['reg_status']) ? $data['reg_status'] : 'MANUAL',
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    public function check(Request $request)
-    {
-        return User::where('email', $request->email)->count() > 0 ? 'Unavailable' : 'Available';
+        if ($data) {
+            Alert::success('Pendaftaran Berhasil!','Selamat Bergabung di Layanan Kami');
+            return redirect('/');
+        }
     }
 }

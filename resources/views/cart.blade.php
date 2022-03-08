@@ -122,6 +122,7 @@
                   name="village"
                   class="form-control"
                   id="village"
+                  oninvalid="this.setCustomValidity('kolom ini wajib di isi')" oninput="setCustomValidity('')"
                   required
                 />
               </div>
@@ -132,6 +133,7 @@
                   name="street"
                   class="form-control"
                   id="street"
+                  oninvalid="this.setCustomValidity('kolom ini wajib di isi')" oninput="setCustomValidity('')"
                   required
                 />
               </div>
@@ -144,6 +146,7 @@
                   name="rtrw"
                   class="form-control"
                   id="rtrw"
+                  oninvalid="this.setCustomValidity('kolom ini wajib di isi')" oninput="setCustomValidity('')"
                   required
                 />
               </div>
@@ -154,6 +157,7 @@
                   name="phone"
                   class="form-control"
                   id="phone"
+                  oninvalid="this.setCustomValidity('kolom ini wajib di isi')" oninput="setCustomValidity('')"
                   required
                 />
               </div>
@@ -164,6 +168,7 @@
                   name="name"
                   class="form-control"
                   id="name"
+                  oninvalid="this.setCustomValidity('kolom ini wajib di isi')" oninput="setCustomValidity('')"
                   required
                 />
               </div>
@@ -177,6 +182,7 @@
                   class="form-control"
                   id="address"
                   placeholder="Rumah, kos / kontrakan, warna rumah, dll."
+                  oninvalid="this.setCustomValidity('kolom ini wajib di isi')" oninput="setCustomValidity('')"
                   required
                 ></textarea>
               </div>
@@ -243,7 +249,7 @@
                             <table>
                               <tr>
                                 <div class="form-group">
-                                  <th width="90%">Total</th>
+                                  <th width="90%"><b>Total Pembayaran</b></th>
                                   <td width="10%" class="text-end">
                                     <strong>Rp.{{ number_format($totalPrice ?? 0) }}</strong>
                                   </td>
@@ -271,7 +277,7 @@
                   >
                 </div>
                 <div class="step-payment mt-2">
-                  <a href="#">cara pembayaran?</a>
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">cara pembayaran?</a>
                 </div>
               </div>
             </div>
@@ -306,7 +312,29 @@
     </section>
 
     @endif
-
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cara Melakukan Pembayaran!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li>Setelah klik bayar sekarang, maka slip pembayaran kamu akan langsung dibuat.</li>
+              <li>Jika pembayaran telah dibuat, kamu bisa langsung menuju kehalaman transaksi.</li>
+              <li>Pembayaran dapat dilakukan melalui transfer bank atau Indomaret</li>
+              <li>Pembayaran akan berakhir dalam 1x24 jam.</li>
+              <li>Selamat belanja!</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 @endsection
 
 @push('after-style')

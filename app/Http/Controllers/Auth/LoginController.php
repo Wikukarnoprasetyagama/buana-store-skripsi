@@ -58,11 +58,7 @@ class LoginController extends Controller
         $user = User::firstOrCreate(
             ['email' => $data['email']], $data);
         Auth::login($user, true);
-
-        if ($data) {
-            return redirect('/');
-            Alert::success('Berhasil Masuk!','Selamat Datang Kembali');
-        }
+        return redirect('/');
 
     }
 

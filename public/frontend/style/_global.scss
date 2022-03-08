@@ -66,3 +66,33 @@
         font-size: 16px;
     }
 }
+
+.section-password-reset-link {
+    margin-top: 5%;
+    button {
+        background: #a43ce3;
+        border-radius: 25px;
+        color: #fff;
+        font-size: 16px;
+
+        &:hover {
+            background: #8f30ca;
+            color: #fff;
+        }
+    }
+}
+
+.section-reset-password {
+    margin-top: 5%;
+    button {
+        background: #a43ce3;
+        border-radius: 25px;
+        color: #fff;
+        font-size: 16px;
+
+        &:hover {
+            background: #8f30ca;
+            color: #fff;
+        }
+    }
+}

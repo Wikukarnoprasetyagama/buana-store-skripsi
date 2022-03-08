@@ -31,6 +31,9 @@
             <a href="#">Syarat & Ketentuan</a>
             </li>
             <li>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#tentangAplikasi">Aplikasi</a>
+            </li>
+            <li>
             <a href="#">Karir</a>
             </li>
         </ul>
@@ -84,38 +87,15 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-2 col-md-2 col-lg-2">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                        <a href="#">
-                            <img
-                            src="{{ url('/images/ic_instagram.png') }}"
-                            class="img-fluid" style="max-height: 30px"
-                            alt=""
-                            />
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2 col-md-2 col-lg-2">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                        <a href="#">
-                            <img
-                            src="{{ url('/images/ic_facebook.png') }}"
-                            class="img-fluid" style="max-height: 30px"
-                            alt=""
-                            />
-                        </a>
-                    </div>
-                </div>
-            </div> --}}
         </div>
         </div>
     </div>
     </div>
-    <div class="mt-5 mb-3 text-center copyright">
-    2021 Copyright • All rights reserved • buanastore.com
+    <div class="mt-5 mb-3 text-center copyright"> 
+    Copyright
+    <script>
+        document.write(new Date().getFullYear());
+    </script> • All rights reserved • buanastore.com
     </div>
 </section>
 <!-- End Footer -->

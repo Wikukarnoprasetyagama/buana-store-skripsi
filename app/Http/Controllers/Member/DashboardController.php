@@ -18,7 +18,7 @@ class DashboardController extends Controller
         // $order = Transaction::all()->where('products_id', auth()->id())->sortBy('created_at')->take(5);
         $order = Transaction::whereHas('product', function($product) {
             $product->where('users_id', auth()->id());
-        })->orderBy('created_at', 'asc')->get();
+        })->orderBy('created_at', 'asc')->take(5)->get();
         $invoices = Transaction::all()->where('users_id', auth()->id())->take(5);
         $product = Products::all()->where('users_id', auth()->id())->count();
         $cart = Cart::all()->where('users_id', auth()->id())->count();

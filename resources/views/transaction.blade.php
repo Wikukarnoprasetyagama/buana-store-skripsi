@@ -30,6 +30,7 @@
 							<th scope="col">Jumlah</th>
 							<th scope="col">Total Harga</th>
 							<th scope="col">Status Pembayaran</th>
+							<th scope="col">Status Pengiriman</th>
 							<th scope="col">Aksi</th>
 							</tr>
 						</thead>
@@ -49,10 +50,34 @@
 								</th>
 								<td>
 									<div class="form-group my-auto py-1" style="width: 250px">
-									<div class="title-product">
-										{{ $transaction->product->name_product }}
+										<div class="title-product">
+											{{ $transaction->product->name_product }}
+										</div>
+										<div class="name-store">{{ $transaction->product->user->name_store }}
+											@if ($transaction->product->user->status == "DIBLOKIR")
+												<a href="#" data-bs-toggle="modal" data-bs-target="#diblokirModal" style="text-decoration: none;"><strong class="text-danger">{{ $transaction->product->user->status }}</strong></a>
+											@endif
+										</div>
 									</div>
-									<div class="name-store">{{ $transaction->product->user->name_store }}</div>
+									<!-- Modal DIBLOKIR -->
+									<div class="modal fade" id="diblokirModal" tabindex="-1" aria-labelledby="diblokirModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="diblokirModalLabel">Akun Toko Ini Diblokir</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												<p>
+													Akun Toko {{ $transaction->product->user->name_store }} telah diblokir oleh admin, <br>
+													Karena toko ini telah melanggar beberapa aturan kebijakan penggunaan. <br>
+												</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+											</div>
+											</div>
+										</div>
 									</div>
 								</td>
 								<td>
@@ -80,6 +105,17 @@
 										<div class="payment-status text-success">{{ $transaction->payment_status }}</div>
 										@else
 										<div class="payment-status text-info">{{ $transaction->payment_status }}</div>
+									@endif
+									</div>
+								</td>
+								<td>
+									<div class="form-group my-auto py-2" style="width: 130px">
+									@if ($transaction->shipping_status == 'PENDING')
+										<div class="shipping-status text-warning">{{ $transaction->shipping_status }}</div>
+										@elseif ($transaction->shipping_status == 'DIKIRIM' )
+										<div class="shipping-status text-info">{{ $transaction->shipping_status }}</div>
+										@else
+										<div class="shippig-status text-success">{{ $transaction->shipping_status }}</div>
 									@endif
 									</div>
 								</td>
@@ -127,9 +163,7 @@
         </div>
       </div>
     </section>
-
     @endif
-
 @endsection
 
 @push('after-style')

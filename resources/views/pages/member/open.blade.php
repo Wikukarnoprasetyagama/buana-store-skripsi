@@ -85,10 +85,10 @@
                                 <div class="form-group">
                                     <label for="name_bank">Nama Bank</label>
                                     <select class="form-control" id="name_bank" name="name_bank">
-                                        <option>BRI</option>
-                                        <option>BNI</option>
-                                        <option>Mandiri</option>
-                                        <option>BCA</option>
+                                        <option value="BRI">BRI</option>
+                                        <option value="BNI">BNI</option>
+                                        <option value="MANDIRI">Mandiri</option>
+                                        <option value="BCA">BCA</option>
                                     </select>
                                 </div>
                             </div>
