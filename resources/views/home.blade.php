@@ -22,9 +22,13 @@
                       <div class="title">
                         <span>Belanja Sepuasnya,</span>
                         <h1>
-                          Diskon <span>50 % </span> Untuk <br />
-                          <span>Member Baru </span>
+                          Dapatkan Diskon <span>20%</span> <br />
+                          di Setiap <span>Produk</span> Kami
                         </h1>
+                        {{-- <h1>
+                          Diskon <span>30 % </span> Untuk <br />
+                          <span>Member Baru </span>
+                        </h1> --}}
                       </div>
                       <p class="subtitle">
                         Jelajahi barang kebutuhan anda & dapatkan <br />

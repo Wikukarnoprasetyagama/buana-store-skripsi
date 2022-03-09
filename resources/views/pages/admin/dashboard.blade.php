@@ -62,10 +62,10 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>PRODUK</h4>
+                    <h4>SLIDER / BANNER</h4>
                   </div>
                   <div class="card-body">
-                    {{ $products }}
+                    {{ $sliders }}
                   </div>
                 </div>
               </div>

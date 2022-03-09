@@ -124,7 +124,7 @@
                         <th>Tanggal Pemesanan</th>
                         <th>Action</th>
                       </tr>
-                      @foreach ($orders as $order)
+                      @forelse ($orders as $order)
                           <tr>
                             <td>{{ $order->order_id }}</td>
                             <td class="font-weight-600">{{ $order->name }}</td>
@@ -149,7 +149,12 @@
                               <a href="{{ route('transaction-seller.edit', $order->id) }}" class="btn btn-primary">Detail</a>
                             </td>
                           </tr>
-                      @endforeach
+
+                      @empty
+                          <tr>
+                            <td colspan="6" class="text-center">Tidak ada data!</td>
+                          </tr>
+                      @endforelse
                     </table>
                   </div>
                 </div>
@@ -175,6 +180,7 @@
                         <th>ID Pesanan</th>
                         <th>Nama</th>
                         <th>Status Pembayaran</th>
+                        <th>Status Pegiriman</th>
                         <th>Tanggal Pemesanan</th>
                         <th>Action</th>
                       </tr>
@@ -190,6 +196,13 @@
                             <td><div class="badge badge-danger">{{ $invoice->payment_status }}</div></td>
                             @else
                             <td><div class="badge badge-info">{{ $invoice->payment_status }}</div></td>
+                            @endif
+                            @if ($invoice->shipping_status == 'PENDING')
+                            <td><div class="badge badge-warning">{{ $invoice->shipping_status }}</div></td>
+                            @elseif ($invoice->shipping_status == 'DIKIRIM')
+                                <td><div class="badge badge-info">{{ $invoice->shipping_status }}</div></td>
+                            @else
+                            <td><div class="badge badge-success">{{ $invoice->shipping_status }}</div></td>
                             @endif
                             <td>{{ $invoice->created_at->isoFormat('D MMMM Y') }}</td>
                             <td>
