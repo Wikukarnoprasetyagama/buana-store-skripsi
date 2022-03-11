@@ -222,25 +222,32 @@
                             <tr>
                               <div class="form-group">
                                 <th width="50%">Ongkos Kirim</th>
-                                <td width="50%" class="text-end">Rp.{{ number_format($ongkir) }}</td>
-                                {{-- <td width="50%" class="text-end">Rp.{{ number_format($cart->product->ongkir_amount) }}</td> --}}
+                                @if ($cart->product->ongkir == true)
+                                    <td width="50%" class="text-end">Rp.{{ number_format($ongkir) }}</td>
+                                    @else
+                                    <td width="50%" class="text-end text-info">Gratis</td>
+                                @endif
                               </div>
                             </tr>
                             <tr>
                               <div class="form-group">
                                 <th width="50%">Diskon</th>
-                                <td width="50%" class="text-end"><strong class="text-warning">{{ $fee }}%</strong></td>
-                                {{-- <td width="50%" class="text-end"><strong class="text-warning">{{ $cart->product->discount_amount }}%</strong></td> --}}
+                                @if ($cart->product->discount == true)
+                                    <td width="50%" class="text-end"><strong class="text-warning">{{ $fee }}%</strong></td>
+                                @else
+                                    <td width="50%" class="text-end"><strong class="text-warning"> - </strong></td>
+                                @endif
                               </div>
                             </tr>
                             <tr>
                               <div class="form-group">
                                 <th width="50%">Kode Unik</th>
-                                @if ($discount == true)
-                                <td width="50%" class="text-end"><strong class="text-success"> - </strong></td>
+                                {{-- @if ($discount == true)
+                                  <td width="50%" class="text-end"><strong class="text-success"> - </strong></td>
                                 @elseif ($discount == true || $discount == 0)
                                 <td width="50%" class="text-end"><strong class="text-success">{{ $code_unique }}</strong></td>
-                                @endif
+                                @endif --}}
+                                  <td width="50%" class="text-end"><strong class="text-success">{{ $code_unique }}</strong></td>
                               </div>
                             </tr>
                           </table>
