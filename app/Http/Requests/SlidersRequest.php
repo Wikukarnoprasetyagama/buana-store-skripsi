@@ -25,8 +25,8 @@ class SlidersRequest extends FormRequest
     {
         return [
             'photo' => 'required|image',
-            'title' => 'required|string',
-            'subtitle' => 'required|string'
+            'title' => 'string',
+            'subtitle' => 'string'
         ];
     }
 }

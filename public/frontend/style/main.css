@@ -110,33 +110,33 @@
   color: #fff;
 }
 
-.section-content-carousel .carousel-inner .carousel-item .title {
+.section-content-carousel .title {
   margin-top: 123px;
 }
 
-.section-content-carousel .carousel-inner .carousel-item .title span {
-  color: #11ac6a;
+.section-content-carousel .title span {
+  color: #169647;
   font-weight: 500;
 }
 
-.section-content-carousel .carousel-inner .carousel-item .title h1 {
+.section-content-carousel .title h1 {
   font-size: 42px;
   font-family: "Merriweather";
   font-weight: 600;
   color: #1e124c;
 }
 
-.section-content-carousel .carousel-inner .carousel-item .title h1 span {
+.section-content-carousel .title h1 span {
   color: #a43ce3;
   font-weight: 600;
 }
 
-.section-content-carousel .carousel-inner .carousel-item .subtitle {
+.section-content-carousel .subtitle {
   font-size: 16px;
   color: #5b5575;
 }
 
-.section-content-carousel .carousel-inner .carousel-item .btn-get-now {
+.section-content-carousel .btn-get-now {
   margin-top: 30px;
   background: #a43ce3;
   border-radius: 25px;
@@ -144,8 +144,14 @@
   font-size: 16px;
 }
 
-.section-content-carousel .carousel-inner .carousel-item .figure img {
+.section-content-carousel .figure img {
   margin-top: 80px;
+}
+
+.section-content-carousel .carousel .carousel-item .figure img {
+  margin-top: 100px;
+  max-height: 300px;
+  background-size: cover !important;
 }
 
 body {

@@ -9,52 +9,47 @@
     <section class="section-content-carousel">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-lg-12">
-            <div
-              id="carouselExampleSlidesOnly"
-              class="carousel slide"
-              data-bs-ride="carousel"
-            >
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="title">
-                        <span>Belanja Sepuasnya,</span>
-                        <h1>
-                          Dapatkan Diskon <span>20%</span> <br />
-                          di Setiap <span>Produk</span> Kami
-                        </h1>
-                        {{-- <h1>
-                          Diskon <span>30 % </span> Untuk <br />
-                          <span>Member Baru </span>
-                        </h1> --}}
-                      </div>
-                      <p class="subtitle">
-                        Jelajahi barang kebutuhan anda & dapatkan <br />
-                        diskon setiap bulannya
-                      </p>
-                      @guest
-                          <a href="{{ route('login') }}" class="btn btn-lg btn-get-now">Dapatkan Sekarang</a>
-                      @endguest
-                      @auth
-                          <a href="#product" class="btn btn-lg btn-get-now">Dapatkan Sekarang</a>
-                      @endauth
-                    </div>
-                    <div class="col-lg-4 offset-2 d-none d-lg-block">
-                      <figure class="figure">
-                        <img
-                          src="{{ url('/images/brand_image.svg') }}"
-                          class="img-figure img-fluid w-100"
-                          alt=""
-                        />
-                      </figure>
-                    </div>
+          <div class="col-lg-6">
+            <div class="title">
+              <span>Belanja Sepuasnya,</span>
+              <h1>
+                Dapatkan Diskon <span>20%</span> <br />
+                di Setiap <span>Produk</span> Kami
+              </h1>
+              {{-- <h1>
+                Diskon <span>30 % </span> Untuk <br />
+                <span>Member Baru </span>
+              </h1> --}}
+            </div>
+            <p class="subtitle">
+              Jelajahi barang kebutuhan anda & dapatkan <br />
+              diskon setiap bulannya
+            </p>
+            @guest
+                <a href="{{ route('login') }}" class="btn btn-lg btn-get-now">Dapatkan Sekarang</a>
+            @endguest
+            @auth
+                <a href="#product" class="btn btn-lg btn-get-now">Dapatkan Sekarang</a>
+            @endauth
+          </div>
+          <div class="col-lg-4 offset-2 d-none d-lg-block">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner rounded">
+                    @foreach ($brands as $key => $brand)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                          <figure class="figure">
+                            <img src="{{ Storage::url($brand->photo) }}" class="img-fluid figure-img d-block w-100 h-100" alt="...">
+                          </figure>
+                        </div>
+                    @endforeach
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -76,7 +71,7 @@
               $incerementCategory = 0
           @endphp
           @foreach ($categories as $category)
-          <div class="col-4 col-lg-2 text-center mb-2">
+          <div class="col-4 col-lg-2 text-center mb-3">
             <a href="{{ route('categories-detail', $category->slug) }}">
               <div class="bg-category" data-aos="zoom-in" data-aos-delay="{{ $incerementCategory +=100 }}">
                 <figure class="figure pt-3">

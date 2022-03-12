@@ -146,7 +146,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-6">
-                                <a href="{{ route('products-admin.index') }}" class="btn btn-danger btn-block">
+                                <a href="{{ route('products-seller.index') }}" class="btn btn-danger btn-block">
                                     Batal
                                 </a>
                             </div>

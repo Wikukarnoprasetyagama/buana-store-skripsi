@@ -132,9 +132,6 @@
 								@endif
 							@endauth
 							@guest
-								<a href="{{ route('login') }}" class="btn btn-buy-now">
-									Beli Sekarang
-								</a>
 								<a href="{{ route('login') }}" class="btn btn-add-to-cart">
 									Masuk Keranjang
 								</a>

@@ -1,7 +1,7 @@
 <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route('home') }}">
           <img src="{{ url('/images/logo.svg') }}" class="img-fluid" alt="" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,10 +18,10 @@
 				<li class="nav-item mx-2">
 					<a class="nav-link {{ (request()->is('hadiah*')) ? 'active' : '' }}" href="{{ route('reward') }}">Hadiah</a>
 				</li>
+				@auth
 				<li class="nav-item mx-2">
 					<a class="nav-link {{ (request()->is('transaksi*')) ? 'active' : '' }}" href="{{ route('transaction') }}">Transaksi</a>
 				</li>
-				@auth
 					<li class="nav-item mx-2">
 						<a href="{{ route('cart') }}">
 							@php

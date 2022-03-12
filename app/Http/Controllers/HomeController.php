@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Products;
+use App\Models\Sliders;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,11 @@ class HomeController extends Controller
     {
         $category = Category::all();
         $product = Products::all();
+        $brand = Sliders::all();
         return view('home', [
             'categories' => $category,
-            'products' => $product
+            'products' => $product,
+            'brands' => $brand
         ]);
     }
     public function navbar()
