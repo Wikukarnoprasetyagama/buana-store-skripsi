@@ -4,6 +4,7 @@
 @endsection
 
 @section('content')
+@if (count($products))
 <div class="main-content">
     <div class="row">
         <div class="col-md-12">
@@ -16,26 +17,107 @@
                             Tambah Produk Baru
                         </a>
                     </div>
-                    <div class="table-responsive mt-5">
-                        <table class="table table-hover scroll-horizontal-vertical w-100" id="table">
-                            <thead>
+                    <div class="table-responsive">
+                    <table id="example1" class="table table-hover scroll-horizontal-vertical w-100">
+                        <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Kategori Produk</th>
+                            <th>Nama Produk</th>
+                            <th>Harga</th>
+                            <th>Diskon</th>
+                            <th>Jumlah Diskon</th>
+                            <th>Aksi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($products as $product)
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Kategori</th>
-                                    <th>Nama Produk</th>
-                                    <th>Harga</th>
-                                    <th>Diskon</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
+                                    <td style="padding-left: 24px">{{ $loop->iteration }}</td>
+                                    <td style="padding-left: 18px">{{ $product->category->name_category }}</td>
+                                    <td style="padding-left: 18px">{{ $product->name_product }}</td>
+                                    <td style="padding-left: 18px">{{ $product->price }}</td>
+                                    @if ($product->discount == true)
+                                        <td style="padding-left: 18px">
+                                            <span class="badge badge-success">Aktif</span>
+                                        </td>
+                                        @else
+                                        <td style="padding-left: 18px">
+                                            <span> - </span>
+                                        </td>
+                                    @endif
+                                    @if ($product->discount == true)
+                                        <td style="padding-left: 18px">{{ $product->discount_amount }}%</td>
+                                        @else
+                                        <td style="padding-left: 18px"> - </td>
+                                    @endif
+                                        
+                                    <td style="padding-left: 18px;">
+                                        <div class="form-group d-flex">
+                                            @if ($product->discount == true)
+                                                <form action="#" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="discount" class="form-input" value="0">
+                                                    <button type="submit" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Nonaktifkan Diskon"><i class="fas fa-badge-percent"></i></button>
+                                                </form>
+                                            @else
+                                                <form action="#" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="discount" class="form-input" value="0">
+                                                    <button hidden type="submit" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Nonaktifkan Diskon"><i class="fas fa-badge-percent"></i></button>
+                                                </form>
+                                            @endif
+                                            <a href="{{ route('products-seller.edit', $product->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Edit Produk"><i class="fas fa-pencil"></i></a>
+                                            <form action="{{ route('products-seller.destroy', $product->id) }}" method="POST" enctype="multipart/form-data" class="mx-2">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus Produk"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
                         </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@else
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row py-5">
+                        <div class="col-md-12">
+                            <div class="no-data text-center">
+                                <figure class="figure">
+                                    <img src="{{ url('/images/ic_empty_data.svg') }}" class="img-fluid figure-img h-25 w-25" alt="">
+                                </figure>
+                                <div class="description">
+                                    <h3>Belum ada Produk!</h3>
+                                    silahkan untuk menambahkan data terlebih dahulu
+                                </div>
+                                <div class="add-slider mt-4">
+                                    <a href="{{ route('products-admin.create')}}" class="btn btn-success shadow-sm">
+                                        <i class="fas fa-plus fa-sm text-white-50"></i>
+                                        Tambah Produk
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endif
 @endsection
 
 @push('after-script')

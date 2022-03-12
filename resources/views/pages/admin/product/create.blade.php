@@ -87,7 +87,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="description" class="form-control-label">Isi Deskripsi Produk</label>
-                                    <textarea name="description" style="height: 70px"
+                                    <textarea name="description"
                                             class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
                                     @error('description') <div class="text-muted">{{ $message }}</div>@enderror
                                 </div>

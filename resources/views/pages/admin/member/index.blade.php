@@ -28,12 +28,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @php
-                                    $no = 1;
-                            @endphp
                             @foreach ($members as $member)
                                 <tr>
-                                    <td style="padding-left: 24px">{{ $no++ }}</td>
+                                    <td style="padding-left: 24px">{{ $loop->iteration }}</td>
                                     <td style="padding-left: 18px">{{ $member->email }}</td>
                                     <td style="padding-left: 18px">{{ $member->name }}</td>
                                     @if ($member->roles == 'SELLER')
@@ -58,19 +55,20 @@
                                         @endif
                                     @endif
                                     <td style="padding-left: 18px;">
-                                        <div class="form-group d-flex justify-content-between">
+                                        <div class="form-group d-flex">
+                                            <a href="{{ route('member.show', $member->id) }}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
                                             <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
-                                            <input type="hidden" name="status" class="form-input" value="DIBLOKIR">
-                                            <button type="submit" class="btn btn-sm btn-danger mx-1" data-toggle="tooltip" data-placement="top" title="Nonaktifkan"><i class="fas fa-user-slash"></i></button>
-                                        </form>
-                                        <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" name="status" class="form-input" value="TERVERIFIKASI">
-                                            <button type="submit" class="btn btn-sm btn-success mx-1" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fas fa-user-check"></i></button>
-                                        </form>
+                                                <input type="hidden" name="status" class="form-input" value="TERVERIFIKASI">
+                                                <button type="submit" class="btn btn-sm btn-success ml-2" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fas fa-user-check"></i></button>
+                                            </form>
+                                            <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="status" class="form-input" value="DIBLOKIR">
+                                                <button type="submit" class="btn btn-sm btn-danger ml-2" data-toggle="tooltip" data-placement="top" title="Nonaktifkan"><i class="fas fa-user-slash"></i></button>
+                                            </form>
                                         </div>
                                     </td>
                             </tr>

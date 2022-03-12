@@ -36,7 +36,7 @@
                         </figure>
                         <h3 class="profile-username text-center">{{ $detail->name }}</h3>
                         <p class="text-muted text-center">{{ $detail->roles }}</p>
-                        <a href="#" class="btn btn-success btn-block"><b>Chat Sekarang</b></a>
+                        <a href="https://api.whatsapp.com/send?phone={{ $detail->phone }}&text=Dear!%20{{ $detail->name }}" class="btn btn-success btn-block" target="_blank"><b>Chat Sekarang</b></a>
                     </div>
             </div>
           </div>
@@ -47,11 +47,13 @@
                   <div class="row">
                     @foreach ($products as $product)
                       <div class="col-md-3">
-                          <figure class="figure">
+                          <a href="{{ route('detail', $product->slug) }}" target="_blank">
+                            <figure class="figure">
                               @if ($product->galleries->count())
                                   <img src="{{ Storage::url($product->galleries->first()->photo) }}" class="figure-img img-fluid rounded" alt="...">
                               @endif
-                          </figure>
+                            </figure>
+                          </a>
                       </div>
                     @endforeach
                 </div>

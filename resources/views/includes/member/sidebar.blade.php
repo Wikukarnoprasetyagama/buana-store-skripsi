@@ -24,12 +24,15 @@
 					<a href="{{ route('dashboard-seller') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
 				</li>
 				<li class="menu-header">Menu</li>
+				<li class="nav-item">
+					<a href="{{ route('home') }}" class="nav-link"><i class="fas fa-home"></i> <span>Beranda</span></a>
+				</li>
 				@if (Auth::user()->status == 'TERVERIFIKASI')
 					<li class="nav-item">
 						<a href="{{ route('products-seller.index') }}" class="nav-link"><i class="fas fa-list"></i> <span>Produk</span></a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Keranjang Saya</span></a>
+						<a href="{{ route('cart') }}" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Keranjang Saya</span></a>
 					</li>
 
 					@else
@@ -38,7 +41,7 @@
 						<a href="{{ route('products-seller.index') }}" class="nav-link disabled"><i class="fas fa-list"></i> <span>Produk</span></a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link disabled"><i class="fas fa-cart-plus"></i> <span>Keranjang Saya</span></a>
+						<a href="{{ route('cart') }}" class="nav-link disabled"><i class="fas fa-cart-plus"></i> <span>Keranjang Saya</span></a>
 					</li>
 				@endif
 				<li class="menu-header">Transaksi</li>

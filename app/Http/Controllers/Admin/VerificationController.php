@@ -19,23 +19,10 @@ class VerificationController extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $query = User::where('status', 'PENDING')->get();
-
-            return DataTables::of($query)
-                    ->addColumn('action', function($item){
-                        return '
-                        <div class="action">
-                        <a href="' . route('verification.edit',  $item->id) . '" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
-                        <a href="#" data-url="'. route('verification.destroy', $item->id) . '" data-id="' .$item->id. '" data-token="' . csrf_token() . '" id="hapus" class="hapus btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></a>
-                        </div>
-                        ';
-                    })
-                    ->rawColumns(['action'])
-                    ->make();
-        }
-        $item = User::where('status', 'PENDING')->get();
-        return view('pages.admin.verifications.index', compact('item'));
+        $member = User::where('status', 'PENDING')->get();
+        return view('pages.admin.verifications.index', [
+            'members' => $member,
+        ], compact('member'));
     }
 
     /**
@@ -67,7 +54,11 @@ class VerificationController extends Controller
      */
     public function show($id)
     {
-        //
+        $detail = User::findOrFail($id);
+        return view('pages.admin.verifications.detail', [
+            'detail' => $detail,
+            // 'user' => User::where('status', 'PENDING')->get()
+        ]);
     }
 
     /**

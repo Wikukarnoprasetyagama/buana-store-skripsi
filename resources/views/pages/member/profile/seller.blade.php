@@ -14,7 +14,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-2 text-center">
-                            <figure class="figure" style="padding-top: 100px">
+                            <figure class="figure" style="padding-top: 70px">
                                 <img src="{{ Storage::url($user->photo_profile) }}" class="figure-img img-fluid" alt=""  />
                             </figure>
                         </div>
@@ -28,14 +28,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email Address</label>
+                                        <label for="email" class="form-label">Nama</label>
                                         <input type="email" class="form-control" value="{{ $user->name }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email Address</label>
-                                        <input type="text" class="form-control" value="{{ $user->phone }}" disabled>
+                                        <label for="email" class="form-label">Nama Toko</label>
+                                        <input type="text" class="form-control" value="{{ $user->name_store }}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -54,8 +54,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Jalan</label>
-                                            <input type="text" class="form-control" value="{{ $user->street }}" disabled>
+                                        <label for="phone" class="form-label">Nama Desa</label>
+                                            <input type="text" class="form-control" value="{{ $user->village }}" disabled>
                                     </div>
                                 </div>
                             </div>

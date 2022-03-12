@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\EmailAfterRegistration;
+use App\Notifications\WelcomeEmailNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -55,8 +57,14 @@ class LoginController extends Controller
             'reg_status' => 'GOOGLE'
         ];
 
-        $user = User::firstOrCreate(
-            ['email' => $data['email']], $data);
+        // $user = User::firstOrCreate(
+        //     ['email' => $data['email']], $data);
+
+        $user = User::where('email', $data['email'])->first();
+        if (!$user) {
+            $user = User::create($data);
+            $user->notify(new EmailAfterRegistration());
+        }
         Auth::login($user, true);
         return redirect('/');
 

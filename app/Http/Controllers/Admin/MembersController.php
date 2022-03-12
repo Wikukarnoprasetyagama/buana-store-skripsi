@@ -50,7 +50,10 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        return abort(404);
+        $user = User::findOrFail($id);
+        return view('pages.admin.member.detail', [
+            'user' => $user
+        ]);
     }
 
     /**

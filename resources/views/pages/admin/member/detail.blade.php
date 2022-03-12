@@ -1,6 +1,6 @@
-@extends('layouts.member')
+@extends('layouts.app')
 @section('title')
-    Profile Saya
+    Detail Member - {{ $user->name }}
 @endsection
 
 @section('content')
@@ -10,7 +10,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-4 pt-3">
-                        <h1 class="h3 mb-0 text-gray-800">Profile Saya</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Profile</h1>
+                        <span class="badge badge-info">{{ $user->name }}</span>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-2 text-center">
@@ -34,14 +35,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control" value="{{ $user->name }}" disabled>
+                                        <label for="name_store" class="form-label">Nama Toko</label>
+                                        <input type="text" class="form-control" value="{{ $user->name_store }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">Email Address</label>
-                                        <input type="text" class="form-control" value="{{ $user->phone }}" disabled>
+                                        <label for="name_store" class="form-label">Nama Pemilik</label>
+                                        <input type="text" class="form-control" value="{{ $user->name }}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -76,19 +77,27 @@
                                     </div>
                                 </div>
                             <div class="row mt-5">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <a href="{{ route('dashboard-customer') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
+                                @if ($user->roles == 'SELLER')
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <a href="{{ route('dashboard-admin') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <a href="{{ route('profile-customer.edit', $user->id) }}" class="btn btn-primary d-block">Edit Profile</a>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <a href="{{ route('products-admin.show', $user->id) }}" class="btn btn-primary d-block">Edit Profile</a>
+                                        </div>
                                     </div>
-                                </div>
+                                @else
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <a href="{{ route('dashboard-admin') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>

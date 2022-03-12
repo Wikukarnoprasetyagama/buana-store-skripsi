@@ -5,7 +5,7 @@
 
 @section('content')
 
-@if (count($item))
+@if (count($member))
     <div class="main-content">
         <div class="row">
             <div class="col-md-12">
@@ -14,20 +14,51 @@
                         <div class="d-flex align-items-center justify-content-between mb-4 pt-5">
                             <h1 class="h3 mb-0 text-gray-800">Daftar Permintaan Pembukaan Toko</h1>
                         </div>
-                        <div class="table-responsive mt-5">
-                            <table class="table table-hover scroll-horizontal-vertical w-100" id="table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nama Pemilik</th>
-                                        <th>Nama Toko</th>
-                                        <th>Nama Desa</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
+                        <div class="table-responsive">
+                    <table id="example1" class="table table-hover scroll-horizontal-vertical w-100">
+                        <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Pemilik</th>
+                            <th>Nama Toko</th>
+                            <th>Nama Desa</th>
+                            <th>No. Hp</th>
+                            <th>Aksi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($members as $member)
+                                <tr>
+                                    <td style="padding-left: 24px">{{ $loop->iteration }}</td>
+                                    @if ($member->name)
+                                        <td style="padding-left: 18px">{{ $member->name }}</td>
+                                    @else
+                                    <td style="padding-left: 18px"> - </td>
+                                    @endif
+                                    @if ($member->name_store)
+                                        <td style="padding-left: 18px">{{ $member->name_store }}</td>
+                                    @else
+                                        <td style="padding-left: 18px"> - </td>
+                                    @endif
+                                    @if ($member->village == true)
+                                        <td style="padding-left: 18px">{{ $member->village }}</td>
+                                    @else
+                                        <td style="padding-left: 18px"> - </td>
+                                    @endif
+                                    @if ($member->phone == true)
+                                        <td style="padding-left: 18px">{{ $member->phone }}</td>
+                                    @else
+                                        <td style="padding-left: 18px"> - </td>
+                                    @endif
+                                    <td style="padding-left: 18px;">
+                                        <a href="{{ route('verification.show', $member->id) }}" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-eye"></i>
+                                    </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        </table>
+                </div>
                     </div>
                 </div>
             </div>
@@ -51,6 +82,7 @@
                                     <h3>Belum ada Data!</h3>
                                     Tidak ada member yang perlu di verifikasi
                                 </div>
+                                <a href="{{ route('dashboard-admin') }}" class="btn btn-success mt-5">Kembali</a>
                             </div>
                         </div>
                     </div>

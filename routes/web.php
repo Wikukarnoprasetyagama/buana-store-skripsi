@@ -88,6 +88,10 @@ Route::prefix('/pages/dashboard/seller')
                 Route::get('/pages/dashboard/seller/products-seller/checkSlug', [ProductController::class, 'checkSlug']);
                 Route::get('/cetak-laporan-transaksi', [TransactionSellerController::class, 'cetak_pdf'])->name('pdf-transaction-seller');
                 Route::get('/cetak-laporan-transaksi-saya', [TransactionSellerController::class, 'my_pdf'])->name('pdf-my-transaction');
+                Route::get('/pages/dashboard/seller/product-seller/delete/{id}', [ProductController::class, 'deleteGallery'])->name('delete-gallery-product');
+                Route::get('/pages/dashboard/seller/product-seller/{id}', [ProductController::class, 'edit'])->name('gallery-product');
+                Route::post('/pages/dashboard/seller/products-seller/upload', [ProductController::class, 'uploadGallery'])->name('update-product-gallery');
+
                 Route::resource('products-seller', ProductController::class);
                 Route::resource('transaction-seller', TransactionSellerController::class);
                 Route::resource('my-transaction', MyTransactionController::class);

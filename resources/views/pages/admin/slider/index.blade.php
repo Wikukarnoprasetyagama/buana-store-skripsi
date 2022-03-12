@@ -5,37 +5,6 @@
 
 @section('content')
 @if (count($slider))
-{{-- <div class="main-content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-4 pt-5">
-                        <h1 class="h3 mb-0 text-gray-800">Daftar Slider</h1>
-                        <a href="{{ route('sliders.create')}}" class="btn btn-success shadow-sm">
-                            <i class="fas fa-plus fa-sm text-white-50"></i>
-                            Tambah Slider
-                        </a>
-                    </div>
-                    <div class="table-responsive mt-5">
-                        <table class="table table-hover scroll-horizontal-vertical w-100" id="table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Gambar</th>
-                                    <th>Judul</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
 <section class="main-content">
     <div class="row">
         <div class="col-12">
@@ -59,12 +28,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $no = 1;
-                            @endphp
                             @foreach ($sliders as $slider)
                             <tr>
-                                <td style="padding-left: 24px">{{ $no++ }}</td>
+                                <td style="padding-left: 24px">{{ $loop->iteration }}</td>
                                 <td style="padding-left: 18px">
                                     <img src="{{ Storage::url($slider->photo) }}" alt="gambar-slider" class="img-fluid" style="max-height: 40px">
                                 </td>

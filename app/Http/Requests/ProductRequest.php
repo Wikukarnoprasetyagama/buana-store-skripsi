@@ -24,11 +24,12 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'users_id' => 'required|exists:users,id',
+            'users_id' => 'exists:users,id',
+            'photo[]' => 'mimes:svg,jpg',
             'categories_id' => 'required|exists:categories,id',
             'code' => 'string',
             'name_product' => 'required|string|max:255',
-            'slug' => 'required|string|unique:products',
+            'slug' => 'string|unique:products',
             'price' => 'required|integer',
             'discount' => 'string|nullable',
             'discount_amount' => 'nullable',

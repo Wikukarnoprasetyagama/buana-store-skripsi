@@ -18,7 +18,7 @@ class ProfileCustomerController extends Controller
     {
         $user = Auth::user();
         return view('pages.member.profile.customer', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
