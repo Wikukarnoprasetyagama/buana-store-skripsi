@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name_category" class="form-control-label">Judul Kategori Produk</label>
+                                            <label for="name_category" class="form-control-label">Nama Kategori Produk</label>
                                             <input type="text" name="name_category" value="{{ old('name_category') }}" class="form-control @error('name_category') is-invalid @enderror"/>
                                             @error('name_category') <div class="text-muted" required>{{ $message }}</div> @enderror
                                         </div>

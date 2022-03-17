@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use File;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileSellerController extends Controller
 {
@@ -95,8 +96,14 @@ class ProfileSellerController extends Controller
         
 
         $user->update($data);
-
-        return redirect()->route('profile-seller.index');
+        if ($data) {
+            Alert::success('Berhasil!', 'Profil Berhasil Diubah!');
+            return redirect()->route('profile-seller.index');
+        }else{
+            Alert::error('Gagal!', 'Profil Gagal Diubah!');
+            return redirect()->route('profile-seller.index');
+        }
+        // return redirect()->route('profile-seller.index');
     }
 
     /**

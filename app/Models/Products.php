@@ -26,7 +26,7 @@ class Products extends Model
         'ongkir_amount'
     ];
 
-     public function sluggable(): array
+    public function sluggable(): array
     {
         return [
             'slug' => [

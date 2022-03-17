@@ -45,21 +45,12 @@
 }
 
 .section-address {
-    margin-top: 100px;
+    margin-top: 70px !important;
     h3 {
         font-family: "Merriweather";
         font-size: 32px;
         font-weight: 600;
         color: #1e124c;
-    }
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type="number"] {
-        -moz-appearance: textfield;
     }
 }
 

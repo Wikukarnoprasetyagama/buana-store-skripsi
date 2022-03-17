@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OpenStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OpenStoreController extends Controller
 {
@@ -48,7 +49,13 @@ class OpenStoreController extends Controller
         );
 
         User::create($data);
-        return redirect()->route('dashboard-customer');
+        if ($data) {
+            Alert::success('Berhasil!', 'Data Berhasil Dikirim!');
+            return redirect()->route('dashboard-customer.index');
+        }else{
+            Alert::error('Gagal!', 'Data Gagal Dikirim!');
+            return redirect()->route('dashboard-customer.index');
+        }
         
     }
 
@@ -100,9 +107,11 @@ class OpenStoreController extends Controller
         $open->update($data);
 
         if ($data) {
-            return redirect()->route('dashboard-customer')->with('success', 'Data berhasil diubah');
-        } else {
-            return redirect()->route('dasboard-customer.edit')->with('error', 'data gagal diubah');
+            Alert::success('Berhasil!', 'Data Berhasil Dikirim!');
+            return redirect()->route('dashboard-customer');
+        }else{
+            Alert::error('Gagal!', 'Data Gagal Dikirim!');
+            return redirect()->route('dashboard-customer.edit');
         }
     }
 

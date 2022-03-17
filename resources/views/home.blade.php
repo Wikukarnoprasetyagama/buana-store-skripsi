@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('title')
-    Beranda
+    Beranda - Buana Store Ecommerce - Demo Aplikasi Skripsi
 @endsection
 
 @section('content')
@@ -13,8 +13,8 @@
             <div class="title">
               <span>Belanja Sepuasnya,</span>
               <h1>
-                Dapatkan Diskon <span>20%</span> <br />
-                di Setiap <span>Produk</span> Kami
+                Dapatkan Diskon <br> Hingga <span>20%</span> 
+                di Setiap <span>Produk</span>
               </h1>
               {{-- <h1>
                 Diskon <span>30 % </span> Untuk <br />
@@ -70,7 +70,7 @@
           @php
               $incerementCategory = 0
           @endphp
-          @foreach ($categories as $category)
+          @forelse ($categories as $category)
           <div class="col-4 col-lg-2 text-center mb-3">
             <a href="{{ route('categories-detail', $category->slug) }}">
               <div class="bg-category" data-aos="zoom-in" data-aos-delay="{{ $incerementCategory +=100 }}">
@@ -81,12 +81,16 @@
               </div>
             </a>
           </div>
-          @endforeach
+          @empty
+          <div class="category-empty col-12 text-center pt-5">
+            <p>Belum ada kategori!</p>
+          </div>
+          @endforelse
         </div>
-		<div class="col-12 d-md-none d-lg-none d-xl-none text-center mt-5">
-          <a href="{{ route('all-category') }}" class="next-category">Selengkapnya</a>
-        </div>
-      </div>
+        <div class="col-12 d-md-none d-lg-none d-xl-none text-center mt-5">
+              <a href="{{ route('all-category') }}" class="next-category">Selengkapnya</a>
+            </div>
+  </div>
     </section>
 
     <!-- New Product -->

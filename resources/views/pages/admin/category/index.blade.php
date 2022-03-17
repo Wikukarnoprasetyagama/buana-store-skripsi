@@ -10,7 +10,7 @@
         <div class="col-12">
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <h3 class="mb-0 text-gray-800">Data Member Buana Store</h3>
+                <h3 class="mb-0 text-gray-800">Daftar Kategori Produk</h3>
                 <a href="{{ route('category.create')}}" class="btn btn-success shadow-sm" style="border-radius: 4px">
                     <i class="fas fa-plus fa-sm text-white-50"></i>
                     Tambah Kategori
@@ -18,7 +18,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example1" class="table table-hover scroll-horizontal-vertical w-100">
+                    <table id="datatable" class="table table-hover scroll-horizontal-vertical w-100">
                         <thead>
                             <tr>
                             <th>No.</th>
@@ -41,11 +41,12 @@
                                 <td style="padding-left: 15px;">
                                     <div class="form-group d-flex">
                                         <a href="{{ route('category.edit', $category->id) }}" class="btn btn-sm btn-warning mx-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                        <form action="{{ route('category.destroy', $category->id) }}" method="POST" enctype="multipart/form-data">
+                                        <a href="{{ route('category.destroy', $category->id) }}"  class="btn btn-sm btn-danger mx-1 btn-delete" id="hapus" data-toggle="tooltip" data-placement="top" title="Hapus {{ $category->name_category }}" aria-valuetext="{{ $category->name_category }}"><i class="fas fa-trash"></i></i></a>
+                                        {{-- <form action="{{ route('category.destroy', $category->id) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-sm btn-danger mx-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fas fa-trash"></i></button>
-                                        </form>
+                                            <button type="submit" id="hapus" class="btn btn-sm btn-danger mx-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fas fa-trash"></i></button>
+                                        </form> --}}
                                     </div>
                                 </td>
                             </tr>
@@ -98,71 +99,50 @@
 @push('after-script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.9/dist/sweetalert2.all.min.js"></script>
 <script>
-    var datatable =  $('#table').DataTable({
-        processing: true,
-        serverSide:true,
-        ordering:true,
-        ajax: {
-            url: '{!! url()->current() !!}',
-        },
-        columns:[
-            {data: 'id', name: 'id'},
-            {data: 'photo', name: 'photo'},
-            {data: 'name_category', name: 'name_category'},
-            { 
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searcable: false,
-                width: '15%' 
-            },
-        ]
-    })
-    
-</script>
-<script>
-    $(document).on('click', '#hapus', function(){
-    let url = $(this).data('url');
-    let token = $(this).data('token')
-    let id = $(this).data('id');
-    let tr = this
-    Swal.fire({ 
-        title: 'Data ini akan di hapus',
-        text: "Apakah anda yakin ?",
+    $('body').on('click', '.btn-delete', function (event) {
+    event.preventDefault();
+
+    var me = $(this),
+        url = me.attr('href'),
+        name = me.attr('aria-valuetext'),
+        csrf_token = $('meta[name="csrf-token"]').attr('content');
+    let tr = this;
+    Swal.fire({
+
+        title: 'Apakah anda yakin ?',
+        text: 'Kategori ' + name + ' akan dihapus',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value)  {
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: {
-                        '_method': 'DELETE',
-                        '_token': token,
-                        'id': id
-                    },
-                    dataType: "JSON",
-                    success: function (response) {
-                        Swal.fire(
-                            'Deleted!',
-                            response.success,
-                            'success'
-                        )
-                        $(tr).closest('tr').remove();
-                    }
-                });
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                swal.fire(
-                    'Dibatalkan!',
-                    'Data yang ingin anda hapus berhasil dibatalkan',
-                    'error'
-                )
-            }
-            
-        });
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Hapus Data!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    '_method': 'DELETE',
+                    '_token': csrf_token
+                },
+                success: function (response) {
+                    Swal.fire(
+                        'Berhasil Dihapus!',
+                        'Kategori ' + name + ' telah dihapus',
+                        'success'
+                    ),
+                    $(tr).closest('tr').remove();
+                },
+                error: function (xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Kategori gagal dihapus!'
+                    });
+                }
+            });
+        }
     });
+});
 </script>
 @endpush

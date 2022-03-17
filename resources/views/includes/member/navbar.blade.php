@@ -7,10 +7,10 @@
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
              	@if (Auth::user()->photo_profile == true)
-					<img src="{{ Storage::url(Auth::user()->photo_profile) }}" class="img-fluid mr-2 rounded-circle w-100 h-100" style="max-height: 40px; max-width: 40px; border-radius: 50px; background-size: cover" alt="" />
-					@else
-					<img src="{{ url('/images/ic_avatar.svg') }}" class="img-fluid mr-2 rounded-circle w-100 h-100" style="max-height: 40px; max-width: 40px; border-radius: 50px; background-size: cover" alt="" />
-				@endif
+                <img src="{{ Storage::url(Auth::user()->photo_profile) }}" class="img-fluid mr-2 rounded-circle w-100 h-100" style="max-height: 40px; max-width: 40px; border-radius: 50px; background-size: cover" alt="" />
+                @else
+                <img src="{{ url('/images/ic_avatar.svg') }}" class="img-fluid mr-2 rounded-circle w-100 h-100" style="max-height: 40px; max-width: 40px; border-radius: 50px; background-size: cover" alt="" />
+              @endif
             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               @if (Auth::user()->role == 'SELLER')

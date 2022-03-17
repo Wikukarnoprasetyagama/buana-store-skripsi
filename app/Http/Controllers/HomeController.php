@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $category = Category::all();
+        $category = Category::all()->take(6);
         $product = Products::all();
         $brand = Sliders::all();
         return view('home', [

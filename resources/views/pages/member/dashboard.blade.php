@@ -137,7 +137,9 @@
                             @else
                             <td><div class="badge badge-info">{{ $order->payment_status }}</div></td>
                             @endif
-                            @if ($order->shipping_status == 'PENDING')
+                            @if ($order->payment_status == 'FAILED')
+                            <td><div class="badge badge-danger">BATAL</div></td>
+                            @elseif ($order->shipping_status == 'PENDING')
                             <td><div class="badge badge-warning">{{ $order->shipping_status }}</div></td>
                             @elseif ($order->shipping_status == 'DIKIRIM')
                                 <td><div class="badge badge-info">{{ $order->shipping_status }}</div></td>

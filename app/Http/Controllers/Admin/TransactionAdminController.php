@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Products;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
+use PDF;
 
 class TransactionAdminController extends Controller
 {
@@ -18,21 +20,10 @@ class TransactionAdminController extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $query = Transaction::with(['user', 'product']);
-
-            return DataTables::of($query)
-                    ->addColumn('action', function($item){
-                        return '
-                        <div class="action">
-                        <a href="' . route('transaction-member.edit', $item->id) . '" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                        </div>
-                        ';
-                    })
-                    ->rawColumns(['action'])
-                    ->make();
-        }
-        return view('pages.admin.transaction.member');
+        $transactions = Transaction::all();
+        return view('pages.admin.transaction.member', [
+            'transactions' => $transactions
+        ], compact('transactions'));
     }
 
     /**
@@ -64,11 +55,11 @@ class TransactionAdminController extends Controller
      */
     public function show($id)
     {
-        $detail = Transaction::with(['product', 'user'])->get();
-        $product = Products::all();
+        $details = Transaction::findOrFail($id);
+        // $product = Products::all();
         return view('pages.admin.transaction.detail', [
-            'detail' => $detail,
-            'products' => $product,
+            'detail' => $details,
+            // 'products' => $product,
         ]);
     }
 
@@ -104,5 +95,28 @@ class TransactionAdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function print_transaction()
+    {   
+        $path = base_path('/public/images/logo.png');
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+        $transaction = Transaction::all();
+        $revenue = $transaction->reduce(function($carry, $item) {
+            return $carry + $item->total_price;
+        });
+        // return view('pdf', [
+        //     'transactions' => $transaction,
+        //     'revenue' => $revenue,
+        // ], compact('pic'));
+        $pdf= PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('pdf-transaction', [
+            'transactions' => $transaction,
+            'revenue' => $revenue,
+        ], compact('pic'))->setPaper('a4', 'landscape');
+        // return $pdf->stream();
+        return $pdf->download('laporan-transasaksi-member.pdf');
     }
 }

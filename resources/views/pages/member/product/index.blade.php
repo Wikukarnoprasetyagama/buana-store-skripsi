@@ -54,20 +54,20 @@
                                         
                                     <td style="padding-left: 18px;">
                                         <div class="form-group d-flex">
-                                            @if ($product->discount == true)
-                                                <form action="#" method="POST" enctype="multipart/form-data">
-                                                    @csrf
+                                            @if ($product->discount == 1)
+                                                <form action="{{ route('products-seller.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                                                     @method('PUT')
-                                                    <input type="hidden" name="discount" class="form-input" value="0">
-                                                    <button type="submit" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Nonaktifkan Diskon"><i class="fas fa-badge-percent"></i></button>
-                                                </form>
-                                            @else
-                                                <form action="#" method="POST" enctype="multipart/form-data">
                                                     @csrf
-                                                    @method('PUT')
                                                     <input type="hidden" name="discount" class="form-input" value="0">
-                                                    <button hidden type="submit" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Nonaktifkan Diskon"><i class="fas fa-badge-percent"></i></button>
+                                                    <button type="submit" class="btn btn-sm btn-warning mr-2" data-toggle="tooltip" data-placement="top" title="Nonaktifkan Diskon"><i class="fas fa-badge-percent"></i></button>
                                                 </form>
+                                                @else
+                                                    <form action="{{ route('products-seller.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="discount" value="0">
+                                                        <button hidden type="submit" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Nonaktifkan Diskon"><i class="fas fa-badge-percent"></i></button>
+                                                    </form>
                                             @endif
                                             <a href="{{ route('products-seller.edit', $product->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Edit Produk"><i class="fas fa-pencil"></i></a>
                                             <form action="{{ route('products-seller.destroy', $product->id) }}" method="POST" enctype="multipart/form-data" class="mx-2">
@@ -104,7 +104,7 @@
                                     silahkan untuk menambahkan data terlebih dahulu
                                 </div>
                                 <div class="add-slider mt-4">
-                                    <a href="{{ route('products-admin.create')}}" class="btn btn-success shadow-sm">
+                                    <a href="{{ route('products-seller.create')}}" class="btn btn-success shadow-sm">
                                         <i class="fas fa-plus fa-sm text-white-50"></i>
                                         Tambah Produk
                                     </a>
@@ -122,31 +122,6 @@
 
 @push('after-script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.9/dist/sweetalert2.all.min.js"></script>
-<script>
-    var datatable =  $('#table').DataTable({
-        processing: true,
-        serverSide:true,
-        ordering:true,
-        ajax: {
-            url: '{!! url()->current() !!}',
-        },
-        columns:[
-            {data: 'id', name: 'id'},
-            {data: 'category.name_category', name: 'category.name_category'},
-            {data: 'name_product', name: 'name_product'},
-            {data: 'price', name: 'price'},
-            {data: 'discount', name: 'discount'},
-            { 
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searcable: false,
-                width: '15%' 
-            },
-        ]
-    })
-    
-</script>
 <script>
     $(document).on('click', '#hapus', function(){
     let url = $(this).data('url');

@@ -441,7 +441,7 @@ body {
 }
 
 .section-address {
-  margin-top: 100px;
+  margin-top: 70px !important;
 }
 
 .section-address h3 {
@@ -449,16 +449,6 @@ body {
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
-}
-
-.section-address input::-webkit-outer-spin-button,
-.section-address input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.section-address input[type="number"] {
-  -moz-appearance: textfield;
 }
 
 .section-detail-price {

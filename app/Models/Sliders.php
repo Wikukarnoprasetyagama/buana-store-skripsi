@@ -11,6 +11,6 @@ class Sliders extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'photo', 'title', 'subtitle'
+        'photo', 'name'
     ];
 }

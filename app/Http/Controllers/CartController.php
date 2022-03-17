@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Districts;
 use App\Models\Products;
+use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
@@ -15,8 +17,7 @@ class CartController extends Controller
     {
         $code_unique = mt_rand(500, 999);
         $carts = Cart::with(['product.galleries', 'user'])->where('users_id', Auth::user()->id)->get();
-        $district = Districts::all();
-        // $fee = Products::sum('discount_amount', Auth::user()->id);
+        $village = Village::all();
         $fee = $carts->reduce(function($carry, $item) {
             return $carry + $item->product->discount_amount;
         });
@@ -25,10 +26,10 @@ class CartController extends Controller
         });
         return view('cart', [
             'carts' => $carts,
-            'districts' => $district,
             'code_unique' => $code_unique,
             'fee' => $fee,
-            'ongkir' => $ongkir
+            'ongkir' => $ongkir,
+            'villages' => $village
         ], compact('carts'));
     }
 
@@ -36,16 +37,14 @@ class CartController extends Controller
     {
         $cart = Cart::findOrFail($id);
         $cart->delete();
-        return redirect()->route('cart');
+        if ($cart->delete()) {
+            Alert::success('Berhasil!', 'Berhasil menghapus produk dari keranjang!');
+            return redirect()->route('cart');
+        }else{
+            Alert::error('Gagal!', 'Gagal menghapus produk dari keranjang!');
+            return redirect()->route('cart');
+        }
     }
-
-    // public function updateCart(Request $request, $id)
-    // {
-    //     $data = $request->quantity;
-    //     $quantity = Cart::findOrFail($id);
-    //     $quantity->update($data);
-    // }
-
     public function success()
     {
         return view('success');

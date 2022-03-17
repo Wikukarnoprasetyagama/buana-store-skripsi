@@ -24,9 +24,8 @@ class SlidersRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required|image',
-            'title' => 'string',
-            'subtitle' => 'string'
+            'photo' => 'image',
+            'name' => 'string',
         ];
     }
 }

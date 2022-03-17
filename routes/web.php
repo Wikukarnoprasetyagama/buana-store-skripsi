@@ -68,6 +68,7 @@ Route::prefix('/pages/dashboard/admin')
         ->group(function(){
                 Route::get('/', [DashboardAdminController::class, 'index'])->name('dashboard-admin');
                 Route::post('/product/admin/upload', [ProductAdminController::class, 'uploadGallery'])->name('upload-product-gallery');
+                Route::get('/cetak-laporan-transaksi', [TransactionAdminController::class, 'print_transaction'])->name('pdf-transaction');
 
                 Route::resource('upload', ProductGalleriesController::class);
                 Route::resource('sliders', SlidersController::class);

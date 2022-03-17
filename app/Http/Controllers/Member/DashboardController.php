@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $product = Products::all()->where('users_id', auth()->id())->count();
         $cart = Cart::all()->where('users_id', auth()->id())->count();
         $transaction = Transaction::where('users_id', Auth::user()->id);
-        $profit = Transaction::whereHas('product', function($product){
+        $profit = Transaction::where('payment_status', 'DIBAYAR')->whereHas('product', function($product){
             $product->where('users_id', auth()->id());
         })->sum('total_price');
         // $profit = Transaction::where('payment_status', 'DIBAYAR', auth()->id())->sum('total_price');

@@ -61,12 +61,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $no = 1;
-                            @endphp
                             @foreach ($users as $user)
                             <tr>
-                                <td style="padding-left: 24px">{{ $no++ }}</td>
+                                <td style="padding-left: 24px">{{ $loop->iteration }}</td>
                                 <td style="padding-left: 18px">
                                     {{ $user->email }}
                                 </td>

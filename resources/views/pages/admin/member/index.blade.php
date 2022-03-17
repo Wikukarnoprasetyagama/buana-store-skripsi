@@ -56,13 +56,29 @@
                                     @endif
                                     <td style="padding-left: 18px;">
                                         <div class="form-group d-flex">
-                                            <a href="{{ route('member.show', $member->id) }}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                                            <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="hidden" name="status" class="form-input" value="TERVERIFIKASI">
-                                                <button type="submit" class="btn btn-sm btn-success ml-2" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fas fa-user-check"></i></button>
-                                            </form>
+                                            <a href="{{ route('member.show', $member->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Detail {{ $member->name }}"><i class="fas fa-eye"></i></a>
+                                            @if ($member->status == 'TERVERIFIKASI')
+                                                <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="status" class="form-input" value="TERVERIFIKASI">
+                                                    <button type="submit" disabled class="btn btn-sm btn-success ml-2" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fas fa-user-check"></i></button>
+                                                </form>
+                                            @elseif ($member->status == 'DIBLOKIR')
+                                                <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="status" class="form-input" value="TERVERIFIKASI">
+                                                    <button type="submit" class="btn btn-sm btn-success ml-2" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fas fa-user-check"></i></button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="status" class="form-input" value="TERVERIFIKASI">
+                                                    <button type="submit" disabled class="btn btn-sm btn-success ml-2" data-toggle="tooltip" data-placement="top" title="Aktifkan"><i class="fas fa-user-check"></i></button>
+                                                </form>
+                                            @endif
                                             <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MembersController extends Controller
 {
@@ -83,7 +84,13 @@ class MembersController extends Controller
         $member = User::findOrFail($id);
         $member->update($data);
 
-        return redirect()->route('member.index');
+        if ($data = $request->status == 'DIBLOKIR') {
+            Alert::success('Berhasil Diblokir!', 'Member telah diblokir');
+            return redirect()->route('member.index');
+        }else{
+            Alert::success('Berhasil Diaktifkan!', 'Member telah diaktifkan kembali');
+            return redirect()->route('member.index');
+        }
 
     }
 

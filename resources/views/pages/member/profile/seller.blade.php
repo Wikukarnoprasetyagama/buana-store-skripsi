@@ -14,9 +14,15 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-2 text-center">
-                            <figure class="figure" style="padding-top: 70px">
-                                <img src="{{ Storage::url($user->photo_profile) }}" class="figure-img img-fluid" alt=""  />
+                            @if ($user->photo_profile == true)
+                                <figure class="figure" style="padding-top: 50px">
+                                    <img src="{{ Storage::url($user->photo_profile) }}" class="figure-img img-fluid rounded-circle" alt="" style="max-height: 250px; background-size: cover" />
+                                </figure>
+                            @else
+                            <figure class="figure" style="padding-top: 50px">
+                                <img src="{{ url('/images/ic_avatar.svg') }}" class="figure-img img-fluid rounded-circle" alt="" style="max-height: 250px; background-size: cover" />
                             </figure>
+                            @endif
                         </div>
                         <div class="col-md-10">
                             <div class="row">

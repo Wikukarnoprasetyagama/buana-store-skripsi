@@ -56,6 +56,7 @@ class CheckoutController extends Controller
             'total_price' => $request->total_price,
             'code_product' => $request->code,
             'quantity' => $request->quantity,
+            'notes' => $request->notes,
             'name' => $request->name,
             'phone' => $request->phone,
             'street' => $request->street,
@@ -118,6 +119,7 @@ class CheckoutController extends Controller
             'transaction_details' => $transaction_details,
             'item_details' => $item_details,
             'customer_details' => $customer_details,
+            'enabled_payments' => ['indomaret', 'bank_transfer'],
         ];
 
         try {

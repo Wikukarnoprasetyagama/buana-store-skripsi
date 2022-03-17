@@ -59,15 +59,20 @@ class LoginController extends Controller
 
         // $user = User::firstOrCreate(
         //     ['email' => $data['email']], $data);
+        // Auth::login($user, true);
+        // return redirect('/');
 
         $user = User::where('email', $data['email'])->first();
-        if (!$user) {
+        if ($user) {
+            Auth::login($user, true);
+            Alert::success('Welcome Back!', 'You are logged in.');
+            return redirect('/');
+        } else {
             $user = User::create($data);
-            $user->notify(new EmailAfterRegistration());
+            Alert::success('Welcome!', 'You are registered.');
+            Auth::login($user, true);
+            return redirect('/');
         }
-        Auth::login($user, true);
-        return redirect('/');
-
     }
 
     /**

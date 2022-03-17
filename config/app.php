@@ -163,11 +163,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-
+        
         /*
-         * Package Service Providers...
-         */
+        * Package Service Providers...
+        */
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Application Service Providers...

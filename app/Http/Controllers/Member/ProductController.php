@@ -13,6 +13,7 @@ use App\Http\Requests\ProductRequest;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -23,10 +24,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Products::where('users_id', auth()->id())->get();
+        $product = Products::where('users_id', Auth::user()->id)->get();
         return view('pages.member.product.index', [
-            'products' => $products,
-        ], compact('products'));
+            'products' => $product,
+        ], compact('product'));
     }
 
     /**
@@ -65,7 +66,13 @@ class ProductController extends Controller
 
             }
         }
-        return redirect()->route('products-seller.index')->with('success', 'Data Berhasil Ditambahkan!');
+        if ($data) {
+            Alert::success('Berhasil!', 'Produk Berhasil Ditambahkan!');
+            return redirect()->route('products-seller.index');
+        }else{
+            Alert::error('Gagal!', 'Produk Gagal Ditambahkan!');
+            return redirect()->route('products-seller.index');
+        }
     }
 
     /**
@@ -87,11 +94,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Products::findOrFail($id);
+        $products = Products::findOrFail($id);
         $gallery = ProductGallery::all()->where('products_id', Auth::user()->id)->get($id);
         $category = Category::all();
         return view('pages.member.product.edit', [
-            'product' => $product,
+            'products' => $products,
             'categories' => $category,
             'galleries' => $gallery,
         ]);
@@ -107,13 +114,16 @@ class ProductController extends Controller
     public function update(ProductRequest $request, $id)
     {
         $data = $request->all();
+        $data['slug'] = Str::slug($request->name_product);
         $product = Products::findOrFail($id);
         $product->update($data);
         
         if ($data) {
-            return redirect()->route('products-seller.index')->with('success', 'Data berhasil diubah');
-        } else {
-            return redirect()->route('products-seller.edit')->with('error', 'data gagal diubah');
+            Alert::success('Berhasil!', 'Produk Berhasil Diubah!');
+            return redirect()->route('products-seller.index');
+        }else{
+            Alert::error('Gagal!', 'Produk Gagal Diubah!');
+            return redirect()->route('products-seller.index');
         }
     }
 

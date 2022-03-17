@@ -25,15 +25,15 @@ class ProductRequest extends FormRequest
     {
         return [
             'users_id' => 'exists:users,id',
-            'photo[]' => 'mimes:svg,jpg',
-            'categories_id' => 'required|exists:categories,id',
+            'photo[]' => 'mimes:svg,jpg|max:2048',
+            'categories_id' => 'exists:categories,id',
             'code' => 'string',
-            'name_product' => 'required|string|max:255',
+            'name_product' => 'string|max:255',
             'slug' => 'string|unique:products',
-            'price' => 'required|integer',
+            'price' => 'integer',
             'discount' => 'string|nullable',
             'discount_amount' => 'nullable',
-            'description' => 'required|string',
+            'description' => 'string',
         ];
     }
 }

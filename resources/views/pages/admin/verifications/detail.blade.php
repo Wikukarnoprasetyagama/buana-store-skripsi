@@ -4,6 +4,7 @@
 @endsection
 
 @section('content')
+@if ($detail->status == 'PENDING')
 <div class="main-content">
     <div class="row">
         <div class="col-md-12">
@@ -79,11 +80,16 @@
                         @csrf
                         @method('PUT')
                         <div class="row d-flex justify-content-right">
-                            <div class="col-md-12 text-right">
+                            <div class="col-lg-6">
+                                <div class="btn-chat">
+                                    <a href="https://api.whatsapp.com/send?phone=62{{ $detail->phone }}&text=Dear!%20{{ $detail->name }}" class="btn btn-block btn-info" target="_blank">Chat Member</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <input type="hidden" name="roles" value="SELLER">
                                     <input type="hidden" name="status" value="TERVERIFIKASI">
-                                    <button type="submit" class="btn btn-success change">Verifikasi Sekarang</button>
+                                    <button type="submit" class="btn btn-success btn-block change">Verifikasi Sekarang</button>
                                 </div>
                             </div>
                         </div>
@@ -93,53 +99,30 @@
         </div>
     </div>
 </div>
+@else
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row py-5">
+                        <div class="col-md-12">
+                            <div class="no-verification text-center">
+                                <figure class="figure">
+                                    <img src="{{ url('/images/ic_empty.svg') }}" class="img-fluid figure-img h-50 w-50" alt="">
+                                </figure>
+                                <div class="description">
+                                    <h3>Belum ada Data!</h3>
+                                    Tidak ada member yang perlu di verifikasi
+                                </div>
+                                <a href="{{ route('dashboard-admin') }}" class="btn btn-success mt-5">Kembali</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
-
-@push('after-script')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.9/dist/sweetalert2.all.min.js"></script>
-<script>
-    $(document).on('click', '#hapus', function(){
-    let url = $(this).data('url');
-    let token = $(this).data('token')
-    let id = $(this).data('id');
-    let tr = this
-    Swal.fire({ 
-        title: 'Data ini akan di hapus',
-        text: "Apakah anda yakin ?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value)  {
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: {
-                        '_method': 'DELETE',
-                        '_token': token,
-                        'id': id
-                    },
-                    dataType: "JSON",
-                    success: function (response) {
-                        Swal.fire(
-                            'Deleted!',
-                            response.success,
-                            'success'
-                        )
-                        $(tr).closest('tr').remove();
-                    }
-                });
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                swal.fire(
-                    'Dibatalkan!',
-                    'Data yang ingin anda hapus berhasil dibatalkan',
-                    'error'
-                )
-            }
-            
-        });
-    });
-</script>
-@endpush

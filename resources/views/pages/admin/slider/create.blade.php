@@ -41,18 +41,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="title" class="form-control-label">Judul Slider</label>
-                                            <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror"/>
-                                            @error('title') <div class="text-muted" required>{{ $message }}</div> @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="subtitle" class="form-control-label">Sub Judul</label>
-                                            <input type="text" name="subtitle" value="{{ old('subtitle') }}" class="form-control @error('subtitle') is-invalid @enderror"/>
-                                            @error('subtitle') <div class="text-muted" required>{{ $message }}</div> @enderror
+                                            <label for="name" class="form-control-label">Nama Slider / Iklan</label>
+                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror"/>
+                                            @error('name') <div class="text-muted" required>{{ $message }}</div> @enderror
                                         </div>
                                     </div>
                                 </div>

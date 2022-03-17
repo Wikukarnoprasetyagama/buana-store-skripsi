@@ -92,6 +92,37 @@
       </div>
     </section>
     <!-- End Cart -->
+
+    <!-- Notes Opsional -->
+    <form action="{{ route('checkout') }}" class="mt-3" method="POST" enctype="multipart/form-data">
+      @csrf
+      @if ($discount == true)
+      <input type="hidden" name="code_unique" value="0">
+      @elseif($discount == true || $discount == false)
+      <input type="hidden" name="code_unique" value="{{ $code_unique }}">
+      @endif
+    <input type="hidden" name="total_price" value="{{ $totalPrice }}">
+    <input type="hidden" name="products_id" value="{{ $cart->products_id }}">
+    <input type="hidden" name="code" value="{{ $cart->product->code }}">
+    <input type="hidden" name="quantity" value="{{ $cart->quantity }}">
+    <section class="section-notes mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Catatan Barang</h3>
+          </div>
+          <div class="col-md-12">
+            <label for="notes" class="form-label">Tambahkan catatan barang yang anda beli (Opsional)</label>
+                <textarea
+                  type="text"
+                  name="notes"
+                  class="form-control"
+                ></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Notes Opsional -->
     <!-- Address -->
     <section class="section-address">
       <div class="container">
@@ -99,32 +130,20 @@
           <div class="col-12 col-md-12">
             <h3>Alamat Tujuan</h3>
           </div>
-          <form action="{{ route('checkout') }}" class="mt-3" method="POST" enctype="multipart/form-data">
-            @csrf
-            @if ($discount == true)
-                <input type="hidden" name="code_unique" value="0">
-                @elseif($discount == true || $discount == false)
-                <input type="hidden" name="code_unique" value="{{ $code_unique }}">
-            @endif
-            <input type="hidden" name="total_price" value="{{ $totalPrice }}">
-            <input type="hidden" name="products_id" value="{{ $cart->products_id }}">
-            <input type="hidden" name="code" value="{{ $cart->product->code }}">
-            <input type="hidden" name="quantity" value="{{ $cart->quantity }}">
             <div class="row">
               <div class="col-12 col-md-4 mb-3">
                 <label for="village" class="form-label">Nama Kecamatan</label>
                 <input type="text" name="district" class="form-control" value="Tapung Hilir" disabled>
               </div>
               <div class="col-12 col-md-4 mb-3">
-                <label for="village" class="form-label">Nama Desa*</label>
-                <input
-                  type="text"
-                  name="village"
-                  class="form-control"
-                  id="village"
-                  oninvalid="this.setCustomValidity('kolom ini wajib di isi')" oninput="setCustomValidity('')"
-                  required
-                />
+                <label for="village" class="form-control-label">Nama Desa</label>
+                <div class="form-group mt-2">
+                    <select name="village" class="form-select">
+                        @foreach ($villages as $village)
+                            <option value="{{ $village->id }}">{{ $village->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
               </div>
               <div class="col-12 col-md-4 mb-3">
                 <label for="street" class="form-label">Nama Jalan*</label>
@@ -208,14 +227,16 @@
                                   </div>
                                 </tr>
                                 @php
-                                    $total = $cart->product->price * $cart->quantity + $cart->product->ongkir_amount; 
+                                    $total = $cart->product->price * $cart->quantity; 
                                     // $discount = (($cart->product->price * $cart->quantity * $cart->product->discount_amount) / 100);
                                     $discount = (($total * $cart->product->discount_amount) / 100);
                                     // $totalPrice = $total - $discount + $code_unique;
-                                    if ($cart->product->discount_amount == true) {
-                                      $totalPrice = $total - $discount;
-                                    }elseif ($cart->product->discount_amount == true || $cart->product->discount_amount == 0) {
-                                      $totalPrice = $total - $discount + $code_unique;
+                                    if ($cart->product->discount == true || $cart->product->ongkir == true) {
+                                      $totalPrice = $total - $discount + $cart->product->ongkir_amount + $code_unique;
+                                    }elseif ($cart->product->discount == 0) {
+                                      $totalPrice = $total + $code_unique;
+                                    }elseif ($cart->product->ongkir == 0) {
+                                      $totalPrice = $total + $code_unique;
                                     }
                                 @endphp
                             @endforeach

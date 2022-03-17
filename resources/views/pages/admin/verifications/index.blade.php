@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-4 pt-5">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
                             <h1 class="h3 mb-0 text-gray-800">Daftar Permintaan Pembukaan Toko</h1>
                         </div>
                         <div class="table-responsive">

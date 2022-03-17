@@ -8,6 +8,7 @@ use App\Http\Requests\VerificationRequest;
 use App\Models\User;
 use App\Models\UserDetails;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
 class VerificationController extends Controller
@@ -19,7 +20,7 @@ class VerificationController extends Controller
      */
     public function index()
     {
-        $member = User::where('status', 'PENDING')->get();
+        $member = User::whereStatus('PENDING')->get();
         return view('pages.admin.verifications.index', [
             'members' => $member,
         ], compact('member'));
@@ -57,8 +58,7 @@ class VerificationController extends Controller
         $detail = User::findOrFail($id);
         return view('pages.admin.verifications.detail', [
             'detail' => $detail,
-            // 'user' => User::where('status', 'PENDING')->get()
-        ]);
+        ], compact('detail'));
     }
 
     /**
@@ -72,7 +72,6 @@ class VerificationController extends Controller
         $detail = User::findOrFail($id);
         return view('pages.admin.verifications.detail', [
             'detail' => $detail,
-            // 'user' => User::where('status', 'PENDING')->get()
         ]);
     }
 
@@ -86,12 +85,17 @@ class VerificationController extends Controller
     public function update(VerificationRequest $request, $id)
     {
 
-        // $data = User::all();
         $data = $request->all();
         $verification = User::findOrFail($id);
         $verification->update($data);
 
-        return redirect()->route('customer.index');
+        if ($data) {
+            Alert::success('Verifikasi Berhasil!', 'Data Telah Diverifikasi.');
+            return redirect()->route('verification.index');
+        }else{
+            Alert::error('Verifikasi Gagal!', 'Data Gagal Diverifikasi.');
+            return redirect()->route('verification.index');
+        }
     }
 
     /**

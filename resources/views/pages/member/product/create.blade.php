@@ -73,17 +73,17 @@
                         <div class="row" id="discount">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="price" class="form-control-label">Kasih Diskon  / Tidak</label>
-                                        <div class="form-group form-check py-2" id="checkbox">
-                                            <input type="checkbox" class="form-check-input discount" name="discount" value="1">
-                                            <label class="form-check-label" for="exampleCheck1">Kasih Diskon</label>
-                                        </div>
+                                    <label for="discount" class="form-control-label">Kasih Diskon  / Tidak (opsional)</label>
+                                        <select class="form-control" name="discount" id="discount">
+                                            <option value="0">Tidak</option>
+                                            <option value="1">Kasih Diskon</option>
+                                        </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="discount_amount" class="form-control-label">Jumlah Discount</label>
-                                    <input disabled type="number" name="discount_amount" value="{{ old('discount_amount') }}" class="form-control inputDisabledDiscount @error('discount_amount') is-invalid @enderror"/>
+                                    <input type="number" name="discount_amount" value="{{ old('discount_amount') }}" class="form-control inputDisabledDiscount @error('discount_amount') is-invalid @enderror"/>
                                     @error('discount_amount') <div class="text-muted" required>{{ $message }}</div> @enderror
                                 </div>
                             </div>
@@ -91,17 +91,17 @@
                         <div class="row" id="ongkir">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="ongkir" class="form-control-label">Free Ongkir  / Tidak</label>
-                                        <div class="form-group form-check py-2" id="checkbox">
-                                            <input type="checkbox" class="form-check-input ongkir" name="ongkir" value="1">
-                                            <label class="form-check-label" for="exampleCheck1">Kasih Ongkir</label>
-                                        </div>
+                                    <label for="ongkir" class="form-control-label">Free Ongkir  / Tidak (opsional)</label>
+                                        <select class="form-control" name="discount" id="discount">
+                                            <option value="0">Tidak</option>
+                                            <option value="1">Kasih Ongkir</option>
+                                        </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="ongkir_amount" class="form-control-label">Ongkos Kirim</label>
-                                    <input disabled type="number" name="ongkir_amount" value="{{ old('ongkir_amount') }}" class="form-control inputDisabledOngkir @error('ongkir_amount') is-invalid @enderror"/>
+                                    <input type="number" name="ongkir_amount" value="{{ old('ongkir_amount') }}" class="form-control inputDisabledOngkir @error('ongkir_amount') is-invalid @enderror"/>
                                     @error('ongkir_amount') <div class="text-muted" required>{{ $message }}</div> @enderror
                                 </div>
                             </div>

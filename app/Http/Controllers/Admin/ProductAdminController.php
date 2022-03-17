@@ -82,19 +82,19 @@ class ProductAdminController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/product', 'public');
+        // $data = $request->all();
+        // $data['slug'] = Str::slug($request->name);
+        // $data['photo'] = $request->file('photo')->store('assets/product', 'public');
 
-        $product = Products::findOrFail($id);
+        // $product = Products::findOrFail($id);
 
-        $product->update($data);
+        // $product->update($data);
 
-        if ($data) {
-            return redirect()->route('products-admin.index')->with('success', 'Data berhasil diubah');
-        } else {
-            return redirect()->route('products-admin.edit')->with('error', 'data gagal diubah');
-        }
+        // if ($data) {
+        //     return redirect()->route('products-admin.index')->with('success', 'Data berhasil diubah');
+        // } else {
+        //     return redirect()->route('products-admin.edit')->with('error', 'data gagal diubah');
+        // }
     }
 
     /**

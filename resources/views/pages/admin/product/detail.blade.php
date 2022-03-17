@@ -36,16 +36,19 @@
                         </figure>
                         <h3 class="profile-username text-center">{{ $detail->name }}</h3>
                         <p class="text-muted text-center">{{ $detail->roles }}</p>
-                        <a href="https://api.whatsapp.com/send?phone={{ $detail->phone }}&text=Dear!%20{{ $detail->name }}" class="btn btn-success btn-block" target="_blank"><b>Chat Sekarang</b></a>
+                        <a href="https://api.whatsapp.com/send?phone=62{{ $detail->phone }}&text=Dear!%20{{ $detail->name }}" class="btn btn-success btn-block" target="_blank"><b>Chat Sekarang</b></a>
                     </div>
-            </div>
+                </div>
           </div>
 
           <div class="col-md-8">
             <div class="card">
               <div class="card-body">
                   <div class="row">
-                    @foreach ($products as $product)
+                    <div class="col-12 mb-3">
+                      <strong>Produk Yang Dijual</strong>
+                    </div>
+                    @forelse ($products as $product)
                       <div class="col-md-3">
                           <a href="{{ route('detail', $product->slug) }}" target="_blank">
                             <figure class="figure">
@@ -55,7 +58,11 @@
                             </figure>
                           </a>
                       </div>
-                    @endforeach
+                    @empty
+                      <div class="col-12 text-center">
+                        <p>Toko ini belum memiliki produk!</p>
+                      </div>
+                    @endforelse
                 </div>
               </div>
             </div>

@@ -88,13 +88,19 @@ class SlidersController extends Controller
     public function update(SlidersRequest $request, $id)
     {
         $data = $request->all();
-        $data['photo'] = $request->file('photo')->store(
-            'assets/slider',
-            'public'
-        );
-
         $slider = Sliders::findOrFail($id);
+        $file_photo = $request->file('photo');
 
+        if($file_photo) //jika foto tidak di update
+        {
+            $filename = $file_photo->getClientOriginalName();
+            $data['photo'] = $filename;
+            $data['photo'] = $request->file('photo')->store(
+                'assets/slider',
+                'public'
+            );
+            $proses = $file_photo->move('assets/slider', 'public');
+        } 
         $slider->update($data);
 
         if ($data) {

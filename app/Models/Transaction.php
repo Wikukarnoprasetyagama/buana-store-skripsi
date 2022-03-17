@@ -11,13 +11,6 @@ class Transaction extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        // 'users_id',
-        // 'products_id',
-        // 'code_transaction',
-        // 'shipping_price',
-        // 'quantity',
-        // 'total_price',
-        // 'payment_status',
         'users_id',
         'products_id',
         'order_id',
@@ -25,6 +18,7 @@ class Transaction extends Model
         'quantity',
         'code_unique',
         'total_price',
+        'notes',
         'payment_status',
         'shipping_status',
         'midtrans_url',

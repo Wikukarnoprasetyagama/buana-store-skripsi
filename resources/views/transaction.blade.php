@@ -122,7 +122,7 @@
 								<td>
 									@if ($transaction->payment_status == 'DIBAYAR')
 										<div class="form-group my-auto py-1">
-											<button class="btn text-white btn-payment" hidden>Bayar</button>
+											<span class="badge bg-success"> selesai </span>
 										</div>
 										@else
 										<div class="form-group my-auto py-1">
@@ -171,6 +171,11 @@
       .section-empty-cart{
         margin-top: 60px;
       }
+
+	.badge{
+		  font-size: 16px;
+		  font-weight: 400;
+	  }
 
       h1{
           font-size: 32px;

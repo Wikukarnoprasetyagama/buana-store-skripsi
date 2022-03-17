@@ -16,7 +16,6 @@
                                 <label for="photo" class="form-control-label">Gambar</label>
                                 <input type="file"
                                     name="photo"
-                                    required 
                                     value="{{ old('photo') ? old('photo') : $category->photo }}"
                                     class="form-control @error('photo') is-invalid @enderror"/>
                                 @error('photo') <div class="text-muted">{{ $message }}</div>@enderror
@@ -40,7 +39,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <button class="btn btn-primary btn-block" type="submit">
+                                <button class="btn btn-success btn-block" type="submit">
                                     Ubah Kategori
                                 </button>
                             </div>

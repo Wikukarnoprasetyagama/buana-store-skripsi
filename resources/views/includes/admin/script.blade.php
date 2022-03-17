@@ -8,6 +8,7 @@
   <script src="/assets/js/stisla.js"></script>
   <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
  <!-- Data Tables -->
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
  <!-- DataTables  & Plugins -->
 <script src="{{ url('/datatables/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ url('/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>

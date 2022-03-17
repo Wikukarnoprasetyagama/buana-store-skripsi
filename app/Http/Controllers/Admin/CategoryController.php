@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
@@ -49,7 +50,14 @@ class CategoryController extends Controller
             'assets/category', 'public'
         );
         Category::create($data);
-        return redirect()->route('category.index')->with('success', 'Data Berhasil Ditambahkan!');
+        if ($data) {
+            Alert::success('Berhasil!', 'Kategori Berhasil Ditambahkan.');
+            return redirect()->route('category.index');
+        }else{
+            Alert::error('Gagal!', 'Kategori Gagal Ditambahkan.');
+            return redirect()->route('category.index');
+        }
+        // return redirect()->route('category.index')->with('success', 'Kategori Berhasil Ditambahkan!');
     }
 
     /**
@@ -74,7 +82,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
 
         return view('pages.admin.category.edit', [
-            'categories' => $category
+            'category' => $category
         ]);
 
     }
@@ -89,18 +97,31 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $data = $request->all();
-        $data['photo'] = $request->file('photo')->store(
-            'assets/category', 'public'
-        ); 
+        $data['slug'] = Str::slug($request->name_category);
 
         $category = Category::findOrFail($id);
+
+        $file_photo = $request->file('photo');
+
+        if($file_photo) //jika foto tidak di update
+        {
+            $filename = $file_photo->getClientOriginalName();
+            $data['photo'] = $filename;
+            $data['photo'] = $request->file('photo')->store(
+                'assets/category',
+                'public'
+            );
+            $proses = $file_photo->move('assets/category', 'public');
+        } 
 
         $category->update($data);
 
         if ($data) {
-            return redirect()->route('category.index')->with('success', 'Data berhasil diubah');
-        } else {
-            return redirect()->route('category.edit')->with('error', 'data gagal diubah');
+            Alert::success('Berhasil!', 'Kategori Berhasil Diubah.');
+            return redirect()->route('category.index');
+        }else{
+            Alert::error('Gagal!', 'Kategori Gagal Diubah.');
+            return redirect()->route('category.index');
         }
     }
 
@@ -114,9 +135,5 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-
-        return response()->json([
-            'success' => 'Data berhasil dihapus!'
-        ]);
     }
 }

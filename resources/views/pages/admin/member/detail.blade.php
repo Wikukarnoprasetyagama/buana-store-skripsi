@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-4 pt-3">
-                        <h1 class="h3 mb-0 text-gray-800">Data Profile</h1>
+                        <h3 class="mb-0 text-gray-800">Detail Data Member</h3>
                         <span class="badge badge-info">{{ $user->name }}</span>
                     </div>
                     <div class="row">
@@ -80,18 +80,18 @@
                                 @if ($user->roles == 'SELLER')
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <a href="{{ route('dashboard-admin') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
+                                            <a href="{{ route('member.index') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <a href="{{ route('products-admin.show', $user->id) }}" class="btn btn-primary d-block">Edit Profile</a>
+                                            <a href="{{ route('products-admin.show', $user->id) }}" class="btn btn-primary d-block">Lihat Produk</a>
                                         </div>
                                     </div>
                                 @else
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <a href="{{ route('dashboard-admin') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
+                                            <a href="{{ route('member.index') }}" class="btn btn-secondary d-block text-dark">Kembali</a>
                                         </div>
                                     </div>
                                 @endif
