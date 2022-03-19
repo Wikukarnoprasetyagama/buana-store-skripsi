@@ -90,7 +90,7 @@ class CheckoutController extends Controller
                 
         // $orderId = $transaction->id.'-'.Str::random(5);
         $orderId = $transaction->id. '-' . Str::random(5);
-        $price = $transaction->total_price;
+        $price = $transaction->total_price + $transaction->code_unique;
 
         $transaction->order_id = $orderId;
 
@@ -127,9 +127,9 @@ class CheckoutController extends Controller
             $paymentUrl = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
             $transaction->midtrans_url = $paymentUrl;
             $transaction->save();
-            return view('success', $paymentUrl) ;
+            return view('success', $paymentUrl);
         } catch (Exception $e) {
-            return false;
+            return view('success');
         }
     }
 
@@ -184,5 +184,14 @@ class CheckoutController extends Controller
 
         $transaction->save();
         return view('success');
+    }
+
+    public function paymentSuccess()
+    {
+        return view('success');
+    }
+    public function paymentUnfinish()
+    {
+        return view('checkout-success');
     }
 }

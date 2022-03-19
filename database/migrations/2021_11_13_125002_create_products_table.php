@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('categories_id');
             $table->string('code');
             $table->string('name_product');
+            $table->string('stock')->default('Tersedia');
             $table->string('slug')->unique();
             $table->integer('price');
             $table->boolean('discount')->default(false);

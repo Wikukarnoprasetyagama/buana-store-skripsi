@@ -52,7 +52,6 @@
 											<div class="discount-badge">{{ $products->discount_amount }}%</div>
 										</div>
 									@endif
-									{{-- <img src="{{ url('/images/ic_chat.svg') }}" class="img-fluid" alt="" /> --}}
 								</div>
 							</figure>
 						</div>
@@ -95,13 +94,16 @@
 				</div>
 				<div class="name-product">
 					<h5>{{ $products->name_product }}</h5>
+          @if ($products->stock == 'Habis')
+              <span class="badge bg-danger">Habis</span>
+          @endif
 				</div>
-				<div class="price">Rp. {{ number_format($products->price) }}</div>
+				<div class="price mt-2">Rp. {{ number_format($products->price) }}</div>
             	<form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data">
 					@csrf
 				<div class="row mt-4">
 					<div class="col-2">
-						<div class="mb-3">
+						<div class="quantity">
 							<input type="number" name="quantity" class="form-control" min="1" value="1">
 						</div>
 					</div>
@@ -126,9 +128,15 @@
 										</a> 
 									@endif
 								@else
-									<button class="btn btn-add-to-cart" type="submit">
-										Masuk Keranjang
-									</button>
+									@if ($products->stock == 'Habis')
+                      <button class="btn btn-add-to-cart disabled" type="submit">
+                        Masuk Keranjang
+                      </button>
+                  @else
+                      <button class="btn btn-add-to-cart" type="submit">
+                        Masuk Keranjang
+                      </button>
+                  @endif
 								@endif
 							@endauth
 							@guest

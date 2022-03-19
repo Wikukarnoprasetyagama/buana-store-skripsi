@@ -51,8 +51,10 @@ Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])-
 Route::get('/hadiah', [RewardsController::class, 'index'])->name('reward');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');
 Route::get('/kategori/{id}', [CategoryProductsController::class, 'detail'])->name('categories-detail');
-Route::get('/payment/success', [CheckoutController::class, 'callback']);
-Route::post('/payment/success', [CheckoutController::class, 'callback']);
+Route::get('payment/success', [CheckoutController::class, 'callback']);
+Route::post('payment/success', [CheckoutController::class, 'callback']);
+Route::get('/pembayaran/berhasil', [CheckoutController::class, 'paymentSuccess']);
+Route::get('/pembayaran/tertunda', [CheckoutController::class, 'paymentUnfinish']);
 
 //Google
 Route::get('/auth/callback', [LoginController::class, 'handlerProviderCallback']);

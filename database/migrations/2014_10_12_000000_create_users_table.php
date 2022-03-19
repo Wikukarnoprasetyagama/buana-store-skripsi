@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email')->unique();
             $table->enum('roles', ['ADMIN', 'SELLER', 'CUSTOMER'])->default('CUSTOMER');
             $table->string('name_store')->nullable();
             $table->enum('status', ['TERVERIFIKASI', 'PENDING', 'DIBLOKIR', 'NONE'])->default('NONE');
@@ -27,7 +28,6 @@ class CreateUsersTable extends Migration
             $table->longText('address')->nullable();
             $table->string('photo_profile')->nullable();
             $table->string('photo_shop')->nullable();
-            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->softDeletes();

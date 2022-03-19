@@ -114,7 +114,10 @@
 						@endif
 					@endauth
 			  </li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Keluar</a></li>
+              <li class="nav-item">
+				<a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"
+					>Keluar</a>
+			</li>
             </ul>
           </div>
         </div>

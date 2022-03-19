@@ -37,11 +37,9 @@ class CartController extends Controller
     {
         $cart = Cart::findOrFail($id);
         $cart->delete();
-        if ($cart->delete()) {
-            Alert::success('Berhasil!', 'Berhasil menghapus produk dari keranjang!');
-            return redirect()->route('cart');
-        }else{
-            Alert::error('Gagal!', 'Gagal menghapus produk dari keranjang!');
+        
+        if ($cart) {
+            Alert::success('Berhasil Dihapus!', 'Produk berhasil dihapus dari keranjang.');
             return redirect()->route('cart');
         }
     }

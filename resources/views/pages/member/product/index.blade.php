@@ -69,6 +69,12 @@
                                                         <button hidden type="submit" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Nonaktifkan Diskon"><i class="fas fa-badge-percent"></i></button>
                                                     </form>
                                             @endif
+                                            <form action="{{ route('products-seller.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                                                @method('PUT')
+                                                @csrf
+                                                <input type="hidden" name="stock" class="form-input" value="1">
+                                                <button type="submit" class="btn btn-sm btn-secondary mr-2" data-toggle="tooltip" data-placement="top" title="Stok Habis"><i class="fas fa-store"></i></button>
+                                            </form>
                                             <a href="{{ route('products-seller.edit', $product->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Edit Produk"><i class="fas fa-pencil"></i></a>
                                             <form action="{{ route('products-seller.destroy', $product->id) }}" method="POST" enctype="multipart/form-data" class="mx-2">
                                                 @csrf

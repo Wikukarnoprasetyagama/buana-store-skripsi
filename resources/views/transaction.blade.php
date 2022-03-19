@@ -89,12 +89,7 @@
 								</td>
 								<td>
 									<div class="form-group my-auto py-2" style="width: 130px">
-										@if ($transaction->code_unique == true)
-											{{-- <div class="price">Rp{{ number_format($transaction->total_price) }}</div> --}}
-											<div class="price">Rp{{ number_format($transaction->total_price + $transaction->code_unique) }}</div>
-											@elseif($transaction->code_unique == false)
-											<div class="price">Rp{{ number_format($transaction->total_price) }}</div>
-										@endif
+										<div class="price">Rp{{ number_format($transaction->total_price + $transaction->code_unique) }}</div>
 									</div>
 								</td>
 								<td>
@@ -126,7 +121,7 @@
 										</div>
 										@else
 										<div class="form-group my-auto py-1">
-											<a href="{{ $transaction->midtrans_url }}" class="btn text-white btn-payment">Bayar</a>
+											<a href="{{ $transaction->midtrans_url }}" class="btn text-white btn-payment" target="_blank">Bayar</a>
 										</div>
 									@endif
 								</td>

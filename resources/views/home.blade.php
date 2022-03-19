@@ -112,32 +112,35 @@
 				@forelse ($products as $product)
 					@if ($product->user->status == "TERVERIFIKASI")
               <div class="col-6 col-lg-3 mb-3" data-aos="zoom-in" data-aos-delay="{{ $incerementProduct += 100 }}">
-						<figure class="figure">
-						<div class="product-img">
-							<a href="{{ route('detail', $product->slug) }}">
-							@if ($product->galleries->count())
-								<img
-								src="{{ Storage::url($product->galleries->first()->photo) }}"
-								class="figure-img img-fluid w-100"
-								alt=""
-							/>
-							@endif
-							</a>
-							@if ($product->discount == true)
-								<div class="discount-image d-flex justify-content-end">
-								<img
-									src="{{ url('/images/ic_discount_empty.svg') }}"
-									class="align-items-end img-fluid"
-									alt=""
-								/>
-								<div class="discount-badge">{{ $product->discount_amount }}%</div>
-							</div>
-							@endif
-						</div>
-						</figure>
-						<h4 class="name-product">{{ $product->name_product }}</h4>
-						<div class="price">Rp. {{ number_format($product->price) }}</div>
-					</div>
+                <figure class="figure">
+                    <div class="product-img">
+                      <a href="{{ route('detail', $product->slug) }}">
+                      @if ($product->galleries->count())
+                        <img
+                        src="{{ Storage::url($product->galleries->first()->photo) }}"
+                        class="figure-img img-fluid w-100"
+                        alt=""
+                      />
+                      @endif
+                      </a>
+                      @if ($product->discount == true)
+                        <div class="discount-image d-flex justify-content-end">
+                        <img
+                          src="{{ url('/images/ic_discount_empty.svg') }}"
+                          class="align-items-end img-fluid"
+                          alt=""
+                        />
+                        <div class="discount-badge">{{ $product->discount_amount }}%</div>
+                      </div>
+                      @endif
+                    </div>
+                </figure>
+                <h4 class="name-product">{{ $product->name_product }}</h4>
+                <div class="price">Rp. {{ number_format($product->price) }}</div>
+                @if ($product->stock == 'Habis')
+                    <span class="badge bg-danger fw-normal">Habis</span>
+                @endif
+					    </div>
           @endif
 				@empty
 				<div class="product-empty text-center pt-5">

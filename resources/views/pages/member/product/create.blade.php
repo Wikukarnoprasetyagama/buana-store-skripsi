@@ -92,7 +92,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="ongkir" class="form-control-label">Free Ongkir  / Tidak (opsional)</label>
-                                        <select class="form-control" name="discount" id="discount">
+                                        <select class="form-control" name="ongkir" id="ongkir">
                                             <option value="0">Tidak</option>
                                             <option value="1">Kasih Ongkir</option>
                                         </select>

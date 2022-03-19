@@ -94,7 +94,8 @@ class TransactionCustomerController extends Controller
 
     public function cetak_pdf()
     {   
-        $path = base_path('/public/images/logo.png');
+        // $path = base_path('/public/images/logo.png');
+        $path = url('/images/logo.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
@@ -112,6 +113,6 @@ class TransactionCustomerController extends Controller
             'revenue' => $revenue,
         ], compact('pic'))->setPaper('a4', 'landscape');
         // return $pdf->stream();
-        return $pdf->download('laporan-transasaksi-customer.pdf');
+        return $pdf->download('Laporan Transasaksi Penjualan Customer ' . Auth::user()->name . '.pdf');
     }
 }

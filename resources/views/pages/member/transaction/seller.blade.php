@@ -8,15 +8,19 @@
     <section class="main-content">
         @if (count($transaction))
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-md-12">
                     <div class="card">
-                    <div class="card-header d-flex align-items-center justify-content-between">
-                        <h3 class="mb-0 text-gray-800">Data Transaksi Penjualan</h3>
-                        <a href="{{ route('pdf-transaction-seller')}}" class="btn btn-success shadow-sm">
-                            <i class="fas fa-print fa-sm text-white-50"></i>
-                            Cetak Transaksi
-                        </a>
-                    </div>
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="title my-2">
+                                <h3 class="mb-0 text-gray-800">Data Transaksi Penjualan</h3>
+                            </div>
+                            <div class="print my-2">
+                                <a href="{{ route('pdf-transaction-seller')}}" class="btn btn-success shadow-sm">
+                                    <i class="fas fa-print fa-sm text-white-50"></i>
+                                    Cetak Transaksi
+                                </a>
+                            </div>
+                        </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example1" class="table table-hover scroll-horizontal-vertical w-100">
