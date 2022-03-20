@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('title')
-    Kategori Semua Produk
+    Semua Kategori Produk
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
           <li class="breadcrumb-item active my-auto" aria-current="page">
-            Kategori 
+            Kategori Produk
           </li>
         </ol>
       </div>
