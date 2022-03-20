@@ -58,6 +58,7 @@
 
 
   @include('sweetalert::alert')
+  @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
   @include('includes.footer')
   @stack('before-script')
   @include('includes.script')
