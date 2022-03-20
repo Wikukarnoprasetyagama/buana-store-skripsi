@@ -57,11 +57,11 @@
     </div>
 
 
+  @include('sweetalert::alert')
   @include('includes.footer')
   @stack('before-script')
   @include('includes.script')
   @stack('after-script')
-  @include('sweetalert::alert')
 
   </body>
 </html>
