@@ -19,9 +19,6 @@
 					<a class="nav-link {{ (request()->is('hadiah*')) ? 'active' : '' }}" href="{{ route('reward') }}">Hadiah</a>
 				</li>
 				@auth
-				<li class="nav-item mx-2">
-					<a class="nav-link {{ (request()->is('transaksi*')) ? 'active' : '' }}" href="{{ route('transaction') }}">Transaksi</a>
-				</li>
 					<li class="nav-item mx-2">
 						<a href="{{ route('cart') }}">
 							@php

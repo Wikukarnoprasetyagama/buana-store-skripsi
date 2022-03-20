@@ -24,12 +24,19 @@ class CartController extends Controller
         $ongkir = $carts->reduce(function($carry, $item) {
             return $carry + $item->product->ongkir_amount;
         });
+
+        // $total = $carts->reduce(function($carry, $item) {
+        //     if ($item->produc->discount == true) {
+        //         return $carry + $item->product->price;
+        //     }
+        // });
+
         return view('cart', [
             'carts' => $carts,
             'code_unique' => $code_unique,
             'fee' => $fee,
             'ongkir' => $ongkir,
-            'villages' => $village
+            'villages' => $village,
         ], compact('carts'));
     }
 

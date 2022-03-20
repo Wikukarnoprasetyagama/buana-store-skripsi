@@ -110,6 +110,17 @@
   color: #fff;
 }
 
+.section-maintenance-content h1 {
+  font-family: "Merriweather";
+  font-size: 42px;
+  font-weight: 600;
+  color: #1e124c;
+}
+
+.section-maintenance-content p {
+  color: #5b5575;
+}
+
 .section-content-carousel .title {
   margin-top: 123px;
 }

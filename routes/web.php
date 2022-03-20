@@ -51,10 +51,7 @@ Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])-
 Route::get('/hadiah', [RewardsController::class, 'index'])->name('reward');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');
 Route::get('/kategori/{id}', [CategoryProductsController::class, 'detail'])->name('categories-detail');
-Route::get('payment/success', [CheckoutController::class, 'callback']);
-Route::post('payment/success', [CheckoutController::class, 'callback']);
-Route::get('/pembayaran/berhasil', [CheckoutController::class, 'paymentSuccess']);
-Route::get('/pembayaran/tertunda', [CheckoutController::class, 'paymentUnfinish']);
+
 
 //Google
 Route::get('/auth/callback', [LoginController::class, 'handlerProviderCallback']);
@@ -110,16 +107,18 @@ Route::prefix('/pages/dashboard/customer')
             Route::resource('open-store', OpenStoreController::class);
             Route::resource('transaction-customer', TransactionCustomerController::class);
             Route::resource('profile-customer', ProfileCustomerController::class);
-        //     Route::resource('profile-seller', ProfileSellerController::class);
 });
 
 
 Route::group(['middleware' => ['auth']], function(){
-        // Route::get('/keranjang/pembayaran', [CartController::class, 'payout'])->name('cart-payout');
+        Route::get('payment/success', [CheckoutController::class, 'callback']);
+        Route::post('payment/success', [CheckoutController::class, 'callback']);
+        Route::get('/pembayaran/berhasil', [CheckoutController::class, 'paymentSuccess']);
+        Route::get('/pembayaran/tertunda', [CheckoutController::class, 'paymentUnfinish']);
+
         Route::get('/keranjang', [CartController::class, 'index'])->name('cart');
         Route::post('/keranjang', [CartController::class, 'updateQuantity'])->name('cart-update');
         Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
         Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
-        Route::get('/transaksi', [TransactionController::class, 'index'])->name('transaction');
 });
 Auth::routes();

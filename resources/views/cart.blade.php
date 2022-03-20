@@ -225,17 +225,19 @@
 												</div>
 												</tr>
 												@php
-													$total = $cart->product->price * $cart->quantity; 
+													// $total = $cart->product->price; 
 													// $discount = (($cart->product->price * $cart->quantity * $cart->product->discount_amount) / 100);
-													$discount = (($total * $cart->product->discount_amount) / 100);
+													// $discount = (($total * $cart->product->discount_amount) / 100);
 													// $totalPrice = $total - $discount + $code_unique;
-													if ($cart->product->discount == true || $cart->product->ongkir == true) {
-													$totalPrice = $total - $discount + $cart->product->ongkir_amount + $code_unique;
-													}elseif ($cart->product->discount == 0) {
-													$totalPrice = $total + $code_unique;
-													}elseif ($cart->product->ongkir == 0) {
-													$totalPrice = $total + $code_unique;
-													}
+													// if ($cart->product->discount == true) {
+													// 	$totalPrice = $total - $discount + $cart->product->ongkir_amount + $code_unique;
+													// }elseif ($cart->product->discount == 0) {
+													// 	$totalPrice = $total + $code_unique + $cart->product->ongkir_amount * $cart->quantity;
+													// }elseif ($cart->product->ongkir == 0) {
+													// 	$totalPrice = $total + $code_unique;
+													// }
+													$total = $cart->product->price;
+													$totalPrice += $total * $cart->quantity + $cart->product->ongkir_amount;
 												@endphp
 											@endforeach
 											<tr>
@@ -277,7 +279,7 @@
 												<div class="form-group">
 												<th width="90%"><b>Total Pembayaran</b></th>
 												<td width="10%" class="text-end">
-													<strong>Rp.{{ number_format($totalPrice ?? 0) }}</strong>
+													<strong>Rp.{{ number_format($totalPrice + $code_unique ?? 0) }}</strong>
 												</td>
 												</div>
 											</tr>

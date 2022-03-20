@@ -19,11 +19,17 @@
                 <h3>Checkout Berhasil!</h3>
                 <p>
                   Segera lakukan pembayaran<br />
-                  Agar barang dapat segera kami proses                </p>
+                  Agar barang dapat segera kami proses</p>
               </figcaption>
-              <a href="{{ route('transaction') }}" class="btn-lg btn btn-back"
-                >Lihat Transaksi Saya</a
-              >
+              @if (Auth::user()->roles == 'SELLER')
+                  <a href="{{ route('transaction-seller.index') }}" class="btn-lg btn btn-back"
+                    >Lihat Transaksi Saya</a
+                  >
+              @else
+                  <a href="{{ route('transaction-customer.index') }}" class="btn-lg btn btn-back"
+                    >Lihat Transaksi Saya</a
+                  >
+              @endif
             </figure>
           </div>
         </div>
