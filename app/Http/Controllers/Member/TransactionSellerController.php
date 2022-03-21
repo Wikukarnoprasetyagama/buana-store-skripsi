@@ -125,8 +125,7 @@ class TransactionSellerController extends Controller
             'revenue' => $revenue,
         ], compact('pic'))->setPaper('a4', 'landscape');
         // return $pdf->stream();
-        return $pdf->download('Laporan Transasaksi Penjualan Seller ' . Auth::user()->name . '.pdf');
-        
+        return $pdf->download('Laporan Transasaksi Penjualan ' . Auth::user()->name . '.pdf');
     }
 
 
@@ -153,6 +152,6 @@ class TransactionSellerController extends Controller
             'revenue' => $revenue,
         ], compact('pic'))->setPaper('a4', 'landscape');
         // return $pdf->stream();
-        return $pdf->download('Laporan Transasaksi Saya.pdf');
+        return $pdf->download('Laporan Transasaksi Saya ' . Auth::user()->name . '.pdf');
     }
 }

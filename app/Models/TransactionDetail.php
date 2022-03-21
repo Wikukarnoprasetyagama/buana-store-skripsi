@@ -12,8 +12,8 @@ class TransactionDetail extends Model
     protected $fillable = [
         'transactions_id',
         'products_id',
-        'price',
         'notes',
+        'price',
         'name',
         'phone',
         'street',
@@ -24,6 +24,11 @@ class TransactionDetail extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'products_id', 'id');
+        return $this->belongsTo(Products::class, 'products_id', 'id');
+    }
+
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class, 'id', 'transactions_id');
     }
 }

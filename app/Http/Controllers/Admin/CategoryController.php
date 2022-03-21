@@ -51,10 +51,10 @@ class CategoryController extends Controller
         );
         Category::create($data);
         if ($data) {
-            Alert::success('Berhasil!', 'Kategori Berhasil Ditambahkan.');
+            Alert::success('Berhasil!', 'Kategori ' . $request->name_category . ' Berhasil Ditambahkan');
             return redirect()->route('category.index');
         }else{
-            Alert::error('Gagal!', 'Kategori Gagal Ditambahkan.');
+            Alert::error('Gagal!', 'Kategori ' . $request->name_category . ' Gagal Ditambahkan');
             return redirect()->route('category.index');
         }
         // return redirect()->route('category.index')->with('success', 'Kategori Berhasil Ditambahkan!');
@@ -117,10 +117,10 @@ class CategoryController extends Controller
         $category->update($data);
 
         if ($data) {
-            Alert::success('Berhasil!', 'Kategori Berhasil Diubah.');
+            Alert::success('Berhasil!', 'Kategori ' . $request->name_category . ' Berhasil Diubah');
             return redirect()->route('category.index');
         }else{
-            Alert::error('Gagal!', 'Kategori Gagal Diubah.');
+            Alert::error('Gagal!', 'Kategori ' . $request->name_category . ' Gagal Diubah');
             return redirect()->route('category.index');
         }
     }

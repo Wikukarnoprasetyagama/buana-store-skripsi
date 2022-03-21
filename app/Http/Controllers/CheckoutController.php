@@ -40,41 +40,30 @@ class CheckoutController extends Controller
         $data['users_id'] = Auth::id();
         $data['products_id'] = $request->products_id;
         // $data['id'] = 'TRX-' . mt_rand(000000, 999999);
-        $carts = Cart::with(['product', 'user'])
-            ->where('users_id', Auth::id())
-            ->get();
+
+        // update user data
+        // $user = Auth::user();
+        // $user->name = $data['name'];
+        // $user->occupation = $data['occupation'];
+        // $user->phone = $data['phone'];
+        // $user->address = $data['address'];
+        // $user->save();
 
         // create checkout
-        foreach ($carts as $cart) {
-            $transaction = new Transaction();
-            $transaction->users_id = $cart->users_id;
-            $transaction->products_id = $cart->products_id;
-            $transaction->total_price = $cart->product->price;
-            $transaction->code_product = $cart->product->code;
-            $transaction->quantity = $cart->quantity;
-            $transaction->notes = $cart->notes;
-            $transaction->name = $request->name;
-            $transaction->phone = $request->phone;
-            $transaction->street = $request->street;
-            $transaction->village = $request->village;
-            $transaction->address = $request->address;
-            $transaction->code_unique = $request->code_unique;
-            $transaction->save();
-            // $transaction = Transaction::create([
-            //     'users_id' => Auth::id(),
-            //     'products_id' => $request->products_id,
-            //     'total_price' => $request->total_price,
-            //     'code_product' => $request->code,
-            //     'quantity' => $cart->quantity,
-            //     'notes' => $cart->notes,
-            //     'name' => $cart->name,
-            //     'phone' => $cart->phone,
-            //     'street' => $cart->street,
-            //     'village' => $cart->village,
-            //     'address' => $cart->address,
-            //     'code_unique' => $request->code_unique,
-            // ], $data);
-        }
+        $transaction = Transaction::create([
+            'users_id' => Auth::id(),
+            'products_id' => $request->products_id,
+            'total_price' => $request->total_price,
+            'code_product' => $request->code,
+            'quantity' => $request->quantity,
+            'notes' => $request->notes,
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'street' => $request->street,
+            'village' => $request->village,
+            'address' => $request->address,
+            'code_unique' => $request->code_unique,
+        ], $data);
         $this->getSnapRedirect($transaction);
 
 
@@ -101,7 +90,7 @@ class CheckoutController extends Controller
                 
         // $orderId = $transaction->id.'-'.Str::random(5);
         $orderId = $transaction->id. '-' . Str::random(5);
-        $price = $transaction->total_price + $transaction->code_unique;
+        $price = $transaction->total_price;
 
         $transaction->order_id = $orderId;
 
@@ -114,7 +103,7 @@ class CheckoutController extends Controller
             'id' => $orderId,
             'price' => $price,
             'quantity' => 1,
-            'name' => "Pembayaran {$transaction->product->name_product}"
+            'name' => "Pembayaran Produk"
         ];
 
         $customer_details = [
@@ -138,9 +127,9 @@ class CheckoutController extends Controller
             $paymentUrl = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
             $transaction->midtrans_url = $paymentUrl;
             $transaction->save();
-            return redirect($paymentUrl);
+            return view('success', $paymentUrl) ;
         } catch (Exception $e) {
-            return view('success');
+            return false;
         }
     }
 
@@ -195,14 +184,5 @@ class CheckoutController extends Controller
 
         $transaction->save();
         return view('success');
-    }
-
-    public function paymentSuccess()
-    {
-        return view('success');
-    }
-    public function paymentUnfinish()
-    {
-        return view('checkout-success');
     }
 }

@@ -119,12 +119,13 @@ class ProductController extends Controller
         $product->update($data);
         
         if ($data) {
-            Alert::success('Berhasil!', 'Produk Berhasil Diubah!');
+            Alert::success('Berhasil!', 'Produk ' . $request->name_product . ' Berhasil Diubah');
             return redirect()->route('products-seller.index');
         }else{
-            Alert::error('Gagal!', 'Produk Gagal Diubah!');
-            return redirect()->route('products-seller.index');
+            Alert::error('Gagal!', 'Produk ' . $request->name_product . ' Gagal Diubah');
+            return redirect()->route('products-seller.edit');
         }
+        return redirect()->route('products-seller.index');
     }
 
     /**
@@ -137,7 +138,6 @@ class ProductController extends Controller
     {
         $product = Products::findOrFail($id);
         $product->delete();
-        return redirect()->route('products-seller.index')->with('success', 'Data berhasil dihapus');
     }
 
     public function checkSlug(Request $request)

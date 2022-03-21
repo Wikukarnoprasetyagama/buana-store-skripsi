@@ -18,7 +18,7 @@
                         </a>
                     </div>
                     <div class="table-responsive">
-                    <table id="example1" class="table table-hover scroll-horizontal-vertical w-100">
+                    <table id="datatable" class="table table-hover scroll-horizontal-vertical w-100">
                         <thead>
                         <tr>
                             <th>No.</th>
@@ -76,11 +76,7 @@
                                                 <button type="submit" class="btn btn-sm btn-secondary mr-2" data-toggle="tooltip" data-placement="top" title="Stok Habis"><i class="fas fa-store"></i></button>
                                             </form>
                                             <a href="{{ route('products-seller.edit', $product->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Edit Produk"><i class="fas fa-pencil"></i></a>
-                                            <form action="{{ route('products-seller.destroy', $product->id) }}" method="POST" enctype="multipart/form-data" class="mx-2">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus Produk"><i class="fas fa-trash"></i></button>
-                                            </form>
+                                            <a href="{{ route('products-seller.destroy', $product->id) }}"  class="btn btn-sm btn-danger mx-1 btn-delete" id="hapus" data-toggle="tooltip" data-placement="top" title="Hapus {{ $product->name_product }}" aria-valuetext="{{ $product->name_product }}"><i class="fas fa-trash"></i></i></a>
                                         </div>
                                     </td>
                             </tr>
@@ -129,48 +125,50 @@
 @push('after-script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.9/dist/sweetalert2.all.min.js"></script>
 <script>
-    $(document).on('click', '#hapus', function(){
-    let url = $(this).data('url');
-    let token = $(this).data('token')
-    let id = $(this).data('id');
-    let tr = this
-    Swal.fire({ 
+    $('body').on('click', '.btn-delete', function (event) {
+    event.preventDefault();
+
+    var me = $(this),
+        url = me.attr('href'),
+        name = me.attr('aria-valuetext'),
+        csrf_token = $('meta[name="csrf-token"]').attr('content');
+    let tr = this;
+    Swal.fire({
+
         title: 'Apakah anda yakin ?',
-        text: "Data ini akan dihapus",
+        text: 'Produk ' + name + ' akan dihapus',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value)  {
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: {
-                        '_method': 'DELETE',
-                        '_token': token,
-                        'id': id
-                    },
-                    dataType: "JSON",
-                    success: function (response) {
-                        Swal.fire(
-                            'Deleted!',
-                            response.success,
-                            'success'
-                        )
-                        $(tr).closest('tr').remove();
-                    }
-                });
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                swal.fire(
-                    'Hapus data dibatalkan!',
-                    'Data yang ingin anda hapus telah dibatalkan',
-                    'error'
-                )
-            }
-            
-        });
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Hapus Data!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    '_method': 'DELETE',
+                    '_token': csrf_token
+                },
+                success: function (response) {
+                    Swal.fire(
+                        'Berhasil Dihapus!',
+                        'Produk ' + name + ' telah dihapus',
+                        'success'
+                    ),
+                    $(tr).closest('tr').remove();
+                },
+                error: function (xhr) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Produk ' + name + ' Gagal Dihapus',
+                    });
+                }
+            });
+        }
     });
+});
 </script>
 @endpush

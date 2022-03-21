@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SlidersRequest;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
 class SlidersController extends Controller
@@ -49,7 +50,13 @@ class SlidersController extends Controller
         );
 
         Sliders::create($data);
-        return redirect()->route('sliders.index')->with('success', 'Data Berhasil Ditambahkan!');
+        if ($data) {
+            Alert::success('Berhasil!', 'Slider ' . $request->name . ' Berhasil Ditambahkan');
+            return redirect()->route('sliders.index');
+        }else{
+            Alert::error('Gagal!', 'Slider ' . $request->name . ' Gagal Ditambahkan');
+            return redirect()->route('sliders.index');
+        }
     }
 
     /**
@@ -104,9 +111,11 @@ class SlidersController extends Controller
         $slider->update($data);
 
         if ($data) {
-            return redirect()->route('sliders.index')->with('success', 'Data berhasil diubah');
-        } else {
-            return redirect()->route('sliders.edit')->with('error', 'data gagal diubah');
+            Alert::success('Berhasil!', 'Slider ' . $request->name . ' Berhasil Diubah');
+            return redirect()->route('sliders.index');
+        }else{
+            Alert::error('Gagal!', 'Slider ' . $request->name . ' Gagal Diubah');
+            return redirect()->route('sliders.edit');
         }
     }
 
