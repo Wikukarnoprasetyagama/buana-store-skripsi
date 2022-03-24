@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Products;
 use App\Models\Sliders;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use App\Models\User;
 use App\Models\UserDetails;
 use Illuminate\Http\Request;
@@ -19,8 +20,8 @@ class DashboardAdminController extends Controller
         $products = Products::where('users_id', Auth::user()->id)->count();
         $category = Category::count();
         $slider = Sliders::count();
-        $transactions = Transaction::all()->whereIn('payment_status', 'DIBAYAR');
-        $profit = $transactions->reduce(function($carry, $item) {
+        $transactions = Transaction::where('payment_status', 'DIBAYAR');
+        $profit = $transactions->get()->reduce(function($carry, $item) {
             return $carry + $item->code_unique;
         });
         return view('pages.admin.dashboard', [

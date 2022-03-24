@@ -12,6 +12,9 @@ class TransactionDetail extends Model
     protected $fillable = [
         'transactions_id',
         'products_id',
+        'code_product',
+        'quantity',
+        'shipping_status',
         'notes',
         'price',
         'name',
@@ -19,7 +22,6 @@ class TransactionDetail extends Model
         'street',
         'village',
         'address',
-        'midtrans_url',
     ];
 
     public function product()

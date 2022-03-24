@@ -182,6 +182,104 @@ body {
   color: #fff;
 }
 
+.section-all-product .section-title h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e124c;
+}
+
+.section-all-product .section-title p {
+  color: #5b5575;
+}
+
+.section-all-product .section-search-product input {
+  border-radius: 50px;
+}
+
+.section-all-product .section-search-product ::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.section-all-product .section-search-product :-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+.section-all-product .section-search-product ::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+.section-all-product .section-search-product :-ms-input-placeholder {
+  text-align: center;
+}
+
+.section-all-product .section-search-product .btn-search {
+  background-color: #a43ce3;
+  border-radius: 50px;
+}
+
+.section-all-product .section-product h3 {
+  font-family: "Merriweather";
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e124c;
+}
+
+.section-all-product .section-product p {
+  color: #5b5575;
+}
+
+.section-all-product .section-product .price {
+  color: #ff6b44;
+}
+
+.section-all-product .section-product .name-product {
+  color: #0c0d36;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: -10px;
+}
+
+.section-all-product .section-product figure {
+  position: relative;
+}
+
+.section-all-product .section-product figure .product-img .discount-image {
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: 0;
+  padding-bottom: 100px;
+}
+
+.section-all-product .section-product figure .discount-badge {
+  position: absolute;
+  display: inline-block;
+  min-width: 2em;
+  top: 9px;
+  right: 5px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  color: #fff;
+}
+
+.section-all-product .section-product img {
+  border-radius: 8px;
+  background-size: cover;
+}
+
+.section-all-product .section-product .product-empty {
+  margin-top: -70px;
+}
+
+.section-all-product .section-product .product-empty img {
+  max-height: 120px;
+}
+
 .section-category {
   margin-top: 90px;
 }
@@ -513,62 +611,26 @@ body {
   margin-top: 10px;
 }
 
-.section-cart {
-  margin-top: 70px;
-}
-
-.section-cart table thead tr {
-  color: #0c0d36;
-}
-
-.section-cart table tbody th img {
-  max-height: 100px;
-  max-width: 110px;
-}
-
-.section-cart table tbody .title-product {
-  font-size: 18px;
-  font-weight: 500;
-  color: #000;
-}
-
-.section-cart table tbody .name-store {
-  color: #c4c4c4;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.section-cart table tbody .btn-payment {
-  background: #a43ce3;
-  border-radius: 25px;
-  width: 150px;
-}
-
-.section-cart table tbody .payment-status {
-  font-weight: 500;
-  font-size: 18px;
-}
-
-.section-cart table tbody .shipping-status {
-  font-weight: 500;
-  font-size: 18px;
-}
-
-.section-cart table tbody .price {
-  color: #ff6b44;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.section-address {
-  margin-top: 100px;
-}
-
-.section-address h3 {
+.section-transaction .card-header h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
+}
+
+.section-transaction .card-header span {
+  color: #5b5575;
+}
+
+.section-transaction th {
+  color: #1e124c;
+  font-weight: 600;
+}
+
+.section-transaction .btn-payment {
+  background-color: #a43ce3;
+  border-radius: 50px;
+  color: #fff;
 }
 
 .section-gallery {

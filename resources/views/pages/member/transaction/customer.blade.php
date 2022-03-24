@@ -33,17 +33,15 @@
                                     <th>No. Hp</th>
                                     <th>Jumlah</th>
                                     <th>Tanggal</th>
-                                    <th>Status</th>
-                                    <th>Harga</th>
+                                    <th>Status Pembayaran</th>
+                                    <th>Total Pembayaran</th>
+                                    <th>Aksi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                            $no = 1;
-                                    @endphp
                                     @foreach ($transactions as $transaction)
                                         <tr>
-                                            <td style="padding-left: 30px">{{ $no++ }}</td>
+                                            <td style="padding-left: 30px">{{ $loop->iteration }}</td>
                                             <td style="padding-left: 25px">{{ $transaction->name }}</td>
                                             <td style="padding-left: 25px">{{ $transaction->code_product }}</td>
                                             <td style="padding-left: 25px">{{ $transaction->product->name_product }}</td>
@@ -54,17 +52,22 @@
                                             @endif
                                             <td style="padding-left: 5px" class="text-center">{{ $transaction->quantity }}</td>
                                             <td style="padding-left: 18px">{{ $transaction->created_at->isoFormat('D MMMM Y') }}</td>
-                                            @if ($transaction->payment_status == 'FAILED')
-                                            <td style="padding-left: 18px"><strong class="text-white badge badge-danger">{{ $transaction->payment_status }}</strong></td>
-                                            @elseif ($transaction->payment_status == 'PENDING')
-                                            <td style="padding-left: 18px"><strong class="text-white badge badge-warning">{{ $transaction->payment_status }}</strong></td>
-                                            @elseif ($transaction->payment_status == 'DIBAYAR')
-                                            <td style="padding-left: 18px"><strong class="text-white badge badge-success">{{ $transaction->payment_status }}</strong></td>
+                                            @if ($transaction->transaction->payment_status == 'FAILED')
+                                            <td style="padding-left: 18px"><strong class="text-white badge badge-danger">{{ $transaction->transaction->payment_status }}</strong></td>
+                                            @elseif ($transaction->transaction->payment_status == 'PENDING')
+                                            <td style="padding-left: 18px"><strong class="text-white badge badge-warning">{{ $transaction->transaction->payment_status }}</strong></td>
+                                            @elseif ($transaction->transaction->payment_status == 'DIBAYAR')
+                                            <td style="padding-left: 18px"><strong class="text-white badge badge-success">{{ $transaction->transaction->payment_status }}</strong></td>
                                             @else
-                                            <td style="padding-left: 18px"><strong class="text-white badge badge-info">{{ $transaction->payment_status }}</strong></td>
+                                            <td style="padding-left: 18px"><strong class="text-white badge badge-info">{{ $transaction->transaction->payment_status }}</strong></td>
                                             @endif
-                                            <td style="padding-left: 25px">{{ $transaction->total_price }}</td>
-                                    </tr>
+                                            <td style="padding-left: 25px">Rp.{{ number_format($transaction->transaction->total_price + $transaction->transaction->code_unique + $transaction->transaction->admin_fee) }}</td>
+                                            <td style="padding-left: 25px">
+                                                <a href="{{ route('transaction-customer.show', $transaction->transaction->id) }}" class="btn btn-info btn-sm">
+                                                    <i class="fas fa-eye fa-sm text-white"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                                 </table>

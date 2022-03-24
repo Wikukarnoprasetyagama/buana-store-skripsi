@@ -10,11 +10,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between pt-3">
-                        <h1 class="h3 mb-0 text-gray-800">Detail Transaksi {{ $transaction->name }}</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Detail Transaksi {{ $transactions->name }}</h1>
                         <div class="status-pembayaran justify-content-right">
-                            @if ($transaction->payment_status == 'MENUNGGU')
+                            @if ($transactions->transaction->payment_status == 'MENUNGGU')
                                 <strong class="badge badge-warning">Belum Bayar</strong>
-                            @elseif ($transaction->payment_status == 'DIBAYAR')
+                            @elseif ($transactions->transaction->payment_status == 'DIBAYAR')
                                 <strong class="badge badge-success">Dibayar</strong>
                             @else
                             <strong class="badge badge-danger">Kadaluarsa</strong>
@@ -22,25 +22,25 @@
                         </div>
                     </div>
                     <div class="details-name">
-                        <p>{{ $transaction->name_store }}</p>
+                        <p>{{ $transactions->name_store }}</p>
                     </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name" class="form-label">Nama Penerima</label>
-                                    <input type="text" name="name" class="form-control" value="{{ $transaction->name }}" disabled>
+                                    <input type="text" name="name" class="form-control" value="{{ $transactions->name }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name_product" class="form-label">Nama Produk</label>
-                                    <input type="text" name="name_product" class="form-control" value="{{ $transaction->product->name_product }}" disabled>
+                                    <input type="text" name="name_product" class="form-control" value="{{ $transactions->product->name_product }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="phone" class="form-label">Telephone</label>
-                                    <input type="text" name="phone" class="form-control" value="{{ $transaction->phone }}" disabled>
+                                    <input type="text" name="phone" class="form-control" value="{{ $transactions->phone }}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -48,19 +48,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="quantity" class="form-label">Jumlah</label>
-                                    <input type="text" name="quantity" class="form-control" value="{{ $transaction->quantity }}" disabled>
+                                    <input type="text" name="quantity" class="form-control" value="{{ $transactions->quantity }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="created_at" class="form-label">Tanggal Pembelian</label>
-                                    <input type="text" name="created_at" class="form-control" value="{{ $transaction->created_at->isoFormat('D MMMM Y') }}" disabled>
+                                    <input type="text" name="created_at" class="form-control" value="{{ $transactions->transaction->created_at->isoFormat('D MMMM Y') }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="payment_status" class="form-label">Status Pembayaran</label>
-                                    <input type="text" name="payment_status" class="form-control" value="{{ $transaction->payment_status }}" disabled>
+                                    <input type="text" name="payment_status" class="form-control" value="{{ $transactions->transaction->payment_status }}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -68,19 +68,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="price" class="form-label">Harga</label>
-                                    <input type="text" name="price" class="form-control" value="Rp.{{ number_format($transaction->total_price) }}" disabled>
+                                    <input type="text" name="price" class="form-control" value="Rp.{{ number_format($transactions->transaction->total_price) }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="village" class="form-label">Nama Desa</label>
-                                    <input type="text" name="village" class="form-control" value="{{ $transaction->village }}" disabled>
+                                    <input type="text" name="village" class="form-control" value="{{ App\Models\Village::find($transactions->village)->name }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="street" class="form-label">Nama Jalan</label>
-                                    <input type="text" name="street" class="form-control" value="{{ $transaction->street }}" disabled>
+                                    <input type="text" name="street" class="form-control" value="{{ $transactions->street }}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="address" class="form-label">Alamat Lengkap</label>
-                                    <input type="text" name="address" class="form-control" value="{{ $transaction->address }}" disabled>
+                                    <input type="text" name="address" class="form-control" value="{{ $transactions->address }}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -96,14 +96,14 @@
                             <label for="shipping_status" class="form-label">Status Pengiriman</label>
                         </div>
                         <div class="d-flex">
-                            <form class="mr-3" action="{{ route('transaction-seller.update', $transaction->id) }}" method="POST" enctype="multipart/form-data">
+                            <form class="mr-3" action="{{ route('transaction-seller.update', $transactions->transaction->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row d-flex justify-content-right">
                                     <div class="col-md-12 text-right">
                                         <div class="form-group">
                                             <input type="hidden" name="shipping_status" value="DIKIRIM">
-                                            @if ($transaction->payment_status == "DIBAYAR")
+                                            @if ($transactions->transaction->payment_status == "DIBAYAR")
                                                 <button type="submit" class="btn btn-info d-block change">Dikirim</button>
                                             @else
                                                 <button type="submit" class="btn btn-info d-block change" disabled>Dikirim</button>
@@ -112,14 +112,14 @@
                                     </div>
                                 </div>
                             </form>
-                            <form action="{{ route('transaction-seller.update', $transaction->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('transaction-seller.update', $transactions->transaction->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row d-flex justify-content-right">
                                     <div class="col-md-12 text-right">
                                         <div class="form-group">
                                             <input type="hidden" name="shipping_status" value="DITERIMA">
-                                            @if ($transaction->payment_status == "DIBAYAR")
+                                            @if ($transactions->transaction->payment_status == "DIBAYAR")
                                                 <button type="submit" class="btn btn-success d-block change">Diterima</button>
                                             @else
                                                 <button type="submit" class="btn btn-success d-block change" disabled>Diterima</button>

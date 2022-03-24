@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Products;
+use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -15,20 +16,23 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $item = User::count();
-        // $order = Transaction::all()->where('products_id', auth()->id())->sortBy('created_at')->take(5);
-        $order = Transaction::whereHas('product', function($product) {
-            $product->where('users_id', auth()->id());
-        })->orderBy('created_at', 'asc')->take(5)->get();
-        $invoices = Transaction::all()->where('users_id', auth()->id())->take(5);
-        $product = Products::all()->where('users_id', auth()->id())->count();
-        $cart = Cart::all()->where('users_id', auth()->id())->count();
+        // $order = Transaction::whereHas('product', function($product) {
+        //     $product->where('users_id', auth()->id());
+        // })->orderBy('created_at', 'asc')->take(5)->get();
+        $order = TransactionDetail::with(['transaction.user', 'product.galleries'])
+                        ->whereHas('product', function($transaction) {
+                            $transaction->where('users_id', Auth::user()->id);
+                        })->orderBy('created_at', 'asc')->take(5)->get();
+        $invoices = TransactionDetail::with(['transaction.user', 'product.galleries'])
+                        ->whereHas('transaction', function($transaction) {
+                            $transaction->where('users_id', Auth::user()->id);
+                        })->orderBy('created_at', 'desc')->take(5)->get();
+        $product = Products::where('users_id', Auth::user()->id)->count();
+        $cart = Cart::where('users_id', Auth::user()->id)->count();
         $transaction = Transaction::where('users_id', Auth::user()->id);
-        $profit = Transaction::where('payment_status', 'DIBAYAR')->whereHas('product', function($product){
-            $product->where('users_id', auth()->id());
-        })->sum('total_price');
-        // $profit = Transaction::where('payment_status', 'DIBAYAR', auth()->id())->sum('total_price');
+        $profit = Transaction::where('payment_status', 'DIBAYAR')->sum('total_price');
         $revenue = $transaction->get()->reduce(function($carry, $item) {
-            return $carry + $item->total_price;
+            return $carry + $item->total_price + $item->admin_fee + $item->code_unique;
         });
         return view('pages.member.dashboard', [
             'item' => $item,

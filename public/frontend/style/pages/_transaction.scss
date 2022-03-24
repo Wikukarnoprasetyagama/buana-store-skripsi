@@ -1,57 +1,22 @@
-.section-cart {
-    margin-top: 70px;
-    table {
-        thead {
-            tr {
-                color: #0c0d36;
-            }
+.section-transaction {
+    .card-header {
+        h3 {
+            font-family: "Merriweather";
+            font-size: 32px;
+            font-weight: 600;
+            color: #1e124c;
         }
-        tbody {
-            th {
-                img {
-                    max-height: 100px;
-                    max-width: 110px;
-                }
-            }
-            .title-product {
-                font-size: 18px;
-                font-weight: 500;
-                color: #000;
-            }
-            .name-store {
-                color: #c4c4c4;
-                font-size: 16px;
-                font-weight: 500;
-            }
-
-            .btn-payment {
-                background: #a43ce3;
-                border-radius: 25px;
-                width: 150px;
-            }
-            .payment-status {
-                font-weight: 500;
-                font-size: 18px;
-            }
-            .shipping-status {
-                font-weight: 500;
-                font-size: 18px;
-            }
-            .price {
-                color: #ff6b44;
-                font-size: 18px;
-                font-weight: 500;
-            }
+        span {
+            color: #5b5575;
         }
     }
-}
-
-.section-address {
-    margin-top: 100px;
-    h3 {
-        font-family: "Merriweather";
-        font-size: 32px;
-        font-weight: 600;
+    th {
         color: #1e124c;
+        font-weight: 600;
+    }
+    .btn-payment {
+        background-color: #a43ce3;
+        border-radius: 50px;
+        color: #fff;
     }
 }

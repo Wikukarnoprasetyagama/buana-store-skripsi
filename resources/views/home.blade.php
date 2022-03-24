@@ -102,7 +102,7 @@
 				<p>Pilih barang terbaru dari kami</p>
 			</div>
 			<div class="col-12 col-md-6 text-end my-auto d-none d-lg-block text-md-end my-auto">
-				<a href="#" class="next-category">Selengkapnya</a>
+				<a href="{{ route('all-product') }}" class="next-category">Selengkapnya</a>
 			</div>
 			</div>
         	<div class="row mt-2">
@@ -149,7 +149,7 @@
 				@endforelse
 			</div>
 			<div class="col-12 d-md-none d-lg-none d-xl-none text-center mt-5">
-				<a href="#" class="next-category">Selengkapnya</a>
+				<a href="{{ route('all-product') }}" class="next-category">Selengkapnya</a>
 			</div>
     	</div>
     </section>

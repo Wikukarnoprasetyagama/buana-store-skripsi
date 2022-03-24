@@ -63,16 +63,16 @@
 					<td>{{$transaction->phone}}</td>
 					<td>{{$transaction->quantity}}</td>
                     <td>{{ $transaction->created_at->isoFormat('D MMMM Y') }}</td>
-					@if ($transaction->payment_status == 'FAILED')
-					<td><strong class="text-white badge badge-danger">{{ $transaction->payment_status }}</strong></td>
-					@elseif ($transaction->payment_status == 'PENDING')
-					<td><strong class="text-white badge badge-warning">{{ $transaction->payment_status }}</strong></td>
-					@elseif ($transaction->payment_status == 'DIBAYAR')
-					<td><strong class="text-white badge badge-success">{{ $transaction->payment_status }}</strong></td>
+					@if ($transaction->transaction->payment_status == 'FAILED')
+					<td><strong class="text-white badge badge-danger">{{ $transaction->transaction->payment_status }}</strong></td>
+					@elseif ($transaction->transaction->payment_status == 'PENDING')
+					<td><strong class="text-white badge badge-warning">{{ $transaction->transaction->payment_status }}</strong></td>
+					@elseif ($transaction->transaction->payment_status == 'DIBAYAR')
+					<td><strong class="text-white badge badge-success">{{ $transaction->transaction->payment_status }}</strong></td>
 					@else
-					<td><strong class="text-white badge badge-info">{{ $transaction->payment_status }}</strong></td>
+					<td><strong class="text-white badge badge-info">{{ $transaction->transaction->payment_status }}</strong></td>
 					@endif
-					<td>Rp.{{ number_format($transaction->total_price) }}</td>
+					<td>Rp.{{ number_format($transaction->transaction->total_price + $transaction->transaction->code_unique + $transaction->transaction->admin_fee) }}</td>
 				</tr>
 				@endforeach
 				<tfoot>

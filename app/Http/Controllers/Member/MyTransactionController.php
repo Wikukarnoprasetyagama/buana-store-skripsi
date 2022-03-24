@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,10 @@ class MyTransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::where('users_id', Auth::user()->id)->get();
+        $transaction = TransactionDetail::with(['transaction.user', 'product.galleries'])
+                        ->whereHas('transaction', function($transaction) {
+                            $transaction->where('users_id', Auth::user()->id);
+                        })->orderBy('created_at', 'asc')->take(5)->get();
         return view('pages.member.transaction.my-transaction', [
             'transactions' => $transaction
         ], compact('transaction'));

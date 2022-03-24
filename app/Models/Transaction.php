@@ -12,21 +12,23 @@ class Transaction extends Model
 
     protected $fillable = [
         'users_id',
-        'products_id',
         'order_id',
         'code_product',
-        'quantity',
         'code_unique',
         'total_price',
-        'notes',
+        'admin_fee',
         'payment_status',
-        'shipping_status',
         'midtrans_url',
-        'name',
-        'phone',
-        'street',
-        'village',
-        'address',
+        // 'quantity',
+        // 'products_id',
+        // 'notes',
+        // 'payment_status',
+        // 'shipping_status',
+        // 'name',
+        // 'phone',
+        // 'street',
+        // 'village',
+        // 'address',
     ];
 
     public function user()

@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-4 pt-5">
-                        <h1 class="h3 mb-0 text-gray-800">Profile Saya</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Edit Profile Saya</h1>
                     </div>
                     <form action="{{ route('profile-customer.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')

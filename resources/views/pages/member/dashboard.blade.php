@@ -9,51 +9,51 @@
         <section class="section">
           <div class="row">
             @if (Auth::user()->roles == 'SELLER')
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="card card-statistic-2">
-                <div class="card-icon shadow-primary bg-primary">
-                  <i class="fas fa-box-open"></i>
-                </div>
-                <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>Total Product</h4>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                  <div class="card-icon shadow-primary bg-primary">
+                    <i class="fas fa-box-open"></i>
                   </div>
-                  <div class="card-body">
-                    {{ $product }}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="card card-statistic-2">
-                <div class="card-icon shadow-primary bg-primary">
-                  <i class="fas fa-dollar-sign"></i>
-                </div>
-                <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>Total Pengeluaran</h4>
-                  </div>
-                  <div class="card-body">
-                    Rp.{{ number_format($revenue) }}
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4>Total Product</h4>
+                    </div>
+                    <div class="card-body">
+                      {{ $product }}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="card card-statistic-2">
-                <div class="card-icon shadow-primary bg-primary">
-                  <i class="fas fa-dollar-sign"></i>
-                </div>
-                <div class="card-wrap">
-                  <div class="card-header">
-                    <h4>Total Pendapatan</h4>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                  <div class="card-icon shadow-primary bg-primary">
+                    <i class="fas fa-dollar-sign"></i>
                   </div>
-                  <div class="card-body">
-                    Rp.{{ number_format($profit) }}
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4>Total Pengeluaran</h4>
+                    </div>
+                    <div class="card-body">
+                      Rp.{{ number_format($revenue) }}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                  <div class="card-icon shadow-primary bg-primary">
+                    <i class="fas fa-dollar-sign"></i>
+                  </div>
+                  <div class="card-wrap">
+                    <div class="card-header">
+                      <h4>Total Pendapatan</h4>
+                    </div>
+                    <div class="card-body">
+                      Rp.{{ number_format($profit) }}
+                    </div>
+                  </div>
+                </div>
+              </div>
             @else
             <div class="col-lg-4 col-md-4 col-sm-12">
               <div class="card card-statistic-2">
@@ -126,18 +126,18 @@
                       </tr>
                       @forelse ($orders as $order)
                           <tr>
-                            <td>{{ $order->order_id }}</td>
+                            <td>{{ $order->transaction->order_id }}</td>
                             <td class="font-weight-600">{{ $order->name }}</td>
-                            @if ($order->payment_status == 'PENDING')
-                            <td><div class="badge badge-warning">{{ $order->payment_status }}</div></td>
-                            @elseif ($order->payment_status == 'DIBAYAR')
-                                <td><div class="badge badge-success">{{ $order->payment_status }}</div></td>
-                            @elseif ($order->payment_status == 'FAILED')
-                            <td><div class="badge badge-danger">{{ $order->payment_status }}</div></td>
+                            @if ($order->transaction->payment_status == 'PENDING')
+                            <td><div class="badge badge-warning">{{ $order->transaction->payment_status }}</div></td>
+                            @elseif ($order->transaction->payment_status == 'DIBAYAR')
+                                <td><div class="badge badge-success">{{ $order->transaction->payment_status }}</div></td>
+                            @elseif ($order->transaction->payment_status == 'FAILED')
+                            <td><div class="badge badge-danger">{{ $order->transaction->payment_status }}</div></td>
                             @else
-                            <td><div class="badge badge-info">{{ $order->payment_status }}</div></td>
+                            <td><div class="badge badge-info">{{ $order->transaction->payment_status }}</div></td>
                             @endif
-                            @if ($order->payment_status == 'FAILED')
+                            @if ($order->transaction->payment_status == 'FAILED')
                             <td><div class="badge badge-danger">BATAL</div></td>
                             @elseif ($order->shipping_status == 'PENDING')
                             <td><div class="badge badge-warning">{{ $order->shipping_status }}</div></td>
@@ -147,9 +147,15 @@
                             <td><div class="badge badge-success">{{ $order->shipping_status }}</div></td>
                             @endif
                             <td>{{ $order->created_at->isoFormat('D MMMM Y') }}</td>
+                            @if ($order->products_id == true)
+                                <td>
+                                  <a href="{{ route('transaction-seller.show', $order->id) }}" class="btn btn-primary">Detail</a>
+                                </td>
+                            @else
                             <td>
                               <a href="{{ route('transaction-seller.edit', $order->id) }}" class="btn btn-primary">Detail</a>
                             </td>
+                            @endif
                           </tr>
 
                       @empty
@@ -188,16 +194,16 @@
                       </tr>
                       @foreach ($invoices as $invoice)
                           <tr>
-                            <td>{{ $invoice->order_id }}</td>
+                            <td>{{ $invoice->transaction->order_id }}</td>
                             <td class="font-weight-600">{{ $invoice->name }}</td>
-                            @if ($invoice->payment_status == 'PENDING')
-                            <td><div class="badge badge-warning">{{ $invoice->payment_status }}</div></td>
-                            @elseif ($invoice->payment_status == 'DIBAYAR')
-                                <td><div class="badge badge-success">{{ $invoice->payment_status }}</div></td>
-                            @elseif ($invoice->payment_status == 'FAILED')
-                            <td><div class="badge badge-danger">{{ $invoice->payment_status }}</div></td>
+                            @if ($invoice->transaction->payment_status == 'PENDING')
+                            <td><div class="badge badge-warning">{{ $invoice->transaction->payment_status }}</div></td>
+                            @elseif ($invoice->transaction->payment_status == 'DIBAYAR')
+                                <td><div class="badge badge-success">{{ $invoice->transaction->payment_status }}</div></td>
+                            @elseif ($invoice->transaction->payment_status == 'FAILED')
+                            <td><div class="badge badge-danger">{{ $invoice->transaction->payment_status }}</div></td>
                             @else
-                            <td><div class="badge badge-info">{{ $invoice->payment_status }}</div></td>
+                            <td><div class="badge badge-info">{{ $invoice->transaction->payment_status }}</div></td>
                             @endif
                             @if ($invoice->shipping_status == 'PENDING')
                             <td><div class="badge badge-warning">{{ $invoice->shipping_status }}</div></td>
@@ -208,7 +214,7 @@
                             @endif
                             <td>{{ $invoice->created_at->isoFormat('D MMMM Y') }}</td>
                             <td>
-                              <a href="{{ route('transaction-customer.show', $invoice->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#invoice">Detail</a>
+                              <a href="{{ route('transaction-customer.show', $invoice->id) }}" class="btn btn-primary">Detail</a>
                             </td>
                           </tr>
                       @endforeach

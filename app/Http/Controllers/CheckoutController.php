@@ -15,6 +15,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
@@ -30,40 +31,36 @@ class CheckoutController extends Controller
 
     public function process(Request $request, Transaction $transaction)
     {
-
-
-        // save user data
-        // $user = Auth::user();
-        // $user->update($request->except('total_price'));
-
         $data = $request->all();
         $data['users_id'] = Auth::id();
         $data['products_id'] = $request->products_id;
-        // $data['id'] = 'TRX-' . mt_rand(000000, 999999);
-
-        // update user data
-        // $user = Auth::user();
-        // $user->name = $data['name'];
-        // $user->occupation = $data['occupation'];
-        // $user->phone = $data['phone'];
-        // $user->address = $data['address'];
-        // $user->save();
+        $carts = Cart::with(['product', 'user'])
+                    ->where('users_id', Auth::user()->id)
+                    ->get();
 
         // create checkout
         $transaction = Transaction::create([
             'users_id' => Auth::id(),
-            'products_id' => $request->products_id,
             'total_price' => $request->total_price,
-            'code_product' => $request->code,
-            'quantity' => $request->quantity,
-            'notes' => $request->notes,
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'street' => $request->street,
-            'village' => $request->village,
-            'address' => $request->address,
             'code_unique' => $request->code_unique,
+            'admin_fee' => 5000,
+            
         ], $data);
+        foreach ($carts as $cart) {
+            TransactionDetail::create([
+                'transactions_id' => $transaction->id,
+                'products_id' => $cart->products_id,
+                'code_product' => $request->code,
+                'price' => $cart->product->price,
+                'quantity' => $cart->quantity,
+                'notes' => $request->notes,
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'street' => $request->street,
+                'village' => $request->village,
+                'address' => $request->address,
+            ]);
+        }
         $this->getSnapRedirect($transaction);
 
 
@@ -80,7 +77,7 @@ class CheckoutController extends Controller
         Cart::with('product', 'user')
                 ->where('users_id', Auth::user()->id)
                 ->delete();
-        return view('checkout-success');
+        return view('transaction');
     }
 
     public function getSnapRedirect(Transaction $transaction)
@@ -90,7 +87,7 @@ class CheckoutController extends Controller
                 
         // $orderId = $transaction->id.'-'.Str::random(5);
         $orderId = $transaction->id. '-' . Str::random(5);
-        $price = $transaction->total_price;
+        $price = $transaction->total_price + $transaction->admin_fee + $transaction->code_unique;
 
         $transaction->order_id = $orderId;
 
@@ -119,7 +116,7 @@ class CheckoutController extends Controller
             'transaction_details' => $transaction_details,
             'item_details' => $item_details,
             'customer_details' => $customer_details,
-            'enabled_payments' => ['indomaret', 'bank_transfer'],
+            'enabled_payments' => ['bank_transfer'],
         ];
 
         try {

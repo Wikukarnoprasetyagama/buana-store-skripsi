@@ -35,6 +35,13 @@ class Products extends Model
         ];
     }
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search-product'] ?? false, function ($query, $search) {
+            return $query->where('name_product', 'like', '%' . $search . '%');
+        });
+    }
+
     public function galleries()
     {
         return $this->hasMany(ProductGallery::class, 'products_id', 'id');
@@ -48,4 +55,6 @@ class Products extends Model
     {
         return $this->belongsTo(Category::class, 'categories_id', 'id');
     }
+
+
 }

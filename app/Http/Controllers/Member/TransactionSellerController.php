@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TransactionRequest;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
@@ -19,9 +20,10 @@ class TransactionSellerController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::whereHas('product', function($product) {
-            $product->where('users_id', auth()->id());
-        })->orderBy('created_at', 'asc')->get();
+        $transaction = TransactionDetail::with(['transaction.user', 'product.galleries'])
+                        ->whereHas('product', function($transaction) {
+                            $transaction->where('users_id', Auth::user()->id);
+                        })->orderBy('created_at', 'desc')->take(5)->get();
 
         return view('pages.member.transaction.seller', [
             'transactions' => $transaction
@@ -69,9 +71,9 @@ class TransactionSellerController extends Controller
      */
     public function edit($id)
     {
-        $transaction = Transaction::findOrFail($id);
+        $transaction = TransactionDetail::findOrFail($id);
         return view('pages.member.transaction.edit', [
-            'transaction' => $transaction,
+            'transactions' => $transaction,
         ]);
     }
 
@@ -110,13 +112,14 @@ class TransactionSellerController extends Controller
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
         // $transaction = Transaction::all()->whereIn('users_id', Auth::user()->id);
-        $transaction = Transaction::whereHas('product', function($product) {
-            $product->where('users_id', auth()->id());
-        })->orderBy('created_at', 'asc')->get();
+        $transaction = TransactionDetail::with(['transaction.user', 'product.galleries'])
+            ->whereHas('product', function($transaction) {
+                $transaction->where('users_id', Auth::user()->id);
+            })->orderBy('created_at', 'desc')->take(5)->get();
         $revenue = $transaction->reduce(function($carry, $item) {
-            return $carry + $item->total_price;
+            return $carry + $item->transaction->total_price + $item->transaction->code_unique + $item->transaction->admin_fee;
         });
-        // return view('pdf', [
+        // return view('pdf-transaction-customer', [
         //     'transactions' => $transaction,
         //     'revenue' => $revenue,
         // ], compact('pic'));
@@ -136,14 +139,14 @@ class TransactionSellerController extends Controller
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-        $transaction = Transaction::all()->whereIn('users_id', Auth::user()->id);
-        // $transaction = Transaction::whereHas('product', function($product) {
-        //     $product->where('users_id', auth()->id());
-        // })->orderBy('created_at', 'asc')->get();
+        $transaction = TransactionDetail::with(['transaction.user', 'product.galleries'])
+            ->whereHas('transaction', function($transaction) {
+                $transaction->where('users_id', Auth::user()->id);
+            })->orderBy('created_at', 'desc')->take(5)->get();
         $revenue = $transaction->reduce(function($carry, $item) {
-            return $carry + $item->total_price;
+            return $carry + $item->transaction->total_price + $item->transaction->code_unique + $item->transaction->admin_fee;
         });
-        // return view('pdf', [
+        // return view('pdf-my-transaction', [
         //     'transactions' => $transaction,
         //     'revenue' => $revenue,
         // ], compact('pic'));

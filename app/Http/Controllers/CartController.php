@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Districts;
 use App\Models\Products;
+use App\Models\Transaction;
 use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,22 +22,16 @@ class CartController extends Controller
         $fee = $carts->reduce(function($carry, $item) {
             return $carry + $item->product->discount_amount;
         });
+        // dd($fee);
         $ongkir = $carts->reduce(function($carry, $item) {
             return $carry + $item->product->ongkir_amount;
         });
-
-        // $total = $carts->reduce(function($carry, $item) {
-        //     if ($item->produc->discount == true) {
-        //         return $carry + $item->product->price;
-        //     }
-        // });
-
         return view('cart', [
             'carts' => $carts,
             'code_unique' => $code_unique,
             'fee' => $fee,
-            'ongkir' => $ongkir,
             'villages' => $village,
+            'ongkir' => $ongkir,
         ], compact('carts'));
     }
 

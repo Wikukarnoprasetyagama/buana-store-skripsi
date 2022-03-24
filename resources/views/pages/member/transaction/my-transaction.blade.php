@@ -54,16 +54,16 @@
                                             @endif
                                             <td style="padding-left: 5px" class="text-center">{{ $transaction->quantity }}</td>
                                             <td style="padding-left: 18px">{{ $transaction->created_at->isoFormat('D MMMM Y') }}</td>
-                                            @if ($transaction->payment_status == 'FAILED')
-                                            <td style="padding-left: 18px"><strong class="text-white badge badge-danger">{{ $transaction->payment_status }}</strong></td>
-                                            @elseif ($transaction->payment_status == 'PENDING')
-                                            <td style="padding-left: 18px"><strong class="text-white badge badge-warning">{{ $transaction->payment_status }}</strong></td>
-                                            @elseif ($transaction->payment_status == 'DIBAYAR')
-                                            <td style="padding-left: 18px"><strong class="text-white badge badge-success">{{ $transaction->payment_status }}</strong></td>
+                                            @if ($transaction->transaction->payment_status == 'FAILED')
+                                            <td style="padding-left: 18px"><strong class="text-white badge badge-danger">{{ $transaction->transaction->payment_status }}</strong></td>
+                                            @elseif ($transaction->transaction->payment_status == 'PENDING')
+                                            <td style="padding-left: 18px"><strong class="text-white badge badge-warning">{{ $transaction->transaction->payment_status }}</strong></td>
+                                            @elseif ($transaction->transaction->payment_status == 'DIBAYAR')
+                                            <td style="padding-left: 18px"><strong class="text-white badge badge-success">{{ $transaction->transaction->payment_status }}</strong></td>
                                             @else
-                                            <td style="padding-left: 18px"><strong class="text-white badge badge-info">{{ $transaction->payment_status }}</strong></td>
+                                            <td style="padding-left: 18px"><strong class="text-white badge badge-info">{{ $transaction->transaction->payment_status }}</strong></td>
                                             @endif
-                                            <td style="padding-left: 25px">{{ $transaction->total_price }}</td>
+                                            <td style="padding-left: 25px">Rp.{{ number_format($transaction->transaction->total_price + $transaction->transaction->code_unique + $transaction->transaction->admin_fee) }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -81,7 +81,7 @@
                 <div class="card">
                     <div class="card-body">
                         <figure class="figure">
-                            <img src="{{ url('/images/ic_empty_cart.svg') }}" class="img-fluid figure-img h-50 w-50" alt="">
+                            <img src="{{ url('/images/ic_empty_cart.svg') }}" class="img-fluid figure-img h-75 w-75" alt="">
                         </figure>
                         <div class="description mt-3">
                             <h3>Belum ada Transaksi!</h3>

@@ -161,7 +161,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="ongkir_amount" class="form-control-label">Ongkos Kirim</label>
-                                    <input type="number" name="ongkir_amount" value="{{ $products->ongkir_amount }}" class="form-control inputDisabledOngkir @error('ongkir_amount') is-invalid @enderror"/>
+                                    <input type="number" name="ongkir_amount" id="ongkir_amount" value="{{ $products->ongkir_amount }}" class="form-control inputDisabledOngkir @error('ongkir_amount') is-invalid @enderror"/>
                                     @error('ongkir_amount') <div class="text-muted">{{ $message }}</div> @enderror
                                 </div>
                             </div>

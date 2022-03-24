@@ -16,6 +16,9 @@
 					<a class="nav-link {{ (request()->is('semua-kategori-produk*')) ? 'active' : '' }}" href="{{ route('all-category') }}">Kategori</a>
 				</li>
 				<li class="nav-item mx-2">
+					<a class="nav-link {{ (request()->is('semua-produk*')) ? 'active' : '' }}" href="{{ route('all-product') }}">Produk</a>
+				</li>
+				<li class="nav-item mx-2">
 					<a class="nav-link {{ (request()->is('hadiah*')) ? 'active' : '' }}" href="{{ route('reward') }}">Hadiah</a>
 				</li>
 				<li class="nav-item mx-2">

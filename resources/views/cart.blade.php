@@ -103,7 +103,7 @@
 			<input type="hidden" name="quantity" value="{{ $cart->quantity }}">
 			
 			<!-- Notes Opsional -->
-			<section class="section-notes mt-5">
+			{{-- <section class="section-notes mt-5">
 				<div class="container">
 					<div class="row">
 					<div class="col-md-12">
@@ -119,7 +119,7 @@
 					</div>
 					</div>
 				</div>
-			</section>
+			</section> --}}
     		<!-- End Notes Opsional -->
 			<!-- Address -->
 			<section class="section-address">
@@ -219,7 +219,7 @@
 											@endphp
 											@foreach ($carts as $cart)
 												<tr>
-												<div class="form-group name-product bg-danger">
+												<div class="form-group name-product">
 													<th width="100%">{{ $cart->product->name_product }}</th>
 													<td width="50%" class="text-end">Rp.{{ number_format($cart->product->price * $cart->quantity) }}</td>
 												</div>
@@ -236,28 +236,38 @@
 													// }elseif ($cart->product->ongkir == 0) {
 													// 	$totalPrice = $total + $code_unique;
 													// }
-													$total = $cart->product->price;
-													$totalPrice += $total * $cart->quantity + $cart->product->ongkir_amount;
+													$admin_fee = 5000;
+													$total += $cart->product->price * $cart->quantity;
+													// $totalPrice += $total + $cart->product->ongkir_amount + $admin_fee;
+													$discount = (($total * $cart->product->discount_amount) / 100);
+													$totalPrice = $total - $discount + $code_unique;
+													if ($cart->product->discount == true && $cart->product->ongkir == 0) {
+														$totalPrice = $total - $discount  + $admin_fee;
+													}elseif($cart->product->discount == true && $cart->product->ongkir == true){
+														$totalPrice = $total - $discount + $cart->product->ongkir_amount + $admin_fee;
+													}
 												@endphp
 											@endforeach
 											<tr>
 											<div class="form-group">
 												<th width="50%">Ongkos Kirim</th>
 												@if ($cart->product->ongkir == true)
-													<td width="50%" class="text-end">Rp.{{ number_format($ongkir) }}</td>
+													<td width="50%" class="text-end">Rp.{{ number_format($cart->product->ongkir_amount) }}</td>
 													@else
 													<td width="50%" class="text-end text-info">Gratis</td>
 												@endif
 											</div>
 											</tr>
 											<tr>
+												<div class="form-group">
+													<th width="50%">Biaya Admin</th>
+														<td width="50%" class="text-end" aria-valuetext="5000">Rp.5000</td>
+												</div>
+											</tr>
+											<tr>
 											<div class="form-group">
 												<th width="50%">Diskon</th>
-												@if ($cart->product->discount == true)
-													<td width="50%" class="text-end"><strong class="text-warning">{{ $fee }}%</strong></td>
-												@else
-													<td width="50%" class="text-end"><strong class="text-warning"> - </strong></td>
-												@endif
+												<td width="50%" class="text-end"><strong class="text-warning">{{ $fee }}%</strong></td>
 											</div>
 											</tr>
 											<tr>
@@ -300,7 +310,7 @@
 							</p>
 							</div>
 							<div class="d-grid gap-2 mt-5">
-								<button type="submit" class="btn btn-otomatis">Bayar Sekarang</button>
+								<button type="submit" class="btn btn-otomatis">Checkout Barang Sekarang</button>
 							</div>
 							<div class="step-payment mt-2">
 								<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">cara pembayaran?</a>

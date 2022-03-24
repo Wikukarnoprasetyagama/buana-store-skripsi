@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ProductGalleriesController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\TransactionAdminController;
 use App\Http\Controllers\Admin\VerificationController;
+use App\Http\Controllers\AllProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
@@ -47,6 +48,7 @@ use Illuminate\Auth\Middleware\Authenticate;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/semua-kategori-produk', [CategoryProductsController::class, 'index'])->name('all-category');
+Route::get('/semua-produk', [AllProductController::class, 'index'])->name('all-product');
 Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])->name('detail');
 Route::get('/hadiah', [RewardsController::class, 'index'])->name('reward');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');

@@ -1,0 +1,97 @@
+.section-all-product {
+    .section-title {
+        h3 {
+            font-family: "Merriweather";
+            font-size: 32px;
+            font-weight: 600;
+            color: #1e124c;
+        }
+        p {
+            color: #5b5575;
+        }
+    }
+    .section-search-product {
+        input {
+            border-radius: 50px;
+        }
+        ::-webkit-input-placeholder {
+            text-align: center;
+        }
+
+        :-moz-placeholder {
+            /* Firefox 18- */
+            text-align: center;
+        }
+
+        ::-moz-placeholder {
+            /* Firefox 19+ */
+            text-align: center;
+        }
+
+        :-ms-input-placeholder {
+            text-align: center;
+        }
+        .btn-search {
+            background-color: #a43ce3;
+            border-radius: 50px;
+        }
+    }
+    .section-product {
+        // margin-top: 70px;
+        h3 {
+            font-family: "Merriweather";
+            font-size: 32px;
+            font-weight: 600;
+            color: #1e124c;
+        }
+        p {
+            color: #5b5575;
+        }
+        .price {
+            color: #ff6b44;
+        }
+
+        .name-product {
+            color: #0c0d36;
+            font-size: 20px;
+            font-weight: 500;
+            margin-top: -10px;
+        }
+        figure {
+            position: relative;
+            .product-img {
+                .discount-image {
+                    position: absolute;
+                    top: 0;
+                    left: auto;
+                    right: 0;
+                    padding-bottom: 100px;
+                    // max-height: 50px;
+                }
+            }
+            .discount-badge {
+                position: absolute;
+                display: inline-block;
+                min-width: 2em;
+                top: 9px;
+                right: 5px;
+                border-radius: 50%;
+                font-size: 12px;
+                font-weight: 500;
+                text-align: center;
+                color: #fff;
+            }
+        }
+        img {
+            border-radius: 8px;
+            background-size: cover;
+        }
+
+        .product-empty {
+            margin-top: -70px;
+            img {
+                max-height: 120px;
+            }
+        }
+    }
+}
