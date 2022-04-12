@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('code_unique')->nullable();
             $table->integer('total_price');
             $table->integer('admin_fee');
+            $table->integer('discount_amount')->nullable();
             $table->string('payment_status')->default('MENUNGGU');
             $table->longText('midtrans_url')->nullable();
             $table->softDeletes();

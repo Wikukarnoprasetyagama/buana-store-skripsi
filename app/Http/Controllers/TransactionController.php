@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
@@ -23,9 +24,28 @@ class TransactionController extends Controller
         //     return $carry + $item->total_price + $item->code_unique;
         // });
         // dd($transaction);
-        $transactions = TransactionDetail::all()->last();
+        // $transaction = TransactionDetail::with(['transaction', 'product'])
+        //                 ->whereHas('transaction', function($transaction) {
+        //                     $transaction->where('users_id', Auth::user()->id);
+        //                 })->get();
+        $product = Cart::all();
+        // $ongkir = $transaction->reduce(function($carry, $item) {
+        //     if ($item->product->ongkir == true) {
+        //         return $carry + $item->product->ongkir_amount;
+        //     }else{
+        //         return $carry;
+        //     }
+        // });
+        // $discount = $product->reduce(function($carry, $item) {
+        //     return $carry + (($item->product->price * $item->quantity * $item->product->discount_amount) / 100);
+        // });
+        $checkout = Transaction::with(['product', 'user'])->where('users_id', Auth::user()->id)->get();
+        $transaction = TransactionDetail::all();
         return view('transaction', [
-            'transactions' => $transactions,
-        ], compact('transactions'));
+            'transaction' => $transaction,
+            // 'ongkir' => $ongkir,
+            // 'discounts' => $discount,
+            'checkouts' => $checkout,
+        ]);
     }
 }

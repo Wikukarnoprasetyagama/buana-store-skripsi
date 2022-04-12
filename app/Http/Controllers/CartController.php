@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Districts;
-use App\Models\Products;
-use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,20 +16,38 @@ class CartController extends Controller
     {
         $code_unique = mt_rand(500, 999);
         $carts = Cart::with(['product.galleries', 'user'])->where('users_id', Auth::user()->id)->get();
+        $product = Cart::all();
         $village = Village::all();
-        $fee = $carts->reduce(function($carry, $item) {
-            return $carry + $item->product->discount_amount;
-        });
+        $notes = TransactionDetail::where('transactions_id', Auth::user()->id)->get();
+        // $fee = $carts->reduce(function($carry, $item) {
+        //     return $carry + $item->product->discount_amount;
+        // });
         // dd($fee);
         $ongkir = $carts->reduce(function($carry, $item) {
-            return $carry + $item->product->ongkir_amount;
+            // if ($item->product->ongkir == true) {
+                return $carry + $item->product->ongkir_amount;
+            // }else{
+            //     return $carry;
+            // }
         });
+		// $discount = (($total * $cart->quantity * $cart->product->discount_amount) / 100);
+        $discount = $product->reduce(function($carry, $item) {
+            return $carry + (($item->product->price * $item->quantity * $item->product->discount_amount) / 100);
+        });
+        $total = $carts->reduce(function($carry, $item) {
+            return $carry + $item->product->price * $item->quantity + $item->product->ongkir_amount;
+            // var_dump($discount);
+        });
+        // dd($total);
         return view('cart', [
             'carts' => $carts,
             'code_unique' => $code_unique,
-            'fee' => $fee,
+            // 'fee' => $fee,
             'villages' => $village,
             'ongkir' => $ongkir,
+            'totals' => $total,
+            'discounts' => $discount,
+            'notes' => $notes,
         ], compact('carts'));
     }
 

@@ -23,56 +23,6 @@
 								@php
 									$totalPrice = 0;
 								@endphp
-								@foreach ($checkouts as $checkout)
-									<table class="scroll-horizontal-vertical w-100">
-									<tr>
-										<div class="form-group">
-											<th>ID Pesanan</th>
-											<td class="text-end">{{ $checkout->order_id }}</td>
-										</div>
-									</tr>
-									<tr>
-										<div class="form-group">
-											<th>Kode Produk</th>
-											{{-- <td class="text-end">{{ $checkout->product->code }}</td> --}}
-										</div>
-									</tr>
-									<tr>
-										<div class="form-group">
-											<th>Harga</th>
-											{{-- <td class="text-end">Rp.{{ number_format($checkout->product->price) }}</td> --}}
-										</div>
-									</tr>
-									<tr>
-										<div class="form-group">
-											<th>Nama Barang</th>
-											{{-- <td class="text-end">{{ $checkout->product->name_product }}</td> --}}
-										</div>
-									</tr>
-									<tr>
-										<div class="form-group">
-											<th>No Hp</th>
-											@if ($checkout->details)
-												<td class="text-end">{{ $checkout->details->phone }}</td>
-												{{-- <td class="text-end">{{ $checkout->phone }}</td> --}}
-											@endif
-										</div>
-									</tr>
-									<tr>
-										<div class="form-group">
-											<th>Nama Penerima</th>
-											<td class="text-end">{{ $checkout->name }}</td>
-										</div>
-									</tr>
-									<tr>
-										<div class="form-group">
-											<th>Jumlah Pesanan</th>
-											<td class="text-end">{{ $checkout->quantity }}</td>
-										</div>
-									</tr>
-								</table>
-								<hr />
-								@endforeach
 								@foreach ($transactions as $transaction)
 								<table class="scroll-horizontal-vertical w-100">
 									<tr>

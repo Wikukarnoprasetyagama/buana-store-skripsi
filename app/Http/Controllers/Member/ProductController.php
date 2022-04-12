@@ -117,10 +117,8 @@ class ProductController extends Controller
         $data['slug'] = Str::slug($request->name_product);
         $product = Products::findOrFail($id);
         $product->update($data);
-        if (request(['ongkir']) == 0) {
-            $data['ongkir_amount'] = 0;
-        }else{
-            false;
+        if ($request['discount'] == 0) {
+            $data['discount_amount'] = 0;
         }
         if ($data) {
             Alert::success('Berhasil!', 'Produk ' . $request->name_product . ' Berhasil Diubah');

@@ -62,7 +62,7 @@ class CheckoutController extends Controller
                 'address' => $request->address,
             ]);
         }
-        // $this->getSnapRedirect($transaction);
+        $this->getSnapRedirect($transaction);
 
 
 
@@ -78,28 +78,30 @@ class CheckoutController extends Controller
         Cart::with('product', 'user')
                 ->where('users_id', Auth::user()->id)
                 ->delete();
-        // $transactions = TransactionDetail::with(['transaction.user', 'product.galleries'])
-        //                 ->whereHas('transaction', function($transaction) {
-        //                     $transaction->where('users_id', Auth::user()->id);
-        //                 })->get();
-        // $product = Cart::all();
-        // $ongkir = $transactions->reduce(function($carry, $item) {
-        //     if ($item->product->ongkir == true) {
-        //         return $carry + $item->product->ongkir_amount;
-        //     }else{
-        //         return $carry;
-        //     }
-        // });
-        // $discount = $product->reduce(function($carry, $item) {
-        //     return $carry + (($item->product->price * $item->quantity * $item->product->discount_amount) / 100);
-        // });
+        $transactions = TransactionDetail::with(['transaction.user', 'product.galleries'])
+                        ->whereHas('transaction', function($transaction) {
+                            $transaction->where('users_id', Auth::user()->id);
+                        })->get();
+        $product = Cart::all();
+        $ongkir = $transactions->reduce(function($carry, $item) {
+            if ($item->product->ongkir == true) {
+                return $carry + $item->product->ongkir_amount;
+            }else{
+                return $carry;
+            }
+        });
+        $discount = $product->reduce(function($carry, $item) {
+            return $carry + (($item->product->price * $item->quantity * $item->product->discount_amount) / 100);
+        });
+        return view('checkout-product', [
+            'transactions' => $transactions,
+            'ongkir' => $ongkir,
+            'discounts' => $discount,
+        ]);
+    }
 
-        // return view('checkout-product', [
-        //     'transactions' => $transactions,
-        //     'ongkir' => $ongkir,
-        //     'discounts' => $discount,
-        // ]);
-
+    public function getSnapRedirect(Transaction $transaction)
+    {
         Transaction::with('product', 'user')
                 ->where('users_id', Auth::user()->id)->get();
                 
@@ -142,61 +144,11 @@ class CheckoutController extends Controller
             $paymentUrl = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
             $transaction->midtrans_url = $paymentUrl;
             $transaction->save();
-            return redirect($paymentUrl) ;
+            return view('success', $paymentUrl) ;
         } catch (Exception $e) {
             return false;
         }
     }
-
-    // public function getSnapRedirect(Transaction $transaction)
-    // {
-    //     Transaction::with('product', 'user')
-    //             ->where('users_id', Auth::user()->id)->get();
-                
-    //     // $orderId = $transaction->id.'-'.Str::random(5);
-    //     $orderId = $transaction->id. '-' . Str::random(5);
-    //     $price = $transaction->total_price + $transaction->admin_fee + $transaction->code_unique - $transaction->discount_amount;
-
-    //     $transaction->order_id = $orderId;
-
-    //     $transaction_details = [
-    //         'order_id' => $orderId,
-    //         'gross_amount' => $price
-    //     ];
-
-    //     $item_details[] = [
-    //         'id' => $orderId,
-    //         'price' => $price,
-    //         'quantity' => 1,
-    //         'name' => "Pembayaran Produk"
-    //     ];
-
-    //     $customer_details = [
-    //         "first_name" => Auth::user()->name,
-    //         "last_name" => "",
-    //         "email" => Auth::user()->email,
-    //         "phone" => Auth::user()->phone,
-    //         "billing_address" => "",
-    //         "shipping_address" => "",
-    //     ];
-
-    //     $midtrans_params = [
-    //         'transaction_details' => $transaction_details,
-    //         'item_details' => $item_details,
-    //         'customer_details' => $customer_details,
-    //         'enabled_payments' => ['bank_transfer'],
-    //     ];
-
-    //     try {
-    //         // Get Snap Payment Page URL
-    //         $paymentUrl = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
-    //         $transaction->midtrans_url = $paymentUrl;
-    //         $transaction->save();
-    //         return view('success', $paymentUrl) ;
-    //     } catch (Exception $e) {
-    //         return false;
-    //     }
-    // }
 
 
     public function callback(Request $request)

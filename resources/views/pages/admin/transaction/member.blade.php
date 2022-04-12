@@ -78,7 +78,7 @@
                                             <td style="padding-left: 30px">{{ $loop->iteration }}</td>
                                             <td style="padding-left: 25px">{{ $transaction->name }}</td>
                                             <td style="padding-left: 25px">{{ $transaction->code_product }}</td>
-                                            <td style="padding-left: 25px">{{ $transaction->product->name_product }}</td>
+                                            {{-- <td style="padding-left: 25px">{{ $transaction->product->name_product }}</td> --}}
                                             @if ($transaction->phone != null)
                                             <td style="padding-left: 18px">{{ $transaction->phone }}</td>
                                             @else

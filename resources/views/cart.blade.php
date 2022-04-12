@@ -79,7 +79,6 @@
                   </td>
                 </tr>
                 @php
-                    // $totalPrice += $cart->product->price * $cart->quantity + $cart->product->ongkir_amount;
                   $total = $cart->product->price * $cart->quantity + $cart->product->ongkir_amount; 
                   $discount = (($total * $cart->product->discount_amount) / 100);
                   $totalPrice = $total - $discount;
@@ -97,7 +96,8 @@
     <form action="{{ route('checkout') }}" class="mt-3" method="POST" enctype="multipart/form-data">
 		@csrf
 			<input type="hidden" name="code_unique" value="{{ $code_unique }}">
-			<input type="hidden" name="total_price" value="{{ $totalPrice }}">
+			<input type="hidden" name="discount_amount" value="{{ $discounts }}">
+			<input type="hidden" name="total_price" value="{{ $totals }}">
 			<input type="hidden" name="products_id" value="{{ $cart->products_id }}">
 			<input type="hidden" name="code" value="{{ $cart->product->code }}">
 			<input type="hidden" name="quantity" value="{{ $cart->quantity }}">
@@ -213,89 +213,102 @@
 								<div class="detail-price">
 								<div class="card">
 									<div class="card-body">
-										<table>
-											@php
-												$totalPrice = 0;
-											@endphp
-											@foreach ($carts as $cart)
-												<tr>
-												<div class="form-group name-product">
-													<th width="100%">{{ $cart->product->name_product }}</th>
-													<td width="50%" class="text-end">Rp.{{ number_format($cart->product->price * $cart->quantity) }}</td>
-												</div>
-												</tr>
-												@php
-													// $total = $cart->product->price; 
-													// $discount = (($cart->product->price * $cart->quantity * $cart->product->discount_amount) / 100);
-													// $discount = (($total * $cart->product->discount_amount) / 100);
-													// $totalPrice = $total - $discount + $code_unique;
-													// if ($cart->product->discount == true) {
-													// 	$totalPrice = $total - $discount + $cart->product->ongkir_amount + $code_unique;
-													// }elseif ($cart->product->discount == 0) {
-													// 	$totalPrice = $total + $code_unique + $cart->product->ongkir_amount * $cart->quantity;
-													// }elseif ($cart->product->ongkir == 0) {
-													// 	$totalPrice = $total + $code_unique;
-													// }
-													$admin_fee = 5000;
-													$total += $cart->product->price * $cart->quantity;
-													// $totalPrice += $total + $cart->product->ongkir_amount + $admin_fee;
-													$discount = (($total * $cart->product->discount_amount) / 100);
-													$totalPrice = $total - $discount + $code_unique;
-													if ($cart->product->discount == true && $cart->product->ongkir == 0) {
-														$totalPrice = $total - $discount  + $admin_fee;
-													}elseif($cart->product->discount == true && $cart->product->ongkir == true){
-														$totalPrice = $total - $discount + $cart->product->ongkir_amount + $admin_fee;
-													}
-												@endphp
-											@endforeach
-											<tr>
-											<div class="form-group">
-												<th width="50%">Ongkos Kirim</th>
-												@if ($cart->product->ongkir == true)
-													<td width="50%" class="text-end">Rp.{{ number_format($cart->product->ongkir_amount) }}</td>
-													@else
-													<td width="50%" class="text-end text-info">Gratis</td>
-												@endif
-											</div>
-											</tr>
-											<tr>
-												<div class="form-group">
-													<th width="50%">Biaya Admin</th>
-														<td width="50%" class="text-end" aria-valuetext="5000">Rp.5000</td>
-												</div>
-											</tr>
-											<tr>
-											<div class="form-group">
-												<th width="50%">Diskon</th>
-												<td width="50%" class="text-end"><strong class="text-warning">{{ $fee }}%</strong></td>
-											</div>
-											</tr>
-											<tr>
-											<div class="form-group">
-												<th width="50%">Kode Unik</th>
-												{{-- @if ($discount == true)
-												<td width="50%" class="text-end"><strong class="text-success"> - </strong></td>
-												@elseif ($discount == true || $discount == 0)
-												<td width="50%" class="text-end"><strong class="text-success">{{ $code_unique }}</strong></td>
-												@endif --}}
-												<td width="50%" class="text-end"><strong class="text-success">{{ $code_unique }}</strong></td>
-											</div>
-											</tr>
-										</table>
-										<hr />
-										<div class="subtotal">
-											<table>
-											<tr>
-												<div class="form-group">
-												<th width="90%"><b>Total Pembayaran</b></th>
-												<td width="10%" class="text-end">
-													<strong>Rp.{{ number_format($totalPrice + $code_unique ?? 0) }}</strong>
-												</td>
-												</div>
-											</tr>
-											</table>
+							<div class="table-responsive">
+								@php
+									$admin_fee = 5000;
+								@endphp
+								@foreach ($carts as $cart)
+								<table class="scroll-horizontal-vertical w-100">
+									<tr>
+										<div class="form-group">
+											<th>Kode Produk</th>
+											<td class="text-end">{{ $cart->product->code }}</td>
 										</div>
-									</div>
+									</tr>
+									<tr>
+										<div class="form-group">
+											<th>Harga</th>
+											<td class="text-end">Rp.{{ number_format($cart->product->price) }}</td>
+										</div>
+									</tr>
+									<tr>
+										<div class="form-group">
+											<th>Nama Barang</th>
+											<td class="text-end">{{ $cart->product->name_product }}</td>
+										</div>
+									</tr>
+									<tr>
+										<div class="form-group">
+											<th>Jumlah Pesanan</th>
+											<td class="text-end">{{ $cart->quantity }}</td>
+										</div>
+									</tr>
+									<tr>
+										<div class="form-group">
+											<th>Diskon</th>
+											@if ($cart->product->discount == true)
+												<td class="text-end">{{ $cart->product->discount_amount }}%</td>
+											@else
+												<td class="text-end">0%</td>
+											@endif
+										</div>
+									</tr>
+									<tr>
+										<div class="form-group">
+											<th>Ongkir</th>
+											@if ($cart->product->ongkir == true)
+												<td class="text-end">Rp.{{ number_format($ongkir) }}</td>
+											@else
+												<td class="text-end text-info">Gratis</td>
+											@endif
+										</div>
+									</tr>
+								</table>
+								<hr />
+								@endforeach
+							</div>
+							{{-- <hr /> --}}
+							<div class="code-bstore table-responsive">
+								<table class="scroll-horizontal-vertical w-100">
+									<tr>
+										<div class="form-group">
+											<th>Biaya Admin</th>
+											<td class="text-end">Rp.{{ number_format($admin_fee) }}</td>
+										</div>
+									</tr>
+									<tr>
+										<div class="form-group">
+											<th>Kode Unik</th>
+											<td class="text-end">{{ $code_unique }}</td>
+										</div>
+									</tr>
+								</table>
+							</div>
+							<hr />
+							{{-- @php
+								$totalPrice += $cart->transaction->total_price + $cart->transaction->admin_fee + $cart->transaction->code_unique;
+							@endphp --}}
+							@php
+								// $total = $cart->product->price * $cart->quantity;
+								// $discount = (($total * $cart->quantity * $cart->product->discount_amount) / 100);
+								// if ($cart->product->discount == true && $cart->product->ongkir == 0) {
+								// 	$discountPrice = $total - $discount;
+								// }elseif($cart->product->discount == true && $cart->product->ongkir == true){
+								// 	$discountPrice = $total - $discount + $cart->product->ongkir_amount;
+								// }
+								// var_dump($discount);
+							@endphp
+							<div class="subtotal table-responsive">
+								<table class="scroll-horizontal-vertical w-100">
+									<tr>
+										<div class="form-group">
+											<th><b>Total Pembayaran</b></th>
+											<td class="text-end"><strong class="text-success">Rp.{{ number_format($totals + $admin_fee + $code_unique - $discounts ?? 0) }}</strong></td>
+										</div>
+									</tr>
+								</table>
+							</div>
+						</div>
 								</div>
 								</div>
 							</div>

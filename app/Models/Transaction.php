@@ -17,18 +17,9 @@ class Transaction extends Model
         'code_unique',
         'total_price',
         'admin_fee',
+        'discount_amount',
         'payment_status',
         'midtrans_url',
-        // 'quantity',
-        // 'products_id',
-        // 'notes',
-        // 'payment_status',
-        // 'shipping_status',
-        // 'name',
-        // 'phone',
-        // 'street',
-        // 'village',
-        // 'address',
     ];
 
     public function user()

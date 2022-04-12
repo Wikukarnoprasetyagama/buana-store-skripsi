@@ -1,164 +1,153 @@
 @extends('layouts.home')
 
 @section('title')
-    Transaksi
+    Transaksi - {{ Auth::user()->name }}
 @endsection
 
 @section('content')
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb">
-      <div class="container">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-          <li class="breadcrumb-item active my-auto" aria-current="page">
-            Transaksi
-          </li>
-        </ol>
-      </div>
-    </nav>
 
-    @if (count($transactions))
-    <section class="section-cart">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-md-12 table-responsive">
-					<table class="table table-borderless">
-						<thead>
-							<tr>
-							<th scope="col">Foto Barang</th>
-							<th scope="col">Nama &amp; Toko</th>
-							<th scope="col">Jumlah</th>
-							<th scope="col">Total Harga</th>
-							<th scope="col">Status Pembayaran</th>
-							<th scope="col">Status Pengiriman</th>
-							<th scope="col">Aksi</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($transactions as $transaction)
-							<tr>
-								<th scope="row">
-									<div class="form-group my-auto">
-										@if ($transaction->product->galleries->count())
-											<img
-												src="{{ Storage::url($transaction->product->galleries->first()->photo) }}"
-												class="img-fluid"
-												alt="..."
-											/>
-										@endif
+@if (count($transactions))
+	{{-- @if ($checkout->payment_status == 'MENUNGGU')	 --}}
+		<section class="section-transaction">
+			<div class="container">
+				<div class="row d-flex justify-content-center">
+					<div class="col-12 col-md-6">
+							<div class="card">
+								<div class="card-header text-center">
+									<h3 class="card-title">Detail Transaksi Pembelian</h3>
+									<span>An. {{ Auth::user()->name }}</span>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										@php
+											$totalPrice = 0;
+										@endphp
+										@foreach ($transactions as $transaction)
+										<table class="scroll-horizontal-vertical w-100">
+											<tr>
+												<div class="form-group">
+													<th>ID Pesanan</th>
+													<td class="text-end">{{ $transaction->transaction->order_id }}</td>
+												</div>
+											</tr>
+											<tr>
+												<div class="form-group">
+													<th>Kode Produk</th>
+													<td class="text-end">{{ $transaction->product->code }}</td>
+												</div>
+											</tr>
+											<tr>
+												<div class="form-group">
+													<th>Harga</th>
+													<td class="text-end">Rp.{{ number_format($transaction->product->price) }}</td>
+												</div>
+											</tr>
+											<tr>
+												<div class="form-group">
+													<th>Nama Barang</th>
+													<td class="text-end">{{ $transaction->product->name_product }}</td>
+												</div>
+											</tr>
+											<tr>
+												<div class="form-group">
+													<th>No Hp</th>
+													<td class="text-end">{{ $transaction->phone }}</td>
+												</div>
+											</tr>
+											<tr>
+												<div class="form-group">
+													<th>Nama Penerima</th>
+													<td class="text-end">{{ $transaction->name }}</td>
+												</div>
+											</tr>
+											<tr>
+												<div class="form-group">
+													<th>Jumlah Pesanan</th>
+													<td class="text-end">{{ $transaction->quantity }}</td>
+												</div>
+											</tr>
+										</table>
+										<hr />
+										@endforeach
 									</div>
-								</th>
-								<td>
-									<div class="form-group my-auto py-1" style="width: 250px">
-										<div class="title-product">
-											{{ $transaction->product->name_product }}
-										</div>
-										<div class="name-store">{{ $transaction->product->user->name_store }}
-											@if ($transaction->product->user->status == "DIBLOKIR")
-												<a href="#" data-bs-toggle="modal" data-bs-target="#diblokirModal" style="text-decoration: none;"><strong class="text-danger">{{ $transaction->product->user->status }}</strong></a>
-											@endif
-										</div>
+									{{-- <hr /> --}}
+									<div class="code-bstore table-responsive">
+										<table class="scroll-horizontal-vertical w-100">
+											<tr>
+												<div class="form-group">
+													<th>Ongkir</th>
+													<td class="text-end">Rp.{{ number_format($ongkir) }}</td>
+												</div>
+											</tr>
+											<tr>
+												<div class="form-group">
+													<th>Biaya Admin</th>
+													<td class="text-end">Rp.{{ number_format($transaction->transaction->admin_fee) }}</td>
+												</div>
+											</tr>
+											<tr>
+												<div class="form-group">
+													<th>Diskon</th>
+													<td class="text-end">{{ $transaction->product->discount_amount }}%</td>
+												</div>
+											</tr>
+											<tr>
+												<div class="form-group">
+													<th>Kode Unik</th>
+													<td class="text-end">{{ $transaction->transaction->code_unique }}</td>
+												</div>
+											</tr>
+										</table>
 									</div>
-									<!-- Modal DIBLOKIR -->
-									<div class="modal fade" id="diblokirModal" tabindex="-1" aria-labelledby="diblokirModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="diblokirModalLabel">Akun Toko Ini Diblokir</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body">
-												<p>
-													Akun Toko {{ $transaction->product->user->name_store }} telah diblokir oleh admin, <br>
-													Karena toko ini telah melanggar beberapa aturan kebijakan penggunaan. <br>
-												</p>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
-											</div>
-											</div>
-										</div>
+									<hr />
+									{{-- @php
+										$totalPrice += $transaction->transaction->total_price + $transaction->transaction->admin_fee + $transaction->transaction->code_unique;
+									@endphp --}}
+									<div class="subtotal table-responsive">
+										<table class="scroll-horizontal-vertical w-100">
+											<tr>
+												<div class="form-group">
+													<th><b>Total Pembayaran</b></th>
+													<td class="text-end"><strong class="text-success">Rp.{{ number_format($transaction->transaction->total_price + $transaction->transaction->admin_fee + $transaction->transaction->code_unique - $transaction->transaction->discount_amount ?? 0) }}</strong></td>
+												</div>
+											</tr>
+										</table>
 									</div>
-								</td>
-								<td>
-									<div class="form-group my-auto py-1" style="width: 70px">
-									<div class="quantity py-2">
-										<span class="mx-4">{{ $transaction->quantity }}</span>
+									<div class="d-grid gap-1 mt-3">
+										<a href="" class="btn btn-payment" type="button">Bayar Sekarang</a>
 									</div>
-									</div>
-								</td>
-								<td>
-									<div class="form-group my-auto py-2" style="width: 130px">
-										<div class="price">Rp{{ number_format($transaction->total_price + $transaction->code_unique) }}</div>
-									</div>
-								</td>
-								<td>
-									<div class="form-group my-auto py-2" style="width: 130px">
-									@if ($transaction->payment_status == 'PENDING')
-										<div class="payment-status text-warning">{{ $transaction->payment_status }}</div>
-										@elseif ($transaction->payment_status == 'DIBAYAR' )
-										<div class="payment-status text-success">{{ $transaction->payment_status }}</div>
-										@else
-										<div class="payment-status text-info">{{ $transaction->payment_status }}</div>
-									@endif
-									</div>
-								</td>
-								<td>
-									<div class="form-group my-auto py-2" style="width: 130px">
-									@if ($transaction->shipping_status == 'PENDING')
-										<div class="shipping-status text-warning">{{ $transaction->shipping_status }}</div>
-										@elseif ($transaction->shipping_status == 'DIKIRIM' )
-										<div class="shipping-status text-info">{{ $transaction->shipping_status }}</div>
-										@else
-										<div class="shippig-status text-success">{{ $transaction->shipping_status }}</div>
-									@endif
-									</div>
-								</td>
-								<td>
-									@if ($transaction->payment_status == 'DIBAYAR')
-										<div class="form-group my-auto py-1">
-											<span class="badge bg-success"> selesai </span>
-										</div>
-										@else
-										<div class="form-group my-auto py-1">
-											<a href="{{ $transaction->midtrans_url }}" class="btn text-white btn-payment" target="_blank">Bayar</a>
-										</div>
-									@endif
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
+								</div>
+							</div>
+					</div>
 				</div>
 			</div>
+		</section>
+	{{-- @endif --}}
+@else
+<section class="section-empty-cart">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-12 text-center">
+			<div class="empty-cart text-center">
+				<figure class="figure">
+					<img src="{{ url('/images/ic_empty_cart.svg') }}" class="img-fluid figure-img h-50 w-50" alt="">
+				</figure>
+				<div class="description mt-3">
+					<h1>Belum ada Transaksi!</h1>
+					Silahkan belanja terlebih dahulu.
+				</div>
+				<div class="add-slider mt-4">
+					<a href="{{ route('home')}}" class="btn btn-get-product btn-lg shadow-sm">
+						<i class="fas fa-plus fa-sm text-white-50"></i>
+						Belanja Sekarang
+					</a>
+				</div>
+			</div>
+			</div>
 		</div>
-    </section>
-    @else
-
-    <section class="section-empty-cart">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-12 text-center">
-            <div class="empty-cart text-center">
-                <figure class="figure">
-                    <img src="{{ url('/images/ic_empty_cart.svg') }}" class="img-fluid figure-img h-50 w-50" alt="">
-                </figure>
-                <div class="description mt-3">
-                    <h1>Belum ada Transaksi!</h1>
-                    Silahkan belanja terlebih dahulu.
-                </div>
-                <div class="add-slider mt-4">
-                    <a href="{{ route('home')}}" class="btn btn-get-product btn-lg shadow-sm">
-                        <i class="fas fa-plus fa-sm text-white-50"></i>
-                        Belanja Sekarang
-                    </a>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    @endif
+	</div>
+</section>
+@endif
 @endsection
 
 @push('after-style')
