@@ -45,11 +45,11 @@ class VillageSeeder extends Seeder
             ],
             [
                 'id' => 8,
-                'name' => 'Koto Aman',
+                'name' => 'Kota Aman',
             ],
             [
                 'id' => 9,
-                'name' => 'Koto garo',
+                'name' => 'Kota garo',
             ],
             [
                 'id' => 10,
