@@ -23,19 +23,16 @@
 				</li>
 				@auth
 				<li class="nav-item mx-2">
-					<a class="nav-link {{ (request()->is('transaksi*')) ? 'active' : '' }}" href="{{ route('transaction') }}">Transaksi</a>
+					<a href="{{ route('cart') }}">
+						@php
+							$carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+						@endphp
+						<img src="{{ url('/images/ic_cart.svg') }}" class="img-fluid my-auto" alt=""/>
+						@if ($carts > 0)
+									<div class="cart-badge">{{ $carts }}</div>
+						@endif
+					</a>
 				</li>
-					<li class="nav-item mx-2">
-						<a href="{{ route('cart') }}">
-							@php
-								$carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
-							@endphp
-							<img src="{{ url('/images/ic_cart.svg') }}" class="img-fluid my-auto" alt=""/>
-							@if ($carts > 0)
-										<div class="cart-badge">{{ $carts }}</div>
-							@endif
-						</a>
-					</li>
 				@endauth
 				{{-- Jika Belum Login --}}
 				@guest

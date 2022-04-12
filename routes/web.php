@@ -106,16 +106,13 @@ Route::prefix('/pages/dashboard/customer')
             Route::resource('open-store', OpenStoreController::class);
             Route::resource('transaction-customer', TransactionCustomerController::class);
             Route::resource('profile-customer', ProfileCustomerController::class);
-        //     Route::resource('profile-seller', ProfileSellerController::class);
 });
 
 
 Route::group(['middleware' => ['auth']], function(){
-        // Route::get('/keranjang/pembayaran', [CartController::class, 'payout'])->name('cart-payout');
         Route::get('/keranjang', [CartController::class, 'index'])->name('cart');
         Route::post('/keranjang', [CartController::class, 'updateQuantity'])->name('cart-update');
         Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
         Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
-        Route::get('/transaksi', [TransactionController::class, 'index'])->name('transaction');
 });
 Auth::routes();
