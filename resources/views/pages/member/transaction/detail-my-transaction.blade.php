@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
-                                <div class="table-responsive">
+                                {{-- <div class="table-responsive"> --}}
                                     <table class="scroll-horizontal-vertical w-100">
                                         <tr>
                                             <div class="form-group">
@@ -105,7 +105,7 @@
                                             </div>
                                         </tr>
                                     </table>
-                                </div>
+                                {{-- </div> --}}
                             </div>
                         </div>
                     </div>

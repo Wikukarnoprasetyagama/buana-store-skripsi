@@ -117,7 +117,7 @@ class ProductController extends Controller
         $data['slug'] = Str::slug($request->name_product);
         $product = Products::findOrFail($id);
         $product->update($data);
-        if ($request['discount'] == 0) {
+        if ($request->has('discount') == 0) {
             $data['discount_amount'] = 0;
         }
         if ($data) {

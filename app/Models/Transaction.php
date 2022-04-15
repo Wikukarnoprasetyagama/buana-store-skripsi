@@ -32,4 +32,9 @@ class Transaction extends Model
         return $this->belongsTo(Products::class, 'products_id', 'id');
     }
 
+    public function detail()
+    {
+        return $this->hasMany(TransactionDetail::class, 'transactions_id', 'id');
+    }
+    
 }

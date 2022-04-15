@@ -16,21 +16,32 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $item = User::count();
-        // $order = Transaction::whereHas('product', function($product) {
-        //     $product->where('users_id', auth()->id());
-        // })->orderBy('created_at', 'asc')->take(5)->get();
-        $order = TransactionDetail::with(['transaction.user', 'product.galleries'])
-                        ->whereHas('product', function($transaction) {
-                            $transaction->where('users_id', Auth::user()->id);
-                        })->orderBy('created_at', 'asc')->take(5)->get();
-        $invoices = TransactionDetail::with(['transaction.user', 'product.galleries'])
-                        ->whereHas('transaction', function($transaction) {
-                            $transaction->where('users_id', Auth::user()->id);
-                        })->orderBy('created_at', 'desc')->take(5)->get();
+
         $product = Products::where('users_id', Auth::user()->id)->count();
+
         $cart = Cart::where('users_id', Auth::user()->id)->count();
+
         $transaction = Transaction::where('users_id', Auth::user()->id);
-        $profit = Transaction::where('payment_status', 'DIBAYAR')->sum('total_price');
+
+        $order = TransactionDetail::with(['transaction.user', 'product.galleries'])
+                    ->whereHas('product', function($transaction) {
+                        $transaction->where('users_id', Auth::user()->id);
+                    })->orderBy('created_at', 'desc')->take(5)->get();
+
+        $invoices = TransactionDetail::with(['transaction.user', 'product.galleries'])
+                    ->whereHas('transaction', function($transaction) {
+                        $transaction->where('users_id', Auth::user()->id);
+                    })->orderBy('created_at', 'desc')->take(5)->get();
+
+        $profit = TransactionDetail::with('transaction:id,total_price,payment_status')
+                    ->whereHas('product', function($product) {
+                        $product->where('users_id', Auth::user()->id);
+                    })->whereHas('transaction', function($transaction){
+                        $transaction->where('payment_status', 'DIBAYAR');
+                    })->get()->reduce(function($carry, $item) {
+                        return $carry + $item->transaction->total_price ;
+                    });
+        
         $revenue = $transaction->get()->reduce(function($carry, $item) {
             return $carry + $item->total_price + $item->admin_fee + $item->code_unique;
         });
@@ -43,6 +54,6 @@ class DashboardController extends Controller
             'invoices' => $invoices,
             'orders' => $order,
             'profit' => $profit,
-        ]);
+        ], compact('invoices'));
     }
 }

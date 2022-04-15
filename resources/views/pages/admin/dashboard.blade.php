@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Admin Food Market
+    Dashboard | Admin Buana Store
 @endsection
 
 @section('content')

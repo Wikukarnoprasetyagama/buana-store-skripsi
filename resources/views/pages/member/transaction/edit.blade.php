@@ -96,7 +96,7 @@
                             <label for="shipping_status" class="form-label">Status Pengiriman</label>
                         </div>
                         <div class="d-flex">
-                            <form class="mr-3" action="{{ route('transaction-seller.update', $transactions->transaction->id) }}" method="POST" enctype="multipart/form-data">
+                            <form class="mr-3" action="{{ route('transaction-seller.update', $transactions->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row d-flex justify-content-right">
@@ -104,15 +104,22 @@
                                         <div class="form-group">
                                             <input type="hidden" name="shipping_status" value="DIKIRIM">
                                             @if ($transactions->transaction->payment_status == "DIBAYAR")
-                                                <button type="submit" class="btn btn-info d-block change">Dikirim</button>
+                                                @if ($transactions->shipping_status == "DIKIRIM")
+                                                    <button type="submit" class="btn btn-info" disabled>
+                                                        <i class="fas fa-check"></i>
+                                                        Sudah Dikirim
+                                                    </button>
+                                                @else
+                                                    <button type="submit" class="btn btn-info d-block change">Dikirim</button>
+                                                @endif
                                             @else
                                                 <button type="submit" class="btn btn-info d-block change" disabled>Dikirim</button>
-                                            @endif  
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </form>
-                            <form action="{{ route('transaction-seller.update', $transactions->transaction->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('transaction-seller.update', $transactions->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row d-flex justify-content-right">

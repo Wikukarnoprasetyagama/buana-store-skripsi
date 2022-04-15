@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TransactionRequest;
+use App\Models\Products;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
@@ -60,7 +61,12 @@ class TransactionSellerController extends Controller
      */
     public function show($id)
     {
-        //
+        $invoice = Transaction::findOrFail($id);
+        $transactions = TransactionDetail::findOrFail($id);
+        return view('pages.member.transaction.detail-my-transaction', [
+            'invoice' => $invoice,
+            'transactions' => $transactions,
+        ]);
     }
 
     /**
@@ -87,7 +93,7 @@ class TransactionSellerController extends Controller
     public function update(TransactionRequest $request, $id)
     {
         $data = $request->all();
-        $transaction = Transaction::findOrFail($id);
+        $transaction = TransactionDetail::findOrFail($id);
         $transaction->update($data);
 
         return redirect()->route('transaction-seller.index');

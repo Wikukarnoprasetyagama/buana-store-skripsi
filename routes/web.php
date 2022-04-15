@@ -49,9 +49,11 @@ Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])-
 Route::get('/hadiah', [RewardsController::class, 'index'])->name('reward');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');
 Route::get('/kategori/{id}', [CategoryProductsController::class, 'detail'])->name('categories-detail');
-Route::get('/payment/success', [CheckoutController::class, 'callback']);
+// Route::get('/payment/success', [CheckoutController::class, 'callback']);
 Route::post('/payment/success', [CheckoutController::class, 'callback']);
-
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
 //Google
 Route::get('/auth/callback', [LoginController::class, 'handlerProviderCallback']);
 Route::get('/auth/redirect', [LoginController::class, 'redirectToProvider']);

@@ -22,11 +22,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 mb-5">
-            <div
-              id="carouselExampleIndicators"
-              class="carousel slide"
-              data-bs-ride="carousel"
-            >
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner rounded" style="max-height: 340px; background-size: cover">
                 @foreach ($products->galleries as $key => $gallery)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
@@ -37,26 +33,26 @@
                         />
                     </div>
                 @endforeach
-				<div class="row">
-					<div class="col-12">
-						<div class="product-chat">
-							<figure class="figure d-flex">
-								<div class="product-img">
-									@if ($products->discount == true)
-										<div class="discount-image">
-											<img
-												src="{{ url('/images/ic_discount_empty.svg') }}"
-												class="align-items-end img-fluid"
-												alt=""
-											/>
-											<div class="discount-badge">{{ $products->discount_amount }}%</div>
-										</div>
-									@endif
-								</div>
-							</figure>
-						</div>
-					</div>
-				</div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="product-chat">
+                      <figure class="figure d-flex">
+                        <div class="product-img">
+                          @if ($products->discount == true)
+                            <div class="discount-image">
+                              <img
+                                src="{{ url('/images/ic_discount_empty.svg') }}"
+                                class="align-items-end img-fluid"
+                                alt=""
+                              />
+                              <div class="discount-badge">{{ $products->discount_amount }}%</div>
+                            </div>
+                          @endif
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
               </div>
               <button
                 class="carousel-control-prev"

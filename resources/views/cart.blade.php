@@ -371,11 +371,12 @@
           </div>
           <div class="modal-body">
             <ul>
-              <li>Setelah klik bayar sekarang, maka slip pembayaran kamu akan langsung dibuat.</li>
-              <li>Jika pembayaran telah dibuat, kamu bisa langsung menuju kehalaman transaksi.</li>
-              <li>Pembayaran dapat dilakukan melalui transfer bank atau Indomaret</li>
+              <li>Untuk melakukan pembayaran klik tombol bayar sekarang.</li>
+              <li>Pilih bank tujuan untuk melakukan pembayaran.</li>
+              <li>Pembayaran selesai.</li>
               <li>Pembayaran akan berakhir dalam 1x24 jam.</li>
-              <li>Selamat belanja!</li>
+              <li>Barang akan diproses jika telah dibayar.</li>
+			  <li>Selamat Belanja.</li>
             </ul>
           </div>
           <div class="modal-footer">

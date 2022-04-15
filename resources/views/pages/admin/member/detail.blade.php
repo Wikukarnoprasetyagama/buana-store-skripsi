@@ -61,8 +61,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Jalan</label>
-                                            <input type="text" class="form-control" value="{{ $user->street }}" disabled>
+                                        <label for="phone" class="form-label">Nama Desa</label>
+                                            <input type="text" class="form-control" value="{{ $user->village }}" disabled>
                                     </div>
                                 </div>
                             </div>

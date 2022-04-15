@@ -90,72 +90,32 @@
                             </div>
                         </div>
 
-                        <div class="row" id="discount">
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="discount" class="form-control-label">Kasih Diskon  / Tidak</label>
-                                        <select class="form-control" name="discount" id="discount">
-                                            @if ($products->discount == 1)
-                                                <option value="{{ $products->discount }}" selected>
-                                                    @if ($products->discount == 1)
-                                                        Kasih Diskon
-                                                    @endif
-                                                </option>
-                                                @else
-                                                <option value="{{ $products->discount }}" selected>
-                                                    @if ($products->discount == 0)
-                                                        Tidak
-                                                    @endif
-                                            @endif
-                                            @if ($products->discount == 1)
-                                                <option hidden name="discount" value="1">Kasih Diskon</option>
-                                                @else
-                                                <option name="discount" value="1">Kasih Diskon</option>
-                                            @endif
-                                            @if ($products->discount == 0)
-                                                <option hidden name="discount" value="0">Tidak</option>
-                                            @else
-                                                <option name="discount" value="0">Tidak</option>
-                                            @endif
+                                    <label class="form-control-label">Kasih Diskon  / Tidak</label>
+                                        <select class="form-control" name="discount">
+                                            <option id="discount1" value="1" {{ $products->discount == 1 ? 'selected' : '' }}>Kasih Diskon</option>
+                                            <option id="discount0" value="0" {{ $products->discount == 0 ? 'selected' : '' }}>Tidak</option>
                                         </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="discount_amount" class="form-control-label">Jumlah Discount</label>
-                                    <input type="number" name="discount_amount" value="{{ $products->discount_amount }}" class="form-control inputDisabledDiscount @error('discount_amount') is-invalid @enderror"/>
+                                    <input type="number" name="discount_amount" id="discount_amount" value="{{ $products->discount_amount }}" class="form-control discount_amount inputDisabledDiscount @error('discount_amount') is-invalid @enderror"/>
                                     @error('discount_amount') <div class="text-muted">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="ongkir">
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="ongkir" class="form-control-label">Kasih Ongkir  / Tidak</label>
                                     <select class="form-control" name="ongkir" id="ongkir">
-                                            @if ($products->ongkir == 1)
-                                                <option value="{{ $products->ongkir }}" selected>
-                                                    @if ($products->ongkir == 1)
-                                                        Kasih Ongkir
-                                                    @endif
-                                                </option>
-                                                @else
-                                                <option value="{{ $products->ongkir }}" selected>
-                                                    @if ($products->ongkir == 0)
-                                                        Tidak
-                                                    @endif
-                                            @endif
-                                            @if ($products->ongkir == 1)
-                                                <option hidden name="ongkir" value="1">Kasih Ongkir</option>
-                                                @else
-                                                <option name="ongkir" value="1">Kasih Ongkir</option>
-                                            @endif
-                                            @if ($products->ongkir == 0)
-                                                <option hidden name="ongkir" value="0">Tidak</option>
-                                            @else
-                                                <option name="ongkir" value="0">Tidak</option>
-                                            @endif
-                                        </select>
+                                        <option id="ongkir1" value="1" {{ $products->ongkir == 1 ? 'selected' : '' }}>Kasih Ongkir</option>
+                                        <option id="ongkir0" value="0" {{ $products->ongkir == 0 ? 'selected' : '' }}>Gratis Ongkir</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -177,7 +137,7 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <a href="{{ route('products-seller.index') }}" class="btn btn-danger btn-block">
                                     Batal
                                 </a>
@@ -197,9 +157,40 @@
 @endsection
 
 @push('after-script')
+    {{-- upload gambar --}}
     <script>
         function thisFileUpload() {
             document.getElementById("file").click();
+        }
+    </script>
+    {{-- ubah diskon --}}
+    <script>
+        const discount_amount = document.getElementById('discount_amount');
+        const discount0 = document.querySelector('#discount0');
+        const discount1 = document.querySelector('#discount1');
+        if ($('#discount1').is(':selected')) {
+            if ($('.form-control').change(function(){
+                discount_amount.setAttribute('value', '0');
+            })) {
+                
+            }else{
+                discount_amount.value = discount_amount.value;
+            }
+        } 
+    </script>
+    {{-- ubah ongkir --}}
+    <script>
+        const ongkir_amount = document.getElementById('ongkir_amount');
+        const ongkir0 = document.querySelector('#ongkir0');
+        const ongkir1 = document.querySelector('#ongkir1');
+        if ($('#ongkir1').is(':selected')) {
+            if ($('.form-control').change(function(){
+                ongkir_amount.setAttribute('value', '0');
+            })) {
+                
+            }else{
+                ongkir_amount.value = ongkir_amount.value;
+            }
         }
     </script>
 @endpush

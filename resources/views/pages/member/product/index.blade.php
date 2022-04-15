@@ -33,27 +33,27 @@
                         <tbody>
                             @foreach ($products as $product)
                                 <tr>
-                                    <td style="padding-left: 24px">{{ $loop->iteration }}</td>
-                                    <td style="padding-left: 18px">{{ $product->category->name_category }}</td>
-                                    <td style="padding-left: 18px">{{ $product->name_product }}</td>
-                                    <td style="padding-left: 18px">{{ $product->price }}</td>
+                                    <td style="padding-left: 33px">{{ $loop->iteration }}</td>
+                                    <td style="padding-left: 26px">{{ $product->category->name_category }}</td>
+                                    <td style="padding-left: 26px">{{ $product->name_product }}</td>
+                                    <td style="padding-left: 26px">{{ $product->price }}</td>
                                     @if ($product->discount == true)
-                                        <td style="padding-left: 18px">
+                                        <td style="padding-left: 26px">
                                             <span class="badge badge-success">Aktif</span>
                                         </td>
                                         @else
-                                        <td style="padding-left: 18px">
+                                        <td style="padding-left: 26px">
                                             <span> - </span>
                                         </td>
                                     @endif
                                     @if ($product->discount == true)
-                                        <td style="padding-left: 18px">{{ $product->discount_amount }}%</td>
+                                        <td style="padding-left: 26px">{{ $product->discount_amount }}%</td>
                                         @else
-                                        <td style="padding-left: 18px"> - </td>
+                                        <td style="padding-left: 26px"> - </td>
                                     @endif
                                         
-                                    <td style="padding-left: 18px;">
-                                        <div class="form-group d-flex">
+                                    <td style="padding-left: 26px;">
+                                        <div class="form-group d-flex my-2">
                                             @if ($product->discount == 1)
                                                 <form action="{{ route('products-seller.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                                                     @method('PUT')

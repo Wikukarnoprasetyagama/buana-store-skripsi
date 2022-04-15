@@ -1,5 +1,9 @@
 <footer class="main-footer">
     <div class="footer-left">
-        Copyright &copy; 2021 <div class="bullet"></div> Admin Buana Store
+        Copyright &copy; 
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+        <div class="bullet"></div> {{ Auth::user()->roles }} Buana Store
     </div>
 </footer>

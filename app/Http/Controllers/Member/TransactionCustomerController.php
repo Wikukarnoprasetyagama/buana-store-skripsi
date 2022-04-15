@@ -60,11 +60,11 @@ class TransactionCustomerController extends Controller
     {
         $invoice = Transaction::findOrFail($id);
         $transactions = TransactionDetail::findOrFail($id);
-        $product = Products::findOrFail($id);
+        // $product = Products::findOrFail($id);
         return view('pages.member.transaction.detail-transaction', [
             'invoice' => $invoice,
             'transactions' => $transactions,
-            'products' => $product,
+            // 'product' => $product,
         ]);
     }
 

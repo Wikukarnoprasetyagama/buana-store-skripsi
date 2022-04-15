@@ -19,9 +19,6 @@
               <a href="{{ route('profile.index') }}" class="dropdown-item has-icon">
                 <i class="fas fa-user"></i> Profile
               </a>
-              <a href="{{ route('cart') }}" class="dropdown-item has-icon">
-                <i class="fas fa-cart-plus"></i> Keranjang
-              </a>
               <div class="dropdown-divider"></div>
               <a href="#" class="dropdown-item has-icon text-danger" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-sign-out-alt"></i> Logout

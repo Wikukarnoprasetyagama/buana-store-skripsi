@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Products;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,10 +21,10 @@ class TransactionAdminController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::all();
+        $transaction = TransactionDetail::all();
         return view('pages.admin.transaction.member', [
-            'transactions' => $transactions
-        ], compact('transactions'));
+            'transactions' => $transaction
+        ], compact('transaction'));
     }
 
     /**
@@ -44,7 +45,7 @@ class TransactionAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -55,7 +56,7 @@ class TransactionAdminController extends Controller
      */
     public function show($id)
     {
-        $details = Transaction::findOrFail($id);
+        $details = TransactionDetail::findOrFail($id);
         // $product = Products::all();
         return view('pages.admin.transaction.detail', [
             'detail' => $details,
