@@ -71,7 +71,7 @@
 					@else
 					<td><strong class="text-white badge badge-info">{{ $transaction->transaction->payment_status }}</strong></td>
 					@endif
-					<td>Rp.{{ number_format($transaction->total_price) }}</td>
+					<td>Rp.{{ number_format($transaction->transaction->total_price) }}</td>
 				</tr>
 				@endforeach
 				<tfoot>
