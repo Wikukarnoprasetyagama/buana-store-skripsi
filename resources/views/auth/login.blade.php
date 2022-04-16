@@ -22,7 +22,7 @@
             @csrf
             <div class="row mt-3 d-flex justify-content-center">
             <div class="col-12 col-lg-4">
-                <label for="email" class="form-label">Email Address</label>
+                <label for="email" class="form-label">Alamat Email</label>
                 <input
                     type="email"
                     id="email"
@@ -42,7 +42,7 @@
             </div>
             <div class="row mt-3 d-flex justify-content-center">
             <div class="col-12 col-lg-4">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Kata Sandi</label>
                 <input type="password" name="password" class="form-control @error('passowrd') is-invalid @enderror " />
 
                 @error('password')
@@ -57,7 +57,7 @@
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                         <label class="form-check-label" for="remember">
-                            {{ __('Remember Me') }}
+                            {{ __('Ingat saya') }}
                         </label>
                     </div>
                 </div>
@@ -66,14 +66,14 @@
             <div class="row mt-4 d-flex justify-content-center">
             <div class="col-12 col-lg-4 mb-3">
                 <div class="d-grid">
-                <button type="submit" class="btn text-white btn-daftar">Login Now</button>
+                <button type="submit" class="btn text-white btn-login">Masuk Sekarang</button>
                 </div>
             </div>
             </div>
             <div class="row text-center">
             <div class="col-12 col-lg-12">
                 @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" class="forgot-password">Forgot Password?</a>
+                    <a href="{{ route('password.request') }}" class="forgot-password">Lupa kata sandi?</a>
                 @endif
             </div>
             </div>
@@ -81,7 +81,7 @@
             <div class="row d-flex justify-content-center mt-4">
             <div class="col-12 col-lg-4 mb-3">
                 <div class="d-grid text-center">
-                <a href="{{ url('/auth/redirect') }}" class="btn img-fluid"
+                <a href="{{ url('/auth/redirect') }}" class="btn img-fluid btn-login-google"
                     ><img src="{{ url('/images/ic_google.svg') }}" class="me-4" alt=""
                 />Masuk dengan Google</a>
                 </div>

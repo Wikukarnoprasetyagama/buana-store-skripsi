@@ -24,7 +24,7 @@
             @csrf
             <div class="row mt-3 d-flex justify-content-center">
             <div class="col-12 col-lg-3">
-                <label for="email" class="form-label">Email Address</label>
+                <label for="email" class="form-label">Alamat Email</label>
                 <input
                     type="email"
                     id="email"
@@ -43,7 +43,7 @@
                 @enderror
             </div>
             <div class="col-12 col-lg-3">
-                <label for="name" class="form-label">Username</label>
+                <label for="name" class="form-label">Nama Lengkap</label>
                 <input type="text" name="name" required class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" />
                 @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
             </div>
             <div class="row mt-3 d-flex justify-content-center">
             <div class="col-12 col-lg-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Kata Sandi</label>
                 <input type="password" required name="password" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password" />
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -63,7 +63,7 @@
                     @enderror
                 </div>
             <div class="col-12 col-lg-3">
-                <label for="password-confirm" class="form-label">Conform Password</label>
+                <label for="password-confirm" class="form-label">Konfirmasi Kata Sandi</label>
                 <input type="password" required name="password_confirmation" class="form-control" required autocomplete="new-password" />
             </div>
             </div>
@@ -78,7 +78,7 @@
         </form>
         <div class="row d-flex justify-content-center already-account">
           <div class="col-md-6 text-center">
-            <span>Already have an account? <a href="{{ route('login') }}">Sign In</a></span>
+            <span>Sudah punya akun? <a href="{{ route('login') }}">Masuk</a></span>
           </div>
         </div>
         <div class="row d-flex justify-content-center">
@@ -89,7 +89,7 @@
         <div class="row d-flex justify-content-center mb-sm-3 mt-3">
           <div class="col-12 col-lg-6 mb-3">
             <div class="d-grid text-center">
-              <a href="{{ url('auth/redirect') }}" class="btn btn-google-register" style="background-color: #dfdfdf"
+              <a href="{{ url('auth/redirect') }}" class="btn btn-google-register"
                 ><img src="{{ url('/images/ic_google.svg') }}" class="me-4" alt=""
               />Daftar dengan Google</a>
             </div>
