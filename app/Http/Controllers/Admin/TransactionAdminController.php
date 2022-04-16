@@ -111,7 +111,7 @@ class TransactionAdminController extends Controller
         $revenue = $transaction->reduce(function($carry, $item) {
             return $carry + $item->total_price;
         });
-        // return view('pdf', [
+        // return view('pdf-transaction', [
         //     'transactions' => $transaction,
         //     'revenue' => $revenue,
         // ], compact('pic'));
