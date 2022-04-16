@@ -106,7 +106,8 @@ class TransactionAdminController extends Controller
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-        $transaction = TransactionDetail::all();
+        $transaction = TransactionDetail::with(['transaction.user', 'product.galleries'])
+                        ->whereHas('transaction')->get();
         $revenue = $transaction->reduce(function($carry, $item) {
             return $carry + $item->total_price;
         });
