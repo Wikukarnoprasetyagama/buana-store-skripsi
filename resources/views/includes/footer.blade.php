@@ -57,7 +57,7 @@
         <div class="address mt-2">
             Jln. Purbaya, Tanah Tinggi, Kec.Tapung Hilir, Kab Kampar
         </div>
-        <div class="email mt-2">cs@buanastore.com</div>
+        <div class="email mt-2">me@wikukarno.id</div>
         <div class="phone mt-2">+62 822 - 9502 - 4272</div>
         <div class="row mb-3 social-media mt-3">
             <div class="col-2 col-md-2 col-lg-2">

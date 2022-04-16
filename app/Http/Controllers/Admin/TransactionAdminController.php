@@ -100,7 +100,8 @@ class TransactionAdminController extends Controller
 
     public function print_transaction()
     {   
-        $path = base_path('/public/images/logo.png');
+        // $path = base_path('/public/images/logo.png');
+        $path = url('/images/logo.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $pic = 'data:image/' . $type . ';base64,' . base64_encode($data);
