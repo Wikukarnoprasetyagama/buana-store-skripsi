@@ -164,6 +164,6 @@ class CheckoutController extends Controller
         }
 
         $transaction->save();
-        return view('success');
+        return redirect('success');
     }
 }
