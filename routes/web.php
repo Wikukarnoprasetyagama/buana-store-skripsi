@@ -49,8 +49,7 @@ Route::get('/detail-produk/{slug}', [DetailProductsController::class, 'index'])-
 Route::get('/hadiah', [RewardsController::class, 'index'])->name('reward');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');
 Route::get('/kategori/{id}', [CategoryProductsController::class, 'detail'])->name('categories-detail');
-// Route::get('/payment/success', [CheckoutController::class, 'callback']);
-Route::post('/payment/success', [CheckoutController::class, 'callback']);
+
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
@@ -116,5 +115,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/keranjang', [CartController::class, 'updateQuantity'])->name('cart-update');
         Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
         Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
+        Route::get('/payment/success', [CheckoutController::class, 'callback']);
+        Route::post('/payment/success', [CheckoutController::class, 'callback']);
 });
 Auth::routes();

@@ -23,7 +23,7 @@
                 </p>
               </figcaption>
               <a href="{{ route('home') }}" class="btn-lg btn btn-back"
-                >Kembali keberanda</a
+                >Kembali Keberanda</a
               >
             </figure>
           </div>
