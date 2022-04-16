@@ -10,15 +10,15 @@
  <!-- Data Tables -->
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.all.min.js"></script>
  <!-- DataTables  & Plugins -->
-<script src="{{ url('/datatables/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ url('/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ url('/datatables/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ url('/datatables/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ url('/datatables/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ url('/datatables/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ url('/datatables/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-<script src="{{ url('/datatables/datatables-buttons/js/buttons.print.min.js') }}"></script>
-<script src="{{ url('/datatables/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ url('public/datatables/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url('public/datatables/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ url('public/datatables/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ url('public/datatables/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ url('public/datatables/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ url('public/datatables/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ url('public/datatables/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ url('public/datatables/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ url('public/datatables/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -34,18 +34,18 @@
 </script>
 
 <!-- JS Libraies -->
-  <script src="{{ url('/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
-  <script src="{{ url('/chart.js/dist/Chart.min.js') }}"></script>
-  <script src="{{ url('/owl.carousel/dist/owl.carousel.min.js') }}"></script>
-  <script src="{{ url('/summernote/dist/summernote-bs4.js') }}"></script>
-  <script src="{{ url('/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+  <script src="{{ url('public/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+  <script src="{{ url('public/chart.js/dist/Chart.min.js') }}"></script>
+  <script src="{{ url('public/owl.carousel/dist/owl.carousel.min.js') }}"></script>
+  <script src="{{ url('public/summernote/dist/summernote-bs4.js') }}"></script>
+  <script src="{{ url('public/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
   <!-- Template JS File -->
-  <script src="{{ url('/assets/js/scripts.js') }}"></script>
-  <script src="{{ url('/assets/js/custom.js') }}"></script>
+  <script src="{{ url('public/assets/js/scripts.js') }}"></script>
+  <script src="{{ url('public/assets/js/custom.js') }}"></script>
 
   <!-- Page Specific JS File -->
-  <script src="{{ url('/assets/js/page/index.js') }}"></script>
+  <script src="{{ url('public/assets/js/page/index.js') }}"></script>
   <script>
    ClassicEditor
         .create( document.querySelector( '.ckeditor' ) )
