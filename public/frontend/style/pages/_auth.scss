@@ -1,6 +1,10 @@
 .section-login {
     margin-top: 3%;
 
+    input {
+        border-radius: 50px;
+    }
+
     .figure {
         img {
             max-height: 50px;
@@ -23,26 +27,20 @@
         color: #a2a2a2;
     }
 
-    .btn-daftar {
+    .btn-login {
         background-color: #a43ce3;
         color: #fff;
+        border-radius: 50px;
         font-weight: 400;
         font-size: 16px;
     }
 
-    .btn-google-register {
-        background-color: #a43ce3 !important;
+    .btn-login-google {
         color: #212529;
+        background-color: #dddddd;
+        border-radius: 50px;
         font-weight: 400;
         font-size: 16px;
-
-        img {
-            max-height: 20px;
-        }
-
-        span {
-            margin-left: 15px;
-        }
     }
 
     .already-account {
@@ -78,6 +76,25 @@
 .section-register {
     margin-top: 3%;
 
+    input {
+        border-radius: 50px;
+    }
+
+    .btn-google-register {
+        color: #212529;
+        background-color: #dddddd;
+        border-radius: 50px;
+        font-weight: 400;
+        font-size: 16px;
+
+        img {
+            max-height: 20px;
+        }
+
+        span {
+            margin-left: 15px;
+        }
+    }
     .figure {
         img {
             max-height: 50px;
@@ -105,6 +122,7 @@
         color: #fff;
         font-weight: 400;
         font-size: 16px;
+        border-radius: 50px;
     }
 
     .already-account {
