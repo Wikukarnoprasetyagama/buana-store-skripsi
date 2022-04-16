@@ -1,4 +1,4 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/u1346656/public_html/skripsiku
+    - export DEPLOYPATH=/home/u1346656/public_html/skripsiku/
