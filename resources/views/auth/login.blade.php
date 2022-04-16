@@ -91,7 +91,7 @@
             <div class="col-12 col-lg-4 text-center already-account">
                 <hr />
                 <span
-                >Don't have an account? <a href="{{ route('register') }}">Sign Up</a></span
+                >Belum punya akun? <a href="{{ route('register') }}">Daftar Sekarang</a></span
                 >
             </div>
             </div>
