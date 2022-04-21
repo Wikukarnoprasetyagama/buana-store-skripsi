@@ -161,7 +161,7 @@
               <div class="d-flex align-items-center customer-reviews">
                 <div class="flex-shrink-0">
                   <img
-                    src="{{ asset('images/reviews_1.svg') }}"
+                    src="{{ asset('images/reviews1.jpg') }}"
                     class="img-fluid"
                     alt="..."
                   />
@@ -178,7 +178,7 @@
               <div class="d-flex align-items-center customer-reviews">
                 <div class="flex-shrink-0">
                   <img
-                    src="{{ asset('images/reviews_2.svg') }}"
+                    src="{{ asset('images/reviews2.jpg') }}"
                     class="img-fluid"
                     alt="..."
                   />
