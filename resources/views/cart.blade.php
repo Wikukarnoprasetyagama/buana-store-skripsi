@@ -326,7 +326,7 @@
 								<button type="submit" class="btn btn-otomatis">Checkout Barang Sekarang</button>
 							</div>
 							<div class="step-payment mt-2">
-								<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">cara pembayaran?</a>
+								<a href="#" data-bs-toggle="modal" data-bs-target="#paymentMethod">cara pembayaran?</a>
 							</div>
 						</div>
 					</div>
@@ -362,7 +362,7 @@
 
     @endif
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="paymentMethod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
