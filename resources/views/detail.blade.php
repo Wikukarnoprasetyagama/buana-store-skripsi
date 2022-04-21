@@ -105,7 +105,7 @@
 					</div>
 					<div class="col-2">
 						<div class="product-chat">
-							<img src="{{ url('/images/ic_chat.svg') }}" class="img-fluid" alt="" />
+							<img src="{{ asset('images/ic_chat.svg') }}" class="img-fluid" alt="" />
 						</div>
 					</div>
 				</div>
@@ -161,7 +161,7 @@
               <div class="d-flex align-items-center customer-reviews">
                 <div class="flex-shrink-0">
                   <img
-                    src="{{ url('/images/reviews_1.svg') }}"
+                    src="{{ asset('images/reviews_1.svg') }}"
                     class="img-fluid"
                     alt="..."
                   />
@@ -178,7 +178,7 @@
               <div class="d-flex align-items-center customer-reviews">
                 <div class="flex-shrink-0">
                   <img
-                    src="{{ url('/images/reviews_2.svg') }}"
+                    src="{{ asset('images/reviews_2.svg') }}"
                     class="img-fluid"
                     alt="..."
                   />

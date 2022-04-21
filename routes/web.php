@@ -50,9 +50,6 @@ Route::get('/hadiah', [RewardsController::class, 'index'])->name('reward');
 Route::post('/details/{id}', [DetailProductsController::class, 'add'])->name('detail-add');
 Route::get('/kategori/{id}', [CategoryProductsController::class, 'detail'])->name('categories-detail');
 
-Route::get('payment/success', [CheckoutController::class, 'callback']);
-Route::post('payment/success', [CheckoutController::class, 'callback']);
-
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
@@ -112,11 +109,14 @@ Route::prefix('/pages/dashboard/customer')
             Route::resource('profile-customer', ProfileCustomerController::class);
 });
 
+Route::get('payment/success', [CheckoutController::class, 'callback'])->name('payment-success');
+Route::post('payment/success', [CheckoutController::class, 'callback']);
 
 Route::group(['middleware' => ['auth']], function(){
         Route::get('/keranjang', [CartController::class, 'index'])->name('cart');
         Route::post('/keranjang', [CartController::class, 'updateQuantity'])->name('cart-update');
         Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
         Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
+        
 });
 Auth::routes();
