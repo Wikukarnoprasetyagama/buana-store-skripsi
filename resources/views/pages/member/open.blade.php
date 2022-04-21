@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <button type="submit" class="btn btn-primary btn-block">
-                                    Simpan
+                                    Kirim Sekarang
                                 </button>
                             </div>
                         </div>
