@@ -23,7 +23,7 @@ class TransactionAdminController extends Controller
     {
         $transaction = TransactionDetail::all();
         return view('pages.admin.transaction.member', [
-            'transactions' => $transaction
+            'transactions' => $transaction,
         ], compact('transaction'));
     }
 
@@ -109,8 +109,9 @@ class TransactionAdminController extends Controller
         $transaction = TransactionDetail::with(['transaction.user', 'product.galleries'])
                         ->whereHas('transaction')->get();
         $revenue = $transaction->reduce(function($carry, $item) {
-            return $carry + $item->total_price;
+            return $carry + $item->transaction->total_price;
         });
+
         // return view('pdf-transaction', [
         //     'transactions' => $transaction,
         //     'revenue' => $revenue,
