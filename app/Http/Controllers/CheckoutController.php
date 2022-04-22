@@ -84,15 +84,15 @@ class CheckoutController extends Controller
         $item_details[] = [
             'id' => $orderId,
             'price' => $price,
-            'quantity' => 1,
-            'name' => "Pembayaran Produk"
+            'quantity' => $request->quantity    ,
+            'name' => "Pembayaran " . $transaction->detail->first()->product->name_product
         ];
 
         $customer_details = [
-            "first_name" => Auth::user()->name,
+            "first_name" => $transaction->detail->first()->name,
             "last_name" => "",
             "email" => Auth::user()->email,
-            "phone" => Auth::user()->phone,
+            "phone" => $transaction->detail->first()->phone,
             "billing_address" => "",
             "shipping_address" => "",
         ];
@@ -134,6 +134,10 @@ class CheckoutController extends Controller
             else if ($fraud == 'accept') {
                 // TODO Set payment status in merchant's database to 'success'
                 $transaction->payment_status = 'DIBAYAR';
+            }
+            else if ($transaction_status == 'expire') {
+                // TODO set payment status in merchant's database to 'expire'
+                $transaction->payment_status = 'FAILED';
             }
         }
         else if ($transaction_status == 'cancel') {
