@@ -349,7 +349,7 @@
                     Keranjangmu masih kosong nih, yuk belanja sekarang!
                 </div>
                 <div class="add-slider mt-4">
-                    <a href="{{ route('home')}}" class="btn btn-get-product btn-lg shadow-sm">
+                    <a href="{{ route('all-product')}}" class="btn btn-get-product btn-lg shadow-sm">
                         <i class="fas fa-plus fa-sm text-white-50"></i>
                         Belanja Sekarang
                     </a>
