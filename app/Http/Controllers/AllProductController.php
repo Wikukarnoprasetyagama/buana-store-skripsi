@@ -9,7 +9,7 @@ class AllProductController extends Controller
 {
     public function index()
     {
-        $products = Products::latest()->filter(request(['search-product']))->paginate(4)->withQueryString();
+        $products = Products::latest()->filter(request(['search-product']))->paginate(20)->withQueryString();
         return view('all-product', [
             'products' => $products
         ], compact('products'));
