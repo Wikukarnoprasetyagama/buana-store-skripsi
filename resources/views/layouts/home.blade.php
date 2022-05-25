@@ -14,7 +14,6 @@
     @include('includes.navbar')
 
     @yield('content')
-    <button onclick="client.requestCode();">Authorize with Google</button>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
