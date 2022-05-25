@@ -7,7 +7,7 @@
 <script src="https://accounts.google.com/gsi/client"></script>
 <script>
   const client = google.accounts.oauth2.initCodeClient({
-  client_id: '{{ env('GOOGLE_CLIENT_ID') }}',
+  client_id: '{{ config('services.google.client_id') }}',
   scope: 'https://www.googleapis.com/auth/calendar.readonly',
   ux_mode: 'popup',
   callback: (response) => {
