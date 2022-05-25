@@ -4,15 +4,24 @@
 <script src="{{ asset('frontend/libraries/aos/aos.js') }}"></script>
 
 {{-- // Google Screen Login --}}
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://accounts.google.com/gsi/client"></script>
 <script>
-  function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
+  const client = google.accounts.oauth2.initCodeClient({
+  client_id: '{{ env('GOOGLE_CLIENT_ID') }}',
+  scope: 'https://www.googleapis.com/auth/calendar.readonly',
+  ux_mode: 'popup',
+  callback: (response) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', code_receiver_uri, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // Set custom header for CRSF
+    xhr.setRequestHeader('X-Requested-With', 'XmlHttpRequest');
+    xhr.onload = function() {
+      console.log('Auth code response: ' + xhr.responseText);
+    };
+    xhr.send('code=' + code);
+  },
+});
 </script>
 
 <script>
