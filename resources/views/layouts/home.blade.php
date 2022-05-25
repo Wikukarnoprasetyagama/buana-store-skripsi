@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
     <link rel="shortcut icon" href="{{ url('/images/test-pavicon.svg') }}">
     @stack('before-style')
     @include('includes.style')
@@ -14,6 +15,7 @@
     @include('includes.navbar')
 
     @yield('content')
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
