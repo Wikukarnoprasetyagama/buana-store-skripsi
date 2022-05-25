@@ -14,7 +14,7 @@
     @include('includes.navbar')
 
     @yield('content')
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <button onclick="client.requestCode();">Authorize with Google</button>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
