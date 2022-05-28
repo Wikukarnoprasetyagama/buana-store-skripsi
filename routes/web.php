@@ -29,7 +29,6 @@ use App\Http\Controllers\Member\ProfileSellerController;
 use App\Http\Controllers\Member\TransactionCustomerController;
 use App\Http\Controllers\Member\TransactionSellerController;
 use App\Http\Controllers\RewardsController;
-use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +103,7 @@ Route::prefix('/pages/dashboard/customer')
         ->group(function(){
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard-customer');
             Route::get('/cetak-laporan-transaksi', [TransactionCustomerController::class, 'cetak_pdf'])->name('pdf-transaction-customer');
+
             Route::resource('open-store', OpenStoreController::class);
             Route::resource('transaction-customer', TransactionCustomerController::class);
             Route::resource('profile-customer', ProfileCustomerController::class);
@@ -117,6 +117,8 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/keranjang', [CartController::class, 'updateQuantity'])->name('cart-update');
         Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
         Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
-        
+        Route::put('/pages/dashboard/customer/profile-customer', [ProfileCustomerController::class, 'profileUpload'])->name('profile-upload');
+
+        Route::put('/pages/dashboard/seller/profile-seller', [ProfileSellerController::class, 'profileSellerUpload'])->name('profile-seller-upload');
 });
 Auth::routes();
