@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Regency;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileCustomerController extends Controller
@@ -64,8 +68,14 @@ class ProfileCustomerController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        $provinces = Province::where('id', 14)->get();
+        $regencies = Regency::where('id', 1406)->get();
+        $districts = District::where('id', 1406042)->get();
         return view('pages.member.profile.edit-customer', [
-            'user' => $user
+            'user' => $user,
+            'provinces' => $provinces,
+            'regencies' => $regencies,
+            'districts' => $districts,
         ]);
     }
 
@@ -114,5 +124,25 @@ class ProfileCustomerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // custom
+    public function profileUpload(Request $request)
+    {
+        $data = $request->all();
+        if($request->user()->photo_profile){
+            Storage::delete('public/' . $request->user()->photo_profile);
+        }else{
+            Storage::delete('storage/app/public/' . $request->user()->photo_profile);
+        }
+
+        $data['photo_profile'] = $request->file('photo_profile')->store(
+            'assets/profile',
+            'public'
+        );
+
+        $user = User::findOrFail(Auth::user()->id);
+        $user->update($data);
+        return back();
     }
 }
