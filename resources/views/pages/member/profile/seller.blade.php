@@ -13,68 +13,113 @@
                         <h1 class="h3 mb-0 text-gray-800">Profile Saya</h1>
                     </div>
                     <div class="row">
+                        
+                        {{-- photo profile --}}
                         <div class="col-12 col-md-2 text-center">
-                            @if ($user->photo_profile == true)
+                            <form action="{{ route('profile-seller-upload', $user->id) }}" method="POST" enctype="multipart/form-data">
+                                @method('PUT')
+                                @csrf
+                                @if ($user->photo_profile == true)
                                 <figure class="figure" style="padding-top: 50px">
-                                    <img src="{{ Storage::url($user->photo_profile) }}" class="figure-img img-fluid rounded-circle" alt="" style="max-height: 250px; background-size: cover" />
+                                    <div class="form-group" onclick="profile()">
+                                        <img src="{{ Storage::url($user->photo_profile) }}" class="figure-img img-fluid rounded-circle" alt="" style="max-height: 250px; background-size: cover" />
+                                        
+                                        <input type="file" id="profile" name="photo_profile" class="form-control" onchange="form.submit()" style="display: none" />
+                                    </div>
                                 </figure>
                             @else
                             <figure class="figure" style="padding-top: 50px">
-                                <img src="{{ url('/images/ic_avatar.svg') }}" class="figure-img img-fluid rounded-circle" alt="" style="max-height: 250px; background-size: cover" />
+                                <div class="form-group" onclick="profile()">
+                                    <img src="{{ url('/images/ic_avatar.svg') }}" class="figure-img img-fluid rounded-circle" alt="" style="max-height: 250px; background-size: cover" />
+
+                                    <input type="file" id="profile" name="photo_profile" class="form-control" onchange="form.submit()" style="display: none" />
+                                </div>
                             </figure>
                             @endif
+
+                            </form>
                         </div>
+
                         <div class="col-md-10">
                             <div class="row">
+
                                 <div class="col-md-4">
-                                    <div class="mb-3">
+                                    <div class="form-group mb-3">
                                         <label for="email" class="form-label">Email Address</label>
                                         <input type="email" class="form-control" value="{{ $user->email }}" disabled>
                                     </div>
                                 </div>
+
                                 <div class="col-md-4">
-                                    <div class="mb-3">
+                                    <div class="form-group mb-3">
                                         <label for="email" class="form-label">Nama</label>
                                         <input type="email" class="form-control" value="{{ $user->name }}" disabled>
                                     </div>
                                 </div>
+
                                 <div class="col-md-4">
-                                    <div class="mb-3">
+                                    <div class="form-group mb-3">
                                         <label for="email" class="form-label">Nama Toko</label>
                                         <input type="text" class="form-control" value="{{ $user->name_store }}" disabled>
                                     </div>
                                 </div>
+
                             </div>
+
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="status" class="form-label">Role</label>
-                                            <input type="text" class="form-control" value="{{ $user->roles }}" disabled>
+
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label for="provinces_id" class="form-label">Provinsi</label>
+                                            <input type="text" name="provinces_id" class="form-control" 
+                                            value="{{ App\Models\Province::find($user->provinces_id)->name ?? '' }}" 
+                                            disabled>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Nomor Hp</label>
-                                        <input type="text" class="form-control" value="{{ $user->phone }}" disabled>
+
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label for="regencies_id" class="form-label">Kabupaten</label>
+                                        <input type="text" name="regencies_id" class="form-control" 
+                                        value="{{ App\Models\Regency::find($user->regencies_id)->name ?? '' }}" 
+                                        disabled>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Nama Desa</label>
-                                            <input type="text" class="form-control" value="{{ $user->village }}" disabled>
-                                    </div>
-                                </div>
+
                             </div>
+
                             <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="street" class="form-label">Nama Jalan</label>
-                                        <input name="street" class="form-control text-left" value="{{ $user->street }}" disabled>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <label for="address" class="form-label">Alamat</label>
-                                        <input name="address" class="form-control text-left" value="{{ $user->address }}" disabled>
+
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label for="districts_id" class="form-label">Kecamatan</label>
+                                        <input name="districts_id" class="form-control text-left" 
+                                        value="{{ App\Models\District::find($user->districts_id)->name ?? '' }}" 
+                                        disabled>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone" class="form-label">Nomor Telephone</label>
+                                        <input type="text" name="phone" class="form-control" value="{{ $user->phone }}" disabled>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="address" class="form-label">Alamat Lengkap Rumah</label>
+                                            <textarea name="address" 
+                                            class="form-control text-left"
+                                            style="height: 120px"
+                                            disabled>{{ $user->address }}</textarea>
+                                        </div>
+                                    </div>
+                            </div>
+
                             <div class="row mt-5">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -87,6 +132,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -98,6 +144,13 @@
 
 @push('after-script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.9/dist/sweetalert2.all.min.js"></script>
+
+<script>
+    function profile() {
+        document.getElementById('profile').click();
+    }
+</script>
+
 <script>
     var datatable =  $('#table').DataTable({
         processing: true,
