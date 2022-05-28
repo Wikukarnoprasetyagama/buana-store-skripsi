@@ -131,13 +131,19 @@
 					</div>
 					<div class="row">
 						<div class="col-12 col-md-4 mb-3">
-							<label for="village" class="form-label">Nama Kecamatan</label>
-							<input type="text" name="district" class="form-control" value="Tapung Hilir" disabled>
+							<label for="districts" class="form-label">Nama Kecamatan</label>
+							<div class="form-group">
+								<select name="districts" class="form-select" disabled>
+									@foreach ($districts as $district)
+										<option value="{{ $district->id }}">{{ $district->name }}</option>
+									@endforeach
+								</select>
+							</div>
 						</div>
 						<div class="col-12 col-md-4 mb-3">
-							<label for="village" class="form-control-label">Nama Desa</label>
+							<label for="villages" class="form-control-label">Nama Desa</label>
 							<div class="form-group mt-2">
-								<select name="village" class="form-select">
+								<select name="villages" class="form-select">
 									@foreach ($villages as $village)
 										<option value="{{ $village->id }}">{{ $village->name }}</option>
 									@endforeach
@@ -193,7 +199,7 @@
 					</div>
 					<div class="row">
 						<div class="col-12 col-md-12">
-							<label for="address" class="form-label">Alamat Lengkap*</label>
+							<label for="address" class="form-label">Detail Rumah*</label>
 							<textarea
 							type="text"
 							name="address"
