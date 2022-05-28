@@ -38,6 +38,9 @@ class UserRequest extends FormRequest
             'address' => 'string',  
             'status' => 'string', 
             'reg_status' => 'string', 
+            'provinces_id' => 'integer',
+            'regencies_id' => 'integer',
+            'districts_id' => 'integer',
         ];
     }
 }
