@@ -33,6 +33,9 @@ class User extends Authenticatable
         'address',  
         'status',  
         'reg_status',
+        'provinces_id',
+        'regencies_id',
+        'districts_id',
     ];
 
     /**
