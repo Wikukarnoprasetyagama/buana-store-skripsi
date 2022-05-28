@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\District;
 use App\Models\TransactionDetail;
 use App\Models\Village;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class CartController extends Controller
         $code_unique = mt_rand(500, 999);
         $carts = Cart::with(['product.galleries', 'user'])->where('users_id', Auth::user()->id)->get();
         $product = Cart::all();
-        $village = Village::all();
+        $district = District::where('id', 1406042)->get();
+        $village = Village::where('district_id', 1406042)->get();
         $notes = TransactionDetail::where('transactions_id', Auth::user()->id)->get();
         // $fee = $carts->reduce(function($carry, $item) {
         //     return $carry + $item->product->discount_amount;
@@ -48,6 +50,7 @@ class CartController extends Controller
             'totals' => $total,
             'discounts' => $discount,
             'notes' => $notes,
+            'districts' => $district,
         ], compact('carts'));
     }
 
