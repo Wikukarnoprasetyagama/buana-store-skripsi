@@ -18,51 +18,70 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <label for="photo_profile" class="form-label">Foto Profile</label>
-                                        <input type="file" name="photo_profile" class="form-control" style="color: transparent" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="mb-3">
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
                                             <label for="email" class="form-label">Email Address</label>
                                             <input type="email" name="email" class="form-control" value="{{ $user->email }}">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="mb-3">
-                                            <label for="name_store" class="form-label">Nama Toko</label>
-                                            <input type="text" name="name_store" class="form-control" value="{{ $user->name_store }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">Nama Pemilik</label>
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label for="name" class="form-label">Nama</label>
                                             <input name="name" class="form-control" value="{{ $user->name }}">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="phone" class="form-label">Nomor Hp / Wa</label>
-                                            <input name="phone" class="form-control" value="{{ $user->phone }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="village" class="form-label">Nama Desa</label>
-                                                <input name="village" class="form-control" value="{{ $user->village }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
+
                                     <div class="col-md-4">
-                                        <label for="street" class="form-label">Nama Jalan</label>
-                                        <input name="street" class="form-control text-left" value="{{ $user->street }}">
+                                        <div class="form-group mb-3">
+                                            <label for="phone" class="form-label">Nomor Telephone</label>
+                                            <input name="phone" type="number" class="form-control" value="{{ $user->phone }}">
+                                        </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <label for="address" class="form-label">Alamat</label>
-                                        <input name="address" class="form-control text-left" value="{{ $user->address }}">
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="provinces_id" class="form-label">Provinsi</label>
+                                            <select name="provinces_id" class="form-control">
+                                                @foreach ($provinces as $province)
+                                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="regencies_id" class="form-label">Kabupaten</label>
+                                            <select name="regencies_id" class="form-control">
+                                                @foreach ($regencies as $regencie)
+                                                    <option value="{{ $regencie->id }}">{{ $regencie->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="districts_id" class="form-label">Kecamatan</label>
+                                            <select name="districts_id" class="form-control">
+                                                @foreach ($districts as $district)
+                                                    <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="address" class="form-label">Alamat</label>
+                                            <textarea name="address" class="form-control text-left" style="height: 120px"> {{ $user->address }}
+                                            </textarea>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mt-5">
