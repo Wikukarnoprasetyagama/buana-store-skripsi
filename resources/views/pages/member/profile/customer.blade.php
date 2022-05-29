@@ -129,3 +129,11 @@
     }
 </script>
 @endpush
+
+@push('after-style')
+    <style>
+        figure{
+            cursor: pointer;
+        }
+    </style>
+@endpush

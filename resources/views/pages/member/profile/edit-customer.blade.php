@@ -19,19 +19,19 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="mb-3">
+                                        <div class="form-group mb-3">
                                             <label for="email" class="form-label">Email Address</label>
                                             <input type="email" name="email" class="form-control" value="{{ $user->email }}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="mb-3">
+                                        <div class="form-group mb-3">
                                             <label for="name" class="form-label">Nama Lengkap</label>
                                             <input name="name" class="form-control" value="{{ $user->name }}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="mb-3">
+                                        <div class="form-group mb-3">
                                             <label for="phone" class="form-label">Nomor Hp / Wa</label>
                                             <input name="phone" class="form-control" value="{{ $user->phone }}">
                                         </div>
@@ -41,8 +41,8 @@
                                 <div class="row">
 
                                     <div class="col-md-4">
-                                        <label for="provinces_id" class="form-label">Provinsi</label>
                                         <div class="form-group">
+                                            <label for="provinces_id" class="form-label">Provinsi</label>
                                             <select name="provinces_id" class="form-control">
                                                 @foreach ($provinces as $province)
                                                     <option value="{{ $province->id }}">{{ $province->name }}</option>
@@ -52,8 +52,8 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <label for="regencies_id" class="form-label">Kabupaten</label>
                                         <div class="form-group">
+                                            <label for="regencies_id" class="form-label">Kabupaten</label>
                                             <select name="regencies_id" class="form-control">
                                                 @foreach ($regencies as $regencie)
                                                     <option value="{{ $regencie->id }}">{{ $regencie->name }}</option>
@@ -63,8 +63,8 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <label for="districts_id" class="form-label">Kecamatan</label>
                                         <div class="form-group">
+                                            <label for="districts_id" class="form-label">Kecamatan</label>
                                             <select name="districts_id" class="form-control">
                                                 @foreach ($districts as $district)
                                                     <option value="{{ $district->id }}">{{ $district->name }}</option>
@@ -76,8 +76,11 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label for="address" class="form-label">Alamat</label>
-                                        <input name="address" class="form-control text-left" value="{{ $user->address }}">
+                                        <div class="form-group">
+                                            <label for="address" class="form-label">Alamat</label>
+                                            <textarea name="address" class="form-control text-left" style="height: 120px"> {{ $user->address }}
+                                            </textarea>
+                                        </div>
                                     </div>
                                 </div>
 
