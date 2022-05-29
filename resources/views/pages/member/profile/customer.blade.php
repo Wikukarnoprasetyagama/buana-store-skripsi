@@ -68,7 +68,7 @@
                                     <div class="form-group mb-3">
                                         <label for="provinces_id" class="form-label">Provinsi</label>
                                             <input type="text" name="provinces_id" class="form-control" 
-                                            value="{{ $user->provinces->name }}"
+                                            value="{{ App\Models\Province::find($user->provinces_id)->name ?? '' }}" 
                                             disabled>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                     <div class="form-group mb-3">
                                         <label for="regencies_id" class="form-label">Kabupaten</label>
                                         <input type="text" name="regencies_id" class="form-control" 
-                                        value="{{ $user->regencies->name }}"
+                                        value="{{ App\Models\Regency::find($user->regencies_id)->name ?? '' }}" 
                                         disabled>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
                                     <div class="form-group mb-3">
                                         <label for="districts_id" class="form-label">Kecamatan</label>
                                         <input name="districts_id" class="form-control text-left" 
-                                        value="{{ $user->districts->name }}" 
+                                        value="{{ App\Models\District::find($user->districts_id)->name ?? '' }}" 
                                         disabled>
                                     </div>
                                 </div>
