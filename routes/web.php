@@ -120,5 +120,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::put('/pages/dashboard/customer/profile-customer', [ProfileCustomerController::class, 'profileUpload'])->name('profile-upload');
 
         Route::put('/pages/dashboard/seller/profile-seller', [ProfileSellerController::class, 'profileSellerUpload'])->name('profile-seller-upload');
+        
+        Route::put('/pages/dashboard/admin/profile', [ProfileAdminController::class, 'profileAdminUpload'])->name('profile-admin-upload');
 });
 Auth::routes();
