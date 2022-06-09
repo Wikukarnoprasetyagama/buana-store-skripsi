@@ -20,6 +20,7 @@ class Products extends Model
         'slug',
         'price',
         'discount',
+        'stock',
         'discount_amount',
         'description',
         'ongkir',
