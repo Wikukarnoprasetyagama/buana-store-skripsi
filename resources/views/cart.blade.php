@@ -141,9 +141,9 @@
 							</div>
 						</div>
 						<div class="col-12 col-md-4 mb-3">
-							<label for="villages" class="form-control-label">Nama Desa</label>
+							<label for="village" class="form-control-label">Nama Desa</label>
 							<div class="form-group mt-2">
-								<select name="villages" class="form-select">
+								<select name="village" class="form-select">
 									@foreach ($villages as $village)
 										<option value="{{ $village->id }}">{{ $village->name }}</option>
 									@endforeach
