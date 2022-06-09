@@ -32,6 +32,7 @@
                                     <input  type="file"
                                             name="photo_profile" 
                                             value="{{ old('photo_profile') }}" 
+                                            accept="image/*"
                                             required
                                             multiple
                                             class="form-control @error('photo_profile') is-invalid @enderror"/>
@@ -61,6 +62,7 @@
                                             name="photo_shop" 
                                             value="{{ old('photo_shop') }}" 
                                             required
+                                            accept="image/*"
                                             class="form-control @error('photo_shop') is-invalid @enderror"/>
                                     @error('photo_shop') <div class="text-muted">{{ $message }}</div> @enderror
                                 </div>
