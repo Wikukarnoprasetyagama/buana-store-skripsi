@@ -73,13 +73,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="village" class="form-label">Nama Desa</label>
-                                    <input type="text" name="village" class="form-control" value="{{ App\Models\Village::find($transactions->village)->name }}" disabled>
+                                    <label for="districts" class="form-label">Nama Desa Penerima</label>
+                                    <input type="text" name="village" class="form-control" value="{{ App\Models\Village::find($transactions->village)->name ?? '' }}" disabled>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="street" class="form-label">Nama Jalan</label>
+                                    <label for="street" class="form-label">Nama Jalan Penerima</label>
                                     <input type="text" name="street" class="form-control" value="{{ $transactions->street }}" disabled>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="address" class="form-label">Alamat Lengkap</label>
+                                    <label for="address" class="form-label">Alamat Lengkap Rumah Penerima</label>
                                     <input type="text" name="address" class="form-control" value="{{ $transactions->address }}" disabled>
                                 </div>
                             </div>
