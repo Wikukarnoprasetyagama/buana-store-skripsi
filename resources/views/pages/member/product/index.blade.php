@@ -18,13 +18,14 @@
                         </a>
                     </div>
                     <div class="table-responsive">
-                    <table id="datatable" class="table table-hover scroll-horizontal-vertical w-100">
+                    <table id="example1" class="table table-hover scroll-horizontal-vertical w-100">
                         <thead>
                         <tr>
                             <th>No.</th>
                             <th>Kategori Produk</th>
                             <th>Nama Produk</th>
                             <th>Harga</th>
+                            <th>Stok</th>
                             <th>Diskon</th>
                             <th>Jumlah Diskon</th>
                             <th>Aksi</th>
@@ -37,6 +38,15 @@
                                     <td style="padding-left: 26px">{{ $product->category->name_category }}</td>
                                     <td style="padding-left: 26px">{{ $product->name_product }}</td>
                                     <td style="padding-left: 26px">{{ $product->price }}</td>
+                                    @if ($product->stock == 'Tersedia')
+                                        <td>
+                                            <span class="badge badge-success">Tersedia</span>
+                                        </td>
+                                    @else
+                                        <td>
+                                            <span class="badge badge-danger">Habis</span>
+                                        </td>
+                                    @endif
                                     @if ($product->discount == true)
                                         <td style="padding-left: 26px">
                                             <span class="badge badge-success">Aktif</span>
@@ -73,10 +83,18 @@
                                             <form action="{{ route('products-seller.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                                                 @method('PUT')
                                                 @csrf
-                                                <input type="hidden" name="stock" class="form-input" value="1">
-                                                <button type="submit" class="btn btn-sm btn-secondary mr-2" data-toggle="tooltip" data-placement="top" title="Stok Habis"><i class="fas fa-store"></i></button>
+                                                @if ($product->stock == 'Tersedia')
+                                                    <input type="hidden" name="stock" class="form-input" value="Habis">
+                                                    <button type="submit" class="btn btn-sm btn-secondary mr-2" data-toggle="tooltip" data-placement="top" title="Jadikan Stok Habis"><i class="fas fa-store-slash"></i></button>
+                                                @else
+                                                    <input type="hidden" name="stock" class="form-input" value="Tersedia">
+                                                    <button type="submit" class="btn btn-sm btn-success mr-2" data-toggle="tooltip" data-placement="top" title="Jadika Stok Tersedia"><i class="fas fa-store"></i></button>
+                                                @endif
                                             </form>
-                                            <a href="{{ route('products-seller.edit', $product->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Edit Produk"><i class="fas fa-pencil"></i></a>
+
+                                            
+
+                                            <a href="{{ route('products-seller.edit', $product->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Edit Produk"><i class="fas fa-pencil-alt"></i></a>
                                             <a href="{{ route('products-seller.destroy', $product->id) }}"  class="btn btn-sm btn-danger mx-1 btn-delete" id="hapus" data-toggle="tooltip" data-placement="top" title="Hapus {{ $product->name_product }}" aria-valuetext="{{ $product->name_product }}"><i class="fas fa-trash"></i></i></a>
                                         </div>
                                     </td>
