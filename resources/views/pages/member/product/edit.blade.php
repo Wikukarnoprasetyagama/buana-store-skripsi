@@ -131,7 +131,7 @@
                                 <div class="form-group">
                                     <label for="description" class="form-control-label">Isi Deskripsi Produk</label>
                                     <textarea name="description" style="height: 70px"
-                                            class="form-control @error('description') is-invalid @enderror">{{ $products->description }}</textarea>
+                                            class="ckeditor form-control @error('description') is-invalid @enderror">{{ $products->description }}</textarea>
                                     @error('description') <div class="text-muted">{{ $message }}</div>@enderror
                                 </div>
                             </div>
