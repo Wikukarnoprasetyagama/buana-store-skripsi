@@ -63,7 +63,7 @@
 					<td>{{$transaction->phone}}</td>
 					<td>{{$transaction->quantity}}</td>
                     <td>{{ $transaction->created_at->isoFormat('D MMMM Y') }}</td>
-					@if ($transaction->payment_status == 'FAILED')
+					@if ($transaction->payment_status == 'KADALUARSA')
 					<td><strong class="text-white badge badge-danger">{{ $transaction->payment_status }}</strong></td>
 					@elseif ($transaction->payment_status == 'PENDING')
 					<td><strong class="text-white badge badge-warning">{{ $transaction->payment_status }}</strong></td>
