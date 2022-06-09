@@ -70,7 +70,7 @@
                                                     @csrf
                                                     <input type="hidden" name="discount" class="form-input" value="0">
                                                     <input type="hidden" name="discount_amount" class="form-input" value="0">
-                                                    <button type="submit" class="btn btn-sm btn-warning mr-2" data-toggle="tooltip" data-placement="top" title="Nonaktifkan Diskon"><i class="fas fa-badge-percent"></i></button>
+                                                    <button type="submit" class="btn btn-sm btn-warning mr-2" data-toggle="tooltip" data-placement="top" title="Nonaktifkan Diskon"><i class="fas fa-percent"></i></button>
                                                 </form>
                                                 @else
                                                     <form action="{{ route('products-seller.update', $product->id) }}" method="POST" enctype="multipart/form-data">
