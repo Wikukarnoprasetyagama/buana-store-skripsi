@@ -65,7 +65,7 @@ class LoginController extends Controller
         $user = User::where('email', $data['email'])->first();
         if ($user) {
             Auth::login($user, true);
-            Alert::success('Selamat Datang', 'Kembali!' . Auth::user()->name );
+            Alert::success('Selamat Datang!', '' . Auth::user()->name );
             return redirect('/');
         } else {
             $user = User::create($data);
