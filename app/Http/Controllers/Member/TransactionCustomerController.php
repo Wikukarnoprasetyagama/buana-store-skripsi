@@ -126,6 +126,6 @@ class TransactionCustomerController extends Controller
             'revenue' => $revenue,
         ], compact('pic'))->setPaper('a4', 'landscape');
         // return $pdf->stream();
-        return $pdf->download('Laporan Transasaksi Penjualan Customer ' . Auth::user()->name . '.pdf');
+        return $pdf->download('Laporan Transasaksi Customer ' . Auth::user()->name . '.pdf');
     }
 }
