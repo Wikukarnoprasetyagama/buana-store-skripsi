@@ -56,7 +56,7 @@
 								</tr>
 								<tr>
 									<th width="70%">Status Pembayaran</th>
-									@if ($detail->transaction->payment_status == 'FAILED')
+									@if ($detail->transaction->payment_status == 'KADALUARSA')
 										<td class="text-danger"><strong>{{ $detail->transaction->payment_status }}</strong></td>
 										@elseif ($detail->transaction->payment_status == 'PENDING')
 										<td class="text-warning"><strong>{{ $detail->transaction->payment_status }}</strong></td>
