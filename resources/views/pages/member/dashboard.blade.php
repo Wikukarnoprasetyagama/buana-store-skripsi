@@ -202,7 +202,7 @@
                                 <td><div class="badge badge-success">{{ $invoice->transaction->payment_status }}</div></td>
                             @elseif ($invoice->transaction->payment_status == 'KADALUARSA')
                             <td><div class="badge badge-danger">{{ $invoice->transaction->payment_status }}</div></td>
-                            @else
+                            @elseif ($invoice->transaction->payment_status == 'MENUNGGU')
                             <td><div class="badge badge-info">{{ $invoice->transaction->payment_status }}</div></td>
                             @endif
                             @if ($invoice->transaction->payment_status == 'FAILED')
