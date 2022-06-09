@@ -4,40 +4,6 @@
 @endsection
 
 @section('content')
-{{-- <div class="main-content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Daftar Transaksi</h1>
-                        <a href="{{ route('pdf-transaction')}}" class="btn btn-success shadow-sm">
-                            <i class="fas fa-print fa-sm text-white-50"></i>
-                            Cetak Transaksi
-                        </a>
-                    </div>
-                    <div class="table-responsive mt-5">
-                        <table class="table table-hover scroll-horizontal-vertical w-100" id="table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nama Customer</th>
-                                    <th>Kode Produk</th>
-                                    <th>Nama Produk</th>
-                                    <th>Status Pembayaran</th>
-                                    <th>Jumlah Pesanan</th>
-                                    <th>Total</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 @if (count($transactions))
 <section class="main-content">
@@ -94,6 +60,8 @@
                                             <td style="padding-left: 18px"><strong class="text-white badge badge-warning">{{ $transaction->transaction->payment_status }}</strong></td>
                                             @elseif ($transaction->transaction->payment_status == 'DIBAYAR')
                                             <td style="padding-left: 18px"><strong class="text-white badge badge-success">{{ $transaction->transaction->payment_status }}</strong></td>
+                                            @elseif ($transaction->transaction->payment_status == 'KADALUARSA')
+                                            <td style="padding-left: 18px"><strong class="text-white badge badge-danger">{{ $transaction->transaction->payment_status }}</strong></td>
                                             @else
                                             <td style="padding-left: 18px"><strong class="text-white badge badge-info">{{ $transaction->transaction->payment_status }}</strong></td>
                                             @endif
