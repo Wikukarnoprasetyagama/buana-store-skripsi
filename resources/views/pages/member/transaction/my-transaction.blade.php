@@ -64,7 +64,7 @@
                                             <td style="padding-left: 25px">Rp.{{ number_format($transaction->transaction->total_price + $transaction->transaction->code_unique + $transaction->transaction->admin_fee) }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('transaction-seller.show', $transaction->transaction->id) }}" class="btn btn-primary btn-sm">
+                                                <a href="{{ route('transaction-seller.show', $transaction->transaction->id) }}" class="btn btn-info btn-sm">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                             </td>
