@@ -31,6 +31,7 @@ class ProductRequest extends FormRequest
             'name_product' => 'string|max:255',
             'slug' => 'string|unique:products',
             'price' => 'integer',
+            'stock' => 'string',
             'discount' => 'string|nullable',
             'discount_amount' => 'nullable',
             'description' => 'string',
