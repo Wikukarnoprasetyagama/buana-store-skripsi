@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Member;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\TransactionRequest;
-use App\Models\Products;
-use App\Models\Transaction;
-use App\Models\TransactionDetail;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\DataTables;
 use PDF;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Products;
+use App\Models\Province;
+use App\Models\Transaction;
+use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+use App\Models\TransactionDetail;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\TransactionRequest;
 
 class TransactionSellerController extends Controller
 {
