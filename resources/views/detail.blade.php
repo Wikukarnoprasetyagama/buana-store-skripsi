@@ -125,8 +125,8 @@
 									@endif
 								@else
 									@if ($products->stock == 'Habis')
-                      <button class="btn btn-add-to-cart disabled" type="submit">
-                        Masuk Keranjang
+                      <button class="btn btn-add-to-cart disabled" type="button">
+                        Stock Habis
                       </button>
                   @else
                       <button class="btn btn-add-to-cart" type="submit">
