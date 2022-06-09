@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="title mb-3">
-                                    <h3 class="mb-0 text-gray-800">Detail Produk</h3>
+                                    <h3 class="mb-0 text-gray-800">Detail Produk ku</h3>
                                 </div>
                             </div>
                         </div>

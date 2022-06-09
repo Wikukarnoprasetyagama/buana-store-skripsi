@@ -35,12 +35,10 @@
                                     <th>Tanggal</th>
                                     <th>Status</th>
                                     <th>Harga</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @php
-                                            $no = 1;
-                                    @endphp --}}
                                     @foreach ($transactions as $transaction)
                                         <tr>
                                             <td style="padding-left: 30px">{{ $loop->iteration }}</td>
@@ -63,7 +61,14 @@
                                             @else
                                             <td style="padding-left: 18px"><strong class="text-white badge badge-info">{{ $transaction->transaction->payment_status }}</strong></td>
                                             @endif
-                                            <td style="padding-left: 25px">Rp.{{ number_format($transaction->transaction->total_price + $transaction->transaction->code_unique + $transaction->transaction->admin_fee) }}</td>
+                                            <td style="padding-left: 25px">Rp.{{ number_format($transaction->transaction->total_price + $transaction->transaction->code_unique + $transaction->transaction->admin_fee) }}
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('transaction-seller.show', $transaction->transaction->id) }}" class="btn btn-primary btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </td>
+
                                     </tr>
                                     @endforeach
                                 </tbody>
