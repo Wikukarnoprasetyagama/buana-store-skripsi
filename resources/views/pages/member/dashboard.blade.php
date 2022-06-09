@@ -271,7 +271,17 @@
                             @elseif ($invoice->transaction->payment_status == 'FAILED')
                             <td><div class="badge badge-danger">{{ $invoice->transaction->payment_status }}</div></td>
                             @else
-                            <td><div class="badge badge-info">{{ $invoice->transaction->payment_status }}</div></td>
+                            <td>
+                              @if ($invoice->transaction->payment_status == 'MENUNGGU')
+                                  <div class="badge badge-info">
+                                    {{ $invoice->transaction->payment_status }}
+                                  </div>
+                              @elseif ($invoice->transaction->payment_status == 'KADALUARSA')
+                                  <div class="badge badge-danger">
+                                    {{ $invoice->transaction->payment_status }}
+                                  </div>
+                              @endif
+                            </td>
                             @endif
                             @if ($invoice->shipping_status == 'PENDING')
                             <td><div class="badge badge-warning">{{ $invoice->shipping_status }}</div></td>
