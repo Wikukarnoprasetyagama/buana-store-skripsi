@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <a href="{{ route('category.index') }}" class="btn btn-danger btn-block">
                                             Batal
                                         </a>
