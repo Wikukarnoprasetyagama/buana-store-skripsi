@@ -133,7 +133,7 @@
                             <td><div class="badge badge-warning">{{ $order->transaction->payment_status }}</div></td>
                             @elseif ($order->transaction->payment_status == 'DIBAYAR')
                                 <td><div class="badge badge-success">{{ $order->transaction->payment_status }}</div></td>
-                            @elseif ($order->transaction->payment_status == 'FAILED')
+                            @elseif ($order->transaction->payment_status == 'KADALUARSA')
                             <td><div class="badge badge-danger">{{ $order->transaction->payment_status }}</div></td>
                             @else
                             <td><div class="badge badge-info">{{ $order->transaction->payment_status }}</div></td>
