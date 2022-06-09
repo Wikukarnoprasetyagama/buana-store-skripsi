@@ -216,7 +216,7 @@
                             @endif
                             <td>{{ $invoice->created_at->isoFormat('D MMMM Y') }}</td>
                             <td>
-                              <a href="{{ route('transaction-seller.show', $invoice->id) }}" class="btn btn-primary">Detail</a>
+                              <a href="{{ route('transaction-seller.show', $invoice->transaction->id) }}" class="btn btn-primary">Detail</a>
                             </td>
                             @if ($invoice->transaction->payment_status == 'MENUNGGU')
                                 <td>
