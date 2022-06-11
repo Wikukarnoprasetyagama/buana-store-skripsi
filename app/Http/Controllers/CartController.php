@@ -16,7 +16,9 @@ class CartController extends Controller
     public function index()
     {
         $code_unique = mt_rand(500, 999);
-        $carts = Cart::with(['product.galleries', 'user'])->where('users_id', Auth::user()->id)->get();
+        $carts = Cart::with(['product.galleries', 'user'])
+                    ->where('users_id', Auth::user()->id)
+                    ->get();
         $product = Cart::all();
         $district = District::where('id', 1406042)->get();
         $village = Village::where('district_id', 1406042)->get();
@@ -70,30 +72,30 @@ class CartController extends Controller
     }
 
     
-    public function updateQuantity(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = $request->all();
-            $cart = Cart::where('id', $data['cartid']);
-            $cart->update(['quantity'=> $data['qty']], $data);
-            return response()->json('data berhasil diubah!');
-            // return response()->json(['view' => (String) View::make('cart', compact('carts'))]);
-        }
+    // public function updateQuantity(Request $request)
+    // {
+    //     if ($request->ajax()) {
+    //         $data = $request->all();
+    //         $cart = Cart::where('id', $data['cartid']);
+    //         $cart->update(['quantity'=> $data['qty']], $data);
+    //         return response()->json('data berhasil diubah!');
+    //         // return response()->json(['view' => (String) View::make('cart', compact('carts'))]);
+    //     }
         
-        // if ($request->ajax()) {
-        //     $data = $request->all();
-        //     Cart::where('id', $data['cartid'])->update(['quantity' => $data['qty']]);
-        //     // $cart = Cart::firstOrFail($id);
-        //     // $cart->update($data);
-        //     return response()->json('berhasil diubah');
-        // }
-        // if ($request->ajax()) {
-        //     $data = $request->all();
-        //     Cart::where('id', $data['cartid'])->update(['quantity'=> $data['qty']]);
-        //     Cart::userCartItems();
-        //     return response()->json('Data berhasil diubah!');
-        // }
-    }
+    //     // if ($request->ajax()) {
+    //     //     $data = $request->all();
+    //     //     Cart::where('id', $data['cartid'])->update(['quantity' => $data['qty']]);
+    //     //     // $cart = Cart::firstOrFail($id);
+    //     //     // $cart->update($data);
+    //     //     return response()->json('berhasil diubah');
+    //     // }
+    //     // if ($request->ajax()) {
+    //     //     $data = $request->all();
+    //     //     Cart::where('id', $data['cartid'])->update(['quantity'=> $data['qty']]);
+    //     //     Cart::userCartItems();
+    //     //     return response()->json('Data berhasil diubah!');
+    //     // }
+    // }
 
     // public function payout()
     // {
