@@ -137,22 +137,22 @@ class CheckoutController extends Controller
             }
             else if ($transaction_status == 'expire') {
                 // TODO set payment status in merchant's database to 'expire'
-                $transaction->payment_status = 'FAILED';
+                $transaction->payment_status = 'KADALUARSA';
             }
         }
         else if ($transaction_status == 'cancel') {
             if ($fraud == 'challenge') {
                 // TODO Set payment status in merchant's database to 'failure'
-                $transaction->payment_status = 'FAILED';
+                $transaction->payment_status = 'KADALUARSA';
             }
             else if ($fraud == 'accept') {
                 // TODO Set payment status in merchant's database to 'failure'
-                $transaction->payment_status = 'FAILED';
+                $transaction->payment_status = 'KADALUARSA';
             }
         }
         else if ($transaction_status == 'deny') {
             // TODO Set payment status in merchant's database to 'failure'
-            $transaction->payment_status = 'FAILED';
+            $transaction->payment_status = 'KADALUARSA';
         }
         else if ($transaction_status == 'settlement') {
             // TODO set payment status in merchant's database to 'Settlement'
@@ -164,7 +164,7 @@ class CheckoutController extends Controller
         }
         else if ($transaction_status == 'expire') {
             // TODO set payment status in merchant's database to 'expire'
-            $transaction->payment_status = 'FAILED';
+            $transaction->payment_status = 'KADALUARSA';
         }
 
         $transaction->save();
