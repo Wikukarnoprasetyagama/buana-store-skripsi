@@ -28,12 +28,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $no = 1;
-                            @endphp
                             @foreach ($categories as $category)
                             <tr>
-                                <td style="padding-left: 24px">{{ $no++ }}</td>
+                                <td style="padding-left: 24px">{{ $loop->iteration }}</td>
                                 <td style="padding-left: 18px">
                                     <img src="{{ Storage::url($category->photo) }}" alt="gambar-kategori" class="img-fluid" style="max-height: 40px">
                                 </td>

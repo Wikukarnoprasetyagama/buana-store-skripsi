@@ -133,11 +133,14 @@
 						<div class="col-12 col-md-4 mb-3">
 							<label for="districts" class="form-label">Nama Kecamatan</label>
 							<div class="form-group">
-								<select name="districts" class="form-select" disabled>
+								@foreach ($districts as $district)
+									<input type="text" class="form-control" disabled value="{{ $district->name }}">
+								@endforeach
+								{{-- <select name="districts" class="form-select" disabled>
 									@foreach ($districts as $district)
 										<option value="{{ $district->id }}">{{ $district->name }}</option>
 									@endforeach
-								</select>
+								</select> --}}
 							</div>
 						</div>
 						<div class="col-12 col-md-4 mb-3">
