@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
@@ -19,7 +22,7 @@
         "midtrans/midtrans-php": "^2.5",
         "realrashid/sweet-alert": "^5.0",
         "sentry/sentry-laravel": "^2.12",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "yajra/laravel-datatables-oracle": "^9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

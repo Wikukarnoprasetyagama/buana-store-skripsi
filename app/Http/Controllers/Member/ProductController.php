@@ -63,7 +63,6 @@ class ProductController extends Controller
                 $product_galleries->products_id =$product['id'];
                 $product_galleries->photo = $path;
                 $product_galleries->save();
-
             }
         }
         if ($data) {

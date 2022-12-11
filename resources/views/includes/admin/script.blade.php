@@ -60,7 +60,7 @@
             toolbar : 'Full',
             enterMode : CKEDITOR.ENTER_BR,
             shiftEnterMode : CKEDITOR.ENTER_P
-        }
+        },
         .then( editor => {
                 console.log( editor );
         } )
