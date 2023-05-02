@@ -22,6 +22,7 @@
         "midtrans/midtrans-php": "^2.5",
         "realrashid/sweet-alert": "^5.0",
         "sentry/sentry-laravel": "^2.12",
+        "spatie/laravel-backup": "^7.8",
         "yajra/laravel-datatables-oracle": "^9.0"
     },
     "require-dev": {
@@ -67,7 +68,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
