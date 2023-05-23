@@ -88,11 +88,11 @@ Detail Produk
             <div class="col-4">
               <div class="quantity d-flex gap-5">
                 {{-- <input type="number" name="quantity" class="form-control" min="1" value="1"> --}}
-                <button class="btn btn-warning" type="button" id="btnKurang" onclick="btnKurang()">
+                <button class="btn btn-warning" type="button" onclick="btnKurang()">
                   <i class="fas fa-minus text-white"></i>
                 </button>
                 <span class="my-auto" name="quantity" id="quantityValue"></span>
-                <button class="btn btn-success" type="button" id="btnTambah" onclick="btnTambah()">
+                <button class="btn btn-success" type="button" onclick="btnTambah()">
                   <i class="fas fa-plus"></i>
                 </button>
               </div>
@@ -200,8 +200,6 @@ Detail Produk
 @endpush
 
 @push('after-script')
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
-
 <script>
   $('#quantityValue').html(1);
   $('#quantityValue').attr('value', 1);
@@ -215,7 +213,6 @@ Detail Produk
       document.getElementById("quantityValue").innerHTML = 1;
       document.getElementById("quantityValue").setAttribute("value", 1);
     }
-
   }
 
   function btnKurang() {
