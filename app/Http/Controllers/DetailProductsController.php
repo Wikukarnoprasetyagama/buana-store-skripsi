@@ -28,7 +28,7 @@ class DetailProductsController extends Controller
         $data = [
             'products_id' => $id,
             'users_id' => Auth::user()->id,
-            'quantity' => $request->quantity,
+            'quantity' => $request->quantity ?? 1,
         ];
         
         $cart = Cart::where(['products_id' => $data], ['deleted_at' => $data], Auth::user()->id)->count();

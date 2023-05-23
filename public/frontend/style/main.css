@@ -1,21 +1,18 @@
 .form-control:focus {
   color: #212529;
   border-color: #a43ce3 !important;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(164, 60, 227, 0.2) !important;
-          box-shadow: 0 0 0 0.25rem rgba(164, 60, 227, 0.2) !important;
+  box-shadow: 0 0 0 0.25rem rgba(164, 60, 227, 0.2) !important;
 }
 
 .breadcrumb {
   margin-top: 70px;
 }
-
 .breadcrumb .breadcrumb-item a {
   color: #0c0d36;
   font-size: 18px;
   font-weight: 500;
   text-decoration: none;
 }
-
 .breadcrumb .breadcrumb-item :active {
   color: #5b5575;
   font-size: 18px;
@@ -25,22 +22,18 @@
 .section-notfound {
   margin-top: 5%;
 }
-
 .section-notfound img {
   max-height: 300px;
 }
-
 .section-notfound h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-notfound p {
   color: #5b5575;
 }
-
 .section-notfound .btn-back {
   width: 220px;
   margin-top: 30px;
@@ -53,22 +46,18 @@
 .section-transaction-success {
   margin-top: 5%;
 }
-
 .section-transaction-success img {
   max-height: 300px;
 }
-
 .section-transaction-success h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-transaction-success p {
   color: #5b5575;
 }
-
 .section-transaction-success .btn-back {
   width: 170px;
   margin-top: 30px;
@@ -81,14 +70,12 @@
 .section-password-reset-link {
   margin-top: 5%;
 }
-
 .section-password-reset-link button {
   background: #a43ce3;
   border-radius: 25px;
   color: #fff;
   font-size: 16px;
 }
-
 .section-password-reset-link button:hover {
   background: #8f30ca;
   color: #fff;
@@ -97,14 +84,12 @@
 .section-reset-password {
   margin-top: 5%;
 }
-
 .section-reset-password button {
   background: #a43ce3;
   border-radius: 25px;
   color: #fff;
   font-size: 16px;
 }
-
 .section-reset-password button:hover {
   background: #8f30ca;
   color: #fff;
@@ -116,7 +101,6 @@
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-maintenance-content p {
   color: #5b5575;
 }
@@ -124,29 +108,24 @@
 .section-content-carousel .title {
   margin-top: 123px;
 }
-
 .section-content-carousel .title span {
   color: #169647;
   font-weight: 500;
 }
-
 .section-content-carousel .title h1 {
   font-size: 2.3rem;
   font-family: "Merriweather";
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-content-carousel .title h1 span {
   color: #a43ce3;
   font-weight: 600;
 }
-
 .section-content-carousel .subtitle {
   font-size: 16px;
   color: #5b5575;
 }
-
 .section-content-carousel .btn-get-now {
   margin-top: 30px;
   background: #a43ce3;
@@ -154,11 +133,9 @@
   color: #fff;
   font-size: 16px;
 }
-
 .section-content-carousel .figure img {
   margin-top: 80px;
 }
-
 .section-content-carousel .carousel .carousel-item .figure img {
   margin-top: 100px;
   max-height: 300px;
@@ -176,7 +153,6 @@ body {
   color: #fff;
   font-size: 16px;
 }
-
 .btn-logout:hover {
   background: #932ad4;
   color: #fff;
@@ -188,64 +164,51 @@ body {
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-all-product .section-title p {
   color: #5b5575;
 }
-
 .section-all-product .section-search-product input {
   border-radius: 50px;
 }
-
 .section-all-product .section-search-product ::-webkit-input-placeholder {
   text-align: center;
 }
-
 .section-all-product .section-search-product :-moz-placeholder {
   /* Firefox 18- */
   text-align: center;
 }
-
 .section-all-product .section-search-product ::-moz-placeholder {
   /* Firefox 19+ */
   text-align: center;
 }
-
 .section-all-product .section-search-product :-ms-input-placeholder {
   text-align: center;
 }
-
 .section-all-product .section-search-product .btn-search {
   background-color: #a43ce3;
   border-radius: 50px;
 }
-
 .section-all-product .section-product h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-all-product .section-product p {
   color: #5b5575;
 }
-
 .section-all-product .section-product .price {
   color: #ff6b44;
 }
-
 .section-all-product .section-product .name-product {
   color: #0c0d36;
   font-size: 20px;
   font-weight: 500;
   margin-top: -10px;
 }
-
 .section-all-product .section-product figure {
   position: relative;
 }
-
 .section-all-product .section-product figure .product-img .discount-image {
   position: absolute;
   top: 0;
@@ -253,7 +216,6 @@ body {
   right: 0;
   padding-bottom: 100px;
 }
-
 .section-all-product .section-product figure .discount-badge {
   position: absolute;
   display: inline-block;
@@ -266,16 +228,13 @@ body {
   text-align: center;
   color: #fff;
 }
-
 .section-all-product .section-product img {
   border-radius: 8px;
   background-size: cover;
 }
-
 .section-all-product .section-product .product-empty {
   margin-top: -70px;
 }
-
 .section-all-product .section-product .product-empty img {
   max-height: 120px;
 }
@@ -283,42 +242,35 @@ body {
 .section-category {
   margin-top: 90px;
 }
-
 .section-category h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-category p {
   color: #5b5575;
 }
-
 .section-category .next-category {
   color: #11ac6a;
   font-weight: 400;
   font-size: 18px;
   text-decoration: none;
 }
-
 .section-category .next-category:hover {
   color: #11ac6a;
   font-weight: 400;
   font-size: 18px;
   text-decoration: underline;
 }
-
 .section-category .bg-category {
   background-color: #e5e5e5;
   border-radius: 8px;
 }
-
 .section-category .bg-category a {
   text-decoration: none;
   color: #212529;
 }
-
 .section-category .bg-category p {
   font-size: 18px;
 }
@@ -326,47 +278,39 @@ body {
 .section-product-category {
   margin-top: 50px;
 }
-
 .section-product-category h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-product-category p {
   color: #5b5575;
 }
-
 .section-product-category .price {
   color: #ff6b44;
 }
-
 .section-product-category .next-category {
   color: #11ac6a;
   font-weight: 400;
   font-size: 18px;
   text-decoration: none;
 }
-
 .section-product-category .next-category:hover {
   color: #11ac6a;
   font-weight: 400;
   font-size: 18px;
   text-decoration: underline;
 }
-
 .section-product-category .name-product {
   color: #0c0d36;
   font-size: 20px;
   font-weight: 500;
   margin-top: -10px;
 }
-
 .section-product-category figure {
   position: relative;
 }
-
 .section-product-category figure .product-img .discount-image {
   position: absolute;
   top: 0;
@@ -374,7 +318,6 @@ body {
   right: 0;
   padding-bottom: 100px;
 }
-
 .section-product-category figure .discount-badge {
   position: absolute;
   display: inline-block;
@@ -387,7 +330,6 @@ body {
   text-align: center;
   color: #fff;
 }
-
 .section-product-category img {
   border-radius: 8px;
   background-size: cover;
@@ -396,47 +338,39 @@ body {
 .section-product {
   margin-top: 130px;
 }
-
 .section-product h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-product p {
   color: #5b5575;
 }
-
 .section-product .price {
   color: #ff6b44;
 }
-
 .section-product .next-category {
   color: #11ac6a;
   font-weight: 400;
   font-size: 18px;
   text-decoration: none;
 }
-
 .section-product .next-category:hover {
   color: #11ac6a;
   font-weight: 400;
   font-size: 18px;
   text-decoration: underline;
 }
-
 .section-product .name-product {
   color: #0c0d36;
   font-size: 20px;
   font-weight: 500;
   margin-top: -10px;
 }
-
 .section-product figure {
   position: relative;
 }
-
 .section-product figure .product-img .discount-image {
   position: absolute;
   top: 0;
@@ -444,7 +378,6 @@ body {
   right: 0;
   padding-bottom: 100px;
 }
-
 .section-product figure .discount-badge {
   position: absolute;
   display: inline-block;
@@ -457,7 +390,6 @@ body {
   text-align: center;
   color: #fff;
 }
-
 .section-product img {
   border-radius: 8px;
   background-size: cover;
@@ -466,26 +398,21 @@ body {
 .section-popular {
   margin-top: 130px;
 }
-
 .section-popular h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #000;
 }
-
 .section-popular .price {
   color: #ff6b44;
 }
-
 .section-popular figure {
   position: relative;
 }
-
 .section-popular figure img {
   border-radius: 8px;
 }
-
 .section-popular figure .product-img a {
   position: absolute;
   top: 0;
@@ -494,11 +421,9 @@ body {
   bottom: 9px;
   background-color: rgba(0, 0, 0, 0.3);
   opacity: 0;
-  -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
   border-radius: 8px;
 }
-
 .section-popular figure .product-img a:hover {
   opacity: 1;
 }
@@ -506,44 +431,36 @@ body {
 .section-cart {
   margin-top: 70px;
 }
-
 .section-cart table thead tr {
   color: #0c0d36;
 }
-
 .section-cart table tbody th img {
   max-height: 100px;
   max-width: 110px;
 }
-
 .section-cart table tbody .title-product {
   font-size: 18px;
   font-weight: 500;
   color: #000;
 }
-
 .section-cart table tbody .name-store {
   color: #c4c4c4;
   font-size: 16px;
   font-weight: 500;
 }
-
 .section-cart table tbody .btn-minus {
   background: #ffcf00;
   border-radius: 4px;
 }
-
 .section-cart table tbody .btn-plus {
   background: #29a867;
   border-radius: 4px;
 }
-
 .section-cart table tbody .btn-hapus {
   background: #cc2626;
   border-radius: 25px;
   width: 150px;
 }
-
 .section-cart table tbody .price {
   color: #ff6b44;
   font-size: 18px;
@@ -552,7 +469,6 @@ body {
 .section-address {
   margin-top: 70px !important;
 }
-
 .section-address h3 {
   font-family: "Merriweather";
   font-size: 32px;
@@ -563,47 +479,39 @@ body {
 .section-detail-price {
   margin-top: 100px;
 }
-
 .section-detail-price h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-detail-price .detail-price .card {
   margin-top: 20px;
 }
-
 .section-detail-price .detail-price .card .card-body th {
   font-weight: 400;
   font-size: 16px;
 }
-
 .section-detail-price .detail-price .card .card-body strong {
   color: #ff6b44;
 }
-
 .section-detail-price .payment-method .warning {
   margin-top: 20px;
   font-weight: 400;
   font-size: 16px;
   color: #afafaf;
 }
-
 .section-detail-price .payment-method .btn-cod {
   margin-top: 25px;
   background: #d4beff;
   border-radius: 25px;
   color: #5b5575;
 }
-
 .section-detail-price .payment-method .btn-otomatis {
   background: #a43ce3;
   border-radius: 25px;
   color: #fff;
 }
-
 .section-detail-price .payment-method .step-payment a {
   font-weight: 400;
   font-size: 16px;
@@ -617,16 +525,13 @@ body {
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-transaction .card-header span {
   color: #5b5575;
 }
-
 .section-transaction th {
   color: #1e124c;
   font-weight: 600;
 }
-
 .section-transaction .btn-payment {
   background-color: #a43ce3;
   border-radius: 50px;
@@ -636,48 +541,39 @@ body {
 .section-gallery {
   margin-top: 70px;
 }
-
 .section-gallery .rating-product .fa-star {
   color: #ffd401;
 }
-
 .section-gallery .rating-product .fa-star-half-alt {
   color: #ffd401;
 }
-
 .section-gallery h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-gallery .name-store p {
   color: #c4c4c4;
   font-weight: 500;
   font-size: 18px;
 }
-
 .section-gallery .name-product h5 {
   color: #000;
   font-weight: bold;
   font-size: 26px;
 }
-
 .section-gallery .price {
   color: #ff6b44;
   font-size: 20px;
   font-weight: 500;
 }
-
 .section-gallery .quantity .btn-minus {
   background-color: #edc500;
 }
-
 .section-gallery .quantity .btn-plus {
   background-color: #29a867;
 }
-
 .section-gallery .btn-buy-now {
   background-color: #efefef;
   border-color: #a43ce3;
@@ -685,63 +581,51 @@ body {
   border-radius: 25px;
   font-size: 18px;
 }
-
 .section-gallery .add-to-cart {
   margin-top: 50px;
 }
-
 .section-gallery .add-to-cart .btn-add-to-cart {
   background-color: #a43ce3;
   color: #fff;
   border-radius: 25px;
   font-size: 18px;
 }
-
 .section-gallery .description-product h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-gallery .description-product .description {
   margin-top: 30px;
 }
-
 .section-gallery .description-product .description p {
   color: #525252;
   font-size: 16px;
   font-weight: 400;
 }
-
 .section-gallery .reviews {
   margin-top: 26px;
 }
-
 .section-gallery .reviews .customer-reviews {
   margin-top: -30px;
 }
-
 .section-gallery .reviews img {
   max-height: 70px;
 }
-
 .section-gallery .reviews h5 {
   font-size: 16px;
   font-weight: 500;
   color: #0c0d36;
 }
-
 .section-gallery .reviews p {
   color: #525252;
   font-size: 16px;
   font-weight: 400;
 }
-
 .section-gallery figure {
   position: relative;
 }
-
 .section-gallery figure .product-img .discount-image {
   position: absolute;
   top: 0;
@@ -749,7 +633,6 @@ body {
   right: 0;
   padding-bottom: 100px;
 }
-
 .section-gallery figure .discount-badge {
   position: absolute;
   display: inline-block;
@@ -766,24 +649,20 @@ body {
 .section-search-bar {
   margin-top: 100px;
 }
-
 .section-search-bar h3 {
   font-family: "Merriweather";
   font-size: 32px;
   font-weight: 600;
   color: #1e124c;
 }
-
 .section-search-bar .btn-search {
   border-radius: 25px;
   background-color: #a43ce3;
   color: #fff;
 }
-
 .section-search-bar input {
   border-radius: 25px;
 }
-
 .section-search-bar .btn-search-mobile {
   border-radius: 50px;
   background-color: #a43ce3;
@@ -797,31 +676,25 @@ body {
 .section-login {
   margin-top: 3%;
 }
-
 .section-login input {
   border-radius: 50px;
 }
-
 .section-login .figure img {
   max-height: 50px;
 }
-
 .section-login .figure h1 {
   font-size: 32px;
   font-weight: 600;
 }
-
 .section-login h2 {
   font-size: 26px;
   font-weight: 500;
 }
-
 .section-login p {
   font-size: 16px;
   font-weight: 300;
   color: #a2a2a2;
 }
-
 .section-login .btn-login {
   background-color: #a43ce3;
   color: #fff;
@@ -829,7 +702,6 @@ body {
   font-weight: 400;
   font-size: 16px;
 }
-
 .section-login .btn-login-google {
   color: #212529;
   background-color: #dddddd;
@@ -837,31 +709,26 @@ body {
   font-weight: 400;
   font-size: 16px;
 }
-
 .section-login .already-account span {
   color: #212529;
   font-weight: 400;
   font-size: 16px;
 }
-
 .section-login .already-account span a {
   color: #212529;
   font-weight: 400;
   font-size: 16px;
   text-decoration: none;
 }
-
 .section-login .already-account span a:hover {
   color: #a43ce3;
 }
-
 .section-login .forgot-password {
   text-decoration: none;
   font-size: 16px;
   font-weight: 400;
   color: #212529;
 }
-
 .section-login .forgot-password:hover {
   color: #a43ce3;
 }
@@ -869,11 +736,9 @@ body {
 .section-register {
   margin-top: 3%;
 }
-
 .section-register input {
   border-radius: 50px;
 }
-
 .section-register .btn-google-register {
   color: #212529;
   background-color: #dddddd;
@@ -881,35 +746,28 @@ body {
   font-weight: 400;
   font-size: 16px;
 }
-
 .section-register .btn-google-register img {
   max-height: 20px;
 }
-
 .section-register .btn-google-register span {
   margin-left: 15px;
 }
-
 .section-register .figure img {
   max-height: 50px;
 }
-
 .section-register .figure h1 {
   font-size: 32px;
   font-weight: 600;
 }
-
 .section-register h2 {
   font-size: 26px;
   font-weight: 500;
 }
-
 .section-register p {
   font-size: 16px;
   font-weight: 300;
   color: #a2a2a2;
 }
-
 .section-register .btn-daftar {
   background-color: #a43ce3;
   color: #fff;
@@ -917,20 +775,17 @@ body {
   font-size: 16px;
   border-radius: 50px;
 }
-
 .section-register .already-account span {
   color: #212529;
   font-weight: 400;
   font-size: 16px;
 }
-
 .section-register .already-account span a {
   color: #212529;
   font-weight: 400;
   font-size: 16px;
   text-decoration: none;
 }
-
 .section-register .already-account span a:hover {
   color: #a43ce3;
 }
@@ -938,32 +793,25 @@ body {
 .navbar {
   background-color: #f8f8f8 !important;
 }
-
 .navbar .navbar-brand img {
   max-height: 50px;
 }
-
 .navbar .navbar-nav .nav-item .active {
   font-size: 16px;
   font-weight: 500;
   color: #a43ce3;
 }
-
 .navbar .navbar-nav .nav-item a {
   font-size: 16px;
   font-weight: 400;
 }
-
 .navbar .navbar-nav .nav-item a:hover {
   color: #a43ce3;
 }
-
 .navbar .navbar-nav .nav-item .cart-badge {
   display: inline-block;
-  min-width: 2em;
-  /* em unit */
-  padding: 0.3em;
-  /* em unit */
+  min-width: 2em; /* em unit */
+  padding: 0.3em; /* em unit */
   border-radius: 50%;
   font-size: 10px;
   text-align: center;
@@ -971,34 +819,28 @@ body {
   color: #fefefe;
   margin-left: -10px;
 }
-
 .navbar .navbar-nav .btn-sign-up {
   background-color: #a43ce3;
   border-radius: 25px;
 }
-
 .navbar .navbar-nav .btn-mobile-masuk {
   background-color: #d4beff;
   border-radius: 25px;
 }
-
 .navbar .navbar-nav .btn-mobile-daftar {
   background-color: #a43ce3;
   border-radius: 25px;
 }
-
 .navbar .dropdown a {
   text-decoration: none;
   color: #5b5575;
   font-size: 16px;
 }
-
 .navbar .dropdown img {
   max-height: 45px;
   border-radius: 50px;
   background-size: cover;
 }
-
 .navbar .dropdown .menu-profile {
   float: right !important;
 }
@@ -1006,31 +848,24 @@ body {
 .section-footer {
   margin-top: 150px;
 }
-
 .section-footer h3 {
   font-weight: 500;
 }
-
 .section-footer .copyright {
   font-size: 16px;
   color: #5b5575;
 }
-
 .section-footer .description p {
   font-size: 16px;
 }
-
 .section-footer .social-media img {
   max-height: 50px;
 }
-
 .section-footer .list-unstyled li a {
   text-decoration: none;
   color: #212529;
 }
-
 .section-footer .list-unstyled li a:hover {
   text-decoration: underline;
   color: #a43ce3;
-}
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */
