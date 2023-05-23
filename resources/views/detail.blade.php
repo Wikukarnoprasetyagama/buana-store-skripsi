@@ -85,13 +85,12 @@ Detail Produk
         <form action="{{ route('detail-add', $products->id) }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="row mt-4">
-            <div class="col-4">
-              <div class="quantity d-flex gap-5">
-                {{-- <input type="number" name="quantity" class="form-control" min="1" value="1"> --}}
+            <div class="col-6">
+              <div class="quantity d-flex gap-3">
                 <button class="btn btn-warning" type="button" onclick="btnKurang()">
                   <i class="fas fa-minus text-white"></i>
                 </button>
-                <span class="my-auto" name="quantity" id="quantityValue"></span>
+                <input type="number" class="form-control text-center @error('quantity') is-invalid @enderror" name="quantity" id="quantityValue">
                 <button class="btn btn-success" type="button" onclick="btnTambah()">
                   <i class="fas fa-plus"></i>
                 </button>
@@ -196,6 +195,17 @@ Detail Produk
     font-weight: 600;
     font-size: 18px;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
 </style>
 @endpush
 
@@ -205,22 +215,14 @@ Detail Produk
   $('#quantityValue').attr('value', 1);
 
   function btnTambah() {
-    var quantity = document.getElementById("quantityValue").innerHTML;
-    quantity++;
-    document.getElementById("quantityValue").innerHTML = quantity;
-    document.getElementById("quantityValue").setAttribute("value", quantity);
-    if(quantity == 1) {
-      document.getElementById("quantityValue").innerHTML = 1;
-      document.getElementById("quantityValue").setAttribute("value", 1);
-    }
+    var quantity = document.getElementById("quantityValue");
+    quantity.value++;
   }
 
   function btnKurang() {
-    var quantity = document.getElementById("quantityValue").innerHTML;
-    if (quantity > 1) {
-      quantity--;
-      document.getElementById("quantityValue").innerHTML = quantity;
-      document.getElementById("quantityValue").setAttribute("value", quantity);
+    var quantity = document.getElementById("quantityValue");
+    if (quantity.value > 1) {
+      quantity.value--;
     }
   }
 </script>

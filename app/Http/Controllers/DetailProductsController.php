@@ -25,14 +25,18 @@ class DetailProductsController extends Controller
 
     public function add(Request $request, $id)
     {
+        $request->validate([
+            'quantity' => 'required|numeric|min:1',
+        ]);
+
         $data = [
             'products_id' => $id,
             'users_id' => Auth::user()->id,
-            'quantity' => $request->quantity ?? 1,
+            'quantity' => $request->quantity
         ];
+
         
         $cart = Cart::where(['products_id' => $data], ['deleted_at' => $data], Auth::user()->id)->count();
-        // Cart::create($data);
         if ($cart > 0) {
             Alert::warning('Gagal!', 'Produk sudah ada di keranjang!');
             return redirect()->route('cart');
@@ -41,12 +45,5 @@ class DetailProductsController extends Controller
             Alert::success('Berhasil Ditambahkan!', 'Produk yang anda pilih berhasil ditambahkan ke keranjang.');
             return redirect()->route('cart');
         }
-        // if ($data) {
-        //     Alert::success('Berhasil Ditambahkan!', 'Produk yang anda pilih berhasil ditambahkan ke keranjang.');
-        //     return redirect()->route('cart');
-        // }else{
-        //     Alert::error('Gagal Ditambahkan!', 'Produk yang anda pilih gagal ditambahkan ke keranjang.');
-        //     return redirect()->route('cart');
-        // }
     }
 }
