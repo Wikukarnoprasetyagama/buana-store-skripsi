@@ -5,20 +5,19 @@
 <!-- image thumbnail -->
 ![Buana Store Thumbnail](thumbnail.jpg)
 
-<h2>
-    <a href="https://skripsiku.wikukarno.com">Demo</a>
-</h2>
+<a href="https://skripsiku.wikukarno.com">
+    Demo Website
+</a>
 
-<h3>
-    Description
-</h3>
+## Description
+
 <p>
 Welcome to Buana Store, an advanced e-commerce platform built using Laravel 10. This application offers a seamless shopping experience, allowing customers to browse a wide range of products, add them to their cart, and make purchases with ease.
 </p>
 
-<h3>
-    Features
-</h3>
+
+## Features
+
 <ul>
     <li><b>Product Catalog</b></li>
     <li><b>Product Search</b></li>
@@ -30,38 +29,33 @@ Welcome to Buana Store, an advanced e-commerce platform built using Laravel 10. 
     <li><b>Laravel 10 Framework: </b>Leveraging the latest features of Laravel for robust and scalable development.</li>
 </ul>
 
-<h3>
-    Installation
-</h3>
+## Installation
 
-<p>
-    <b>Step 1:</b> Clone the repository to your local machine using the command below:
-</p>
+#### Step 1: 
+- Clone the repository to your local machine using the command below:
 
-    ```bash
-    git clone https://github.com/wikukarno/buana-store-skripsi.git
-    ```
+```
+git clone https://github.com/wikukarno/buana-store-skripsi.git
+```
+    
 <p>
     <b>Step 2:</b> Install dependencies
 </p>
 
-    ```bash
     composer install
-    ```
+
 <p>
     <b>Step 3:</b> Create a copy of your .env file
 </p>
 
-    ```bash
     cp .env.example .env
-    ```
+
 <p>
     <b>Step 4:</b> Generate an app encryption key
 </p>
 
-    ```bash
     php artisan key:generate
-    ```
+
 <p>
     <b>Step 5:</b> Create an empty database for our application
 
@@ -73,18 +67,15 @@ Welcome to Buana Store, an advanced e-commerce platform built using Laravel 10. 
     <b>Step 7:</b> Migrate the database
 </p>
 
-    ```bash
     php artisan migrate --seed
-    ```
 <p>
     <b>Step 8:</b> Start the local development server
 </p>
 
-    ```bash
     php artisan serve
-    ```
+    
 <p>
-    You can now access the server at http://localhost:8000 or http://127.0.0.1:8000
+    You can now access the server at http://127.0.0.1:8000
 </p>
 
 <h3>
@@ -102,3 +93,7 @@ Welcome to Buana Store, an advanced e-commerce platform built using Laravel 10. 
 <p>
     <b>NOTE:</b> This project is for educational purposes only. We are not responsible for any kind of damage caused by any misuse of this project.
 </p>
+
+<h3>
+    Conributing
+</h3>
