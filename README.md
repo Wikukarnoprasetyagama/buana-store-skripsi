@@ -31,56 +31,55 @@ Welcome to Buana Store, an advanced e-commerce platform built using Laravel 10. 
 
 ## Installation
 
-#### Step 1: 
-- Clone the repository to your local machine using the command below:
+### Clone the repository
 
 ```
 git clone https://github.com/wikukarno/buana-store-skripsi.git
 ```
     
-<p>
-    <b>Step 2:</b> Install dependencies
-</p>
+### Install dependencies
 
-    composer install
+```
+composer install
+```
+### Create a copy of your .env file
 
-<p>
-    <b>Step 3:</b> Create a copy of your .env file
-</p>
+```
+cp .env.example .env
+```
 
-    cp .env.example .env
+### Generate an app encryption key
 
-<p>
-    <b>Step 4:</b> Generate an app encryption key
-</p>
+```
+php artisan key:generate
+```
 
-    php artisan key:generate
+<p>Create an empty database for our application for example</p>
 
-<p>
-    <b>Step 5:</b> Create an empty database for our application
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=name_database
+DB_USERNAME=username_database
+DB_PASSWORD=password_database
+```
+### Migrate the database
 
-<p>
-    <b>Step 6:</b> In the .env file, add database information to allow Laravel to connect to the database
-</p>
+```
+php artisan migrate --seed
+```
 
-<p>
-    <b>Step 7:</b> Migrate the database
-</p>
+### Start the local development server
 
-    php artisan migrate --seed
-<p>
-    <b>Step 8:</b> Start the local development server
-</p>
-
-    php artisan serve
-    
+```
+php artisan serve
+```
 <p>
     You can now access the server at http://127.0.0.1:8000
 </p>
 
-<h3>
-    License
-</h3>
+## License
 
 <p>
     The Laravel framework is open-sourced software licensed under the <a href="https://opensource.org/licenses/MIT">MIT license</a>.
@@ -93,7 +92,3 @@ git clone https://github.com/wikukarno/buana-store-skripsi.git
 <p>
     <b>NOTE:</b> This project is for educational purposes only. We are not responsible for any kind of damage caused by any misuse of this project.
 </p>
-
-<h3>
-    Conributing
-</h3>
