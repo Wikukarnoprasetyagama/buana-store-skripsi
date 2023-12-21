@@ -5,7 +5,7 @@
 <!-- image thumbnail -->
 ![Buana Store Thumbnail](thumbnail.jpg)
 
-<a href="https://skripsiku.wikukarno.com">
+<a href="https://skripsiku.wikukarno.com" target="_blank">
     Demo Website
 </a>
 
