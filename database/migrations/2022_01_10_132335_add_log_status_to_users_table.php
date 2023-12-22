@@ -14,7 +14,7 @@ class AddLogStatusToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('reg_status');
+            $table->enum('register_with', ['email', 'google', 'facebook'])->default('email');
         });
     }
 

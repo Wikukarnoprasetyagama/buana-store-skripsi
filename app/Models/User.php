@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,33 +11,17 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable 
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    protected $fillable = [
-        'name',
-        'roles',
-        'email',
-        'password',
-        'photo_profile',    
-        'photo_shop',
-        'name_store',   
-        'name_bank',   
-        'account_number',   
-        'phone',    
-        'village',  
-        'street',  
-        'address',  
-        'status',  
-        'reg_status',
-        'provinces_id',
-        'regencies_id',
-        'districts_id',
-    ];
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -59,11 +44,11 @@ class User extends Authenticatable
 
     public function product()
     {
-        return $this->belongsTo(Products::class, 'users_id', 'id');
+        return $this->belongsTo(Products::class, 'id_user', 'id');
     }
 
     public function transaction()
     {
-        return $this->belongsTo(Transaction::class, 'users_id', 'id');
+        return $this->belongsTo(Transaction::class, 'id_user', 'id');
     }
 }
