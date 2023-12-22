@@ -13,7 +13,7 @@
               @endif
             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              @if (Auth::user()->role == 'SELLER')
+              @if (Auth::user()->role == 'seller')
                   <a href="{{ route('profile-seller.index') }}" class="dropdown-item has-icon">
                     <i class="fas fa-user"></i> Profile
                   </a>

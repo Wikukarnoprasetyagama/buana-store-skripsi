@@ -52,6 +52,7 @@ Route::get('/kategori/{id}', [CategoryProductsController::class, 'detail'])->nam
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
+
 //Google
 Route::get('/auth/callback', [LoginController::class, 'handlerProviderCallback']);
 Route::get('/auth/redirect', [LoginController::class, 'redirectToProvider']);
@@ -59,7 +60,6 @@ Route::get('/auth/redirect', [LoginController::class, 'redirectToProvider']);
 
 // midtrans
 Route::post('/checkout/callback', [CheckoutController::class, 'callback'])->name('midtrans-callback');
-
 
 Route::prefix('/pages/dashboard/admin')
         ->middleware(['auth', 'admin'])
