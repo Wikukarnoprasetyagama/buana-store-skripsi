@@ -103,17 +103,13 @@ class CategoryController extends Controller
 
         $file_photo = $request->file('photo');
 
-        // if($file_photo) //jika foto tidak di update
-        // {
-        //     $filename = $file_photo->getClientOriginalName();
-        //     $data['photo'] = $filename;
-        //     $data['photo'] = $request->file('photo')->store(
-        //         'assets/category',
-        //         'public'
-        //     );
-        //     $proses = $file_photo->move('assets/category', 'public');
-        // } 
-
+        if ($file_photo) {
+            Storage::delete('public/' . $category->photo);
+            $data['photo'] = $file_photo->store('assets/category', 'public');
+        } else {
+            $data['photo'] = $category->photo;
+        }
+        
         $category->update($data);
 
         if ($data) {
