@@ -19,10 +19,34 @@ class SlidersController extends Controller
      */
     public function index()
     {
+        if (request()->ajax()) {
+            $query = Sliders::query();
+
+            return DataTables::of($query)
+                ->addIndexColumn()
+                ->addColumn('action', function ($item) {
+                    return '
+                        <div class="d-flex gap-2">
+                            <a href="' . route('sliders.edit', $item->id) . '" class="btn btn-secondary mr-2">
+                                <i class="fa fa-pencil-alt"></i>
+                            </a>
+                            <form action="' . route('sliders.destroy', $item->id) . '" method="POST">
+                                ' . method_field('delete') . csrf_field() . '
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    ';
+                })
+                ->editColumn('photo', function ($item) {
+                    return $item->photo ? '<img src="' . Storage::url($item->photo) . '" style="max-height: 40px;" />' : '';
+                })
+                ->rawColumns(['action', 'photo'])
+                ->make();
+        }
         $slider = Sliders::all();
-        return view('pages.admin.slider.index', [
-            'sliders' => $slider
-        ], compact('slider'));
+        return view('pages.admin.slider.index', compact('slider'));
     }
 
     /**
@@ -53,7 +77,7 @@ class SlidersController extends Controller
         if ($data) {
             Alert::success('Berhasil!', 'Slider ' . $request->name . ' Berhasil Ditambahkan');
             return redirect()->route('sliders.index');
-        }else{
+        } else {
             Alert::error('Gagal!', 'Slider ' . $request->name . ' Gagal Ditambahkan');
             return redirect()->route('sliders.index');
         }
@@ -98,22 +122,22 @@ class SlidersController extends Controller
         $slider = Sliders::findOrFail($id);
         $file_photo = $request->file('photo');
 
-        if($file_photo) //jika foto tidak di update
-        {
-            $filename = $file_photo->getClientOriginalName();
-            $data['photo'] = $filename;
-            $data['photo'] = $request->file('photo')->store(
-                'assets/slider',
-                'public'
-            );
-            $proses = $file_photo->move('assets/slider', 'public');
-        } 
+        // if($file_photo) //jika foto tidak di update
+        // {
+        //     $filename = $file_photo->getClientOriginalName();
+        //     $data['photo'] = $filename;
+        //     $data['photo'] = $request->file('photo')->store(
+        //         'assets/slider',
+        //         'public'
+        //     );
+        //     $proses = $file_photo->move('assets/slider', 'public');
+        // } 
         $slider->update($data);
 
         if ($data) {
             Alert::success('Berhasil!', 'Slider ' . $request->name . ' Berhasil Diubah');
             return redirect()->route('sliders.index');
-        }else{
+        } else {
             Alert::error('Gagal!', 'Slider ' . $request->name . ' Gagal Diubah');
             return redirect()->route('sliders.edit');
         }
