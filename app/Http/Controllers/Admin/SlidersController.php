@@ -122,16 +122,12 @@ class SlidersController extends Controller
         $slider = Sliders::findOrFail($id);
         $file_photo = $request->file('photo');
 
-        // if($file_photo) //jika foto tidak di update
-        // {
-        //     $filename = $file_photo->getClientOriginalName();
-        //     $data['photo'] = $filename;
-        //     $data['photo'] = $request->file('photo')->store(
-        //         'assets/slider',
-        //         'public'
-        //     );
-        //     $proses = $file_photo->move('assets/slider', 'public');
-        // } 
+        if ($file_photo) {
+            $data['photo'] = $file_photo->store('assets/sliders', 'public');
+        } else {
+            unset($data['photo']);
+        }
+        
         $slider->update($data);
 
         if ($data) {
